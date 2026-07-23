@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Kişisel Panel</string>
+    <string name="title_activity_main">Kişisel Panel</string>
+    <string name="package_name">com.personelweb.app</string>
+    <string name="custom_url_scheme">com.personelweb.app</string>
+</resources>

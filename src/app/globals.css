@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf7f2;
+  --foreground: #2b2a28;
+  --card: #ffffff;
+  --card-border: #ece6da;
+  --accent-mint: #b9d8c8;
+  --accent-pink: #f0c9d3;
+  --accent-yellow: #f3e2a9;
+  --accent-blue: #bcd4e6;
+  --accent-lilac: #d3c6e6;
+  --muted: #8a8578;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-accent-mint: var(--accent-mint);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-lilac: var(--accent-lilac);
+  --color-muted: var(--muted);
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1c1a17;
+    --foreground: #f1eee6;
+    --card: #26231f;
+    --card-border: #3a352d;
+    --muted: #a29c8c;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 999px;
+}

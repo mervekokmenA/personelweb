@@ -1,0 +1,181 @@
+// Prisma schema — personelweb
+// Kişisel üretkenlik + içerik + eğitim + astroloji takip uygulaması
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// GÜNLÜK PROGRAM
+// ---------------------------------------------------------------------------
+
+// Parametrik alan: Hobi / Yazı / Yabancı Dil / Gelişim gibi üst kategoriler
+model FocusArea {
+  id        String   @id @default(cuid())
+  name      String // örn: "Hobi", "Yazı", "Yabancı Dil", "Gelişim"
+  items     String[] // örn: ["Kil", "Elmas Boyama", "Resim"]
+  color     String   @default("#a78bfa")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Parametrik: her gün tekrar eden rutin şablonu (Günlük Rutinler listesi)
+model RoutineTemplate {
+  id          String             @id @default(cuid())
+  title       String // örn: "İmajinasyon, 10 dk"
+  description String?
+  frequency   String             @default("daily") // daily | weekly | custom
+  order       Int                @default(0)
+  active      Boolean            @default(true)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  completions RoutineCompletion[]
+}
+
+// Bir rutinin belirli bir gündeki tamamlanma durumu
+model RoutineCompletion {
+  id         String          @id @default(cuid())
+  date       DateTime // gün (saat kısmı yok sayılır, UTC 00:00 olarak saklanır)
+  done       Boolean         @default(false)
+  template   RoutineTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId String
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  @@unique([templateId, date])
+  @@index([date])
+}
+
+// Günlük saat planı: 7:00-08:50 gibi zaman bloğu + etkinlik
+model TimeBlock {
+  id        String   @id @default(cuid())
+  date      DateTime // gün
+  startTime String // "07:00"
+  endTime   String // "08:50"
+  activity  String
+  category  String? // Kahvaltı, Kitap Okuma, Yürüyüş, vs.
+  done      Boolean  @default(false)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+}
+
+// Yapılacaklar listesi (günlük plan sayfasındaki alt kutu)
+model TodoItem {
+  id        String   @id @default(cuid())
+  date      DateTime
+  text      String
+  done      Boolean  @default(false)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+}
+
+// Düşünce / Not günlüğü serbest metin
+model JournalNote {
+  id        String   @id @default(cuid())
+  date      DateTime
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+}
+
+// ---------------------------------------------------------------------------
+// İÇERİK FİKİRLERİ
+// ---------------------------------------------------------------------------
+
+enum ContentStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  DONE
+}
+
+model ContentIdea {
+  id        String        @id @default(cuid())
+  title     String
+  category  String        @default("Genel")
+  format    String? // Video, Yazı, Podcast, Kısa Video...
+  status    ContentStatus @default(NOT_STARTED)
+  notes     String?
+  source    String        @default("seed") // seed | manual | ai
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status])
+  @@index([category])
+}
+
+// ---------------------------------------------------------------------------
+// EĞİTİMLER
+// ---------------------------------------------------------------------------
+
+enum TrainingStatus {
+  PLANNED
+  ONGOING
+  COMPLETED
+  PAUSED
+}
+
+enum TrainingType {
+  FREE
+  PAID
+}
+
+model Training {
+  id          String         @id @default(cuid())
+  name        String
+  provider    String?
+  url         String?
+  type        TrainingType   @default(FREE)
+  category    String? // Nöropazarlama, Marka Stratejisi, Okültizm, vs.
+  status      TrainingStatus @default(PLANNED)
+  instructor  String?
+  paymentInfo String?
+  startedAt   DateTime?
+  finishedAt  DateTime?
+  description String?
+  order       Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  notes       TrainingNote[]
+}
+
+model TrainingNote {
+  id         String   @id @default(cuid())
+  training   Training @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+  trainingId String
+  title      String?
+  content    String
+  lessonDate DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([trainingId])
+}
+
+// ---------------------------------------------------------------------------
+// APK BUILD LOG (Ayarlar sayfası)
+// ---------------------------------------------------------------------------
+
+model ApkBuild {
+  id          String   @id @default(cuid())
+  status      String // triggered | in_progress | success | failure | failed
+  message     String?
+  runUrl      String?
+  runId       String?
+  downloadUrl String?
+  triggeredAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

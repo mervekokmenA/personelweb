@@ -18,3 +18,9 @@ export async function logReadingPages(formData: FormData) {
   });
   revalidatePath("/");
 }
+
+export async function deleteReadingLog(formData: FormData) {
+  const id = String(formData.get("id"));
+  await prisma.readingLog.delete({ where: { id } });
+  revalidatePath("/");
+}

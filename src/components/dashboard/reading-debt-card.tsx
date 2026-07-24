@@ -1,9 +1,27 @@
 import { BookOpen } from "lucide-react";
-import { logReadingPages } from "@/app/actions";
+import { logReadingPages, deleteReadingLog } from "@/app/actions";
 import { toDateInputValue } from "@/lib/date";
+import { DeleteButton } from "@/components/ui/delete-button";
 import type { ReadingDebtSummary } from "@/lib/reading";
 
-export function ReadingDebtCard({ summary }: { summary: ReadingDebtSummary }) {
+interface ReadingLogRow {
+  id: string;
+  date: Date;
+  pages: number;
+  bookTitle: string | null;
+}
+
+function fmt(d: Date): string {
+  return d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" });
+}
+
+export function ReadingDebtCard({
+  summary,
+  history,
+}: {
+  summary: ReadingDebtSummary;
+  history: ReadingLogRow[];
+}) {
   const hasDebt = summary.debtPages > 0;
   return (
     <section className="card p-5">
@@ -52,6 +70,19 @@ export function ReadingDebtCard({ summary }: { summary: ReadingDebtSummary }) {
           Kaydet
         </button>
       </form>
+
+      <div className="mt-4 flex flex-col divide-y divide-card-border border-t border-card-border text-sm">
+        {history.map((h) => (
+          <div key={h.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
+            <span>{fmt(h.date)}</span>
+            <span className="text-muted">
+              {h.pages} sayfa{h.bookTitle ? ` — ${h.bookTitle}` : ""}
+            </span>
+            <DeleteButton action={deleteReadingLog} hidden={{ id: h.id }} />
+          </div>
+        ))}
+        {history.length === 0 && <p className="py-3 text-muted">Henüz kayıt yok.</p>}
+      </div>
     </section>
   );
 }

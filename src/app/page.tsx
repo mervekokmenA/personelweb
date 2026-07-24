@@ -59,6 +59,11 @@ export default async function DashboardPage() {
     computeReadingDebt(settings.dailyReadingPageTarget),
   ]);
 
+  const readingHistory = await prisma.readingLog.findMany({
+    orderBy: { date: "desc" },
+    take: 30,
+  });
+
   const countMap = Object.fromEntries(statusCounts.map((s) => [s.status, s._count]));
   const contentTotal = statusCounts.reduce((sum, s) => sum + s._count, 0);
 
@@ -116,7 +121,7 @@ export default async function DashboardPage() {
         <p className="text-sm text-muted">{formatTrLong(today)}</p>
       </div>
 
-      <ReadingDebtCard summary={readingDebt} />
+      <ReadingDebtCard summary={readingDebt} history={readingHistory} />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <DashboardCard href="/gunluk" icon={CalendarDays} title="Günlük Program" accent="var(--accent-mint)">

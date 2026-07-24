@@ -4,9 +4,20 @@ interface DonutChartProps {
   size?: number;
   strokeWidth?: number;
   label?: string;
+  /** Tailwind boyut sınıfları (örn. "w-10 h-10 sm:w-14 sm:h-14") — verilirse
+   * kutunun gerçek render boyutunu belirler ve `size` sadece iç viewBox/stroke
+   * oranlarını hesaplamak için kullanılır, SVG kutuya %100 ölçeklenir. */
+  className?: string;
 }
 
-export function DonutChart({ percent, color, size = 72, strokeWidth = 8, label }: DonutChartProps) {
+export function DonutChart({
+  percent,
+  color,
+  size = 72,
+  strokeWidth = 8,
+  label,
+  className,
+}: DonutChartProps) {
   const clamped = Math.max(0, Math.min(100, percent));
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -14,8 +25,11 @@ export function DonutChart({ percent, color, size = 72, strokeWidth = 8, label }
   const center = size / 2;
 
   return (
-    <div className="relative shrink-0" style={{ width: size, height: size }}>
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="-rotate-90">
+    <div
+      className={`relative shrink-0 ${className ?? ""}`}
+      style={className ? undefined : { width: size, height: size }}
+    >
+      <svg width="100%" height="100%" viewBox={`0 0 ${size} ${size}`} className="-rotate-90">
         <circle
           cx={center}
           cy={center}

@@ -13,8 +13,9 @@ içerik fikirleri, eğitim takibi ve Vedik astroloji.
   durum işaretleme (Yapılmadı / Yapılıyor / Yapıldı), kategori/durum filtresi.
 - **/egitimler** — Aldığın/almayı planladığın eğitimlerin listesi, her
   eğitimin kendi sayfasında ders notları tutabileceğin bir alan.
-- **/astroloji** — Seçtiğin günün sidereal (Lahiri) transit haritası ve
-  (env değişkenleri tanımlıysa) natal haritanla karşılaştırması, açı listesi.
+- **/astroloji** — Seçtiğin günün sidereal (Lahiri) transit haritası, natal
+  haritanla whole-sign ev bazında karşılaştırması, transit→natal açı listesi
+  ve günün öne çıkan temalarını/dikkat noktalarını özetleyen otomatik metin.
 - **/ayarlar** — GitHub Actions üzerinden APK derlemeyi tetikleme ve son
   derlemeyi indirme.
 
@@ -42,23 +43,37 @@ Postgres ile de sorunsuz çalışır.
 1. Repoyu Vercel'e bağla, framework preset "Next.js" otomatik algılanır.
 2. Environment Variables kısmına `.env.example`'daki değişkenleri gir
    (özellikle `DATABASE_URL`, `NEXT_PUBLIC_APP_URL`).
-3. Build komutu `package.json`'daki `build` script'i sayesinde otomatik
-   olarak `prisma generate && prisma migrate deploy && next build` çalıştırır
-   — yani her deploy'da migration'lar otomatik uygulanır.
+3. Build komutu sadece `prisma generate && next build` çalıştırır — bilinçli
+   olarak migration içermez, çünkü `DATABASE_URL` henüz yokken build'in
+   kırılmaması gerekir. Veritabanını ilk kurarken migration'ları bir kere
+   kendin uygulaman gerekiyor: `npm run db:migrate` (yerelden, `DATABASE_URL`
+   canlı veritabanını gösterecek şekilde) veya Neon'un web SQL Editor'ünde
+   `prisma/migrations/*/migration.sql` dosyalarını sırayla çalıştırarak.
+   Ardından `npm run db:seed` ile başlangıç verisini ekle.
+4. `DATABASE_URL` veya `GH_PAT`/`GH_REPO` henüz girilmemişse site yine de
+   açılır — ilgili sayfalar sadece bir kurulum uyarısı gösterir, çökmez.
 
 ## Astroloji verisi ve gizlilik
 
-Doğum bilgilerin (`NATAL_BIRTH_DATE`, `NATAL_BIRTH_TIME`, `NATAL_UTC_OFFSET`,
-`NATAL_LATITUDE`, `NATAL_LONGITUDE`) sadece ortam değişkeni olarak tutulur:
+**Natal harita** `NATAL_CHART_JSON` ortam değişkeninden okunur (bkz.
+`.env.example` için şekli):
 
 - Repoya asla commit edilmez (`.env` gitignore'da).
-- Arayüzde ham olarak hiçbir zaman gösterilmez — sadece hesaplanan
-  gezegen/burç sonuçları render edilir.
+- Arayüzde ham doğum bilgisi (tarih/saat/yer) hiçbir zaman gösterilmez —
+  sadece burç/derece/ev sonuçları render edilir.
 - Sunucu tarafında (`src/lib/astro/natal.ts`) okunur, istemciye gönderilmez.
 
-Hesaplama `astronomy-engine` ile geocentrik ekliptik boylamlar bulunup Lahiri
-ayanamsa yaklaşımıyla sidereale çevrilir. Profesyonel yazılımların (Swiss
-Ephemeris) "true" Lahiri hesabından saniye mertebesinde farklılık gösterebilir.
+Natal harita, kendi ephemeris hesaplamamız yerine **doğrulanmış bir referans
+kaynaktan** (ör. astro-seek.com'un sidereal/Lahiri, whole-sign hesabı) alınan
+burç/derece/ev bilgisini doğrudan tutar. Bunun nedeni: Yükselen/ev hesabı
+hassas bir gözlemci-geometrisi problemi olduğu için kendi hesaplamamızla
+astro-seek.com referansı arasında birkaç gezegende (özellikle Yükselen)
+karşılaştırmalı testlerde tutarsızlık bulundu — bu yüzden natal harita için
+kendi kodumuza değil, doğrulanmış dış kaynağa güvenmek daha güvenilir.
+
+**Günlük transit** ise `astronomy-engine` ile canlı hesaplanır (geocentrik
+ekliptik boylamlar + Lahiri ayanamsa yaklaşımı); bu kısım gezegen konumları
+için NASA JPL Horizons ile karşılaştırılıp doğrulandı.
 
 ## APK derleme (Ayarlar sayfası)
 

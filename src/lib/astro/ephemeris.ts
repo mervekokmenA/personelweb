@@ -1,5 +1,6 @@
 import * as Astronomy from "astronomy-engine";
 import { toSidereal, julianDay } from "./ayanamsa";
+import { wholeSignHouse } from "./zodiac";
 
 export const PLANET_KEYS = [
   "Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto",
@@ -27,6 +28,9 @@ export interface BodyPosition {
   tropicalLongitude: number;
   siderealLongitude: number;
   retrograde: boolean;
+  /** Whole-sign ev numarası (1-12). Natal veride doğrudan verilir; transit
+   * için natal Yükselen burcuna göre sonradan hesaplanır (bkz. zodiac.ts). */
+  house?: number;
 }
 
 /** Meeus, Astronomical Algorithms — Ay'ın ortalama yükselen düğümü (Rahu) */
@@ -79,52 +83,57 @@ export function ascendantTropical(date: Date, latitude: number, longitude: numbe
 
 export interface ChartInput {
   date: Date;
-  latitude?: number;
-  longitude?: number;
+  /**
+   * Natal Yükselen'in burç indeksi (0-11) verilirse, her gezegenin whole-sign
+   * ev numarası da hesaplanıp `house` alanına yazılır. Kendi Yükselen
+   * hesaplamamız yerine natal.ts'teki doğrulanmış referans veriden gelen
+   * Yükselen kullanılır (bkz. natal.ts'teki açıklama).
+   */
+  ascendantSignIndex?: number;
 }
 
 /**
- * Verilen an için gezegen + Rahu/Ketu + (opsiyonel, lat/lon verilirse) Yükselen
- * sidereal (Lahiri) konumlarını döndürür.
+ * Verilen an için gezegen + Rahu/Ketu sidereal (Lahiri) konumlarını döndürür.
  */
 export function computeChart(input: ChartInput): BodyPosition[] {
-  const { date, latitude, longitude } = input;
+  const { date, ascendantSignIndex } = input;
   const positions: BodyPosition[] = [];
+
+  const withHouse = (siderealLongitude: number) =>
+    ascendantSignIndex !== undefined
+      ? wholeSignHouse(Math.floor(siderealLongitude / 30), ascendantSignIndex)
+      : undefined;
 
   for (const key of PLANET_KEYS) {
     const tropical = eclipticLongitudeOfDate(key as Astronomy.Body, date);
+    const siderealLongitude = toSidereal(tropical, date);
     positions.push({
       key,
       tropicalLongitude: tropical,
-      siderealLongitude: toSidereal(tropical, date),
+      siderealLongitude,
       retrograde: key === "Sun" || key === "Moon" ? false : isRetrograde(key as Astronomy.Body, date),
+      house: withHouse(siderealLongitude),
     });
   }
 
   const rahuTropical = meanLunarNodeTropical(date);
+  const rahuSidereal = toSidereal(rahuTropical, date);
   positions.push({
     key: "Rahu",
     tropicalLongitude: rahuTropical,
-    siderealLongitude: toSidereal(rahuTropical, date),
+    siderealLongitude: rahuSidereal,
     retrograde: true, // düğümler ortalama hareket olarak her zaman geri gider
+    house: withHouse(rahuSidereal),
   });
   const ketuTropical = (rahuTropical + 180) % 360;
+  const ketuSidereal = toSidereal(ketuTropical, date);
   positions.push({
     key: "Ketu",
     tropicalLongitude: ketuTropical,
-    siderealLongitude: toSidereal(ketuTropical, date),
+    siderealLongitude: ketuSidereal,
     retrograde: true,
+    house: withHouse(ketuSidereal),
   });
-
-  if (latitude !== undefined && longitude !== undefined) {
-    const ascTropical = ascendantTropical(date, latitude, longitude);
-    positions.push({
-      key: "Ascendant",
-      tropicalLongitude: ascTropical,
-      siderealLongitude: toSidereal(ascTropical, date),
-      retrograde: false,
-    });
-  }
 
   return positions;
 }

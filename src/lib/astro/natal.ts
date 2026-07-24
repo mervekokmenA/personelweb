@@ -1,57 +1,90 @@
-import { computeChart, type BodyPosition } from "./ephemeris";
+import type { BodyPosition, PlanetKey } from "./ephemeris";
+import { PLANET_KEYS } from "./ephemeris";
+import { ZODIAC_SIGNS_TR } from "./zodiac";
 
 /**
- * Doğum bilgileri SADECE ortam değişkenlerinden (.env / Vercel env vars)
+ * Natal harita SADECE bir ortam değişkeninden (.env / Vercel env vars)
  * okunur — repoya asla commit edilmez (.env.example içinde sadece örnek
- * placeholder değerler bulunur). Arayüzde bu ham veriler hiçbir zaman
- * gösterilmez, sadece hesaplanmış gezegen/burç sonuçları render edilir.
+ * placeholder değerler bulunur). Arayüzde ham doğum bilgisi (tarih/saat/yer)
+ * hiçbir zaman gösterilmez, sadece burç/ev sonuçları render edilir.
+ *
+ * Değer, doğrulanmış bir kaynaktan (ör. astro-seek.com) alınan burç/derece/ev
+ * bilgisini JSON olarak tutar — kendi ephemeris hesaplamamıza değil,
+ * doğrulanmış referans veriye dayanır (Yükselen/ev hesaplaması hassas bir
+ * gözlemci-geometrisi problemi olduğu için üçüncü parti bir doğrulama
+ * kaynağıyla karşılaştırmak daha güvenilir).
  */
-export interface NatalConfig {
-  birthDate: string; // "YYYY-MM-DD"
-  birthTime: string; // "HH:mm"
-  utcOffsetHours: number; // örn. +3
-  latitude: number;
-  longitude: number;
+interface NatalChartBodyEntry {
+  sign: string; // "Koç", "Boğa", ...
+  deg: number;
+  min: number;
+  house?: number;
+  retro?: boolean;
 }
 
-export function getNatalConfig(): NatalConfig | null {
-  const birthDate = process.env.NATAL_BIRTH_DATE;
-  const birthTime = process.env.NATAL_BIRTH_TIME;
-  const utcOffsetStr = process.env.NATAL_UTC_OFFSET;
-  const latStr = process.env.NATAL_LATITUDE;
-  const lonStr = process.env.NATAL_LONGITUDE;
+interface NatalChartJson {
+  ascendant: NatalChartBodyEntry;
+  bodies: Partial<Record<PlanetKey, NatalChartBodyEntry>>;
+}
 
-  if (!birthDate || !birthTime || !utcOffsetStr || !latStr || !lonStr) {
-    return null;
+function entryToLongitude(entry: NatalChartBodyEntry): number {
+  const signIndex = ZODIAC_SIGNS_TR.indexOf(entry.sign as (typeof ZODIAC_SIGNS_TR)[number]);
+  if (signIndex === -1) {
+    throw new Error(`NATAL_CHART_JSON: bilinmeyen burç adı "${entry.sign}"`);
   }
-
-  return {
-    birthDate,
-    birthTime,
-    utcOffsetHours: parseFloat(utcOffsetStr),
-    latitude: parseFloat(latStr),
-    longitude: parseFloat(lonStr),
-  };
-}
-
-export function natalConfigToUtcDate(config: NatalConfig): Date {
-  const [y, m, d] = config.birthDate.split("-").map(Number);
-  const [hh, mm] = config.birthTime.split(":").map(Number);
-  // Yerel doğum saatini UTC'ye çevir: UTC = yerel - ofset
-  const utcMs = Date.UTC(y, m - 1, d, hh, mm) - config.utcOffsetHours * 3600 * 1000;
-  return new Date(utcMs);
+  return signIndex * 30 + entry.deg + entry.min / 60;
 }
 
 let cachedNatalChart: BodyPosition[] | null | undefined;
 
 export function getNatalChart(): BodyPosition[] | null {
   if (cachedNatalChart !== undefined) return cachedNatalChart;
-  const config = getNatalConfig();
-  if (!config) {
+
+  const raw = process.env.NATAL_CHART_JSON;
+  if (!raw) {
     cachedNatalChart = null;
     return null;
   }
-  const date = natalConfigToUtcDate(config);
-  cachedNatalChart = computeChart({ date, latitude: config.latitude, longitude: config.longitude });
+
+  try {
+    const parsed = JSON.parse(raw) as NatalChartJson;
+    const ascLon = entryToLongitude(parsed.ascendant);
+    const positions: BodyPosition[] = [];
+
+    for (const key of [...PLANET_KEYS, "Rahu", "Ketu"] as PlanetKey[]) {
+      const entry = parsed.bodies[key];
+      if (!entry) continue;
+      const lon = entryToLongitude(entry);
+      positions.push({
+        key,
+        tropicalLongitude: NaN,
+        siderealLongitude: lon,
+        retrograde: !!entry.retro,
+        house: entry.house,
+      });
+    }
+
+    positions.push({
+      key: "Ascendant",
+      tropicalLongitude: NaN,
+      siderealLongitude: ascLon,
+      retrograde: false,
+      house: 1,
+    });
+
+    cachedNatalChart = positions;
+  } catch (err) {
+    console.error("NATAL_CHART_JSON parse edilemedi:", err);
+    cachedNatalChart = null;
+  }
+
   return cachedNatalChart;
+}
+
+/** Natal Yükselen'in burç indeksi (0-11) — transit evlerini hesaplamak için. */
+export function getNatalAscendantSignIndex(): number | null {
+  const chart = getNatalChart();
+  const asc = chart?.find((p) => p.key === "Ascendant");
+  if (!asc) return null;
+  return Math.floor(asc.siderealLongitude / 30);
 }

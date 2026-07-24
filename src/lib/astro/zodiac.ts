@@ -85,3 +85,23 @@ export function findAspect(lon1: number, lon2: number): AspectHit | null {
   }
   return null;
 }
+
+/** Whole-sign ev sistemi: Yükselen'in burcu = 1. ev, sonraki burç = 2. ev, vs. */
+export function wholeSignHouse(bodySignIndex: number, ascendantSignIndex: number): number {
+  return (((bodySignIndex - ascendantSignIndex) % 12) + 12) % 12 + 1;
+}
+
+export const HOUSE_MEANINGS_TR: Record<number, string> = {
+  1: "benlik, görünüm, yeni başlangıçlar",
+  2: "değerler, kaynaklar, öz güven",
+  3: "iletişim, günlük çevre, öğrenme",
+  4: "kökler, aile, iç dünya",
+  5: "yaratıcılık, ifade, kalpten gelen işler",
+  6: "rutin, sağlık, günlük disiplin",
+  7: "ilişkiler, ortaklıklar, karşılaşmalar",
+  8: "dönüşüm, derinlik, paylaşılan kaynaklar",
+  9: "inanç, vizyon, öğreti, yolculuk",
+  10: "kariyer, toplumsal rol, itibar",
+  11: "topluluk, hedefler, gelecek vizyonu",
+  12: "içe dönüş, bilinçdışı, kapanış/hazırlık",
+};

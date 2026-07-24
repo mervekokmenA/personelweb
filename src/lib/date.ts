@@ -34,3 +34,8 @@ export function addDays(d: Date, n: number): Date {
   copy.setUTCDate(copy.getUTCDate() + n);
   return copy;
 }
+
+/** İki gün-anahtarı arasındaki tam gün sayısı (b - a). */
+export function daysBetween(a: Date, b: Date): number {
+  return Math.round((dayKey(b).getTime() - dayKey(a).getTime()) / 86400000);
+}

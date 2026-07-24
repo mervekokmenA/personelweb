@@ -55,7 +55,18 @@ export default async function AliskanliklarPage() {
               <option value="DAILY">Günlük</option>
               <option value="WEEKLY">Haftalık (7 günde 1)</option>
               <option value="MONTHLY">Aylık</option>
+              <option value="CUSTOM">Özel (kaç günde bir)</option>
             </select>
+          </label>
+          <label className="flex flex-col gap-1 text-xs text-muted">
+            Özel aralık (gün) — sadece &quot;Özel&quot; seçiliyse
+            <input
+              type="number"
+              name="customIntervalDays"
+              min={1}
+              placeholder="örn. 3"
+              className="w-24 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+            />
           </label>
           <label className="flex flex-col gap-1 text-xs text-muted">
             Süre (kaç tekrar, süresizse boş bırak)
@@ -89,6 +100,7 @@ export default async function AliskanliklarPage() {
             id={habit.id}
             title={habit.title}
             frequency={habit.frequency}
+            customIntervalDays={habit.customIntervalDays}
             indefinite={habit.indefinite}
             totalPeriods={habit.totalPeriods}
             active={habit.active}

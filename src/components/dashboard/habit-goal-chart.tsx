@@ -1,5 +1,5 @@
 import { DonutChart } from "./donut-chart";
-import type { HabitFrequency } from "@/lib/habit-grid";
+import { formatHabitFrequency, type HabitFrequency } from "@/lib/habit-grid";
 
 const ACCENTS = [
   "var(--accent-lilac)",
@@ -9,16 +9,11 @@ const ACCENTS = [
   "var(--accent-yellow)",
 ];
 
-const FREQUENCY_LABEL: Record<HabitFrequency, string> = {
-  DAILY: "Günlük",
-  WEEKLY: "Haftalık",
-  MONTHLY: "Aylık",
-};
-
 export interface HabitGoalDatum {
   id: string;
   title: string;
   frequency: HabitFrequency;
+  customIntervalDays: number | null;
   indefinite: boolean;
   percent: number;
   doneCount: number;
@@ -40,7 +35,8 @@ export function HabitGoalChart({ habits }: { habits: HabitGoalDatum[] }) {
               <DonutChart percent={h.percent} color={ACCENTS[i % ACCENTS.length]} size={64} strokeWidth={7} />
               <p className="text-xs font-medium leading-tight">{h.title}</p>
               <p className="text-[10px] text-muted">
-                {FREQUENCY_LABEL[h.frequency]} · {h.indefinite ? "süresiz, şu ana kadar" : "hedefe göre"}
+                {formatHabitFrequency(h.frequency, h.customIntervalDays)} ·{" "}
+                {h.indefinite ? "süresiz, şu ana kadar" : "hedefe göre"}
               </p>
               <p className="text-[10px] text-muted">
                 {h.doneCount}/{h.totalCount}

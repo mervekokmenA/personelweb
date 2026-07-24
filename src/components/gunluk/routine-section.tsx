@@ -9,6 +9,7 @@ interface RoutineRow {
   description: string | null;
   done: boolean;
   trackCompletion: boolean;
+  intervalDays: number;
 }
 
 export function RoutineSection({ date, routines }: { date: string; routines: RoutineRow[] }) {
@@ -48,6 +49,11 @@ export function RoutineSection({ date, routines }: { date: string; routines: Rou
             )}
             <span className={`text-sm ${r.trackCompletion && r.done ? "text-muted line-through" : ""}`}>
               {i + 1}. {r.title}
+              {r.intervalDays > 1 && (
+                <span className="ml-1.5 rounded-full bg-background px-1.5 py-0.5 text-[10px] text-muted border border-card-border">
+                  {r.intervalDays} günde 1
+                </span>
+              )}
               {r.description && (
                 <span className="ml-1.5 text-xs text-muted">— {r.description}</span>
               )}

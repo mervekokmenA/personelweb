@@ -191,6 +191,16 @@ export default async function ParametrelerPage() {
                   placeholder="Açıklama (opsiyonel)"
                   className="min-w-[10rem] flex-1 rounded-lg border border-card-border bg-card px-2 py-1.5 text-sm"
                 />
+                <label className="flex items-center gap-1 text-xs text-muted">
+                  Kaç günde bir
+                  <input
+                    type="number"
+                    min={1}
+                    name="intervalDays"
+                    defaultValue={r.intervalDays}
+                    className="w-16 rounded-lg border border-card-border bg-card px-2 py-1.5 text-sm"
+                  />
+                </label>
                 <button className="rounded-lg bg-accent-mint px-3 py-1.5 text-xs font-medium">
                   Güncelle
                 </button>
@@ -213,10 +223,24 @@ export default async function ParametrelerPage() {
             placeholder="Açıklama (opsiyonel)"
             className="min-w-[10rem] flex-1 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
           />
+          <label className="flex items-center gap-1 text-xs text-muted">
+            Kaç günde bir
+            <input
+              type="number"
+              min={1}
+              name="intervalDays"
+              defaultValue={1}
+              className="w-16 rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+            />
+          </label>
           <button className="rounded-lg bg-accent-yellow px-4 py-1.5 text-sm font-medium">
             Yeni Rutin Ekle
           </button>
         </form>
+        <p className="mt-3 text-xs text-muted">
+          &quot;Kaç günde bir&quot; alanı 1 ise rutin her gün, 2 ise iki günde bir (bugün yaptıysan
+          yarın görünmez), vs. şeklinde günlük programda görünür.
+        </p>
       </section>
 
       {/* GENEL GÖREVLER */}

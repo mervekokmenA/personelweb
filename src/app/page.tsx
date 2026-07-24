@@ -100,6 +100,7 @@ export default async function DashboardPage() {
         id: h.id,
         title: h.title,
         frequency: h.frequency,
+        customIntervalDays: h.customIntervalDays,
         indefinite: h.indefinite,
         percent: periods.length ? (doneCount / periods.length) * 100 : 0,
         doneCount,

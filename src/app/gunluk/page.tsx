@@ -1,5 +1,5 @@
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
-import { dayKey, toDateInputValue, todayKey } from "@/lib/date";
+import { dayKey, toDateInputValue, todayKey, daysBetween } from "@/lib/date";
 import { DateSwitcher } from "@/components/gunluk/date-switcher";
 import { TimeBlockSection } from "@/components/gunluk/time-block-section";
 import { RoutineSection } from "@/components/gunluk/routine-section";
@@ -50,12 +50,18 @@ export default async function GunlukPage({
   ]);
 
   const completionMap = new Map(completions.map((c) => [c.templateId, c.done]));
-  const routines = routineTemplates.map((t) => ({
+  const dueRoutineTemplates = routineTemplates.filter((t) => {
+    if (t.intervalDays <= 1) return true;
+    const diff = daysBetween(t.startDate, dKey);
+    return diff >= 0 && diff % t.intervalDays === 0;
+  });
+  const routines = dueRoutineTemplates.map((t) => ({
     id: t.id,
     title: t.title,
     description: t.description,
     done: completionMap.get(t.id) ?? false,
     trackCompletion: t.trackCompletion,
+    intervalDays: t.intervalDays,
   }));
 
   const itemCompletionMap = new Map(
@@ -93,11 +99,11 @@ export default async function GunlukPage({
       <GeneralTaskSection date={date} tasks={generalTaskRows} />
 
       <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-        <div className="flex flex-col gap-6">
+        <div className="flex min-w-0 flex-col gap-6">
           <TimeBlockSection date={date} blocks={timeBlocks} />
           <JournalSection date={date} notes={notes} />
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex min-w-0 flex-col gap-6">
           <RoutineSection date={date} routines={routines} />
           <TodoSection date={date} todos={todos} />
         </div>

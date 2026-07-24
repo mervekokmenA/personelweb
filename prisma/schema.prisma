@@ -42,12 +42,13 @@ model FocusAreaItemCompletion {
   @@index([date])
 }
 
-// Parametrik: her gün tekrar eden rutin şablonu (Günlük Rutinler listesi)
+// Parametrik: tekrar eden rutin şablonu (Günlük Rutinler listesi)
 model RoutineTemplate {
   id              String              @id @default(cuid())
   title           String // örn: "İmajinasyon, 10 dk"
   description     String?
-  frequency       String              @default("daily") // daily | weekly | custom
+  intervalDays    Int                 @default(1) // 1 = her gün, 2 = 2 günde bir, vs.
+  startDate       DateTime            @default(now()) // aralık hesaplamasının referans günü
   trackCompletion Boolean             @default(true) // false ise checkbox gösterilmez, sadece not amaçlı liste öğesi
   order           Int                 @default(0)
   active          Boolean             @default(true)
@@ -256,20 +257,22 @@ enum HabitFrequency {
   DAILY
   WEEKLY
   MONTHLY
+  CUSTOM
 }
 
 model Habit {
-  id           String            @id @default(cuid())
-  title        String
-  frequency    HabitFrequency    @default(MONTHLY)
-  indefinite   Boolean           @default(true)
-  totalPeriods Int? // süresiz değilse: kaç hafta/ay boyunca takip edilecek
-  startDate    DateTime          @default(now())
-  active       Boolean           @default(true)
-  order        Int               @default(0)
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  completions  HabitCompletion[]
+  id                 String            @id @default(cuid())
+  title              String
+  frequency          HabitFrequency    @default(MONTHLY)
+  customIntervalDays Int? // frequency=CUSTOM ise: kaç günde bir (örn. 3 günde 1)
+  indefinite         Boolean           @default(true)
+  totalPeriods       Int? // süresiz değilse: kaç tekrar boyunca takip edilecek
+  startDate          DateTime          @default(now())
+  active             Boolean           @default(true)
+  order              Int               @default(0)
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  completions        HabitCompletion[]
 }
 
 model HabitCompletion {

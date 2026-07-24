@@ -1,24 +1,20 @@
 import { toggleHabitDay, deleteHabit, toggleHabitActive } from "@/app/aliskanliklar/actions";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { DeleteButton } from "@/components/ui/delete-button";
-import { dateKey, type HabitFrequency, type HabitPeriod } from "@/lib/habit-grid";
-
-const FREQUENCY_LABEL: Record<HabitFrequency, string> = {
-  DAILY: "Günlük",
-  WEEKLY: "Haftalık (7 günde 1)",
-  MONTHLY: "Aylık",
-};
+import { dateKey, formatHabitFrequency, type HabitFrequency, type HabitPeriod } from "@/lib/habit-grid";
 
 const PERIOD_UNIT: Record<HabitFrequency, string> = {
   DAILY: "gün",
   WEEKLY: "hafta",
   MONTHLY: "ay",
+  CUSTOM: "tekrar",
 };
 
 interface HabitCardProps {
   id: string;
   title: string;
   frequency: HabitFrequency;
+  customIntervalDays: number | null;
   indefinite: boolean;
   totalPeriods: number | null;
   active: boolean;
@@ -30,6 +26,7 @@ export function HabitCard({
   id,
   title,
   frequency,
+  customIntervalDays,
   indefinite,
   totalPeriods,
   active,
@@ -44,7 +41,7 @@ export function HabitCard({
         <div className="flex items-center gap-2">
           <h3 className="font-medium">{title}</h3>
           <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
-            {FREQUENCY_LABEL[frequency]}
+            {formatHabitFrequency(frequency, customIntervalDays)}
           </span>
           <span className="text-xs text-muted">
             {indefinite ? "Süresiz" : `${totalPeriods} ${PERIOD_UNIT[frequency]} programı`}

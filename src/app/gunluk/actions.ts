@@ -151,9 +151,11 @@ export async function toggleFocusAreaItem(formData: FormData) {
 export async function addRoutineTemplate(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim() || null;
+  const intervalDaysRaw = parseInt(String(formData.get("intervalDays") ?? ""), 10);
+  const intervalDays = Number.isFinite(intervalDaysRaw) && intervalDaysRaw > 0 ? intervalDaysRaw : 1;
   if (!title) return;
   const count = await prisma.routineTemplate.count();
-  await prisma.routineTemplate.create({ data: { title, description, order: count } });
+  await prisma.routineTemplate.create({ data: { title, description, intervalDays, order: count } });
   revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
@@ -162,7 +164,9 @@ export async function updateRoutineTemplate(formData: FormData) {
   const id = String(formData.get("id"));
   const title = String(formData.get("title") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim() || null;
-  await prisma.routineTemplate.update({ where: { id }, data: { title, description } });
+  const intervalDaysRaw = parseInt(String(formData.get("intervalDays") ?? ""), 10);
+  const intervalDays = Number.isFinite(intervalDaysRaw) && intervalDaysRaw > 0 ? intervalDaysRaw : 1;
+  await prisma.routineTemplate.update({ where: { id }, data: { title, description, intervalDays } });
   revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }

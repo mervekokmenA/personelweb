@@ -7,16 +7,26 @@ import { revalidatePath } from "next/cache";
 export async function addHabit(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
   if (!title) return;
-  const frequency = String(formData.get("frequency") ?? "MONTHLY") as "DAILY" | "WEEKLY" | "MONTHLY";
+  const frequency = String(formData.get("frequency") ?? "MONTHLY") as
+    | "DAILY"
+    | "WEEKLY"
+    | "MONTHLY"
+    | "CUSTOM";
   const indefinite = formData.get("indefinite") === "on";
   const totalPeriodsRaw = String(formData.get("totalPeriods") ?? "").trim();
   const totalPeriods = !indefinite && totalPeriodsRaw ? parseInt(totalPeriodsRaw, 10) : null;
+  const customIntervalDaysRaw = parseInt(String(formData.get("customIntervalDays") ?? ""), 10);
+  const customIntervalDays =
+    frequency === "CUSTOM" && Number.isFinite(customIntervalDaysRaw) && customIntervalDaysRaw > 0
+      ? customIntervalDaysRaw
+      : null;
 
   const count = await prisma.habit.count();
   await prisma.habit.create({
     data: {
       title,
       frequency,
+      customIntervalDays,
       indefinite,
       totalPeriods,
       order: count,

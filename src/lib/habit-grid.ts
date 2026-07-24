@@ -1,6 +1,6 @@
 import { addDays, dayKey, toDateInputValue, todayKey, TR_MONTHS_SHORT } from "./date";
 
-export type HabitFrequency = "DAILY" | "WEEKLY" | "MONTHLY";
+export type HabitFrequency = "DAILY" | "WEEKLY" | "MONTHLY" | "CUSTOM";
 
 export interface HabitPeriod {
   /** Bu tekrarın başlangıç günü — HabitCompletion.date anahtarı olarak kullanılır */
@@ -11,23 +11,41 @@ export interface HabitPeriod {
   title: string;
 }
 
+/** CUSTOM sıklık için kaç günde bir tekrar edileceği (geçersizse 1 güne düşer). */
+function customDays(customIntervalDays: number | null | undefined): number {
+  return customIntervalDays && customIntervalDays > 0 ? customIntervalDays : 1;
+}
+
 /** Belirtilen sıklığa göre `n` tekrar sonraki başlangıç tarihini döndürür. */
-function addPeriod(start: Date, frequency: HabitFrequency, n: number): Date {
+function addPeriod(
+  start: Date,
+  frequency: HabitFrequency,
+  n: number,
+  customIntervalDays?: number | null
+): Date {
   if (frequency === "MONTHLY") {
     return new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + n, start.getUTCDate()));
   }
-  const unitDays = frequency === "WEEKLY" ? 7 : 1;
+  const unitDays = frequency === "WEEKLY" ? 7 : frequency === "CUSTOM" ? customDays(customIntervalDays) : 1;
   return addDays(start, unitDays * n);
 }
 
-function periodRangeTitle(start: Date, frequency: HabitFrequency): string {
+function periodRangeTitle(
+  start: Date,
+  frequency: HabitFrequency,
+  customIntervalDays?: number | null
+): string {
   if (frequency === "DAILY") {
     return `${start.getUTCDate()} ${TR_MONTHS_SHORT[start.getUTCMonth()]}`;
   }
   if (frequency === "MONTHLY") {
     return `${TR_MONTHS_SHORT[start.getUTCMonth()]} ${start.getUTCFullYear()}`;
   }
-  const end = addDays(start, 6);
+  const days = frequency === "CUSTOM" ? customDays(customIntervalDays) : 7;
+  if (days <= 1) {
+    return `${start.getUTCDate()} ${TR_MONTHS_SHORT[start.getUTCMonth()]}`;
+  }
+  const end = addDays(start, days - 1);
   const sameMonth = start.getUTCMonth() === end.getUTCMonth();
   const startPart = `${start.getUTCDate()} ${sameMonth ? "" : TR_MONTHS_SHORT[start.getUTCMonth()]}`.trim();
   const endPart = `${end.getUTCDate()} ${TR_MONTHS_SHORT[end.getUTCMonth()]}`;
@@ -35,7 +53,7 @@ function periodRangeTitle(start: Date, frequency: HabitFrequency): string {
 }
 
 function periodLabel(start: Date, frequency: HabitFrequency, index: number): string {
-  if (frequency === "DAILY") return String(start.getUTCDate());
+  if (frequency === "DAILY" || frequency === "CUSTOM") return String(start.getUTCDate());
   if (frequency === "MONTHLY") return TR_MONTHS_SHORT[start.getUTCMonth()];
   return `H${index + 1}`;
 }
@@ -44,6 +62,7 @@ const WINDOW_SIZE: Record<HabitFrequency, number> = {
   DAILY: 30,
   WEEKLY: 8,
   MONTHLY: 6,
+  CUSTOM: 10,
 };
 
 /**
@@ -58,14 +77,15 @@ export function getHabitPeriods(habit: {
   indefinite: boolean;
   totalPeriods: number | null;
   startDate: Date;
+  customIntervalDays?: number | null;
 }): HabitPeriod[] {
   const start = dayKey(habit.startDate);
   const build = (index: number): HabitPeriod => {
-    const periodStart = addPeriod(start, habit.frequency, index);
+    const periodStart = addPeriod(start, habit.frequency, index, habit.customIntervalDays);
     return {
       start: periodStart,
       label: periodLabel(periodStart, habit.frequency, index),
-      title: periodRangeTitle(periodStart, habit.frequency),
+      title: periodRangeTitle(periodStart, habit.frequency, habit.customIntervalDays),
     };
   };
 
@@ -76,7 +96,7 @@ export function getHabitPeriods(habit: {
   // Süresiz: bugüne kadar kaç tekrar geçmiş, onu bul.
   const today = todayKey();
   let current = 0;
-  while (addPeriod(start, habit.frequency, current + 1) <= today) current++;
+  while (addPeriod(start, habit.frequency, current + 1, habit.customIntervalDays) <= today) current++;
 
   const windowSize = WINDOW_SIZE[habit.frequency];
   const from = Math.max(0, current - windowSize + 1);
@@ -85,4 +105,15 @@ export function getHabitPeriods(habit: {
 
 export function dateKey(d: Date): string {
   return toDateInputValue(d);
+}
+
+/** Sıklık için kullanıcıya gösterilecek kısa etiket (örn. "3 günde 1"). */
+export function formatHabitFrequency(
+  frequency: HabitFrequency,
+  customIntervalDays?: number | null
+): string {
+  if (frequency === "CUSTOM") return `${customDays(customIntervalDays)} günde 1`;
+  if (frequency === "DAILY") return "Günlük";
+  if (frequency === "WEEKLY") return "Haftalık (7 günde 1)";
+  return "Aylık";
 }

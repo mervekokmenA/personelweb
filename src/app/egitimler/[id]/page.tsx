@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { prisma } from "@/lib/prisma";
+import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { updateTraining, deleteTraining, addTrainingNote, deleteTrainingNote } from "../actions";
 import { DeleteButton } from "@/components/ui/delete-button";
+import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +13,17 @@ export default async function TrainingDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  if (!hasDatabaseUrl) {
+    return (
+      <div className="flex flex-col gap-6">
+        <Link href="/egitimler" className="rounded-lg p-2 hover:bg-card w-fit">
+          <ArrowLeft size={18} />
+        </Link>
+        <DbSetupNotice />
+      </div>
+    );
+  }
+
   const { id } = await params;
   const training = await prisma.training.findUnique({
     where: { id },

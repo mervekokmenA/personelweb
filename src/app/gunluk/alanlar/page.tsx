@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { prisma } from "@/lib/prisma";
+import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import {
   addFocusArea,
   updateFocusArea,
@@ -12,6 +12,7 @@ import {
 } from "@/app/gunluk/actions";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
+import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,15 @@ const COLOR_OPTIONS = [
 ];
 
 export default async function AlanlarPage() {
+  if (!hasDatabaseUrl) {
+    return (
+      <div className="flex flex-col gap-6">
+        <h1 className="text-2xl font-semibold">Parametre Ekranı</h1>
+        <DbSetupNotice />
+      </div>
+    );
+  }
+
   const [focusAreas, routines] = await Promise.all([
     prisma.focusArea.findMany({ orderBy: { order: "asc" } }),
     prisma.routineTemplate.findMany({ orderBy: { order: "asc" } }),

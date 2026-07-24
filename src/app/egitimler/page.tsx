@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { addTraining } from "./actions";
 import { ExternalLink } from "lucide-react";
+import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,15 @@ const STATUS_COLOR: Record<string, string> = {
 };
 
 export default async function EgitimlerPage() {
+  if (!hasDatabaseUrl) {
+    return (
+      <div className="flex flex-col gap-6">
+        <h1 className="text-2xl font-semibold">Eğitimler</h1>
+        <DbSetupNotice />
+      </div>
+    );
+  }
+
   const trainings = await prisma.training.findMany({
     orderBy: { order: "asc" },
     include: { _count: { select: { notes: true } } },

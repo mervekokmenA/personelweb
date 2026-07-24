@@ -12,12 +12,14 @@ declare global {
   var __prisma: PrismaClient | undefined;
 }
 
+// DATABASE_URL henüz ayarlanmamış olsa bile build/deploy başarısız olmasın
+// diye client burada asla throw etmez — bağlantı sadece gerçekten bir sorgu
+// çalıştırıldığında denenir. Sayfalar `hasDatabaseUrl`'ü kontrol edip
+// DB olmadan da (kurulum uyarısıyla) render olabiliyor.
+export const hasDatabaseUrl = !!process.env.DATABASE_URL;
+
 function createClient() {
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    throw new Error("DATABASE_URL tanımlı değil. Vercel env vars / .env içine ekleyin.");
-  }
-  const adapter = new PrismaPg({ connectionString });
+  const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL ?? "" });
   return new PrismaClient({ adapter });
 }
 

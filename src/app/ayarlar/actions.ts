@@ -1,10 +1,11 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { githubConfig, APK_WORKFLOW_FILE as WORKFLOW_FILE } from "@/lib/github";
 
 export async function triggerApkBuild(formData: FormData) {
+  if (!hasDatabaseUrl) return;
   const cfg = githubConfig();
   if (!cfg) {
     await prisma.apkBuild.create({
@@ -52,6 +53,7 @@ export async function triggerApkBuild(formData: FormData) {
 }
 
 export async function refreshApkBuildStatus() {
+  if (!hasDatabaseUrl) return;
   const cfg = githubConfig();
   if (!cfg) return;
 

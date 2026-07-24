@@ -3,12 +3,16 @@
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
 
+// `env()` yardımcı fonksiyonu değişken tanımlı değilse throw ediyor — bu da
+// `prisma generate`'i (DB gerekmediği halde) DATABASE_URL yokken kırıyor.
+// Uygulamanın DB olmadan da build/deploy olabilmesi için burada doğrudan
+// process.env okunuyor (tanımsızsa sadece undefined döner, throw etmez).
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    url: process.env.DATABASE_URL,
   },
 });

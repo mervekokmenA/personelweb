@@ -1,7 +1,8 @@
-import { prisma } from "@/lib/prisma";
+import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { triggerApkBuild, refreshApkBuildStatus } from "./actions";
 import { getGithubReleaseInfo } from "@/lib/github";
 import { RefreshButton } from "@/components/ayarlar/refresh-button";
+import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { Download, ExternalLink, Smartphone } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -16,10 +17,9 @@ const STATUS_LABEL: Record<string, string> = {
 };
 
 export default async function AyarlarPage() {
-  const builds = await prisma.apkBuild.findMany({
-    orderBy: { triggeredAt: "desc" },
-    take: 10,
-  });
+  const builds = hasDatabaseUrl
+    ? await prisma.apkBuild.findMany({ orderBy: { triggeredAt: "desc" }, take: 10 })
+    : [];
   const githubInfo = getGithubReleaseInfo();
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "";
 
@@ -55,7 +55,7 @@ export default async function AyarlarPage() {
           />
           <button
             className="rounded-lg bg-accent-pink px-4 py-1.5 text-sm font-medium disabled:opacity-50"
-            disabled={!githubInfo.configured}
+            disabled={!githubInfo.configured || !hasDatabaseUrl}
           >
             APK Oluştur
           </button>
@@ -90,6 +90,7 @@ export default async function AyarlarPage() {
           </h2>
           <RefreshButton action={refreshApkBuildStatus} />
         </div>
+        {!hasDatabaseUrl && <DbSetupNotice />}
         <div className="flex flex-col divide-y divide-card-border text-sm">
           {builds.map((b) => (
             <div key={b.id} className="flex flex-wrap items-center justify-between gap-2 py-2">

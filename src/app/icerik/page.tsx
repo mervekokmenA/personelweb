@@ -1,7 +1,8 @@
-import { prisma } from "@/lib/prisma";
+import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { addContentIdea, cycleContentIdeaStatus, deleteContentIdea } from "./actions";
 import { StatusBadge } from "@/components/icerik/status-badge";
 import { DeleteButton } from "@/components/ui/delete-button";
+import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import type { Prisma } from "@/generated/prisma/client";
 
 export const dynamic = "force-dynamic";
@@ -13,6 +14,15 @@ export default async function IcerikPage({
 }: {
   searchParams: Promise<{ q?: string; category?: string; status?: string; page?: string }>;
 }) {
+  if (!hasDatabaseUrl) {
+    return (
+      <div className="flex flex-col gap-6">
+        <h1 className="text-2xl font-semibold">İçerik Fikirleri</h1>
+        <DbSetupNotice />
+      </div>
+    );
+  }
+
   const params = await searchParams;
   const q = params.q?.trim() ?? "";
   const category = params.category ?? "";

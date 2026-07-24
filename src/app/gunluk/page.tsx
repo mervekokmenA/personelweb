@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { dayKey, toDateInputValue, todayKey } from "@/lib/date";
 import { DateSwitcher } from "@/components/gunluk/date-switcher";
 import { TimeBlockSection } from "@/components/gunluk/time-block-section";
@@ -6,6 +6,7 @@ import { RoutineSection } from "@/components/gunluk/routine-section";
 import { TodoSection } from "@/components/gunluk/todo-section";
 import { JournalSection } from "@/components/gunluk/journal-section";
 import { FocusAreaSummary } from "@/components/gunluk/focus-area-summary";
+import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +18,15 @@ export default async function GunlukPage({
   const params = await searchParams;
   const date = params.date ?? toDateInputValue(todayKey());
   const dKey = dayKey(date);
+
+  if (!hasDatabaseUrl) {
+    return (
+      <div className="flex flex-col gap-6">
+        <h1 className="text-2xl font-semibold">Günlük Program</h1>
+        <DbSetupNotice />
+      </div>
+    );
+  }
 
   const [timeBlocks, todos, notes, focusAreas, routineTemplates, completions] = await Promise.all([
     prisma.timeBlock.findMany({ where: { date: dKey }, orderBy: { startTime: "asc" } }),

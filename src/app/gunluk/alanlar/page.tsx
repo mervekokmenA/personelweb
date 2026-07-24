@@ -8,6 +8,7 @@ import {
   addRoutineTemplate,
   updateRoutineTemplate,
   toggleRoutineActive,
+  toggleRoutineTrackCompletion,
   deleteRoutineTemplate,
 } from "@/app/gunluk/actions";
 import { DeleteButton } from "@/components/ui/delete-button";
@@ -125,11 +126,22 @@ export default async function AlanlarPage() {
         <div className="flex flex-col gap-2">
           {routines.map((r) => (
             <div key={r.id} className="flex flex-wrap items-center gap-2 rounded-lg bg-background p-3">
-              <AutoSubmitCheckbox
-                action={toggleRoutineActive}
-                hidden={{ id: r.id }}
-                checked={r.active}
-              />
+              <div className="flex flex-col items-center gap-0.5">
+                <AutoSubmitCheckbox
+                  action={toggleRoutineActive}
+                  hidden={{ id: r.id }}
+                  checked={r.active}
+                />
+                <span className="text-[9px] text-muted">Aktif</span>
+              </div>
+              <div className="flex flex-col items-center gap-0.5">
+                <AutoSubmitCheckbox
+                  action={toggleRoutineTrackCompletion}
+                  hidden={{ id: r.id }}
+                  checked={r.trackCompletion}
+                />
+                <span className="text-[9px] text-muted">Checkbox</span>
+              </div>
               <form action={updateRoutineTemplate} className="flex flex-1 flex-wrap items-center gap-2">
                 <input type="hidden" name="id" value={r.id} />
                 <input

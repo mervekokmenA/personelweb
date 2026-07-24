@@ -16,26 +16,44 @@ datasource db {
 
 // Parametrik alan: Hobi / Yazı / Yabancı Dil / Gelişim gibi üst kategoriler
 model FocusArea {
-  id        String   @id @default(cuid())
-  name      String // örn: "Hobi", "Yazı", "Yabancı Dil", "Gelişim"
-  items     String[] // örn: ["Kil", "Elmas Boyama", "Resim"]
-  color     String   @default("#a78bfa")
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String                    @id @default(cuid())
+  name            String // örn: "Hobi", "Yazı", "Yabancı Dil", "Gelişim"
+  items           String[] // örn: ["Kil", "Elmas Boyama", "Resim"]
+  color           String                    @default("#a78bfa")
+  order           Int                       @default(0)
+  createdAt       DateTime                  @default(now())
+  updatedAt       DateTime                  @updatedAt
+  itemCompletions FocusAreaItemCompletion[]
+}
+
+// Bir odak alanı öğesinin (örn. "Kil") belirli bir gündeki tamamlanma durumu.
+// items sadece bir metin dizisi olduğu için öğe metni anahtar olarak kullanılır.
+model FocusAreaItemCompletion {
+  id          String    @id @default(cuid())
+  focusArea   FocusArea @relation(fields: [focusAreaId], references: [id], onDelete: Cascade)
+  focusAreaId String
+  itemText    String
+  date        DateTime
+  done        Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([focusAreaId, itemText, date])
+  @@index([date])
 }
 
 // Parametrik: her gün tekrar eden rutin şablonu (Günlük Rutinler listesi)
 model RoutineTemplate {
-  id          String             @id @default(cuid())
-  title       String // örn: "İmajinasyon, 10 dk"
-  description String?
-  frequency   String             @default("daily") // daily | weekly | custom
-  order       Int                @default(0)
-  active      Boolean            @default(true)
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
-  completions RoutineCompletion[]
+  id              String              @id @default(cuid())
+  title           String // örn: "İmajinasyon, 10 dk"
+  description     String?
+  frequency       String              @default("daily") // daily | weekly | custom
+  trackCompletion Boolean             @default(true) // false ise checkbox gösterilmez, sadece not amaçlı liste öğesi
+  order           Int                 @default(0)
+  active          Boolean             @default(true)
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  completions     RoutineCompletion[]
 }
 
 // Bir rutinin belirli bir gündeki tamamlanma durumu

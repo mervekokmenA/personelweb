@@ -28,14 +28,16 @@ export default async function GunlukPage({
     );
   }
 
-  const [timeBlocks, todos, notes, focusAreas, routineTemplates, completions] = await Promise.all([
-    prisma.timeBlock.findMany({ where: { date: dKey }, orderBy: { startTime: "asc" } }),
-    prisma.todoItem.findMany({ where: { date: dKey }, orderBy: { order: "asc" } }),
-    prisma.journalNote.findMany({ where: { date: dKey }, orderBy: { createdAt: "desc" } }),
-    prisma.focusArea.findMany({ orderBy: { order: "asc" } }),
-    prisma.routineTemplate.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
-    prisma.routineCompletion.findMany({ where: { date: dKey } }),
-  ]);
+  const [timeBlocks, todos, notes, focusAreas, routineTemplates, completions, itemCompletions] =
+    await Promise.all([
+      prisma.timeBlock.findMany({ where: { date: dKey }, orderBy: { startTime: "asc" } }),
+      prisma.todoItem.findMany({ where: { date: dKey }, orderBy: { order: "asc" } }),
+      prisma.journalNote.findMany({ where: { date: dKey }, orderBy: { createdAt: "desc" } }),
+      prisma.focusArea.findMany({ orderBy: { order: "asc" } }),
+      prisma.routineTemplate.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
+      prisma.routineCompletion.findMany({ where: { date: dKey } }),
+      prisma.focusAreaItemCompletion.findMany({ where: { date: dKey } }),
+    ]);
 
   const completionMap = new Map(completions.map((c) => [c.templateId, c.done]));
   const routines = routineTemplates.map((t) => ({
@@ -43,7 +45,12 @@ export default async function GunlukPage({
     title: t.title,
     description: t.description,
     done: completionMap.get(t.id) ?? false,
+    trackCompletion: t.trackCompletion,
   }));
+
+  const itemCompletionMap = new Map(
+    itemCompletions.map((c) => [`${c.focusAreaId}::${c.itemText}`, c.done])
+  );
 
   return (
     <div className="flex flex-col gap-6">
@@ -52,7 +59,7 @@ export default async function GunlukPage({
         <DateSwitcher date={date} />
       </div>
 
-      <FocusAreaSummary areas={focusAreas} />
+      <FocusAreaSummary areas={focusAreas} date={date} completions={itemCompletionMap} />
 
       <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div className="flex flex-col gap-6">

@@ -129,6 +129,23 @@ export async function deleteFocusArea(formData: FormData) {
   revalidatePath("/gunluk");
 }
 
+// Odak alanı öğesine (örn. "Kil") günlük tıkla-üstünü-çiz işaretlemesi
+export async function toggleFocusAreaItem(formData: FormData) {
+  const focusAreaId = String(formData.get("focusAreaId"));
+  const itemText = String(formData.get("itemText"));
+  const date = String(formData.get("date"));
+  const dKey = dayKey(date);
+  const existing = await prisma.focusAreaItemCompletion.findUnique({
+    where: { focusAreaId_itemText_date: { focusAreaId, itemText, date: dKey } },
+  });
+  await prisma.focusAreaItemCompletion.upsert({
+    where: { focusAreaId_itemText_date: { focusAreaId, itemText, date: dKey } },
+    update: { done: !(existing?.done ?? false) },
+    create: { focusAreaId, itemText, date: dKey, done: true },
+  });
+  revalidateDay();
+}
+
 // ---------- Parametre ekranı: Rutin Şablonları ----------
 
 export async function addRoutineTemplate(formData: FormData) {
@@ -155,6 +172,18 @@ export async function toggleRoutineActive(formData: FormData) {
   const current = await prisma.routineTemplate.findUnique({ where: { id } });
   if (!current) return;
   await prisma.routineTemplate.update({ where: { id }, data: { active: !current.active } });
+  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/gunluk");
+}
+
+export async function toggleRoutineTrackCompletion(formData: FormData) {
+  const id = String(formData.get("id"));
+  const current = await prisma.routineTemplate.findUnique({ where: { id } });
+  if (!current) return;
+  await prisma.routineTemplate.update({
+    where: { id },
+    data: { trackCompletion: !current.trackCompletion },
+  });
   revalidatePath("/gunluk/alanlar");
   revalidatePath("/gunluk");
 }

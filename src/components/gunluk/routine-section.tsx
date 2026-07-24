@@ -8,6 +8,7 @@ interface RoutineRow {
   title: string;
   description: string | null;
   done: boolean;
+  trackCompletion: boolean;
 }
 
 export function RoutineSection({ date, routines }: { date: string; routines: RoutineRow[] }) {
@@ -36,12 +37,16 @@ export function RoutineSection({ date, routines }: { date: string; routines: Rou
         )}
         {routines.map((r, i) => (
           <div key={r.id} className="flex items-start gap-3">
-            <AutoSubmitCheckbox
-              action={toggleRoutineCompletion}
-              hidden={{ templateId: r.id, date }}
-              checked={r.done}
-            />
-            <span className={`text-sm ${r.done ? "text-muted line-through" : ""}`}>
+            {r.trackCompletion ? (
+              <AutoSubmitCheckbox
+                action={toggleRoutineCompletion}
+                hidden={{ templateId: r.id, date }}
+                checked={r.done}
+              />
+            ) : (
+              <span className="w-5 shrink-0" />
+            )}
+            <span className={`text-sm ${r.trackCompletion && r.done ? "text-muted line-through" : ""}`}>
               {i + 1}. {r.title}
               {r.description && (
                 <span className="ml-1.5 text-xs text-muted">— {r.description}</span>

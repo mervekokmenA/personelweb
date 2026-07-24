@@ -5,6 +5,9 @@ const TR_MONTHS = [
 const TR_DAYS = [
   "Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi",
 ];
+export const TR_MONTHS_SHORT = [
+  "Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara",
+];
 
 /** "YYYY-MM-DD" -> UTC gece yarısı Date (günlük kayıtların anahtarı) */
 export function dayKey(input: string | Date): Date {

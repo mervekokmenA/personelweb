@@ -3,6 +3,7 @@ import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { addTraining } from "./actions";
 import { ExternalLink } from "lucide-react";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
+import type { Prisma } from "@/generated/prisma/client";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +21,11 @@ const STATUS_COLOR: Record<string, string> = {
   PAUSED: "bg-accent-pink",
 };
 
-export default async function EgitimlerPage() {
+export default async function EgitimlerPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; category?: string; status?: string; type?: string }>;
+}) {
   if (!hasDatabaseUrl) {
     return (
       <div className="flex flex-col gap-6">
@@ -30,14 +35,82 @@ export default async function EgitimlerPage() {
     );
   }
 
-  const trainings = await prisma.training.findMany({
-    orderBy: { order: "asc" },
-    include: { _count: { select: { notes: true } } },
-  });
+  const params = await searchParams;
+  const q = params.q?.trim() ?? "";
+  const category = params.category ?? "";
+  const status = params.status ?? "";
+  const type = params.type ?? "";
+
+  const where: Prisma.TrainingWhereInput = {
+    ...(q ? { name: { contains: q, mode: "insensitive" } } : {}),
+    ...(category ? { category } : {}),
+    ...(status ? { status: status as "PLANNED" | "ONGOING" | "COMPLETED" | "PAUSED" } : {}),
+    ...(type ? { type: type as "FREE" | "PAID" } : {}),
+  };
+
+  const [trainings, categories] = await Promise.all([
+    prisma.training.findMany({
+      where,
+      orderBy: { order: "asc" },
+      include: { _count: { select: { notes: true } } },
+    }),
+    prisma.training.findMany({
+      where: { category: { not: null } },
+      distinct: ["category"],
+      select: { category: true },
+    }),
+  ]);
 
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-2xl font-semibold">Eğitimler</h1>
+
+      <section className="card p-4">
+        <form className="flex flex-wrap gap-2" action="/egitimler">
+          <input
+            type="text"
+            name="q"
+            defaultValue={q}
+            placeholder="Eğitim ara..."
+            className="min-w-[12rem] flex-1 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+          />
+          <select
+            name="category"
+            defaultValue={category}
+            className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+          >
+            <option value="">Tüm kategoriler</option>
+            {categories.map((c) => (
+              <option key={c.category} value={c.category ?? ""}>
+                {c.category}
+              </option>
+            ))}
+          </select>
+          <select
+            name="status"
+            defaultValue={status}
+            className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+          >
+            <option value="">Tüm durumlar</option>
+            <option value="PLANNED">Planlandı</option>
+            <option value="ONGOING">Devam Ediyor</option>
+            <option value="COMPLETED">Tamamlandı</option>
+            <option value="PAUSED">Duraklatıldı</option>
+          </select>
+          <select
+            name="type"
+            defaultValue={type}
+            className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+          >
+            <option value="">Ücretsiz/Ücretli</option>
+            <option value="FREE">Ücretsiz</option>
+            <option value="PAID">Ücretli</option>
+          </select>
+          <button className="rounded-lg bg-accent-blue px-4 py-1.5 text-sm font-medium">
+            Filtrele
+          </button>
+        </form>
+      </section>
 
       <section className="card p-4">
         <form action={addTraining} className="flex flex-wrap gap-2">
@@ -105,7 +178,7 @@ export default async function EgitimlerPage() {
           </Link>
         ))}
         {trainings.length === 0 && (
-          <p className="text-sm text-muted">Henüz eğitim eklenmedi.</p>
+          <p className="text-sm text-muted">Filtreye uyan eğitim bulunamadı.</p>
         )}
       </div>
     </div>

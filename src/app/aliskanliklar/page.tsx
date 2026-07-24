@@ -2,7 +2,7 @@ import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { addHabit } from "./actions";
 import { HabitCard } from "@/components/aliskanliklar/habit-card";
-import { getMonthDates, getWeekDates, dateKey } from "@/lib/habit-grid";
+import { getHabitPeriods, dateKey } from "@/lib/habit-grid";
 
 export const dynamic = "force-dynamic";
 
@@ -17,21 +17,17 @@ export default async function AliskanliklarPage() {
   }
 
   const habits = await prisma.habit.findMany({ orderBy: { order: "asc" } });
-  const now = new Date();
-  const monthDates = getMonthDates(now);
-  const weekDates = getWeekDates(now);
-
-  const monthName = now.toLocaleDateString("tr-TR", { month: "long", year: "numeric" });
-  const weekLabel = `${weekDates[0].getUTCDate()} - ${weekDates[6].getUTCDate()} ${weekDates[6].toLocaleDateString("tr-TR", { month: "long" })}`;
 
   const habitCards = await Promise.all(
     habits.map(async (h) => {
-      const dates = h.frequency === "WEEKLY" ? weekDates : monthDates;
-      const completions = await prisma.habitCompletion.findMany({
-        where: { habitId: h.id, date: { gte: dates[0], lte: dates[dates.length - 1] } },
-      });
+      const periods = getHabitPeriods(h);
+      const completions = periods.length
+        ? await prisma.habitCompletion.findMany({
+            where: { habitId: h.id, date: { in: periods.map((p) => p.start) } },
+          })
+        : [];
       const map = new Map(completions.map((c) => [dateKey(c.date), c.done]));
-      return { habit: h, dates, map };
+      return { habit: h, periods, map };
     })
   );
 
@@ -45,27 +41,29 @@ export default async function AliskanliklarPage() {
             Konu
             <input
               name="title"
-              placeholder="örn. Su içme, Meditasyon..."
+              placeholder="örn. Su içme, Lazer Epilasyon..."
               required
               className="rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
             />
           </label>
           <label className="flex flex-col gap-1 text-xs text-muted">
-            Dönem
+            Tekrar sıklığı
             <select
               name="frequency"
               className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
             >
+              <option value="DAILY">Günlük</option>
+              <option value="WEEKLY">Haftalık (7 günde 1)</option>
               <option value="MONTHLY">Aylık</option>
-              <option value="WEEKLY">Haftalık</option>
             </select>
           </label>
           <label className="flex flex-col gap-1 text-xs text-muted">
-            Süre (hafta/ay, süresizse boş bırak)
+            Süre (kaç tekrar, süresizse boş bırak)
             <input
               type="number"
               name="totalPeriods"
               min={1}
+              placeholder="örn. 4"
               className="w-28 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
             />
           </label>
@@ -77,10 +75,15 @@ export default async function AliskanliklarPage() {
             Alışkanlık Ekle
           </button>
         </form>
+        <p className="mt-2 text-xs text-muted">
+          Her kutu bir tekrarı temsil eder: &quot;Haftalık&quot; seçersen her kutu 7 günlük bir
+          dönemi (örn. lazer epilasyon), &quot;Günlük&quot; seçersen her kutu tek bir günü temsil
+          eder. Süre olarak 4 girip Haftalık seçersen tam 4 haftalık bir program oluşur.
+        </p>
       </section>
 
       <div className="flex flex-col gap-4">
-        {habitCards.map(({ habit, dates, map }) => (
+        {habitCards.map(({ habit, periods, map }) => (
           <HabitCard
             key={habit.id}
             id={habit.id}
@@ -89,9 +92,8 @@ export default async function AliskanliklarPage() {
             indefinite={habit.indefinite}
             totalPeriods={habit.totalPeriods}
             active={habit.active}
-            dates={dates}
+            periods={periods}
             completions={map}
-            periodLabel={habit.frequency === "WEEKLY" ? weekLabel : monthName}
           />
         ))}
         {habitCards.length === 0 && (

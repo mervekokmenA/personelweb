@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 export async function addHabit(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
   if (!title) return;
-  const frequency = String(formData.get("frequency") ?? "MONTHLY") as "WEEKLY" | "MONTHLY";
+  const frequency = String(formData.get("frequency") ?? "MONTHLY") as "DAILY" | "WEEKLY" | "MONTHLY";
   const indefinite = formData.get("indefinite") === "on";
   const totalPeriodsRaw = String(formData.get("totalPeriods") ?? "").trim();
   const totalPeriods = !indefinite && totalPeriodsRaw ? parseInt(totalPeriodsRaw, 10) : null;

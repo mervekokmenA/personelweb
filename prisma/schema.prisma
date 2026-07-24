@@ -221,6 +221,7 @@ model LaserSession {
 // ---------------------------------------------------------------------------
 
 enum HabitFrequency {
+  DAILY
   WEEKLY
   MONTHLY
 }

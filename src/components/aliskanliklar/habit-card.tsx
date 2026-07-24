@@ -1,18 +1,29 @@
 import { toggleHabitDay, deleteHabit, toggleHabitActive } from "@/app/aliskanliklar/actions";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { DeleteButton } from "@/components/ui/delete-button";
-import { dateKey, dayLabel } from "@/lib/habit-grid";
+import { dateKey, type HabitFrequency, type HabitPeriod } from "@/lib/habit-grid";
+
+const FREQUENCY_LABEL: Record<HabitFrequency, string> = {
+  DAILY: "Günlük",
+  WEEKLY: "Haftalık (7 günde 1)",
+  MONTHLY: "Aylık",
+};
+
+const PERIOD_UNIT: Record<HabitFrequency, string> = {
+  DAILY: "gün",
+  WEEKLY: "hafta",
+  MONTHLY: "ay",
+};
 
 interface HabitCardProps {
   id: string;
   title: string;
-  frequency: "WEEKLY" | "MONTHLY";
+  frequency: HabitFrequency;
   indefinite: boolean;
   totalPeriods: number | null;
   active: boolean;
-  dates: Date[];
+  periods: HabitPeriod[];
   completions: Map<string, boolean>;
-  periodLabel: string;
 }
 
 export function HabitCard({
@@ -22,11 +33,10 @@ export function HabitCard({
   indefinite,
   totalPeriods,
   active,
-  dates,
+  periods,
   completions,
-  periodLabel,
 }: HabitCardProps) {
-  const doneCount = dates.filter((d) => completions.get(dateKey(d))).length;
+  const doneCount = periods.filter((p) => completions.get(dateKey(p.start))).length;
 
   return (
     <div className="card p-4">
@@ -34,15 +44,15 @@ export function HabitCard({
         <div className="flex items-center gap-2">
           <h3 className="font-medium">{title}</h3>
           <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
-            {frequency === "WEEKLY" ? "Haftalık" : "Aylık"}
+            {FREQUENCY_LABEL[frequency]}
           </span>
           <span className="text-xs text-muted">
-            {indefinite ? "Süresiz" : `${totalPeriods} ${frequency === "WEEKLY" ? "hafta" : "ay"} programı`}
+            {indefinite ? "Süresiz" : `${totalPeriods} ${PERIOD_UNIT[frequency]} programı`}
           </span>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs text-muted">
-            {doneCount}/{dates.length} · {periodLabel}
+            {doneCount}/{periods.length}
           </span>
           <form action={toggleHabitActive}>
             <input type="hidden" name="id" value={id} />
@@ -55,11 +65,11 @@ export function HabitCard({
       </div>
 
       <div className="flex flex-wrap gap-1.5">
-        {dates.map((d) => {
-          const key = dateKey(d);
+        {periods.map((p) => {
+          const key = dateKey(p.start);
           return (
-            <div key={key} className="flex flex-col items-center gap-1">
-              <span className="text-[10px] text-muted">{dayLabel(d)}</span>
+            <div key={key} className="flex flex-col items-center gap-1" title={p.title}>
+              <span className="text-[10px] text-muted">{p.label}</span>
               <AutoSubmitCheckbox
                 action={toggleHabitDay}
                 hidden={{ habitId: id, date: key }}
@@ -68,6 +78,9 @@ export function HabitCard({
             </div>
           );
         })}
+        {periods.length === 0 && (
+          <p className="text-sm text-muted">Henüz gösterilecek tekrar yok.</p>
+        )}
       </div>
     </div>
   );

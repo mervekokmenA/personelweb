@@ -1,11 +1,14 @@
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
-import { todayKey, formatTrLong } from "@/lib/date";
+import { todayKey, formatTrLong, addDays } from "@/lib/date";
 import { getAppSettings } from "@/lib/settings";
 import { computeCycleSummary, computeLaserSummary } from "@/lib/health";
 import { computeReadingDebt } from "@/lib/reading";
+import { getHabitPeriods, dateKey } from "@/lib/habit-grid";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { ReadingDebtCard } from "@/components/dashboard/reading-debt-card";
 import { DashboardCard } from "@/components/dashboard/dashboard-card";
+import { DailyTrendChart } from "@/components/dashboard/daily-trend-chart";
+import { HabitGoalChart, type HabitGoalDatum } from "@/components/dashboard/habit-goal-chart";
 import {
   CalendarDays,
   Lightbulb,
@@ -66,6 +69,45 @@ export default async function DashboardPage() {
     where: { habitId: { in: activeHabits.map((h) => h.id) }, date: today, done: true },
   });
 
+  // Son 7 gündeki rutin tamamlanma yüzdesi (bugünkü aktif rutin sayısına göre)
+  const last7Dates = Array.from({ length: 7 }, (_, i) => addDays(today, i - 6));
+  const routineCompletionsLast7 = await prisma.routineCompletion.findMany({
+    where: { date: { in: last7Dates }, done: true },
+  });
+  const completionCountByDate = new Map<string, number>();
+  for (const c of routineCompletionsLast7) {
+    const key = c.date.toISOString();
+    completionCountByDate.set(key, (completionCountByDate.get(key) ?? 0) + 1);
+  }
+  const dailyTrend = last7Dates.map((date) => ({
+    date,
+    isToday: date.getTime() === today.getTime(),
+    percent: activeRoutines > 0 ? ((completionCountByDate.get(date.toISOString()) ?? 0) / activeRoutines) * 100 : 0,
+  }));
+
+  // Her aktif alışkanlık için (süresizse "şu ana kadar", süreliyse hedefe göre) tamamlanma yüzdesi
+  const habitGoals: HabitGoalDatum[] = await Promise.all(
+    activeHabits.map(async (h) => {
+      const periods = getHabitPeriods(h);
+      const completions = periods.length
+        ? await prisma.habitCompletion.findMany({
+            where: { habitId: h.id, date: { in: periods.map((p) => p.start) }, done: true },
+          })
+        : [];
+      const doneDates = new Set(completions.map((c) => dateKey(c.date)));
+      const doneCount = periods.filter((p) => doneDates.has(dateKey(p.start))).length;
+      return {
+        id: h.id,
+        title: h.title,
+        frequency: h.frequency,
+        indefinite: h.indefinite,
+        percent: periods.length ? (doneCount / periods.length) * 100 : 0,
+        doneCount,
+        totalCount: periods.length,
+      };
+    })
+  );
+
   return (
     <div className="flex flex-col gap-6">
       <div>
@@ -105,6 +147,10 @@ export default async function DashboardPage() {
           Bugünün transit haritasını ve natal karşılaştırmasını gör.
         </DashboardCard>
       </div>
+
+      <DailyTrendChart days={dailyTrend} />
+
+      <HabitGoalChart habits={habitGoals} />
     </div>
   );
 }

@@ -125,7 +125,7 @@ export default async function TrainingDetailPage({
               className="rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
             />
           </label>
-          <div className="flex gap-2 sm:col-span-2">
+          <div className="flex flex-wrap gap-2 sm:col-span-2">
             <button className="rounded-lg bg-accent-mint px-4 py-1.5 text-sm font-medium">
               Kaydet
             </button>
@@ -141,16 +141,16 @@ export default async function TrainingDetailPage({
         </h2>
         <form action={addTrainingNote} className="mb-4 flex flex-col gap-2 border-b border-card-border pb-4">
           <input type="hidden" name="trainingId" value={training.id} />
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <input
               name="title"
               placeholder="Not başlığı (opsiyonel)"
-              className="flex-1 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+              className="min-w-[8rem] flex-1 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
             />
             <input
               type="date"
               name="lessonDate"
-              className="rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+              className="min-w-0 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
             />
           </div>
           <textarea

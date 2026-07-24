@@ -32,7 +32,11 @@ export function ChartWheel({
   const ascSignIndex = ascendant ? Math.floor(ascendant.siderealLongitude / 30) : null;
 
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} className="mx-auto">
+    <svg
+      viewBox={`0 0 ${size} ${size}`}
+      className="mx-auto block h-auto w-full"
+      style={{ maxWidth: size }}
+    >
       {/* Burç halkası */}
       <circle cx={cx} cy={cy} r={signRingR} fill="none" stroke="var(--card-border)" strokeWidth={1} />
       <circle cx={cx} cy={cy} r={natalR - 18} fill="none" stroke="var(--card-border)" strokeWidth={1} />
@@ -131,7 +135,8 @@ export function PositionTable({
   return (
     <div>
       <h3 className={`mb-2 text-xs font-semibold uppercase tracking-wide ${colorClass}`}>{title}</h3>
-      <table className="w-full border-collapse text-sm">
+      <div className="overflow-x-auto">
+      <table className="w-full min-w-[20rem] border-collapse text-sm">
         <thead>
           <tr className="text-left text-xs text-muted">
             <th className="pb-1.5 font-medium">Gezegen</th>
@@ -164,6 +169,7 @@ export function PositionTable({
           })}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

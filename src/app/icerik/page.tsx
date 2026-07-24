@@ -64,7 +64,7 @@ export default async function IcerikPage({
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold">İçerik Fikirleri</h1>
-        <div className="flex gap-2 text-xs">
+        <div className="flex flex-wrap gap-2 text-xs">
           <span className="rounded-full bg-background px-3 py-1 border border-card-border">
             Toplam: {totalCount}
           </span>
@@ -145,21 +145,25 @@ export default async function IcerikPage({
         {ideas.map((idea) => (
           <div
             key={idea.id}
-            className="card flex flex-wrap items-center gap-3 p-3"
+            className="card flex flex-col gap-2 p-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3"
           >
-            <StatusBadge id={idea.id} status={idea.status} action={cycleContentIdeaStatus} />
-            <span className={`flex-1 text-sm ${idea.status === "DONE" ? "text-muted line-through" : ""}`}>
-              {idea.title}
-            </span>
-            <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
-              {idea.category}
-            </span>
-            {idea.format && (
-              <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
-                {idea.format}
+            <div className="flex min-w-0 items-start gap-3">
+              <StatusBadge id={idea.id} status={idea.status} action={cycleContentIdeaStatus} />
+              <span className={`min-w-0 flex-1 text-sm ${idea.status === "DONE" ? "text-muted line-through" : ""}`}>
+                {idea.title}
               </span>
-            )}
-            <DeleteButton action={deleteContentIdea} hidden={{ id: idea.id }} />
+            </div>
+            <div className="flex flex-wrap items-center gap-2 sm:contents">
+              <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
+                {idea.category}
+              </span>
+              {idea.format && (
+                <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
+                  {idea.format}
+                </span>
+              )}
+              <DeleteButton action={deleteContentIdea} hidden={{ id: idea.id }} />
+            </div>
           </div>
         ))}
         {ideas.length === 0 && (
@@ -168,7 +172,7 @@ export default async function IcerikPage({
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
             <a
               key={p}

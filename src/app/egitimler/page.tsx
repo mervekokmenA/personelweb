@@ -77,7 +77,7 @@ export default async function EgitimlerPage({
           <select
             name="category"
             defaultValue={category}
-            className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+            className="min-w-0 max-w-[9.5rem] rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
           >
             <option value="">Tüm kategoriler</option>
             {categories.map((c) => (
@@ -89,7 +89,7 @@ export default async function EgitimlerPage({
           <select
             name="status"
             defaultValue={status}
-            className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+            className="min-w-0 max-w-[9.5rem] rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
           >
             <option value="">Tüm durumlar</option>
             <option value="PLANNED">Planlandı</option>
@@ -100,7 +100,7 @@ export default async function EgitimlerPage({
           <select
             name="type"
             defaultValue={type}
-            className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+            className="min-w-0 max-w-[9.5rem] rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
           >
             <option value="">Ücretsiz/Ücretli</option>
             <option value="FREE">Ücretsiz</option>
@@ -130,11 +130,11 @@ export default async function EgitimlerPage({
             placeholder="Kategori"
             className="w-44 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
           />
-          <select name="type" className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm">
+          <select name="type" className="min-w-0 max-w-[9.5rem] rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm">
             <option value="FREE">Ücretsiz</option>
             <option value="PAID">Ücretli</option>
           </select>
-          <select name="status" className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm">
+          <select name="status" className="min-w-0 max-w-[9.5rem] rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm">
             <option value="PLANNED">Planlandı</option>
             <option value="ONGOING">Devam Ediyor</option>
             <option value="COMPLETED">Tamamlandı</option>

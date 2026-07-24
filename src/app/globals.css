@@ -53,6 +53,10 @@ h1, h2, h3, h4 {
   background: var(--card);
   border: 2px solid var(--card-border);
   border-radius: 1.75rem;
+  /* Kartlar flex/grid içinde yer alıyor; min-width:0 olmadan içerideki
+     esnek/ızgara öğeleri kartı (ve dolayısıyla sayfayı) mobilde istemsizce
+     genişletip yatay taşmaya sebep olabiliyor. */
+  min-width: 0;
 }
 
 /* --- Playful hareket & şekil dili: mevcut Tailwind sınıflarının üzerine

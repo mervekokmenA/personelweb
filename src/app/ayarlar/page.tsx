@@ -39,7 +39,7 @@ export default async function AyarlarPage() {
         </p>
 
         {!githubInfo.configured && (
-          <div className="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm dark:bg-amber-950/20">
+          <div className="mb-4 rounded-lg border border-accent-pink/40 bg-accent-pink/10 p-3 text-sm">
             GitHub bağlantısı ayarlanmadı. Vercel proje ayarlarına <code>GH_PAT</code> (repo +
             workflow izinli bir Personal Access Token) ve <code>GH_REPO</code> (
             <code>owner/repo</code> formatında) ortam değişkenlerini ekle.

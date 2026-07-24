@@ -45,8 +45,8 @@ export default async function AstrolojiPage({
       <p className="text-sm text-muted">{formatTrLong(dayKey(date))} — sidereal (Lahiri) zodyak, whole sign ev sistemi</p>
 
       {!natal && (
-        <div className="card flex items-start gap-3 border-amber-300 bg-amber-50 p-4 text-sm dark:bg-amber-950/20">
-          <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-600" />
+        <div className="card flex items-start gap-3 border-accent-pink/40 bg-accent-pink/10 p-4 text-sm">
+          <AlertTriangle size={18} className="mt-0.5 shrink-0 text-accent-pink" />
           <p>
             Natal harita henüz ayarlanmadı, sadece bugünkü transit gösteriliyor. Görünmesi için{" "}
             <code>NATAL_CHART_JSON</code> ortam değişkenini <code>.env</code> (yerelde) ve Vercel
@@ -92,11 +92,11 @@ export default async function AstrolojiPage({
       </section>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="card p-5">
+        <section className="card min-w-0 p-5">
           <PositionTable title="Bugünkü Transit" positions={transit} colorClass="text-[#c25b7c]" />
         </section>
         {natal && (
-          <section className="card p-5">
+          <section className="card min-w-0 p-5">
             <PositionTable title="Natal Haritan" positions={natal} colorClass="text-[#7c5cbf]" />
           </section>
         )}

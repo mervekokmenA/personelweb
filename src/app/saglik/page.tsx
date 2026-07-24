@@ -4,14 +4,8 @@ import { computeCycleSummary, computeLaserSummary } from "@/lib/health";
 import { toDateInputValue } from "@/lib/date";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { DeleteButton } from "@/components/ui/delete-button";
-import { SaveToast } from "@/components/ui/save-toast";
-import {
-  addPeriod,
-  deletePeriod,
-  addLaserSession,
-  deleteLaserSession,
-  updateHealthSettings,
-} from "./actions";
+import Link from "next/link";
+import { addPeriod, deletePeriod, addLaserSession, deleteLaserSession } from "./actions";
 import { Droplet, Sparkles, Settings2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -189,45 +183,32 @@ export default async function SaglikPage() {
 
       {/* PARAMETRİK AYARLAR */}
       <section className="card p-5">
-        <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
-          <Settings2 size={16} /> Parametrik Ayarlar
-        </h2>
-        <form action={updateHealthSettings} className="flex flex-wrap gap-3">
-          <label className="flex flex-col gap-1 text-xs text-muted">
-            Ortalama döngü (gün)
-            <input
-              type="number"
-              name="avgCycleLengthDays"
-              defaultValue={settings.avgCycleLengthDays}
-              className="w-32 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
-            />
-          </label>
-          <label className="flex flex-col gap-1 text-xs text-muted">
-            Ortalama adet süresi (gün)
-            <input
-              type="number"
-              name="avgPeriodLengthDays"
-              defaultValue={settings.avgPeriodLengthDays}
-              className="w-32 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
-            />
-          </label>
-          <label className="flex flex-col gap-1 text-xs text-muted">
-            Lazer aralığı (gün)
-            <input
-              type="number"
-              name="laserIntervalDays"
-              defaultValue={settings.laserIntervalDays}
-              className="w-32 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
-            />
-          </label>
-          <button className="self-end rounded-lg bg-accent-mint px-4 py-1.5 text-sm font-medium">
-            Kaydet
-          </button>
-          <SaveToast label="Ayarlar güncellendi" />
-        </form>
+        <div className="flex items-center justify-between">
+          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+            <Settings2 size={16} /> Parametrik Ayarlar
+          </h2>
+          <Link
+            href="/parametreler#saglik-ayarlari"
+            className="flex items-center gap-1 text-xs text-muted hover:text-foreground"
+          >
+            <Settings2 size={13} /> Düzenle
+          </Link>
+        </div>
+        <div className="mt-3 flex flex-wrap gap-4 text-sm">
+          <span>
+            Ortalama döngü: <strong>{settings.avgCycleLengthDays} gün</strong>
+          </span>
+          <span>
+            Ortalama adet süresi: <strong>{settings.avgPeriodLengthDays} gün</strong>
+          </span>
+          <span>
+            Lazer aralığı: <strong>{settings.laserIntervalDays} gün</strong>
+          </span>
+        </div>
         <p className="mt-3 text-xs text-muted">
-          Not: en az 2 adet kaydın varsa ortalama döngü otomatik gerçek verilerden hesaplanır, bu
-          alan sadece yeterli veri olmadığında varsayılan olarak kullanılır.
+          Bu değerleri Parametreler sayfasından güncelleyebilirsin. En az 2 adet kaydın varsa
+          ortalama döngü otomatik gerçek verilerden hesaplanır, bu alan sadece yeterli veri
+          olmadığında varsayılan olarak kullanılır.
         </p>
       </section>
     </div>

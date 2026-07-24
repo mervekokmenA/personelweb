@@ -107,7 +107,7 @@ export async function addFocusArea(formData: FormData) {
   const items = itemsRaw.split(",").map((s) => s.trim()).filter(Boolean);
   const count = await prisma.focusArea.count();
   await prisma.focusArea.create({ data: { name, items, color, order: count } });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
 
@@ -118,14 +118,14 @@ export async function updateFocusArea(formData: FormData) {
   const color = String(formData.get("color") ?? "#a78bfa");
   const items = itemsRaw.split(",").map((s) => s.trim()).filter(Boolean);
   await prisma.focusArea.update({ where: { id }, data: { name, items, color } });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
 
 export async function deleteFocusArea(formData: FormData) {
   const id = String(formData.get("id"));
   await prisma.focusArea.delete({ where: { id } });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
 
@@ -154,7 +154,7 @@ export async function addRoutineTemplate(formData: FormData) {
   if (!title) return;
   const count = await prisma.routineTemplate.count();
   await prisma.routineTemplate.create({ data: { title, description, order: count } });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
 
@@ -163,7 +163,7 @@ export async function updateRoutineTemplate(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim() || null;
   await prisma.routineTemplate.update({ where: { id }, data: { title, description } });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
 
@@ -172,7 +172,7 @@ export async function toggleRoutineActive(formData: FormData) {
   const current = await prisma.routineTemplate.findUnique({ where: { id } });
   if (!current) return;
   await prisma.routineTemplate.update({ where: { id }, data: { active: !current.active } });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
 
@@ -184,13 +184,13 @@ export async function toggleRoutineTrackCompletion(formData: FormData) {
     where: { id },
     data: { trackCompletion: !current.trackCompletion },
   });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
 
 export async function deleteRoutineTemplate(formData: FormData) {
   const id = String(formData.get("id"));
   await prisma.routineTemplate.delete({ where: { id } });
-  revalidatePath("/gunluk/alanlar");
+  revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }

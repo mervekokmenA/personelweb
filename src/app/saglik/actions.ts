@@ -63,4 +63,5 @@ export async function updateHealthSettings(formData: FormData) {
     },
   });
   revalidatePath("/saglik");
+  revalidatePath("/parametreler");
 }

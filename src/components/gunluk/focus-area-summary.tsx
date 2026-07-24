@@ -25,7 +25,7 @@ export function FocusAreaSummary({
           Çalışmalar - Hobiler
         </h2>
         <Link
-          href="/gunluk/alanlar"
+          href="/parametreler#hobiler"
           className="flex items-center gap-1 text-xs text-muted hover:text-foreground"
         >
           <Settings2 size={13} /> Düzenle
@@ -35,7 +35,7 @@ export function FocusAreaSummary({
         {areas.length === 0 && (
           <p className="text-sm text-muted">
             Henüz odak alanı yok.{" "}
-            <Link href="/gunluk/alanlar" className="underline">
+            <Link href="/parametreler#hobiler" className="underline">
               Ekleyin
             </Link>
             .

@@ -5,17 +5,25 @@ içerik fikirleri, eğitim takibi ve Vedik astroloji.
 
 ## Bölümler
 
+- **/** — Ana sayfa / gösterge paneli: kitap okuma borcu kartı ve diğer
+  bölümlerin özet kartları.
 - **/gunluk** — Günlük saat planı, rutin checklist'i, yapılacaklar listesi,
-  not günlüğü ve "Çalışmalar-Hobiler" odak alanları. `/gunluk/alanlar`
-  sayfasından odak alanlarını ve rutin şablonlarını (parametreleri)
-  düzenleyebilirsin.
-- **/icerik** — 200 seed içerik fikri + istediğin zaman yeni fikir ekleme,
-  durum işaretleme (Yapılmadı / Yapılıyor / Yapıldı), kategori/durum filtresi.
-- **/egitimler** — Aldığın/almayı planladığın eğitimlerin listesi, her
-  eğitimin kendi sayfasında ders notları tutabileceğin bir alan.
+  not günlüğü ve "Çalışmalar-Hobiler" odak alanları.
+- **/icerik** — 200 seed + 422 "İçerik İmparatorluğu" içerik fikri, istediğin
+  zaman yeni fikir ekleme, durum işaretleme (Yapılmadı / Yapılıyor / Yapıldı),
+  kategori/durum filtresi.
+- **/egitimler** — Aldığın/almayı planladığın eğitimlerin (araştırılmış
+  profesyonel düzey eğitimler dahil) listesi, her eğitimin kendi sayfasında
+  ders notları tutabileceğin bir alan, kategori/durum/tür filtresi.
+- **/aliskanliklar** — Haftalık/aylık (süresiz veya belirli süreli) alışkanlık
+  takibi, grid görünümü.
+- **/saglik** — Menstrual döngü ve lazer epilasyon takibi.
 - **/astroloji** — Seçtiğin günün sidereal (Lahiri) transit haritası, natal
   haritanla whole-sign ev bazında karşılaştırması, transit→natal açı listesi
   ve günün öne çıkan temalarını/dikkat noktalarını özetleyen otomatik metin.
+- **/parametreler** — Odak alanları, rutin şablonları, sağlık parametreleri ve
+  okuma hedefi gibi farklı sayfalara ait ayarları tek yerden düzenleyebileceğin
+  konsolide parametre ekranı.
 - **/ayarlar** — GitHub Actions üzerinden APK derlemeyi tetikleme ve son
   derlemeyi indirme.
 

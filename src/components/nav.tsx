@@ -11,6 +11,7 @@ import {
   HeartPulse,
   ListChecks,
   Settings,
+  SlidersHorizontal,
   Menu,
   X,
 } from "lucide-react";
@@ -24,6 +25,7 @@ const NAV_ITEMS = [
   { href: "/aliskanliklar", label: "Alışkanlıklar", icon: ListChecks, accent: "var(--accent-lilac)" },
   { href: "/saglik", label: "Sağlık", icon: HeartPulse, accent: "var(--accent-pink)" },
   { href: "/astroloji", label: "Astroloji", icon: Sparkles, accent: "var(--accent-lilac)" },
+  { href: "/parametreler", label: "Parametreler", icon: SlidersHorizontal, accent: "var(--accent-mint)" },
   { href: "/ayarlar", label: "Ayarlar", icon: Settings, accent: "var(--accent-pink)" },
 ];
 

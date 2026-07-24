@@ -19,7 +19,7 @@ export function RoutineSection({ date, routines }: { date: string; routines: Rou
           Günlük Rutinler
         </h2>
         <Link
-          href="/gunluk/alanlar"
+          href="/parametreler#rutinler"
           className="flex items-center gap-1 text-xs text-muted hover:text-foreground"
         >
           <Settings2 size={13} /> Düzenle
@@ -29,7 +29,7 @@ export function RoutineSection({ date, routines }: { date: string; routines: Rou
         {routines.length === 0 && (
           <p className="text-sm text-muted">
             Henüz rutin tanımlanmadı.{" "}
-            <Link href="/gunluk/alanlar" className="underline">
+            <Link href="/parametreler#rutinler" className="underline">
               Parametre ekranından ekleyin
             </Link>
             .

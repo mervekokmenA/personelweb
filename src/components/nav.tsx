@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  LayoutDashboard,
   CalendarDays,
   Lightbulb,
   GraduationCap,
   Sparkles,
+  HeartPulse,
+  ListChecks,
   Settings,
   Menu,
   X,
@@ -14,9 +17,12 @@ import {
 import { useState } from "react";
 
 const NAV_ITEMS = [
+  { href: "/", label: "Ana Sayfa", icon: LayoutDashboard, accent: "var(--accent-yellow)" },
   { href: "/gunluk", label: "Günlük Program", icon: CalendarDays, accent: "var(--accent-mint)" },
   { href: "/icerik", label: "İçerik Fikirleri", icon: Lightbulb, accent: "var(--accent-yellow)" },
   { href: "/egitimler", label: "Eğitimler", icon: GraduationCap, accent: "var(--accent-blue)" },
+  { href: "/aliskanliklar", label: "Alışkanlıklar", icon: ListChecks, accent: "var(--accent-lilac)" },
+  { href: "/saglik", label: "Sağlık", icon: HeartPulse, accent: "var(--accent-pink)" },
   { href: "/astroloji", label: "Astroloji", icon: Sparkles, accent: "var(--accent-lilac)" },
   { href: "/ayarlar", label: "Ayarlar", icon: Settings, accent: "var(--accent-pink)" },
 ];
@@ -46,7 +52,7 @@ export function Nav() {
           <h1 className="text-xl font-semibold">🌙 Merve</h1>
         </div>
         {NAV_ITEMS.map((item) => {
-          const active = pathname?.startsWith(item.href);
+          const active = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
           const Icon = item.icon;
           return (
             <Link

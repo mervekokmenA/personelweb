@@ -179,3 +179,90 @@ model ApkBuild {
   triggeredAt DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+// ---------------------------------------------------------------------------
+// SAĞLIK (Menstrual döngü + Lazer takibi)
+// ---------------------------------------------------------------------------
+
+// Uygulama genelindeki parametrik ayarlar — tek satırlık singleton kayıt
+model AppSettings {
+  id                     String   @id @default("singleton")
+  avgCycleLengthDays     Int      @default(28)
+  avgPeriodLengthDays    Int      @default(5)
+  laserIntervalDays      Int      @default(42)
+  dailyReadingPageTarget Int      @default(5)
+  updatedAt              DateTime @updatedAt
+}
+
+model PeriodEntry {
+  id        String   @id @default(cuid())
+  startDate DateTime
+  endDate   DateTime?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([startDate])
+}
+
+model LaserSession {
+  id        String   @id @default(cuid())
+  date      DateTime
+  area      String? // vücut bölgesi
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+}
+
+// ---------------------------------------------------------------------------
+// ALIŞKANLIK TAKİBİ (gridli haftalık/aylık takip)
+// ---------------------------------------------------------------------------
+
+enum HabitFrequency {
+  WEEKLY
+  MONTHLY
+}
+
+model Habit {
+  id           String            @id @default(cuid())
+  title        String
+  frequency    HabitFrequency    @default(MONTHLY)
+  indefinite   Boolean           @default(true)
+  totalPeriods Int? // süresiz değilse: kaç hafta/ay boyunca takip edilecek
+  startDate    DateTime          @default(now())
+  active       Boolean           @default(true)
+  order        Int               @default(0)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  completions  HabitCompletion[]
+}
+
+model HabitCompletion {
+  id        String   @id @default(cuid())
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  habitId   String
+  date      DateTime
+  done      Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([habitId, date])
+  @@index([date])
+}
+
+// ---------------------------------------------------------------------------
+// KİTAP OKUMA TAKİBİ (Ana sayfa "okuma borcu" widget'ı)
+// ---------------------------------------------------------------------------
+
+model ReadingLog {
+  id        String   @id @default(cuid())
+  date      DateTime @unique
+  pages     Int
+  bookTitle String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+}

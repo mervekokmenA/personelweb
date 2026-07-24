@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Ana Sayfa", icon: LayoutDashboard, accent: "var(--accent-yellow)" },
+  { href: "/", label: "Ana Sayfa", icon: LayoutDashboard, accent: "var(--accent-blue)" },
   { href: "/gunluk", label: "Günlük Program", icon: CalendarDays, accent: "var(--accent-mint)" },
   { href: "/icerik", label: "İçerik Fikirleri", icon: Lightbulb, accent: "var(--accent-yellow)" },
   { href: "/egitimler", label: "Eğitimler", icon: GraduationCap, accent: "var(--accent-blue)" },
@@ -34,7 +34,9 @@ export function Nav() {
   return (
     <>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-card-border bg-background/90 px-4 py-3 backdrop-blur md:hidden">
-        <span className="text-lg font-semibold">Kişisel Panel</span>
+        <Link href="/" onClick={() => setOpen(false)} className="text-lg font-semibold">
+          Kişisel Panel
+        </Link>
         <button
           onClick={() => setOpen((v) => !v)}
           className="rounded-lg p-2 hover:bg-card"
@@ -47,10 +49,10 @@ export function Nav() {
       <nav
         className={`${open ? "flex" : "hidden"} md:flex flex-col gap-1 border-r border-card-border bg-card/60 p-4 md:sticky md:top-0 md:h-screen md:w-64 md:shrink-0`}
       >
-        <div className="mb-6 hidden px-2 md:block">
+        <Link href="/" onClick={() => setOpen(false)} className="mb-6 hidden px-2 md:block">
           <p className="text-sm text-muted">Kişisel Panel</p>
           <h1 className="text-xl font-semibold">🌙 Merve</h1>
-        </div>
+        </Link>
         {NAV_ITEMS.map((item) => {
           const active = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
           const Icon = item.icon;

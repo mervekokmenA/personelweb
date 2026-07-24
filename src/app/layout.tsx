@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf7f2",
+  themeColor: "#fff8f0",
 };
 
 export default function RootLayout({
@@ -19,6 +19,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="h-full antialiased">
+      <head>
+        {/* Google Fonts <link> ile yükleniyor (CSS @import değil) — tarayıcı
+            bunu HTML head'i parse ederken hemen keşfedip diğer kaynaklarla
+            paralel indirebiliyor, bu da açılış hızını iyileştiriyor. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font -- bu kural Pages Router için; App Router'da root layout tüm sayfalara uygulanır */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+        />
+      </head>
       <body className="min-h-full">
         <div className="flex min-h-screen flex-col md:flex-row">
           <Nav />

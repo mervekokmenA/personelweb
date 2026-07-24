@@ -299,3 +299,39 @@ model ReadingLog {
 
   @@index([date])
 }
+
+// ---------------------------------------------------------------------------
+// GENEL GÖREVLER (hedef saat/sayfa'ya ulaşana kadar günlük programda görünen,
+// süresi bitince veya manuel olarak tamamlanabilen görevler)
+// ---------------------------------------------------------------------------
+
+enum GeneralTaskUnit {
+  HOURS
+  PAGES
+}
+
+model GeneralTask {
+  id           String           @id @default(cuid())
+  title        String
+  unit         GeneralTaskUnit  @default(HOURS)
+  targetAmount Float
+  completed    Boolean          @default(false)
+  completedAt  DateTime?
+  order        Int              @default(0)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  logs         GeneralTaskLog[]
+}
+
+model GeneralTaskLog {
+  id        String      @id @default(cuid())
+  task      GeneralTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskId    String
+  date      DateTime
+  amount    Float
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@unique([taskId, date])
+  @@index([date])
+}

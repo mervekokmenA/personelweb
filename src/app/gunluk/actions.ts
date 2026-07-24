@@ -194,3 +194,65 @@ export async function deleteRoutineTemplate(formData: FormData) {
   revalidatePath("/parametreler");
   revalidatePath("/gunluk");
 }
+
+// ---------- Genel Görevler (hedef saat/sayfaya ulaşana ya da manuel olarak
+// tamamlanana kadar günlük programda görünen görevler) ----------
+
+export async function addGeneralTask(formData: FormData) {
+  const title = String(formData.get("title") ?? "").trim();
+  const unit = String(formData.get("unit") ?? "HOURS") === "PAGES" ? "PAGES" : "HOURS";
+  const targetAmount = parseFloat(String(formData.get("targetAmount") ?? "").replace(",", "."));
+  if (!title || !Number.isFinite(targetAmount) || targetAmount <= 0) return;
+  const count = await prisma.generalTask.count();
+  await prisma.generalTask.create({ data: { title, unit, targetAmount, order: count } });
+  revalidatePath("/parametreler");
+  revalidatePath("/gunluk");
+}
+
+export async function logGeneralTaskAmount(formData: FormData) {
+  const taskId = String(formData.get("taskId"));
+  const date = String(formData.get("date"));
+  const amount = parseFloat(String(formData.get("amount") ?? "").replace(",", "."));
+  if (!date || !Number.isFinite(amount) || amount < 0) return;
+  const dKey = dayKey(date);
+
+  await prisma.generalTaskLog.upsert({
+    where: { taskId_date: { taskId, date: dKey } },
+    update: { amount },
+    create: { taskId, date: dKey, amount },
+  });
+
+  const task = await prisma.generalTask.findUnique({ where: { id: taskId } });
+  if (task && !task.completed) {
+    const logs = await prisma.generalTaskLog.aggregate({
+      where: { taskId },
+      _sum: { amount: true },
+    });
+    const total = logs._sum.amount ?? 0;
+    if (total >= task.targetAmount) {
+      await prisma.generalTask.update({
+        where: { id: taskId },
+        data: { completed: true, completedAt: new Date() },
+      });
+    }
+  }
+  revalidatePath("/parametreler");
+  revalidateDay();
+}
+
+export async function completeGeneralTask(formData: FormData) {
+  const taskId = String(formData.get("taskId"));
+  await prisma.generalTask.update({
+    where: { id: taskId },
+    data: { completed: true, completedAt: new Date() },
+  });
+  revalidatePath("/parametreler");
+  revalidateDay();
+}
+
+export async function deleteGeneralTask(formData: FormData) {
+  const id = String(formData.get("id"));
+  await prisma.generalTask.delete({ where: { id } });
+  revalidatePath("/parametreler");
+  revalidateDay();
+}

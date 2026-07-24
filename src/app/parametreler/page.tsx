@@ -4,7 +4,7 @@ import { DeleteButton } from "@/components/ui/delete-button";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { SaveToast } from "@/components/ui/save-toast";
-import { BookOpen, Droplet, Sparkles, Palette } from "lucide-react";
+import { BookOpen, Droplet, Sparkles, Palette, Target } from "lucide-react";
 import {
   addFocusArea,
   updateFocusArea,
@@ -14,6 +14,8 @@ import {
   toggleRoutineActive,
   toggleRoutineTrackCompletion,
   deleteRoutineTemplate,
+  addGeneralTask,
+  deleteGeneralTask,
 } from "@/app/gunluk/actions";
 import { updateHealthSettings } from "@/app/saglik/actions";
 import { updateReadingTarget } from "./actions";
@@ -32,11 +34,18 @@ export default async function ParametrelerPage() {
     );
   }
 
-  const [focusAreas, routines, settings] = await Promise.all([
+  const [focusAreas, routines, generalTasks, settings] = await Promise.all([
     prisma.focusArea.findMany({ orderBy: { order: "asc" } }),
     prisma.routineTemplate.findMany({ orderBy: { order: "asc" } }),
+    prisma.generalTask.findMany({ orderBy: [{ completed: "asc" }, { order: "asc" }] }),
     getAppSettings(),
   ]);
+
+  const generalTaskTotals = await Promise.all(
+    generalTasks.map((t) =>
+      prisma.generalTaskLog.aggregate({ where: { taskId: t.id }, _sum: { amount: true } })
+    )
+  );
 
   return (
     <div className="flex flex-col gap-8">
@@ -208,6 +217,71 @@ export default async function ParametrelerPage() {
             Yeni Rutin Ekle
           </button>
         </form>
+      </section>
+
+      {/* GENEL GÖREVLER */}
+      <section id="genel-gorevler" className="card p-5">
+        <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+          <Target size={16} /> Genel Görevler
+        </h2>
+        <div className="flex flex-col gap-2">
+          {generalTasks.map((t, i) => {
+            const total = generalTaskTotals[i]._sum.amount ?? 0;
+            const unitLabel = t.unit === "PAGES" ? "sayfa" : "saat";
+            return (
+              <div
+                key={t.id}
+                className="flex flex-wrap items-center gap-3 rounded-lg bg-background p-3"
+              >
+                <div className="min-w-[10rem] flex-1">
+                  <p className={`text-sm font-medium ${t.completed ? "text-muted line-through" : ""}`}>
+                    {t.title}
+                  </p>
+                  <p className="text-xs text-muted">
+                    {total} / {t.targetAmount} {unitLabel}
+                    {t.completed ? " · Tamamlandı" : ""}
+                  </p>
+                </div>
+                <DeleteButton action={deleteGeneralTask} hidden={{ id: t.id }} />
+              </div>
+            );
+          })}
+          {generalTasks.length === 0 && (
+            <p className="text-sm text-muted">Henüz genel görev eklenmedi.</p>
+          )}
+        </div>
+
+        <form action={addGeneralTask} className="mt-4 flex flex-wrap gap-2 border-t border-card-border pt-4">
+          <input
+            name="title"
+            placeholder="Görev adı (örn. Kitap taslağı yazımı)"
+            required
+            className="min-w-[12rem] flex-1 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+          />
+          <select
+            name="unit"
+            className="rounded-lg border border-card-border bg-background px-2 py-1.5 text-sm"
+          >
+            <option value="HOURS">Saat</option>
+            <option value="PAGES">Sayfa</option>
+          </select>
+          <input
+            type="number"
+            step="0.5"
+            min={1}
+            name="targetAmount"
+            placeholder="Hedef (örn. 30)"
+            required
+            className="w-32 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+          />
+          <button className="rounded-lg bg-accent-yellow px-4 py-1.5 text-sm font-medium">
+            Görev Ekle
+          </button>
+        </form>
+        <p className="mt-3 text-xs text-muted">
+          Hedefe ulaşınca görev otomatik tamamlanır ve günlük programdan kalkar; istersen günlük
+          programdaki &quot;Tamamla&quot; butonuyla süresi dolmadan da bitirebilirsin.
+        </p>
       </section>
 
       {/* SAĞLIK AYARLARI */}

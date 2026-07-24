@@ -6,6 +6,7 @@ import { RoutineSection } from "@/components/gunluk/routine-section";
 import { TodoSection } from "@/components/gunluk/todo-section";
 import { JournalSection } from "@/components/gunluk/journal-section";
 import { FocusAreaSummary } from "@/components/gunluk/focus-area-summary";
+import { GeneralTaskSection, type GeneralTaskRow } from "@/components/gunluk/general-task-section";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 
 export const dynamic = "force-dynamic";
@@ -28,16 +29,25 @@ export default async function GunlukPage({
     );
   }
 
-  const [timeBlocks, todos, notes, focusAreas, routineTemplates, completions, itemCompletions] =
-    await Promise.all([
-      prisma.timeBlock.findMany({ where: { date: dKey }, orderBy: { startTime: "asc" } }),
-      prisma.todoItem.findMany({ where: { date: dKey }, orderBy: { order: "asc" } }),
-      prisma.journalNote.findMany({ where: { date: dKey }, orderBy: { createdAt: "desc" } }),
-      prisma.focusArea.findMany({ orderBy: { order: "asc" } }),
-      prisma.routineTemplate.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
-      prisma.routineCompletion.findMany({ where: { date: dKey } }),
-      prisma.focusAreaItemCompletion.findMany({ where: { date: dKey } }),
-    ]);
+  const [
+    timeBlocks,
+    todos,
+    notes,
+    focusAreas,
+    routineTemplates,
+    completions,
+    itemCompletions,
+    generalTasks,
+  ] = await Promise.all([
+    prisma.timeBlock.findMany({ where: { date: dKey }, orderBy: { startTime: "asc" } }),
+    prisma.todoItem.findMany({ where: { date: dKey }, orderBy: { order: "asc" } }),
+    prisma.journalNote.findMany({ where: { date: dKey }, orderBy: { createdAt: "desc" } }),
+    prisma.focusArea.findMany({ orderBy: { order: "asc" } }),
+    prisma.routineTemplate.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
+    prisma.routineCompletion.findMany({ where: { date: dKey } }),
+    prisma.focusAreaItemCompletion.findMany({ where: { date: dKey } }),
+    prisma.generalTask.findMany({ where: { completed: false }, orderBy: { order: "asc" } }),
+  ]);
 
   const completionMap = new Map(completions.map((c) => [c.templateId, c.done]));
   const routines = routineTemplates.map((t) => ({
@@ -52,6 +62,25 @@ export default async function GunlukPage({
     itemCompletions.map((c) => [`${c.focusAreaId}::${c.itemText}`, c.done])
   );
 
+  const generalTaskRows: GeneralTaskRow[] = await Promise.all(
+    generalTasks.map(async (t) => {
+      const [totalAgg, todayLog] = await Promise.all([
+        prisma.generalTaskLog.aggregate({ where: { taskId: t.id }, _sum: { amount: true } }),
+        prisma.generalTaskLog.findUnique({ where: { taskId_date: { taskId: t.id, date: dKey } } }),
+      ]);
+      const totalAmount = totalAgg._sum.amount ?? 0;
+      return {
+        id: t.id,
+        title: t.title,
+        unit: t.unit,
+        targetAmount: t.targetAmount,
+        totalAmount,
+        todayAmount: todayLog?.amount ?? 0,
+        percent: t.targetAmount > 0 ? (totalAmount / t.targetAmount) * 100 : 0,
+      };
+    })
+  );
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -60,6 +89,8 @@ export default async function GunlukPage({
       </div>
 
       <FocusAreaSummary areas={focusAreas} date={date} completions={itemCompletionMap} />
+
+      <GeneralTaskSection date={date} tasks={generalTaskRows} />
 
       <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div className="flex flex-col gap-6">

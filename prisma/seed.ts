@@ -2,7 +2,9 @@ import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { CONTENT_IDEA_SEED } from "./seed-data/content-ideas";
+import { CONTENT_IDEA_SEED_2 } from "./seed-data/content-ideas-icerik-imparatorlugu";
 import { TRAINING_SEED } from "./seed-data/trainings";
+import { TRAINING_SEED_2 } from "./seed-data/trainings-2";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
@@ -24,6 +26,28 @@ async function seedContentIdeas() {
   console.log(`${CONTENT_IDEA_SEED.length} içerik fikri eklendi.`);
 }
 
+async function seedContentIdeas2() {
+  const existing = await prisma.contentIdea.count({
+    where: { source: "icerik-imparatorlugu" },
+  });
+  if (existing > 0) {
+    console.log(
+      `ContentIdea (icerik-imparatorlugu) zaten ${existing} kayıt içeriyor, seed atlanıyor.`
+    );
+    return;
+  }
+  await prisma.contentIdea.createMany({
+    data: CONTENT_IDEA_SEED_2.map((idea) => ({
+      title: idea.title,
+      category: idea.category,
+      format: idea.format,
+      status: idea.done ? ("DONE" as const) : ("NOT_STARTED" as const),
+      source: "icerik-imparatorlugu" as const,
+    })),
+  });
+  console.log(`${CONTENT_IDEA_SEED_2.length} içerik fikri (icerik-imparatorlugu) eklendi.`);
+}
+
 async function seedTrainings() {
   const existing = await prisma.training.count();
   if (existing > 0) {
@@ -34,6 +58,25 @@ async function seedTrainings() {
     await prisma.training.create({ data: { ...t, order: i } });
   }
   console.log(`${TRAINING_SEED.length} eğitim eklendi.`);
+}
+
+async function seedTrainings2() {
+  const existing = await prisma.training.count({
+    where: { source: "profesyonel-arastirma" },
+  });
+  if (existing > 0) {
+    console.log(
+      `Training (profesyonel-arastirma) zaten ${existing} kayıt içeriyor, seed atlanıyor.`
+    );
+    return;
+  }
+  const currentMax = await prisma.training.count();
+  for (const [i, t] of TRAINING_SEED_2.entries()) {
+    await prisma.training.create({
+      data: { ...t, order: currentMax + i, source: "profesyonel-arastirma" as const },
+    });
+  }
+  console.log(`${TRAINING_SEED_2.length} eğitim (profesyonel-arastirma) eklendi.`);
 }
 
 async function seedFocusAreasAndRoutines() {
@@ -77,7 +120,9 @@ async function seedFocusAreasAndRoutines() {
 async function main() {
   await seedFocusAreasAndRoutines();
   await seedContentIdeas();
+  await seedContentIdeas2();
   await seedTrainings();
+  await seedTrainings2();
 }
 
 main()

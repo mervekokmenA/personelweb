@@ -164,6 +164,7 @@ model Training {
   startedAt   DateTime?
   finishedAt  DateTime?
   description String?
+  source      String         @default("seed") // seed | profesyonel-arastirma | manual
   order       Int            @default(0)
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt

@@ -245,6 +245,26 @@ export default async function ParametrelerPage() {
               className="w-32 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
             />
           </label>
+          <label className="flex flex-col gap-1 text-xs text-muted">
+            Boy (cm)
+            <input
+              type="number"
+              step="0.1"
+              name="heightCm"
+              defaultValue={settings.heightCm ?? ""}
+              className="w-32 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+            />
+          </label>
+          <label className="flex flex-col gap-1 text-xs text-muted">
+            Hedef kilo (kg)
+            <input
+              type="number"
+              step="0.1"
+              name="targetWeightKg"
+              defaultValue={settings.targetWeightKg ?? ""}
+              className="w-32 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+            />
+          </label>
           <button className="self-end rounded-lg bg-accent-mint px-4 py-1.5 text-sm font-medium">
             Kaydet
           </button>

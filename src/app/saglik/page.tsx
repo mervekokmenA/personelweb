@@ -1,12 +1,19 @@
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { getAppSettings } from "@/lib/settings";
-import { computeCycleSummary, computeLaserSummary } from "@/lib/health";
+import { computeCycleSummary, computeLaserSummary, computeWeightSummary } from "@/lib/health";
 import { toDateInputValue } from "@/lib/date";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { DeleteButton } from "@/components/ui/delete-button";
 import Link from "next/link";
-import { addPeriod, deletePeriod, addLaserSession, deleteLaserSession } from "./actions";
-import { Droplet, Sparkles, Settings2 } from "lucide-react";
+import {
+  addPeriod,
+  deletePeriod,
+  addLaserSession,
+  deleteLaserSession,
+  addWeightEntry,
+  deleteWeightEntry,
+} from "./actions";
+import { Droplet, Sparkles, Settings2, Scale } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -25,14 +32,16 @@ export default async function SaglikPage() {
     );
   }
 
-  const [periods, laserSessions, settings] = await Promise.all([
+  const [periods, laserSessions, weightEntries, settings] = await Promise.all([
     prisma.periodEntry.findMany({ orderBy: { startDate: "desc" } }),
     prisma.laserSession.findMany({ orderBy: { date: "desc" } }),
+    prisma.weightEntry.findMany({ orderBy: { date: "desc" } }),
     getAppSettings(),
   ]);
 
   const cycle = computeCycleSummary(periods, settings.avgCycleLengthDays, settings.avgPeriodLengthDays);
   const laser = computeLaserSummary(laserSessions[0]?.date ?? null, settings.laserIntervalDays);
+  const weight = computeWeightSummary(weightEntries, settings.heightCm, settings.targetWeightKg);
 
   return (
     <div className="flex flex-col gap-6">
@@ -181,6 +190,92 @@ export default async function SaglikPage() {
         </div>
       </section>
 
+      {/* KİLO TAKİBİ */}
+      <section className="card p-5">
+        <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+          <Scale size={16} /> Kilo Takibi
+        </h2>
+
+        <div className="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="rounded-xl bg-accent-mint/40 p-3">
+            <p className="text-xs text-muted">Son Ölçüm</p>
+            <p className="text-sm font-semibold">
+              {weight.latestWeightKg !== null ? `${weight.latestWeightKg} kg` : "—"}
+            </p>
+            <p className="text-xs text-muted">{fmt(weight.latestDate)}</p>
+          </div>
+          <div className="rounded-xl bg-background p-3 border border-card-border">
+            <p className="text-xs text-muted">Boy</p>
+            <p className="text-sm font-semibold">{settings.heightCm ? `${settings.heightCm} cm` : "—"}</p>
+          </div>
+          <div className="rounded-xl bg-background p-3 border border-card-border">
+            <p className="text-xs text-muted">VKİ (BMI)</p>
+            <p className="text-sm font-semibold">{weight.bmi ?? "—"}</p>
+          </div>
+          <div className="rounded-xl bg-background p-3 border border-card-border">
+            <p className="text-xs text-muted">Hedefe Kalan</p>
+            <p className="text-sm font-semibold">
+              {weight.diffToTargetKg === null
+                ? "—"
+                : weight.diffToTargetKg > 0
+                  ? `${weight.diffToTargetKg} kg verilecek`
+                  : weight.diffToTargetKg < 0
+                    ? `${-weight.diffToTargetKg} kg alınacak`
+                    : "Hedefe ulaşıldı 🎉"}
+            </p>
+            {settings.targetWeightKg && (
+              <p className="text-xs text-muted">Hedef: {settings.targetWeightKg} kg</p>
+            )}
+          </div>
+        </div>
+
+        <form action={addWeightEntry} className="mb-4 flex flex-wrap gap-2 border-b border-card-border pb-4">
+          <label className="flex flex-col gap-1 text-xs text-muted">
+            Tarih
+            <input
+              type="date"
+              name="date"
+              required
+              defaultValue={toDateInputValue(new Date())}
+              className="rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+            />
+          </label>
+          <label className="flex flex-col gap-1 text-xs text-muted">
+            Kilo (kg)
+            <input
+              type="number"
+              step="0.1"
+              name="weightKg"
+              required
+              className="w-24 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+            />
+          </label>
+          <label className="flex flex-1 flex-col gap-1 text-xs text-muted">
+            Not (opsiyonel)
+            <input
+              name="notes"
+              className="rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
+            />
+          </label>
+          <button className="self-end rounded-lg bg-accent-mint px-4 py-1.5 text-sm font-medium">
+            Ekle
+          </button>
+        </form>
+
+        <div className="flex flex-col divide-y divide-card-border text-sm">
+          {weight.history.map((w) => (
+            <div key={w.id} className="flex items-center justify-between py-2">
+              <span>{fmt(w.date)}</span>
+              <span className="text-muted">
+                {w.weightKg} kg{w.notes ? ` — ${w.notes}` : ""}
+              </span>
+              <DeleteButton action={deleteWeightEntry} hidden={{ id: w.id }} />
+            </div>
+          ))}
+          {weight.history.length === 0 && <p className="py-3 text-muted">Henüz kayıt yok.</p>}
+        </div>
+      </section>
+
       {/* PARAMETRİK AYARLAR */}
       <section className="card p-5">
         <div className="flex items-center justify-between">
@@ -203,6 +298,12 @@ export default async function SaglikPage() {
           </span>
           <span>
             Lazer aralığı: <strong>{settings.laserIntervalDays} gün</strong>
+          </span>
+          <span>
+            Boy: <strong>{settings.heightCm ? `${settings.heightCm} cm` : "—"}</strong>
+          </span>
+          <span>
+            Hedef kilo: <strong>{settings.targetWeightKg ? `${settings.targetWeightKg} kg` : "—"}</strong>
           </span>
         </div>
         <p className="mt-3 text-xs text-muted">

@@ -1,4 +1,4 @@
-import type { PeriodEntry } from "@/generated/prisma/client";
+import type { PeriodEntry, WeightEntry } from "@/generated/prisma/client";
 
 export interface CycleSummary {
   lastPeriodStart: Date | null;
@@ -80,4 +80,39 @@ export function computeLaserSummary(lastDate: Date | null, intervalDays: number)
   const nextSuggestedDate = new Date(lastDate.getTime() + intervalDays * MS_PER_DAY);
   const daysUntilNext = Math.round((nextSuggestedDate.getTime() - Date.now()) / MS_PER_DAY);
   return { lastSessionDate: lastDate, nextSuggestedDate, daysUntilNext };
+}
+
+export interface WeightSummary {
+  latestWeightKg: number | null;
+  latestDate: Date | null;
+  bmi: number | null;
+  diffToTargetKg: number | null;
+  history: WeightEntry[];
+}
+
+/**
+ * Boy sabit bir parametre, hedef kilo da öyle — bu yüzden BMI ve hedefe
+ * kalan fark her seferinde en son kilo kaydından türetiliyor.
+ */
+export function computeWeightSummary(
+  entries: WeightEntry[],
+  heightCm: number | null,
+  targetWeightKg: number | null
+): WeightSummary {
+  const sorted = [...entries].sort((a, b) => b.date.getTime() - a.date.getTime());
+  const latest = sorted[0] ?? null;
+  const latestWeightKg = latest?.weightKg ?? null;
+  const latestDate = latest?.date ?? null;
+
+  const bmi =
+    latestWeightKg !== null && heightCm
+      ? Math.round((latestWeightKg / (heightCm / 100) ** 2) * 10) / 10
+      : null;
+
+  const diffToTargetKg =
+    latestWeightKg !== null && targetWeightKg !== null
+      ? Math.round((latestWeightKg - targetWeightKg) * 10) / 10
+      : null;
+
+  return { latestWeightKg, latestDate, bmi, diffToTargetKg, history: sorted };
 }

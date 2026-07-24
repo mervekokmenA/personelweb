@@ -5,6 +5,7 @@ import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { updateTraining, deleteTraining, addTrainingNote, deleteTrainingNote } from "../actions";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
+import { SaveToast } from "@/components/ui/save-toast";
 
 export const dynamic = "force-dynamic";
 
@@ -129,6 +130,7 @@ export default async function TrainingDetailPage({
               Kaydet
             </button>
             <DeleteButton action={deleteTraining} hidden={{ id: training.id }} label="Eğitimi Sil" />
+            <SaveToast label="Eğitim güncellendi" />
           </div>
         </form>
       </section>

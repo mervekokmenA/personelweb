@@ -4,6 +4,7 @@ import { computeCycleSummary, computeLaserSummary } from "@/lib/health";
 import { toDateInputValue } from "@/lib/date";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { DeleteButton } from "@/components/ui/delete-button";
+import { SaveToast } from "@/components/ui/save-toast";
 import {
   addPeriod,
   deletePeriod,
@@ -222,6 +223,7 @@ export default async function SaglikPage() {
           <button className="self-end rounded-lg bg-accent-mint px-4 py-1.5 text-sm font-medium">
             Kaydet
           </button>
+          <SaveToast label="Ayarlar güncellendi" />
         </form>
         <p className="mt-3 text-xs text-muted">
           Not: en az 2 adet kaydın varsa ortalama döngü otomatik gerçek verilerden hesaplanır, bu

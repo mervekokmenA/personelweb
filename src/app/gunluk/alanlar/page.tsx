@@ -13,6 +13,7 @@ import {
 import { DeleteButton } from "@/components/ui/delete-button";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
+import { SaveToast } from "@/components/ui/save-toast";
 
 export const dynamic = "force-dynamic";
 
@@ -83,6 +84,7 @@ export default async function AlanlarPage() {
                 Güncelle
               </button>
               <DeleteButton action={deleteFocusArea} hidden={{ id: a.id }} />
+              <SaveToast label="Alan güncellendi" />
             </form>
           ))}
         </div>
@@ -144,6 +146,7 @@ export default async function AlanlarPage() {
                 <button className="rounded-lg bg-accent-mint px-3 py-1.5 text-xs font-medium">
                   Güncelle
                 </button>
+                <SaveToast label="Rutin güncellendi" />
               </form>
               <DeleteButton action={deleteRoutineTemplate} hidden={{ id: r.id }} />
             </div>

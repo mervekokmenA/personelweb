@@ -100,7 +100,6 @@ export default async function GunlukPage({
 
       <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div className="flex min-w-0 flex-col gap-6">
-          <TimeBlockSection date={date} blocks={timeBlocks} />
           <JournalSection date={date} notes={notes} />
         </div>
         <div className="flex min-w-0 flex-col gap-6">
@@ -108,6 +107,8 @@ export default async function GunlukPage({
           <TodoSection date={date} todos={todos} />
         </div>
       </div>
+
+      <TimeBlockSection date={date} blocks={timeBlocks} />
     </div>
   );
 }

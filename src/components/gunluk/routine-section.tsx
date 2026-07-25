@@ -36,17 +36,8 @@ export function RoutineSection({ date, routines }: { date: string; routines: Rou
             .
           </p>
         )}
-        {routines.map((r, i) => (
-          <div key={r.id} className="flex items-start gap-3">
-            {r.trackCompletion ? (
-              <AutoSubmitCheckbox
-                action={toggleRoutineCompletion}
-                hidden={{ templateId: r.id, date }}
-                checked={r.done}
-              />
-            ) : (
-              <span className="w-5 shrink-0" />
-            )}
+        {routines.map((r, i) => {
+          const label = (
             <span className={`text-sm ${r.trackCompletion && r.done ? "text-muted line-through" : ""}`}>
               {i + 1}. {r.title}
               {r.intervalDays > 1 && (
@@ -58,8 +49,22 @@ export function RoutineSection({ date, routines }: { date: string; routines: Rou
                 <span className="ml-1.5 text-xs text-muted">— {r.description}</span>
               )}
             </span>
-          </div>
-        ))}
+          );
+          return r.trackCompletion ? (
+            <AutoSubmitCheckbox
+              key={r.id}
+              action={toggleRoutineCompletion}
+              hidden={{ templateId: r.id, date }}
+              checked={r.done}
+              label={label}
+            />
+          ) : (
+            <div key={r.id} className="flex items-start gap-3">
+              <span className="w-5 shrink-0" />
+              {label}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

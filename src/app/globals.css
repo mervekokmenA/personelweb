@@ -76,6 +76,11 @@ textarea {
   border-radius: 9999px !important;
 }
 
+/* Checkbox'lar dairesel değil, kenarları hafif yuvarlatılmış kare olsun. */
+.checkbox-btn {
+  border-radius: 0.4rem !important;
+}
+
 button,
 a {
   transition:

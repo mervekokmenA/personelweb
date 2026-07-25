@@ -70,9 +70,12 @@ export default async function GunlukPage({
     itemCompletions.map((c) => [`${c.focusAreaId}::${c.itemText}`, c.done])
   );
 
+  // Checkbox'ı olmayan (trackCompletion=false), sadece bilgi amaçlı rutinler
+  // asla "yapıldı" olamayacağı için tamamlanma yüzdesine dahil edilmiyor.
+  const trackableRoutines = routines.filter((r) => r.trackCompletion);
   const dayCompletionPercent = computeDayCompletionPercent({
-    totalRoutines: routines.length,
-    completedRoutines: routines.filter((r) => r.done).length,
+    totalRoutines: trackableRoutines.length,
+    completedRoutines: trackableRoutines.filter((r) => r.done).length,
     hasFocusAreas: focusAreas.length > 0,
     anyFocusDone: itemCompletions.some((c) => c.done),
   });
@@ -111,7 +114,7 @@ export default async function GunlukPage({
           </h2>
           <p className="text-xs text-muted">{formatTrLong(dKey)}</p>
           <p className="mt-1 text-xs text-muted">
-            {routines.filter((r) => r.done).length}/{routines.length} rutin
+            {trackableRoutines.filter((r) => r.done).length}/{trackableRoutines.length} rutin
             {focusAreas.length > 0 &&
               ` · Çalışmalar-Hobiler: ${itemCompletions.some((c) => c.done) ? "yapıldı" : "yapılmadı"}`}
           </p>

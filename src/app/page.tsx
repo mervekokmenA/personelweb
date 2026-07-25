@@ -49,7 +49,9 @@ export default async function DashboardPage() {
     laserSessions,
     readingDebt,
   ] = await Promise.all([
-    prisma.routineTemplate.count({ where: { active: true } }),
+    // trackCompletion=false rutinlerin checkbox'ı yok, hiç "tamamlanamaz" —
+    // bu yüzden tamamlanma oranı hesaplarına dahil edilmiyor.
+    prisma.routineTemplate.count({ where: { active: true, trackCompletion: true } }),
     prisma.routineCompletion.count({ where: { date: today, done: true } }),
     prisma.timeBlock.count({ where: { date: today } }),
     prisma.contentIdea.groupBy({ by: ["status"], _count: true }),

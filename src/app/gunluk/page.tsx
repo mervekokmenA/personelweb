@@ -1,5 +1,6 @@
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
-import { dayKey, toDateInputValue, todayKey, daysBetween } from "@/lib/date";
+import { dayKey, toDateInputValue, todayKey, daysBetween, formatTrLong } from "@/lib/date";
+import { computeDayCompletionPercent } from "@/lib/day-completion";
 import { DateSwitcher } from "@/components/gunluk/date-switcher";
 import { TimeBlockSection } from "@/components/gunluk/time-block-section";
 import { RoutineSection } from "@/components/gunluk/routine-section";
@@ -7,6 +8,7 @@ import { TodoSection } from "@/components/gunluk/todo-section";
 import { JournalSection } from "@/components/gunluk/journal-section";
 import { FocusAreaSummary } from "@/components/gunluk/focus-area-summary";
 import { GeneralTaskSection, type GeneralTaskRow } from "@/components/gunluk/general-task-section";
+import { DonutChart } from "@/components/dashboard/donut-chart";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 
 export const dynamic = "force-dynamic";
@@ -68,6 +70,13 @@ export default async function GunlukPage({
     itemCompletions.map((c) => [`${c.focusAreaId}::${c.itemText}`, c.done])
   );
 
+  const dayCompletionPercent = computeDayCompletionPercent({
+    totalRoutines: routines.length,
+    completedRoutines: routines.filter((r) => r.done).length,
+    hasFocusAreas: focusAreas.length > 0,
+    anyFocusDone: itemCompletions.some((c) => c.done),
+  });
+
   const generalTaskRows: GeneralTaskRow[] = await Promise.all(
     generalTasks.map(async (t) => {
       const [totalAgg, todayLog] = await Promise.all([
@@ -93,6 +102,21 @@ export default async function GunlukPage({
         <h1 className="text-2xl font-semibold">Günlük Program</h1>
         <DateSwitcher date={date} />
       </div>
+
+      <section className="card flex flex-wrap items-center gap-4 p-5">
+        <DonutChart percent={dayCompletionPercent} color="var(--accent-mint)" size={72} strokeWidth={8} />
+        <div>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+            Günün Tamamlanma Durumu
+          </h2>
+          <p className="text-xs text-muted">{formatTrLong(dKey)}</p>
+          <p className="mt-1 text-xs text-muted">
+            {routines.filter((r) => r.done).length}/{routines.length} rutin
+            {focusAreas.length > 0 &&
+              ` · Çalışmalar-Hobiler: ${itemCompletions.some((c) => c.done) ? "yapıldı" : "yapılmadı"}`}
+          </p>
+        </div>
+      </section>
 
       <FocusAreaSummary areas={focusAreas} date={date} completions={itemCompletionMap} />
 

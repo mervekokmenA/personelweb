@@ -17,10 +17,12 @@ export async function logReadingPages(formData: FormData) {
     create: { date: dKey, pages, bookTitle },
   });
   revalidatePath("/");
+  revalidatePath("/kitap-okuma");
 }
 
 export async function deleteReadingLog(formData: FormData) {
   const id = String(formData.get("id"));
   await prisma.readingLog.delete({ where: { id } });
   revalidatePath("/");
+  revalidatePath("/kitap-okuma");
 }

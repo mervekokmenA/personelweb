@@ -303,6 +303,15 @@ model ReadingLog {
   @@index([date])
 }
 
+// Günlük okuma hedefi zaman içinde değişebilir; borç hesaplanırken her gün
+// o günde geçerli olan hedef kullanılır (hedefi değiştirmek geçmişi etkilemez).
+model ReadingTargetChange {
+  id            String   @id @default(cuid())
+  effectiveFrom DateTime @unique
+  target        Int
+  createdAt     DateTime @default(now())
+}
+
 // ---------------------------------------------------------------------------
 // GENEL GÖREVLER (hedef saat/sayfa'ya ulaşana kadar günlük programda görünen,
 // süresi bitince veya manuel olarak tamamlanabilen görevler)

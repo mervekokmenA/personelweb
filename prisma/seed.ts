@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { todayKey, dayKey } from "../src/lib/date";
 import { CONTENT_IDEA_SEED } from "./seed-data/content-ideas";
 import { CONTENT_IDEA_SEED_2 } from "./seed-data/content-ideas-icerik-imparatorlugu";
 import { TRAINING_SEED } from "./seed-data/trainings";
@@ -117,12 +118,28 @@ async function seedFocusAreasAndRoutines() {
   }
 }
 
+async function seedReadingTargetHistory() {
+  const existing = await prisma.readingTargetChange.count();
+  if (existing > 0) return;
+
+  const [settings, earliestLog] = await Promise.all([
+    prisma.appSettings.findUnique({ where: { id: "singleton" } }),
+    prisma.readingLog.findFirst({ orderBy: { date: "asc" } }),
+  ]);
+  const target = settings?.dailyReadingPageTarget ?? 5;
+  const effectiveFrom = earliestLog ? dayKey(earliestLog.date) : todayKey();
+
+  await prisma.readingTargetChange.create({ data: { effectiveFrom, target } });
+  console.log(`Okuma hedefi geçmişi için başlangıç kaydı eklendi (${target} sayfa, ${effectiveFrom.toISOString()}).`);
+}
+
 async function main() {
   await seedFocusAreasAndRoutines();
   await seedContentIdeas();
   await seedContentIdeas2();
   await seedTrainings();
   await seedTrainings2();
+  await seedReadingTargetHistory();
 }
 
 main()

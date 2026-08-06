@@ -1,10 +1,12 @@
 import { ZODIAC_SIGNS_TR, wholeSignHouse } from "@/lib/astro/zodiac";
 import { PLANET_LABELS_TR, type BodyPosition } from "@/lib/astro/ephemeris";
+import { ARCHETYPES_TR } from "@/lib/astro/archetypes";
 
 const PLANET_GLYPH: Record<string, string> = {
   Sun: "☉", Moon: "☽", Mercury: "☿", Venus: "♀", Mars: "♂",
   Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇",
-  Rahu: "☊", Ketu: "☋", Ascendant: "As",
+  Rahu: "☊", Ketu: "☋", Lilith: "⚸", Chiron: "⚷",
+  Ascendant: "As", MC: "MC", Descendant: "Ds", Vertex: "Vx",
 };
 
 function polar(cx: number, cy: number, r: number, lonDeg: number) {
@@ -156,8 +158,20 @@ export function PositionTable({
                 <td className="py-1.5">
                   <span className="flex items-center gap-1.5">
                     <span className="w-5 text-center">{PLANET_GLYPH[p.key] ?? ""}</span>
-                    {PLANET_LABELS_TR[p.key]}
-                    {p.retrograde && <span className="text-xs text-red-500">R</span>}
+                    <span>
+                      <span className="flex items-center gap-1">
+                        {PLANET_LABELS_TR[p.key]}
+                        {p.retrograde && <span className="text-xs text-red-500">R</span>}
+                      </span>
+                      {ARCHETYPES_TR[p.key] && (
+                        <span className="block text-[11px] leading-tight text-muted">
+                          {ARCHETYPES_TR[p.key]!.archetype}
+                          {ARCHETYPES_TR[p.key]!.vedicName !== "—" &&
+                            !ARCHETYPES_TR[p.key]!.vedicName.startsWith("— ") &&
+                            ` · ${ARCHETYPES_TR[p.key]!.vedicName}`}
+                        </span>
+                      )}
+                    </span>
                   </span>
                 </td>
                 <td className="py-1.5 text-muted">

@@ -51,7 +51,15 @@ export function getNatalChart(): BodyPosition[] | null {
     const ascLon = entryToLongitude(parsed.ascendant);
     const positions: BodyPosition[] = [];
 
-    for (const key of [...PLANET_KEYS, "Rahu", "Ketu"] as PlanetKey[]) {
+    for (const key of [
+      ...PLANET_KEYS,
+      "Rahu",
+      "Ketu",
+      "Lilith",
+      "Chiron",
+      "MC",
+      "Vertex",
+    ] as PlanetKey[]) {
       const entry = parsed.bodies[key];
       if (!entry) continue;
       const lon = entryToLongitude(entry);
@@ -70,6 +78,16 @@ export function getNatalChart(): BodyPosition[] | null {
       siderealLongitude: ascLon,
       retrograde: false,
       house: 1,
+    });
+
+    // Alçalan (Descendant), Yükselen'in tam karşıtıdır — ayrıca bir kaynak
+    // veri gerekmez, her zaman 7. evin başlangıcıdır.
+    positions.push({
+      key: "Descendant",
+      tropicalLongitude: NaN,
+      siderealLongitude: (ascLon + 180) % 360,
+      retrograde: false,
+      house: 7,
     });
 
     cachedNatalChart = positions;

@@ -5,7 +5,16 @@ import { wholeSignHouse } from "./zodiac";
 export const PLANET_KEYS = [
   "Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto",
 ] as const;
-export type PlanetKey = (typeof PLANET_KEYS)[number] | "Rahu" | "Ketu" | "Ascendant";
+export type PlanetKey =
+  | (typeof PLANET_KEYS)[number]
+  | "Rahu"
+  | "Ketu"
+  | "Lilith"
+  | "Chiron"
+  | "Ascendant"
+  | "MC"
+  | "Descendant"
+  | "Vertex";
 
 export const PLANET_LABELS_TR: Record<PlanetKey, string> = {
   Sun: "Güneş",
@@ -20,7 +29,12 @@ export const PLANET_LABELS_TR: Record<PlanetKey, string> = {
   Pluto: "Plüton",
   Rahu: "Rahu (Ay Kuzey Düğümü)",
   Ketu: "Ketu (Ay Güney Düğümü)",
+  Lilith: "Lilith (Kara Ay)",
+  Chiron: "Chiron (Yaralı Şifacı)",
   Ascendant: "Yükselen",
+  MC: "MC (Tepe Noktası)",
+  Descendant: "Alçalan (Desc)",
+  Vertex: "Vertex (Batı Noktası)",
 };
 
 export interface BodyPosition {
@@ -45,6 +59,24 @@ function meanLunarNodeTropical(date: Date): number {
     (T * T * T * T) / 60616000;
   omega = ((omega % 360) + 360) % 360;
   return omega;
+}
+
+/**
+ * Meeus, Astronomical Algorithms (2. baskı, eq. 45.7) — Ay'ın ortalama
+ * perige (yörüngede Dünya'ya en yakın nokta) boylamı. Kara Ay Lilith,
+ * bu noktanın 180° karşıtı olan ortalama apoge (en uzak nokta) olarak
+ * tanımlanır — Rahu/Ketu'nun ortalama düğüm formülüyle aynı mantık.
+ */
+function meanLunarApogeeTropical(date: Date): number {
+  const jd = julianDay(date);
+  const T = (jd - 2451545.0) / 36525;
+  let perigee =
+    83.3532465 +
+    4069.0137287 * T -
+    0.01032 * T * T -
+    0.00001249172 * T * T * T;
+  perigee = ((perigee % 360) + 360) % 360;
+  return (perigee + 180) % 360;
 }
 
 function eclipticLongitudeOfDate(body: Astronomy.Body, date: Date): number {
@@ -133,6 +165,16 @@ export function computeChart(input: ChartInput): BodyPosition[] {
     siderealLongitude: ketuSidereal,
     retrograde: true,
     house: withHouse(ketuSidereal),
+  });
+
+  const lilithTropical = meanLunarApogeeTropical(date);
+  const lilithSidereal = toSidereal(lilithTropical, date);
+  positions.push({
+    key: "Lilith",
+    tropicalLongitude: lilithTropical,
+    siderealLongitude: lilithSidereal,
+    retrograde: false, // ortalama apoge her zaman ileri (direkt) hareket eder
+    house: withHouse(lilithSidereal),
   });
 
   return positions;

@@ -1,6 +1,7 @@
 import type { BodyPosition, PlanetKey } from "./ephemeris";
 import { PLANET_LABELS_TR } from "./ephemeris";
 import { HOUSE_MEANINGS_TR, wholeSignHouse } from "./zodiac";
+import { ARCHETYPES_TR } from "./archetypes";
 import type { CrossAspect } from "./aspects";
 
 const PLANET_NATURE_TR: Partial<Record<PlanetKey, string>> = {
@@ -16,7 +17,18 @@ const PLANET_NATURE_TR: Partial<Record<PlanetKey, string>> = {
   Pluto: "dönüşüm, güç ve derinlik arayışın",
   Rahu: "yeni yönelim ve doyumsuz arzuların",
   Ketu: "bırakma, geçmişle hesaplaşma temaların",
+  Lilith: "bastırılmış içgüdülerin ve uzlaşmayan tarafının",
+  Chiron: "en derin yaranın ve şifa verme potansiyelinin",
+  MC: "kamusal rolün ve kariyer yönünün",
+  Descendant: "ilişkilerde aynalanan ötekinin",
+  Vertex: "kader gibi hissettiren karşılaşmaların",
 };
+
+function archetypeClause(key: PlanetKey): string {
+  const a = ARCHETYPES_TR[key];
+  if (!a) return "";
+  return ` (Vedik arketip: ${a.archetype}${a.vedicName !== "—" && !a.vedicName.startsWith("— ") ? `, ${a.vedicName}` : ""} — ${a.description})`;
+}
 
 const FAST_PERSONAL_PLANETS: PlanetKey[] = ["Moon", "Sun", "Mercury", "Venus", "Mars"];
 
@@ -54,9 +66,11 @@ export function generateDailySummary(
   const sunSign = sun ? signIndexOf(sun.siderealLongitude) : null;
   const sunHouse = sunSign !== null ? wholeSignHouse(sunSign, ascendantSignIndex) : null;
 
+  const moonArchetype = ARCHETYPES_TR.Moon;
+  const sunArchetype = ARCHETYPES_TR.Sun;
   const intro =
     moonHouse && sunHouse
-      ? `Bugün Ay, haritanın ${moonHouse}. evinde (${HOUSE_MEANINGS_TR[moonHouse]}) — günün duygusal odağı burada. Güneş ise ${sunHouse}. evi (${HOUSE_MEANINGS_TR[sunHouse]}) aydınlatıyor, yaşam enerjinin bu alana aktığı bir dönemdesin.`
+      ? `Bugün Ay, haritanın ${moonHouse}. evinde (${HOUSE_MEANINGS_TR[moonHouse]}) — günün duygusal odağı burada. ${moonArchetype ? `Ay'ın Vedik arketipi ${moonArchetype.archetype} (${moonArchetype.vedicName}) olduğundan, bugünkü duygu akışın da bu ${HOUSE_MEANINGS_TR[moonHouse]} temasını beslemesi ve bakım/güvenlik ihtiyacının bu alanda öne çıkması olası. ` : ""}Güneş ise ${sunHouse}. evi (${HOUSE_MEANINGS_TR[sunHouse]}) aydınlatıyor, yaşam enerjinin bu alana aktığı bir dönemdesin.${sunArchetype ? ` Güneş'in arketipi ${sunArchetype.archetype} (${sunArchetype.vedicName}) olduğu için, bugün bu alanda görünür olma ve irade koyma isteği artabilir.` : ""}`
       : "Bugünün transit haritası hesaplandı.";
 
   // En yakın 4 açıyı seç, sadece hızlı kişisel gezegenlerden gelenlere öncelik ver
@@ -76,14 +90,15 @@ export function generateDailySummary(
     const natalLabel = PLANET_LABELS_TR[c.natalKey as PlanetKey];
     const transitNature = PLANET_NATURE_TR[c.transitKey as PlanetKey] ?? "";
     const natalNature = PLANET_NATURE_TR[c.natalKey as PlanetKey] ?? "";
+    const archetypeNote = archetypeClause(c.natalKey as PlanetKey);
 
     if (tone === "harmonik") {
-      return `Transit ${transitLabel} — natal ${natalLabel} arasındaki ${c.aspect.aspect.name.split(" ")[0].toLowerCase()} açı, ${transitNature} ile ${natalNature} arasında akışkan bir destek sunuyor; bu alanda emek zahmetsiz karşılık bulabilir.`;
+      return `Transit ${transitLabel} — natal ${natalLabel} arasındaki ${c.aspect.aspect.name.split(" ")[0].toLowerCase()} açı, ${transitNature} ile ${natalNature} arasında akışkan bir destek sunuyor; bu alanda emek zahmetsiz karşılık bulabilir.${archetypeNote}`;
     }
     if (tone === "gergin") {
-      return `Transit ${transitLabel} — natal ${natalLabel} arasında gerginlik var: ${transitNature}, ${natalNature} ile sürtüşebilir. Bugün burada acele etmeden, farkındalıkla ilerlemekte fayda var.`;
+      return `Transit ${transitLabel} — natal ${natalLabel} arasında gerginlik var: ${transitNature}, ${natalNature} ile sürtüşebilir. Bugün burada acele etmeden, farkındalıkla ilerlemekte fayda var.${archetypeNote}`;
     }
-    return `Transit ${transitLabel}, natal ${natalLabel} ile kavuşum halinde — ${transitNature} ve ${natalNature} bugün iç içe geçiyor, bu tema yoğunlaşarak öne çıkabilir.`;
+    return `Transit ${transitLabel}, natal ${natalLabel} ile kavuşum halinde — ${transitNature} ve ${natalNature} bugün iç içe geçiyor, bu tema yoğunlaşarak öne çıkabilir.${archetypeNote}`;
   });
 
   // Dikkat edilecek konular: hızlı gezegenlerin bulunduğu ev + o evdeki natal gezegenler

@@ -107,6 +107,39 @@ export function dateKey(d: Date): string {
   return toDateInputValue(d);
 }
 
+export interface HabitStreaks {
+  /** En son dönemden geriye giderek kırılmadan süren tamamlanma serisi. */
+  current: number;
+  /** Şu an ekranda gösterilen pencere içindeki en uzun tamamlanma serisi. */
+  longest: number;
+}
+
+/**
+ * Not: `periods` zaten `getHabitPeriods`'ın döndürdüğü sınırlı pencere
+ * (örn. son 30 gün) olduğundan, "en uzun seri" alışkanlığın tüm geçmişini
+ * değil sadece bu pencereyi kapsar.
+ */
+export function computeStreaks(periods: HabitPeriod[], completions: Map<string, boolean>): HabitStreaks {
+  let longest = 0;
+  let running = 0;
+  for (const p of periods) {
+    if (completions.get(dateKey(p.start))) {
+      running++;
+      longest = Math.max(longest, running);
+    } else {
+      running = 0;
+    }
+  }
+
+  let current = 0;
+  for (let i = periods.length - 1; i >= 0; i--) {
+    if (completions.get(dateKey(periods[i].start))) current++;
+    else break;
+  }
+
+  return { current, longest };
+}
+
 /** Sıklık için kullanıcıya gösterilecek kısa etiket (örn. "3 günde 1"). */
 export function formatHabitFrequency(
   frequency: HabitFrequency,

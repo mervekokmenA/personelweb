@@ -1,7 +1,8 @@
 import { toggleHabitDay, deleteHabit, toggleHabitActive } from "@/app/aliskanliklar/actions";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { DeleteButton } from "@/components/ui/delete-button";
-import { dateKey, formatHabitFrequency, type HabitFrequency, type HabitPeriod } from "@/lib/habit-grid";
+import { dateKey, formatHabitFrequency, type HabitFrequency, type HabitPeriod, type HabitStreaks } from "@/lib/habit-grid";
+import { Flame } from "lucide-react";
 
 const PERIOD_UNIT: Record<HabitFrequency, string> = {
   DAILY: "gün",
@@ -20,6 +21,7 @@ interface HabitCardProps {
   active: boolean;
   periods: HabitPeriod[];
   completions: Map<string, boolean>;
+  streaks: HabitStreaks;
 }
 
 export function HabitCard({
@@ -32,6 +34,7 @@ export function HabitCard({
   active,
   periods,
   completions,
+  streaks,
 }: HabitCardProps) {
   const doneCount = periods.filter((p) => completions.get(dateKey(p.start))).length;
 
@@ -48,6 +51,14 @@ export function HabitCard({
           </span>
         </div>
         <div className="flex items-center gap-2">
+          {streaks.current > 0 && (
+            <span
+              className="flex items-center gap-1 rounded-full bg-accent-yellow/30 px-2 py-0.5 text-xs font-medium"
+              title={`${streaks.current} ${PERIOD_UNIT[frequency]} üst üste — bu penceredeki en uzun seri: ${streaks.longest}`}
+            >
+              <Flame size={12} className="text-accent-yellow" /> {streaks.current}
+            </span>
+          )}
           <span className="text-xs text-muted">
             {doneCount}/{periods.length}
           </span>

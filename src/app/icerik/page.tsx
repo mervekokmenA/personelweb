@@ -3,6 +3,7 @@ import { addContentIdea, cycleContentIdeaStatus, deleteContentIdea } from "./act
 import { StatusBadge } from "@/components/icerik/status-badge";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
+import { RandomIdeaButton } from "@/components/icerik/random-idea-button";
 import type { Prisma } from "@/generated/prisma/client";
 
 export const dynamic = "force-dynamic";
@@ -79,6 +80,8 @@ export default async function IcerikPage({
           </span>
         </div>
       </div>
+
+      <RandomIdeaButton />
 
       <section className="card p-4">
         <form className="flex flex-wrap gap-2" action="/icerik">

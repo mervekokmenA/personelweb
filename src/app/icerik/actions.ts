@@ -38,3 +38,23 @@ export async function deleteContentIdea(formData: FormData) {
   await prisma.contentIdea.delete({ where: { id } });
   revalidatePath("/icerik");
 }
+
+export interface RandomIdea {
+  id: string;
+  title: string;
+  category: string;
+  format: string | null;
+}
+
+/** "Yapılmadı" durumundaki fikirlerden rastgele birini döndürür. */
+export async function pickRandomIdea(): Promise<RandomIdea | null> {
+  const count = await prisma.contentIdea.count({ where: { status: "NOT_STARTED" } });
+  if (count === 0) return null;
+  const skip = Math.floor(Math.random() * count);
+  const idea = await prisma.contentIdea.findFirst({
+    where: { status: "NOT_STARTED" },
+    orderBy: { createdAt: "asc" },
+    skip,
+  });
+  return idea;
+}

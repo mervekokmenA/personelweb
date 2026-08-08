@@ -3,7 +3,7 @@ import { triggerApkBuild, refreshApkBuildStatus } from "./actions";
 import { getGithubReleaseInfo } from "@/lib/github";
 import { RefreshButton } from "@/components/ayarlar/refresh-button";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
-import { Download, ExternalLink, Smartphone } from "lucide-react";
+import { Download, ExternalLink, Smartphone, DatabaseBackup } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -113,6 +113,24 @@ export default async function AyarlarPage() {
       <section className="card p-5 text-sm text-muted">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide">Uygulama Adresi</h2>
         <p>{appUrl || "NEXT_PUBLIC_APP_URL tanımlı değil."}</p>
+      </section>
+
+      <section className="card p-5">
+        <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+          <DatabaseBackup size={16} /> Veri Yedekleme
+        </h2>
+        <p className="mb-4 text-sm text-muted">
+          Tüm verilerini (günlük program, içerik fikirleri, eğitimler, sağlık, alışkanlıklar,
+          astroloji dahil) tek bir JSON dosyası olarak indirir — Neon dışında ek bir yedek
+          istersen kendi bilgisayarında saklayabilirsin.
+        </p>
+        <a
+          href="/api/backup"
+          download
+          className="flex w-fit items-center gap-1.5 rounded-lg bg-accent-blue px-4 py-1.5 text-sm font-medium"
+        >
+          <Download size={15} /> Yedeği indir
+        </a>
       </section>
     </div>
   );

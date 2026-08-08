@@ -2,7 +2,7 @@ import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { addHabit } from "./actions";
 import { HabitCard } from "@/components/aliskanliklar/habit-card";
-import { getHabitPeriods, dateKey } from "@/lib/habit-grid";
+import { getHabitPeriods, dateKey, computeStreaks } from "@/lib/habit-grid";
 
 export const dynamic = "force-dynamic";
 
@@ -106,6 +106,7 @@ export default async function AliskanliklarPage() {
             active={habit.active}
             periods={periods}
             completions={map}
+            streaks={computeStreaks(periods, map)}
           />
         ))}
         {habitCards.length === 0 && (

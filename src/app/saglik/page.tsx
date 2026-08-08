@@ -4,6 +4,7 @@ import { computeCycleSummary, computeLaserSummary, computeWeightSummary } from "
 import { toDateInputValue } from "@/lib/date";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { DeleteButton } from "@/components/ui/delete-button";
+import { WeightTrendChart } from "@/components/saglik/weight-trend-chart";
 import Link from "next/link";
 import {
   addPeriod,
@@ -228,6 +229,15 @@ export default async function SaglikPage() {
             )}
           </div>
         </div>
+
+        {weight.history.length >= 2 && (
+          <div className="mb-5">
+            <WeightTrendChart
+              points={[...weight.history].reverse().map((w) => ({ date: w.date, weightKg: w.weightKg }))}
+              targetWeightKg={settings.targetWeightKg}
+            />
+          </div>
+        )}
 
         <form action={addWeightEntry} className="mb-4 flex flex-wrap gap-2 border-b border-card-border pb-4">
           <label className="flex flex-col gap-1 text-xs text-muted">

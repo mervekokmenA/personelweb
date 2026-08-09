@@ -69,7 +69,8 @@ export function ReadingDebtCard({
             type="number"
             name="pages"
             min={0}
-            defaultValue={summary.target}
+            required
+            placeholder={String(summary.target)}
             className="w-24 rounded-lg border border-card-border bg-background px-3 py-1.5 text-sm"
           />
         </label>

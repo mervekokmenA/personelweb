@@ -8,11 +8,15 @@ export interface ReadingDebtSummary {
 }
 
 /**
- * Borç, en eski günden başlayarak biriken bir bakiye gibi hesaplanır: her gün
- * o günün hedefi eklenir, okunan sayfa çıkarılır. Bir günde fazla okumak,
- * bakiyeyi negatife düşürüp (0'da kırpılır) daha önceki günlerden kalan borcu
- * otomatik kapatır — hangi günün borcu olduğunu seçmek gerekmez. Fazladan
- * okuma ileriye kredi olarak taşınmaz (her adımda 0'ın altına inmez).
+ * Borç, en eski günden başlayarak biriken bir bakiye gibi hesaplanır: her
+ * günün kendi açığı (hedef - okunan sayfa, negatifse yok) bir kuyruğa
+ * eklenir; bir günde fazla okumak, bu fazlalıkla kuyruktaki EN ESKİ açıklardan
+ * başlayarak öder — hangi günün borcu olduğunu seçmek gerekmez. Fazladan
+ * okuma ileriye kredi olarak taşınmaz (kuyrukta yer yoksa fazlalık atılır).
+ *
+ * `missingDays`, kuyrukta hâlâ ödenmemiş açığı olan gün sayısıdır — yani
+ * `debtPages` ile her zaman tutarlıdır (ör. sonradan fazla okumayla kapanmış
+ * eski bir gün artık "eksik gün" sayılmaz).
  *
  * Hedef zaman içinde değişebildiğinden, her gün için o tarihte geçerli olan
  * hedef `targetChanges` listesinden (tarihe göre artan) bulunur; hedefi
@@ -47,16 +51,31 @@ export async function computeReadingDebt(currentTarget: number): Promise<Reading
     return applicable;
   }
 
-  let runningDebt = 0;
-  let missingDays = 0;
+  // Ödenmemiş günlük açıkların FIFO kuyruğu — en eskisi başta.
+  const outstanding: number[] = [];
 
   for (let d = dayKey(logs[0].date); d < endExclusive; d = addDays(d, 1)) {
     const pages = logMap.get(toDateInputValue(d)) ?? 0;
     const dayTarget = targetForDay(d);
-    runningDebt += dayTarget - pages;
-    if (runningDebt < 0) runningDebt = 0;
-    if (dayTarget > pages) missingDays++;
+    const diff = dayTarget - pages;
+
+    if (diff > 0) {
+      outstanding.push(diff);
+      continue;
+    }
+
+    let surplus = -diff;
+    while (surplus > 0 && outstanding.length > 0) {
+      if (outstanding[0] <= surplus) {
+        surplus -= outstanding[0];
+        outstanding.shift();
+      } else {
+        outstanding[0] -= surplus;
+        surplus = 0;
+      }
+    }
   }
 
-  return { target: currentTarget, debtPages: runningDebt, missingDays };
+  const debtPages = outstanding.reduce((sum, v) => sum + v, 0);
+  return { target: currentTarget, debtPages, missingDays: outstanding.length };
 }

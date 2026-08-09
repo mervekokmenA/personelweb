@@ -10,6 +10,7 @@ import { ReadingDebtCard } from "@/components/dashboard/reading-debt-card";
 import { DashboardCard } from "@/components/dashboard/dashboard-card";
 import { DailyTrendChart } from "@/components/dashboard/daily-trend-chart";
 import { HabitGoalChart, type HabitGoalDatum } from "@/components/dashboard/habit-goal-chart";
+import Link from "next/link";
 import {
   CalendarDays,
   Lightbulb,
@@ -140,9 +141,17 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Merhaba 🌙</h1>
-        <p className="text-sm text-muted">{formatTrLong(today)}</p>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-semibold">Merhaba 🌙</h1>
+          <p className="text-sm text-muted">{formatTrLong(today)}</p>
+        </div>
+        <Link
+          href="/gunluk"
+          className="flex items-center gap-1.5 rounded-lg bg-accent-mint px-4 py-2 text-sm font-medium"
+        >
+          <CalendarDays size={16} /> Günlük Programa Git
+        </Link>
       </div>
 
       <ReadingDebtCard summary={readingDebt} trend={readingTrend} />

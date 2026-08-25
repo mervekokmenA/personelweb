@@ -2,7 +2,7 @@
   "name": "Kişisel Panel",
   "short_name": "Kişisel Panel",
   "description": "Günlük program, içerik fikirleri, eğitimler ve astroloji takibi",
-  "start_url": "/gunluk",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#faf7f2",
   "theme_color": "#faf7f2",

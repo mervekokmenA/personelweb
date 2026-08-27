@@ -10,7 +10,16 @@ import { tessellate } from "@/lib/puzzle/tessellate";
 import { autoPackShapes } from "@/lib/puzzle/autopack";
 
 const GEOMETRIC_SHAPES = SHAPE_LIBRARY.filter((s) => s.category === "geometric");
+const ANIMAL_DEFS = SHAPE_LIBRARY.filter((s) => s.category === "animal");
 const DEFAULT_FILL_SIZE_MM = 55;
+const DEFAULT_RECIPE_PERCENT = 25;
+
+interface RecipeEntry {
+  key: string;
+  label: string;
+  shapeIds: string[];
+  percent: number;
+}
 
 const DISPLAY_TARGET_WIDTH = 640;
 
@@ -45,7 +54,7 @@ export function AreaDesigner({
   const placementCounter = useRef(0);
   const packSeedCounter = useRef(1);
   const [armedShapeId, setArmedShapeId] = useState<string | null>(null);
-  const [fillGroupId, setFillGroupId] = useState<string | null>(null);
+  const [recipeEntries, setRecipeEntries] = useState<RecipeEntry[]>([]);
   const [fillSizeMm, setFillSizeMm] = useState(DEFAULT_FILL_SIZE_MM);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [drawingPath, setDrawingPath] = useState(false);
@@ -229,18 +238,34 @@ export function AreaDesigner({
     });
   }
 
-  // "Doldur" ne kullanacak: tek bir şekil seçiliyse (armedShapeId) sadece o;
-  // bir grup seçiliyse o grubun türleri (karışık); ikisi de yoksa tüm hayvanlar.
-  const fillShapeIds = armedShapeId
-    ? [armedShapeId]
-    : fillGroupId
-      ? ANIMAL_GROUPS.find((g) => g.id === fillGroupId)?.shapeIds
-      : undefined;
-  const fillLabel = armedShapeId
-    ? `${SHAPE_LIBRARY.find((s) => s.id === armedShapeId)?.label ?? ""} ile Doldur`
-    : fillGroupId
-      ? `${ANIMAL_GROUPS.find((g) => g.id === fillGroupId)?.label ?? ""} ile Doldur`
-      : "Tüm Hayvanlarla Doldur";
+  function toggleRecipeShape(shapeId: string) {
+    setRecipeEntries((entries) => {
+      const key = `shape:${shapeId}`;
+      if (entries.some((e) => e.key === key)) return entries.filter((e) => e.key !== key);
+      const label = SHAPE_LIBRARY.find((s) => s.id === shapeId)?.label ?? shapeId;
+      return [...entries, { key, label, shapeIds: [shapeId], percent: DEFAULT_RECIPE_PERCENT }];
+    });
+  }
+
+  function toggleRecipeGroup(groupId: string) {
+    setRecipeEntries((entries) => {
+      const key = `group:${groupId}`;
+      if (entries.some((e) => e.key === key)) return entries.filter((e) => e.key !== key);
+      const group = ANIMAL_GROUPS.find((g) => g.id === groupId);
+      if (!group) return entries;
+      return [...entries, { key, label: group.label, shapeIds: group.shapeIds, percent: DEFAULT_RECIPE_PERCENT }];
+    });
+  }
+
+  function updateRecipePercent(key: string, percent: number) {
+    setRecipeEntries((entries) => entries.map((e) => (e.key === key ? { ...e, percent } : e)));
+  }
+
+  function removeRecipeEntry(key: string) {
+    setRecipeEntries((entries) => entries.filter((e) => e.key !== key));
+  }
+
+  const fillLabel = recipeEntries.length > 0 ? "Seçilenlerle Doldur" : "Tüm Hayvanlarla Doldur";
 
   function runFill() {
     setError(null);
@@ -254,10 +279,14 @@ export function AreaDesigner({
         setPacking(false);
         return;
       }
+      const recipe =
+        recipeEntries.length > 0
+          ? recipeEntries.map((e) => ({ shapeIds: e.shapeIds, targetFraction: e.percent / 100 }))
+          : [{ shapeIds: ANIMAL_DEFS.map((s) => s.id), targetFraction: 0.5 }];
       const packed = autoPackShapes({
         boundary,
         existingPolygons: absolutePlacementPolygons(state.themedPlacements),
-        shapeIds: fillShapeIds,
+        recipe,
         sizeMm: fillSizeMm,
         seed: packSeedCounter.current++,
       });
@@ -478,10 +507,7 @@ export function AreaDesigner({
               <button
                 key={shape.id}
                 data-testid={`yapboz-shape-${shape.id}`}
-                onClick={() => {
-                  setFillGroupId(null);
-                  setArmedShapeId(shape.id === armedShapeId ? null : shape.id);
-                }}
+                onClick={() => setArmedShapeId(shape.id === armedShapeId ? null : shape.id)}
                 title={shape.label}
                 className={`flex h-11 w-11 items-center justify-center rounded-lg border ${
                   armedShapeId === shape.id ? "border-accent-pink bg-accent-pink/20" : "border-card-border hover:bg-card"
@@ -497,47 +523,76 @@ export function AreaDesigner({
 
         <div>
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
-            Hayvanlar — bir hayvana veya bir grup başlığına tıkla
+            Hayvanlar — istediğin kadar hayvan ve/veya grup seç (her biri &quot;Doldur&quot;a eklenir)
           </h3>
           <div className="flex flex-col gap-2">
-            {ANIMAL_GROUPS.map((group) => (
-              <div key={group.id} className="flex flex-wrap items-center gap-2">
-                <button
-                  onClick={() => {
-                    setArmedShapeId(null);
-                    setFillGroupId(group.id === fillGroupId ? null : group.id);
-                  }}
-                  className={`rounded-full border px-3 py-1 text-xs font-medium ${
-                    fillGroupId === group.id ? "border-accent-lilac bg-accent-lilac/30" : "border-card-border text-muted hover:bg-card"
-                  }`}
-                >
-                  {group.label}
-                </button>
-                {group.shapeIds.map((shapeId) => (
+            {ANIMAL_GROUPS.map((group) => {
+              const groupSelected = recipeEntries.some((e) => e.key === `group:${group.id}`);
+              return (
+                <div key={group.id} className="flex flex-wrap items-center gap-2">
                   <button
-                    key={shapeId}
-                    data-testid={`yapboz-shape-${shapeId}`}
-                    onClick={() => {
-                      setFillGroupId(null);
-                      setArmedShapeId(shapeId === armedShapeId ? null : shapeId);
-                    }}
-                    title={SHAPE_LIBRARY.find((s) => s.id === shapeId)?.label}
-                    className={`flex h-11 w-11 items-center justify-center rounded-lg border ${
-                      armedShapeId === shapeId ? "border-accent-pink bg-accent-pink/20" : "border-card-border hover:bg-card"
+                    onClick={() => toggleRecipeGroup(group.id)}
+                    data-testid={`yapboz-group-${group.id}`}
+                    className={`rounded-full border px-3 py-1 text-xs font-medium ${
+                      groupSelected ? "border-accent-lilac bg-accent-lilac/30" : "border-card-border text-muted hover:bg-card"
                     }`}
                   >
-                    <svg viewBox="0 0 100 100" className="h-7 w-7">
-                      <path d={shapeIcon(shapeId)} fill="var(--foreground)" />
-                    </svg>
+                    {groupSelected ? "✓ " : ""}
+                    {group.label}
                   </button>
-                ))}
+                  {group.shapeIds.map((shapeId) => {
+                    const shapeSelected = recipeEntries.some((e) => e.key === `shape:${shapeId}`);
+                    return (
+                      <button
+                        key={shapeId}
+                        data-testid={`yapboz-shape-${shapeId}`}
+                        onClick={() => toggleRecipeShape(shapeId)}
+                        title={SHAPE_LIBRARY.find((s) => s.id === shapeId)?.label}
+                        className={`flex h-11 w-11 items-center justify-center rounded-lg border ${
+                          shapeSelected ? "border-accent-pink bg-accent-pink/20" : "border-card-border hover:bg-card"
+                        }`}
+                      >
+                        <svg viewBox="0 0 100 100" className="h-7 w-7">
+                          <path d={shapeIcon(shapeId)} fill="var(--foreground)" />
+                        </svg>
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {recipeEntries.length > 0 && (
+          <div className="flex flex-col gap-2 rounded-lg border border-card-border p-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-muted">
+              Doldurma Tarifi — her seçim için yaklaşık kağıt oranı
+            </h3>
+            {recipeEntries.map((entry) => (
+              <div key={entry.key} className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="w-32 shrink-0">{entry.label}</span>
+                <input
+                  type="range"
+                  min={2}
+                  max={80}
+                  step={1}
+                  value={entry.percent}
+                  onChange={(e) => updateRecipePercent(entry.key, Number(e.target.value))}
+                  className="w-32"
+                />
+                <span className="w-10">%{entry.percent}</span>
+                <button
+                  onClick={() => removeRecipeEntry(entry.key)}
+                  className="text-muted hover:text-red-500"
+                  aria-label={`${entry.label} tarifi kaldır`}
+                >
+                  <Trash2 size={13} />
+                </button>
               </div>
             ))}
           </div>
-          {armedShapeId && (
-            <p className="mt-1 text-xs text-muted">Yerleştirmek için yukarıdaki alana tıkla.</p>
-          )}
-        </div>
+        )}
 
         <div className="flex flex-wrap items-center gap-4 rounded-lg border border-card-border p-3">
           <label className="flex items-center gap-2 text-xs text-muted">
@@ -563,9 +618,9 @@ export function AreaDesigner({
             <PawPrint size={15} /> {packing ? "Yerleştiriliyor…" : fillLabel}
           </button>
           <span className="text-xs text-muted">
-            Standart yapboza ek olarak — alanı, birbirine değmeyen, bozulmamış siluetlerle (birden
-            fazla geçişte, kalan küçük boşluklara da giderek küçülterek) doldurur; hâlâ sığmayan yerler
-            normal yapboz parçalarıyla tamamlanır.
+            Standart yapboza ek olarak — alanı, birbirine değmeyen, sınırın tamamen içinde kalan
+            (dış kenarlarda yarıda kesilmeyen) siluetlerle doldurur; hâlâ sığmayan yerler normal
+            yapboz parçalarıyla tamamlanır.
           </span>
         </div>
       </div>

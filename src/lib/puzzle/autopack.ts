@@ -25,39 +25,30 @@ function polygonsOverlap(a: Polygon, b: Polygon): boolean {
   return area > 1; // mm² eşiği — kayan nokta gürültüsü/değme noktalarını yok sayar
 }
 
-export interface AutoPackOptions {
-  boundary: Polygon;
-  /** Halihazırda yerleşmiş şekiller (mutlak koordinat) — bunlarla çakışılmaz. */
-  existingPolygons: Polygon[];
-  /** Hangi şekillerden seçilecek — verilmezse tüm "animal" kategorisi kullanılır. */
-  shapeIds?: string[];
-  /** Hedef boyut (mm) — her denemede ~±%20 varyasyonla kullanılır. */
-  sizeMm: number;
-  seed: number;
-}
-
 export interface AutoPackResult {
   shapeId: string;
   transform: Transform2D;
   polygon: Polygon;
 }
 
+/** Bir geçişte (tek boyut aralığında) reddet-örnekle ile yerleştirmeyi dener; bu geçişte yerleşen toplam alanı döndürür. */
 function attemptPass(
   pool: { id: string; build: () => Polygon }[],
-  boundary: Polygon,
   boundaryClipper: ReturnType<typeof toClipperPolygon>,
   bbox: { minX: number; minY: number; maxX: number; maxY: number },
   placed: Polygon[],
   results: AutoPackResult[],
   rand: () => number,
   minSizeMm: number,
-  maxSizeMm: number
-) {
+  maxSizeMm: number,
+  areaBudget: number
+): number {
   const attempts = 700;
   const failLimit = 160;
   let consecutiveFails = 0;
+  let placedArea = 0;
 
-  for (let i = 0; i < attempts && consecutiveFails < failLimit; i++) {
+  for (let i = 0; i < attempts && consecutiveFails < failLimit && placedArea < areaBudget; i++) {
     const def = pool[Math.floor(rand() * pool.length)];
     const base = def.build(); // ~100 birim genişliğinde kutuya normalize
     const sizeMm = minSizeMm + rand() * (maxSizeMm - minSizeMm);
@@ -73,10 +64,13 @@ function attemptPass(
       continue;
     }
 
-    // Sınırla yeterli örtüşme var mı (en az %55'i sınırın içinde kalsın)?
+    // Sınırın TAMAMEN içinde olmalı — dış kenarlarda yarıda kesilen figür
+    // istenmiyor, bu yüzden neredeyse tam kapsama zorunlu (küçük kayan
+    // nokta payı dışında).
     const clipped = pc.intersection(toClipperPolygon(candidate), boundaryClipper);
     const insideArea = clipped.reduce((sum, poly) => sum + polygonArea(poly[0] as Point[]), 0);
-    if (insideArea / candidateArea < 0.55) {
+    const outsideArea = candidateArea - insideArea;
+    if (outsideArea > 0.4) {
       consecutiveFails++;
       continue;
     }
@@ -88,47 +82,83 @@ function attemptPass(
 
     placed.push(candidate);
     results.push({ shapeId: def.id, transform, polygon: candidate });
+    placedArea += candidateArea;
     consecutiveFails = 0;
   }
+
+  return placedArea;
+}
+
+export interface FillRecipeEntry {
+  /** Bu girişte kullanılacak şekil id'leri (tek tür veya bir grubun tüm türleri). */
+  shapeIds: string[];
+  /** Bu girişin kaplamasını hedeflediğin toplam sınır alanı oranı (0-1). */
+  targetFraction: number;
+}
+
+export interface AutoPackOptions {
+  boundary: Polygon;
+  /** Halihazırda yerleşmiş şekiller (mutlak koordinat) — bunlarla çakışılmaz. */
+  existingPolygons: Polygon[];
+  recipe: FillRecipeEntry[];
+  /** Hedef boyut (mm) — her denemede ~±%20 varyasyonla kullanılır. */
+  sizeMm: number;
+  seed: number;
 }
 
 /**
- * Sınır alanına, birbirleriyle ÇAKIŞMAYAN (tam/bozulmamış siluet olarak
- * kalan) rastgele şekiller (varsayılan: hayvan siluetleri, veya `shapeIds`
- * ile sadece belirli bir şekil/grup) serpiştirir — "reddet-örnekle"
- * (rejection sampling) yaklaşımı.
+ * Sınır alanına, birbirleriyle ÇAKIŞMAYAN ve sınırın TAMAMEN içinde kalan
+ * (dış kenarlarda yarıda kesilmeyen) rastgele şekiller serpiştirir —
+ * "reddet-örnekle" (rejection sampling) yaklaşımı. `recipe` listesindeki her
+ * giriş kendi tür/grup havuzunu ve hedef alan oranını belirtir; girişler
+ * sırayla işlenir, her biri o alan oranına ulaşana kadar (ya da yer kalmayana
+ * kadar) yerleştirmeye çalışır — sonraki girişler önceki girişlerin
+ * kapladığı alanı da "dolu" sayar.
  *
- * Boşlukları elden geldiğince doldurmak için ÇOK GEÇİŞLİ çalışır: istenen
- * boyutta doyuma ulaşınca (art arda çok sayıda reddedilince), boyutu
- * küçültüp kalan küçük boşluklara da yerleştirmeyi dener — bu, tek geçişli
- * bir denemeden çok daha yüksek kapsama sağlar. Yine de kalan çok küçük/
- * düzensiz boşluklar mevcut tessellate() akışında standart dişli/yuvalı
- * parçalarla dolduruluyor (bkz. tessellate.ts) — hiçbir zaman boşluk kalmaz.
+ * Boşlukları elden geldiğince doldurmak için her giriş ÇOK GEÇİŞLİ çalışır:
+ * istenen boyutta doyuma ulaşınca (art arda çok reddedilince), boyutu
+ * küçültüp kalan küçük boşluklara da yerleştirmeyi dener. Yine de kalan çok
+ * küçük/düzensiz boşluklar mevcut tessellate() akışında standart dişli/
+ * yuvalı parçalarla dolduruluyor (bkz. tessellate.ts) — hiçbir zaman boşluk
+ * kalmaz.
  */
 export function autoPackShapes(opts: AutoPackOptions): AutoPackResult[] {
-  const pool =
-    opts.shapeIds && opts.shapeIds.length > 0
-      ? SHAPE_LIBRARY.filter((s) => opts.shapeIds!.includes(s.id))
-      : SHAPE_LIBRARY.filter((s) => s.category === "animal");
-  if (pool.length === 0) return [];
-
   const rand = mulberry32(opts.seed);
   const bbox = boundingBox(opts.boundary);
   const boundaryClipper = toClipperPolygon(opts.boundary);
+  const boundaryArea = polygonArea(opts.boundary);
 
   const placed: Polygon[] = [...opts.existingPolygons];
   const results: AutoPackResult[] = [];
 
-  let currentMin = opts.sizeMm * 0.8;
-  let currentMax = opts.sizeMm * 1.2;
-  const floorSize = Math.max(7, opts.sizeMm * 0.2);
-  let passCount = 0;
+  for (const entry of opts.recipe) {
+    const pool = SHAPE_LIBRARY.filter((s) => entry.shapeIds.includes(s.id));
+    if (pool.length === 0) continue;
 
-  while (currentMin >= floorSize && passCount < 6) {
-    attemptPass(pool, opts.boundary, boundaryClipper, bbox, placed, results, rand, currentMin, currentMax);
-    currentMin *= 0.6;
-    currentMax *= 0.6;
-    passCount++;
+    const targetArea = boundaryArea * Math.max(0, Math.min(1, entry.targetFraction));
+    let placedAreaForEntry = 0;
+
+    let currentMin = opts.sizeMm * 0.8;
+    let currentMax = opts.sizeMm * 1.2;
+    const floorSize = Math.max(7, opts.sizeMm * 0.2);
+    let passCount = 0;
+
+    while (currentMin >= floorSize && passCount < 6 && placedAreaForEntry < targetArea) {
+      placedAreaForEntry += attemptPass(
+        pool,
+        boundaryClipper,
+        bbox,
+        placed,
+        results,
+        rand,
+        currentMin,
+        currentMax,
+        targetArea - placedAreaForEntry
+      );
+      currentMin *= 0.6;
+      currentMax *= 0.6;
+      passCount++;
+    }
   }
 
   return results;

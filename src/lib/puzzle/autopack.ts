@@ -29,10 +29,11 @@ export interface AutoPackOptions {
   boundary: Polygon;
   /** Halihazırda yerleşmiş şekiller (mutlak koordinat) — bunlarla çakışılmaz. */
   existingPolygons: Polygon[];
-  minSizeMm: number;
-  maxSizeMm: number;
+  /** Hangi şekillerden seçilecek — verilmezse tüm "animal" kategorisi kullanılır. */
+  shapeIds?: string[];
+  /** Hedef boyut (mm) — her denemede ~±%20 varyasyonla kullanılır. */
+  sizeMm: number;
   seed: number;
-  maxAttempts?: number;
 }
 
 export interface AutoPackResult {
@@ -41,34 +42,25 @@ export interface AutoPackResult {
   polygon: Polygon;
 }
 
-/**
- * Sınır alanına, birbirleriyle ÇAKIŞMAYAN (tam/bozulmamış siluet olarak
- * kalan) rastgele hayvan siluetleri serpiştirir — "reddet-örnekle" (rejection
- * sampling) yaklaşımı: rastgele tür/boyut/döndürme/konum dener, sınırla
- * yeterince örtüşmüyorsa veya mevcut bir yerleşimle çakışıyorsa reddeder.
- * Aralarında kalan boşluklar, mevcut tessellate() akışında zaten standart
- * dişli/yuvalı parçalarla dolduruluyor (bkz. tessellate.ts) — bu fonksiyon
- * sadece hayvanların KENDİSİNİ, bozulmadan yerleştirmekten sorumlu.
- */
-export function autoPackAnimals(opts: AutoPackOptions): AutoPackResult[] {
-  const animalDefs = SHAPE_LIBRARY.filter((s) => s.category === "animal");
-  if (animalDefs.length === 0) return [];
-
-  const rand = mulberry32(opts.seed);
-  const bbox = boundingBox(opts.boundary);
-  const boundaryClipper = toClipperPolygon(opts.boundary);
-
-  const placed: Polygon[] = [...opts.existingPolygons];
-  const results: AutoPackResult[] = [];
-
-  const maxAttempts = opts.maxAttempts ?? 500;
-  const failLimit = 80;
+function attemptPass(
+  pool: { id: string; build: () => Polygon }[],
+  boundary: Polygon,
+  boundaryClipper: ReturnType<typeof toClipperPolygon>,
+  bbox: { minX: number; minY: number; maxX: number; maxY: number },
+  placed: Polygon[],
+  results: AutoPackResult[],
+  rand: () => number,
+  minSizeMm: number,
+  maxSizeMm: number
+) {
+  const attempts = 700;
+  const failLimit = 160;
   let consecutiveFails = 0;
 
-  for (let i = 0; i < maxAttempts && consecutiveFails < failLimit; i++) {
-    const def = animalDefs[Math.floor(rand() * animalDefs.length)];
+  for (let i = 0; i < attempts && consecutiveFails < failLimit; i++) {
+    const def = pool[Math.floor(rand() * pool.length)];
     const base = def.build(); // ~100 birim genişliğinde kutuya normalize
-    const sizeMm = opts.minSizeMm + rand() * (opts.maxSizeMm - opts.minSizeMm);
+    const sizeMm = minSizeMm + rand() * (maxSizeMm - minSizeMm);
     const scale = sizeMm / 100;
     const rotationDeg = rand() * 360;
     const tx = bbox.minX + rand() * (bbox.maxX - bbox.minX);
@@ -81,10 +73,10 @@ export function autoPackAnimals(opts: AutoPackOptions): AutoPackResult[] {
       continue;
     }
 
-    // Sınırla yeterli örtüşme var mı (en az %60'ı sınırın içinde kalsın)?
+    // Sınırla yeterli örtüşme var mı (en az %55'i sınırın içinde kalsın)?
     const clipped = pc.intersection(toClipperPolygon(candidate), boundaryClipper);
     const insideArea = clipped.reduce((sum, poly) => sum + polygonArea(poly[0] as Point[]), 0);
-    if (insideArea / candidateArea < 0.6) {
+    if (insideArea / candidateArea < 0.55) {
       consecutiveFails++;
       continue;
     }
@@ -97,6 +89,46 @@ export function autoPackAnimals(opts: AutoPackOptions): AutoPackResult[] {
     placed.push(candidate);
     results.push({ shapeId: def.id, transform, polygon: candidate });
     consecutiveFails = 0;
+  }
+}
+
+/**
+ * Sınır alanına, birbirleriyle ÇAKIŞMAYAN (tam/bozulmamış siluet olarak
+ * kalan) rastgele şekiller (varsayılan: hayvan siluetleri, veya `shapeIds`
+ * ile sadece belirli bir şekil/grup) serpiştirir — "reddet-örnekle"
+ * (rejection sampling) yaklaşımı.
+ *
+ * Boşlukları elden geldiğince doldurmak için ÇOK GEÇİŞLİ çalışır: istenen
+ * boyutta doyuma ulaşınca (art arda çok sayıda reddedilince), boyutu
+ * küçültüp kalan küçük boşluklara da yerleştirmeyi dener — bu, tek geçişli
+ * bir denemeden çok daha yüksek kapsama sağlar. Yine de kalan çok küçük/
+ * düzensiz boşluklar mevcut tessellate() akışında standart dişli/yuvalı
+ * parçalarla dolduruluyor (bkz. tessellate.ts) — hiçbir zaman boşluk kalmaz.
+ */
+export function autoPackShapes(opts: AutoPackOptions): AutoPackResult[] {
+  const pool =
+    opts.shapeIds && opts.shapeIds.length > 0
+      ? SHAPE_LIBRARY.filter((s) => opts.shapeIds!.includes(s.id))
+      : SHAPE_LIBRARY.filter((s) => s.category === "animal");
+  if (pool.length === 0) return [];
+
+  const rand = mulberry32(opts.seed);
+  const bbox = boundingBox(opts.boundary);
+  const boundaryClipper = toClipperPolygon(opts.boundary);
+
+  const placed: Polygon[] = [...opts.existingPolygons];
+  const results: AutoPackResult[] = [];
+
+  let currentMin = opts.sizeMm * 0.8;
+  let currentMax = opts.sizeMm * 1.2;
+  const floorSize = Math.max(7, opts.sizeMm * 0.2);
+  let passCount = 0;
+
+  while (currentMin >= floorSize && passCount < 6) {
+    attemptPass(pool, opts.boundary, boundaryClipper, bbox, placed, results, rand, currentMin, currentMax);
+    currentMin *= 0.6;
+    currentMax *= 0.6;
+    passCount++;
   }
 
   return results;

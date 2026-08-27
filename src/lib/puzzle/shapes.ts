@@ -188,3 +188,16 @@ export const SHAPE_LIBRARY: PuzzleShapeDef[] = [
   { id: "turtle", label: "Kaplumbağa", build: () => animals.turtle, category: "animal" },
   { id: "dog", label: "Köpek", build: () => animals.dog, category: "animal" },
 ];
+
+export interface ShapeGroup {
+  id: string;
+  label: string;
+  shapeIds: string[];
+}
+
+/** Hayvanları tarza/türe göre gruplar — "Doldur" işleminde tek tek seçmek yerine grup seçmek için. */
+export const ANIMAL_GROUPS: ShapeGroup[] = [
+  { id: "pets", label: "Evcil Hayvanlar", shapeIds: ["cat", "dog", "rabbit"] },
+  { id: "flying", label: "Uçanlar", shapeIds: ["bird", "butterfly"] },
+  { id: "aquatic", label: "Sucul Canlılar", shapeIds: ["fish", "turtle"] },
+];

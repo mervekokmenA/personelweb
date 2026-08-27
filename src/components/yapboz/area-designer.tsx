@@ -4,10 +4,13 @@ import { useRef, useState } from "react";
 import { Trash2, PawPrint } from "lucide-react";
 import type { PuzzleProjectState, ThemedPlacementState, BoundaryShapeKind } from "@/lib/puzzle/types";
 import { boundaryToSvgPath, boundaryBoundingBox, boundaryToPolygon } from "@/lib/puzzle/boundary";
-import { SHAPE_LIBRARY } from "@/lib/puzzle/shapes";
+import { SHAPE_LIBRARY, ANIMAL_GROUPS } from "@/lib/puzzle/shapes";
 import { transformPolygon, type Point } from "@/lib/puzzle/geometry";
 import { tessellate } from "@/lib/puzzle/tessellate";
-import { autoPackAnimals } from "@/lib/puzzle/autopack";
+import { autoPackShapes } from "@/lib/puzzle/autopack";
+
+const GEOMETRIC_SHAPES = SHAPE_LIBRARY.filter((s) => s.category === "geometric");
+const DEFAULT_FILL_SIZE_MM = 55;
 
 const DISPLAY_TARGET_WIDTH = 640;
 
@@ -42,6 +45,8 @@ export function AreaDesigner({
   const placementCounter = useRef(0);
   const packSeedCounter = useRef(1);
   const [armedShapeId, setArmedShapeId] = useState<string | null>(null);
+  const [fillGroupId, setFillGroupId] = useState<string | null>(null);
+  const [fillSizeMm, setFillSizeMm] = useState(DEFAULT_FILL_SIZE_MM);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [drawingPath, setDrawingPath] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -224,7 +229,20 @@ export function AreaDesigner({
     });
   }
 
-  function packAnimals() {
+  // "Doldur" ne kullanacak: tek bir şekil seçiliyse (armedShapeId) sadece o;
+  // bir grup seçiliyse o grubun türleri (karışık); ikisi de yoksa tüm hayvanlar.
+  const fillShapeIds = armedShapeId
+    ? [armedShapeId]
+    : fillGroupId
+      ? ANIMAL_GROUPS.find((g) => g.id === fillGroupId)?.shapeIds
+      : undefined;
+  const fillLabel = armedShapeId
+    ? `${SHAPE_LIBRARY.find((s) => s.id === armedShapeId)?.label ?? ""} ile Doldur`
+    : fillGroupId
+      ? `${ANIMAL_GROUPS.find((g) => g.id === fillGroupId)?.label ?? ""} ile Doldur`
+      : "Tüm Hayvanlarla Doldur";
+
+  function runFill() {
     setError(null);
     setPacking(true);
     // Ağır boolean işlemleri bir sonraki tick'e erteleyip butonun "meşgul"
@@ -236,13 +254,11 @@ export function AreaDesigner({
         setPacking(false);
         return;
       }
-      const box = boundaryBoundingBox(state.boundary);
-      const minDim = Math.min(box.width, box.height);
-      const packed = autoPackAnimals({
+      const packed = autoPackShapes({
         boundary,
         existingPolygons: absolutePlacementPolygons(state.themedPlacements),
-        minSizeMm: Math.max(10, minDim * 0.1),
-        maxSizeMm: Math.max(20, minDim * 0.22),
+        shapeIds: fillShapeIds,
+        sizeMm: fillSizeMm,
         seed: packSeedCounter.current++,
       });
       const newPlacements: ThemedPlacementState[] = packed.map((p) => ({
@@ -452,43 +468,104 @@ export function AreaDesigner({
         <span className="text-xs text-muted">{state.targetPieceCount} parça</span>
       </label>
 
-      <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
-          Temalı Parça Paleti — bir şekle tıkla, sonra alan üzerinde yerleştirmek istediğin yere tıkla
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {SHAPE_LIBRARY.map((shape) => (
-            <button
-              key={shape.id}
-              data-testid={`yapboz-shape-${shape.id}`}
-              onClick={() => setArmedShapeId(shape.id === armedShapeId ? null : shape.id)}
-              title={shape.label}
-              className={`flex h-11 w-11 items-center justify-center rounded-lg border ${
-                armedShapeId === shape.id ? "border-accent-pink bg-accent-pink/20" : "border-card-border hover:bg-card"
-              }`}
-            >
-              <svg viewBox="0 0 100 100" className="h-7 w-7">
-                <path d={shapeIcon(shape.id)} fill="var(--foreground)" />
-              </svg>
-            </button>
-          ))}
+      <div className="flex flex-col gap-4">
+        <div>
+          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
+            Geometrik Şekiller — bir şekle tıkla, sonra alan üzerinde yerleştirmek istediğin yere tıkla
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {GEOMETRIC_SHAPES.map((shape) => (
+              <button
+                key={shape.id}
+                data-testid={`yapboz-shape-${shape.id}`}
+                onClick={() => {
+                  setFillGroupId(null);
+                  setArmedShapeId(shape.id === armedShapeId ? null : shape.id);
+                }}
+                title={shape.label}
+                className={`flex h-11 w-11 items-center justify-center rounded-lg border ${
+                  armedShapeId === shape.id ? "border-accent-pink bg-accent-pink/20" : "border-card-border hover:bg-card"
+                }`}
+              >
+                <svg viewBox="0 0 100 100" className="h-7 w-7">
+                  <path d={shapeIcon(shape.id)} fill="var(--foreground)" />
+                </svg>
+              </button>
+            ))}
+          </div>
         </div>
-        {armedShapeId && (
-          <p className="mt-1 text-xs text-muted">Yerleştirmek için yukarıdaki alana tıkla.</p>
-        )}
 
-        <div className="mt-3 flex items-center gap-2">
+        <div>
+          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
+            Hayvanlar — bir hayvana veya bir grup başlığına tıkla
+          </h3>
+          <div className="flex flex-col gap-2">
+            {ANIMAL_GROUPS.map((group) => (
+              <div key={group.id} className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => {
+                    setArmedShapeId(null);
+                    setFillGroupId(group.id === fillGroupId ? null : group.id);
+                  }}
+                  className={`rounded-full border px-3 py-1 text-xs font-medium ${
+                    fillGroupId === group.id ? "border-accent-lilac bg-accent-lilac/30" : "border-card-border text-muted hover:bg-card"
+                  }`}
+                >
+                  {group.label}
+                </button>
+                {group.shapeIds.map((shapeId) => (
+                  <button
+                    key={shapeId}
+                    data-testid={`yapboz-shape-${shapeId}`}
+                    onClick={() => {
+                      setFillGroupId(null);
+                      setArmedShapeId(shapeId === armedShapeId ? null : shapeId);
+                    }}
+                    title={SHAPE_LIBRARY.find((s) => s.id === shapeId)?.label}
+                    className={`flex h-11 w-11 items-center justify-center rounded-lg border ${
+                      armedShapeId === shapeId ? "border-accent-pink bg-accent-pink/20" : "border-card-border hover:bg-card"
+                    }`}
+                  >
+                    <svg viewBox="0 0 100 100" className="h-7 w-7">
+                      <path d={shapeIcon(shapeId)} fill="var(--foreground)" />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+          {armedShapeId && (
+            <p className="mt-1 text-xs text-muted">Yerleştirmek için yukarıdaki alana tıkla.</p>
+          )}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4 rounded-lg border border-card-border p-3">
+          <label className="flex items-center gap-2 text-xs text-muted">
+            Doldurma boyutu
+            <input
+              type="range"
+              min={15}
+              max={150}
+              step={1}
+              data-testid="yapboz-fill-size"
+              value={fillSizeMm}
+              onChange={(e) => setFillSizeMm(Number(e.target.value))}
+              className="w-32"
+            />
+            <span>~{fillSizeMm}mm</span>
+          </label>
           <button
-            onClick={packAnimals}
+            onClick={runFill}
             disabled={packing}
             data-testid="yapboz-pack-animals"
             className="flex items-center gap-1.5 rounded-lg bg-accent-lilac px-4 py-1.5 text-sm font-medium disabled:opacity-60"
           >
-            <PawPrint size={15} /> {packing ? "Yerleştiriliyor…" : "Hayvanlarla Doldur"}
+            <PawPrint size={15} /> {packing ? "Yerleştiriliyor…" : fillLabel}
           </button>
           <span className="text-xs text-muted">
-            Standart yapboza ek olarak — alanı, birbirine değmeyen, bozulmamış hayvan siluetleriyle
-            doldurur; aralarında kalan boşluklar normal yapboz parçalarıyla tamamlanır.
+            Standart yapboza ek olarak — alanı, birbirine değmeyen, bozulmamış siluetlerle (birden
+            fazla geçişte, kalan küçük boşluklara da giderek küçülterek) doldurur; hâlâ sığmayan yerler
+            normal yapboz parçalarıyla tamamlanır.
           </span>
         </div>
       </div>

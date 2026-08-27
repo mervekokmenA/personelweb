@@ -5,19 +5,18 @@ import pc from "polygon-clipping";
 import type { MultiPolygon } from "polygon-clipping";
 import type { Polygon } from "./geometry";
 import { toClipperPolygon, firstClipperPolygon } from "./geometry";
+import * as animals from "./animal-shapes";
 
 /**
  * Temalı parça siluet kütüphanesi. Her şekil [-50,50]x[-50,50] kutusuna
  * normalize edilmiş, orijin-merkezli bir poligon üretir (sonradan
  * transformPolygon ile konum/ölçek/döndürme uygulanır).
  *
- * Referans ürün görsellerindeki gerçekçi hayvan siluetleri elle koordinat
- * yazarak güvenilir biçimde üretilemez (tanınabilir bir kedi/at silueti
- * ancak bir çizim aracıyla doğru çıkar) — bu yüzden kütüphane, üretilebilir
- * kalitesi garanti parametrik/geometrik şekillerden oluşuyor. Gerçek bir
- * hayvan silueti istenirse "Serbest Path" aracıyla elle çizilebilir (bkz.
- * area-designer.tsx) — bu da kullanıcının orijinal isteğindeki üç
- * yöntemden biri (kare/dikdörtgen, yuvarlak, veya path).
+ * `category: "geometric"` parametrik/geometrik şekiller; `category:
+ * "animal"` elle koordinatlanmış gerçek hayvan silüetleri (bkz.
+ * animal-shapes.ts) — "Hayvan Modu" otomatik doldurma sadece bunları
+ * kullanır. Farklı özel bir şekil istenirse "Serbest Path" aracıyla elle de
+ * çizilebilir (bkz. area-designer.tsx).
  */
 
 function polarPoints(fn: (theta: number) => number, segments: number): Polygon {
@@ -163,21 +162,29 @@ export interface PuzzleShapeDef {
   id: string;
   label: string;
   build: () => Polygon;
+  category: "geometric" | "animal";
 }
 
 export const SHAPE_LIBRARY: PuzzleShapeDef[] = [
-  { id: "star5", label: "Yıldız (5)", build: () => star(5, 48, 20) },
-  { id: "star6", label: "Yıldız (6)", build: () => star(6, 46, 24) },
-  { id: "hexagon", label: "Altıgen", build: () => regularPolygon(6, 46) },
-  { id: "pentagon", label: "Beşgen", build: () => regularPolygon(5, 46) },
-  { id: "heart", label: "Kalp", build: heart },
-  { id: "crescent", label: "Hilal (Ay)", build: crescentMoon },
-  { id: "sun", label: "Güneş", build: sunburst },
-  { id: "diamond", label: "Baklava (Elmas)", build: diamond },
-  { id: "leaf", label: "Yaprak", build: leaf },
-  { id: "flower", label: "Çiçek", build: () => flower(5) },
-  { id: "arrow", label: "Ok", build: arrow },
-  { id: "teardrop", label: "Damla", build: teardrop },
-  { id: "cloud", label: "Bulut", build: cloud },
-  { id: "circle", label: "Daire", build: () => circlePoly(0, 0, 46, 64) },
+  { id: "star5", label: "Yıldız (5)", build: () => star(5, 48, 20), category: "geometric" },
+  { id: "star6", label: "Yıldız (6)", build: () => star(6, 46, 24), category: "geometric" },
+  { id: "hexagon", label: "Altıgen", build: () => regularPolygon(6, 46), category: "geometric" },
+  { id: "pentagon", label: "Beşgen", build: () => regularPolygon(5, 46), category: "geometric" },
+  { id: "heart", label: "Kalp", build: heart, category: "geometric" },
+  { id: "crescent", label: "Hilal (Ay)", build: crescentMoon, category: "geometric" },
+  { id: "sun", label: "Güneş", build: sunburst, category: "geometric" },
+  { id: "diamond", label: "Baklava (Elmas)", build: diamond, category: "geometric" },
+  { id: "leaf", label: "Yaprak", build: leaf, category: "geometric" },
+  { id: "flower", label: "Çiçek", build: () => flower(5), category: "geometric" },
+  { id: "arrow", label: "Ok", build: arrow, category: "geometric" },
+  { id: "teardrop", label: "Damla", build: teardrop, category: "geometric" },
+  { id: "cloud", label: "Bulut", build: cloud, category: "geometric" },
+  { id: "circle", label: "Daire", build: () => circlePoly(0, 0, 46, 64), category: "geometric" },
+  { id: "fish", label: "Balık", build: () => animals.fish, category: "animal" },
+  { id: "bird", label: "Kuş", build: () => animals.bird, category: "animal" },
+  { id: "cat", label: "Kedi", build: () => animals.cat, category: "animal" },
+  { id: "rabbit", label: "Tavşan", build: () => animals.rabbit, category: "animal" },
+  { id: "butterfly", label: "Kelebek", build: () => animals.butterfly, category: "animal" },
+  { id: "turtle", label: "Kaplumbağa", build: () => animals.turtle, category: "animal" },
+  { id: "dog", label: "Köpek", build: () => animals.dog, category: "animal" },
 ];

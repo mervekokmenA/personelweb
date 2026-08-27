@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Trash2 } from "lucide-react";
+import { Trash2, PawPrint } from "lucide-react";
 import type { PuzzleProjectState, ThemedPlacementState, BoundaryShapeKind } from "@/lib/puzzle/types";
 import { boundaryToSvgPath, boundaryBoundingBox, boundaryToPolygon } from "@/lib/puzzle/boundary";
 import { SHAPE_LIBRARY } from "@/lib/puzzle/shapes";
 import { transformPolygon, type Point } from "@/lib/puzzle/geometry";
 import { tessellate } from "@/lib/puzzle/tessellate";
+import { autoPackAnimals } from "@/lib/puzzle/autopack";
 
 const DISPLAY_TARGET_WIDTH = 640;
 
@@ -39,10 +40,12 @@ export function AreaDesigner({
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const placementCounter = useRef(0);
+  const packSeedCounter = useRef(1);
   const [armedShapeId, setArmedShapeId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [drawingPath, setDrawingPath] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [packing, setPacking] = useState(false);
   const dragRef = useRef<{
     kind: "rect-move" | "rect-handle" | "ellipse-move" | "ellipse-handle" | "themed-move";
     handle?: "nw" | "ne" | "sw" | "se";
@@ -214,6 +217,44 @@ export function AreaDesigner({
     if (selectedId === id) setSelectedId(null);
   }
 
+  function absolutePlacementPolygons(placements: ThemedPlacementState[]) {
+    return placements.map((p) => {
+      const def = SHAPE_LIBRARY.find((d) => d.id === p.shapeId)!;
+      return transformPolygon(def.build(), p.transform);
+    });
+  }
+
+  function packAnimals() {
+    setError(null);
+    setPacking(true);
+    // Ağır boolean işlemleri bir sonraki tick'e erteleyip butonun "meşgul"
+    // görünmesini sağlıyoruz (senkron çalışsa da arayüz donmuş hissettirmesin).
+    setTimeout(() => {
+      const boundary = boundaryToPolygon(state.boundary);
+      if (boundary.length < 3) {
+        setError("Önce bir yapboz alanı (sınır) belirlemelisin.");
+        setPacking(false);
+        return;
+      }
+      const box = boundaryBoundingBox(state.boundary);
+      const minDim = Math.min(box.width, box.height);
+      const packed = autoPackAnimals({
+        boundary,
+        existingPolygons: absolutePlacementPolygons(state.themedPlacements),
+        minSizeMm: Math.max(10, minDim * 0.1),
+        maxSizeMm: Math.max(20, minDim * 0.22),
+        seed: packSeedCounter.current++,
+      });
+      const newPlacements: ThemedPlacementState[] = packed.map((p) => ({
+        id: `placement-${placementCounter.current++}`,
+        shapeId: p.shapeId,
+        transform: p.transform,
+      }));
+      onChange((s) => ({ ...s, themedPlacements: [...s.themedPlacements, ...newPlacements] }));
+      setPacking(false);
+    }, 10);
+  }
+
   function generate() {
     setError(null);
     const boundary = boundaryToPolygon(state.boundary);
@@ -221,10 +262,8 @@ export function AreaDesigner({
       setError("Önce bir yapboz alanı (sınır) belirlemelisin.");
       return;
     }
-    const themedPlacements = state.themedPlacements.map((p) => {
-      const def = SHAPE_LIBRARY.find((d) => d.id === p.shapeId)!;
-      return { shapeId: p.shapeId, polygon: transformPolygon(def.build(), p.transform) };
-    });
+    const themedPolygons = absolutePlacementPolygons(state.themedPlacements);
+    const themedPlacements = state.themedPlacements.map((p, i) => ({ shapeId: p.shapeId, polygon: themedPolygons[i] }));
     try {
       const result = tessellate({
         boundary,
@@ -437,6 +476,21 @@ export function AreaDesigner({
         {armedShapeId && (
           <p className="mt-1 text-xs text-muted">Yerleştirmek için yukarıdaki alana tıkla.</p>
         )}
+
+        <div className="mt-3 flex items-center gap-2">
+          <button
+            onClick={packAnimals}
+            disabled={packing}
+            data-testid="yapboz-pack-animals"
+            className="flex items-center gap-1.5 rounded-lg bg-accent-lilac px-4 py-1.5 text-sm font-medium disabled:opacity-60"
+          >
+            <PawPrint size={15} /> {packing ? "Yerleştiriliyor…" : "Hayvanlarla Doldur"}
+          </button>
+          <span className="text-xs text-muted">
+            Standart yapboza ek olarak — alanı, birbirine değmeyen, bozulmamış hayvan siluetleriyle
+            doldurur; aralarında kalan boşluklar normal yapboz parçalarıyla tamamlanır.
+          </span>
+        </div>
       </div>
 
       {selected && (

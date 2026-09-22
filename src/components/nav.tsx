@@ -13,6 +13,7 @@ import {
   Settings,
   SlidersHorizontal,
   Puzzle,
+  Calculator,
   Menu,
   X,
 } from "lucide-react";
@@ -27,6 +28,7 @@ const NAV_ITEMS = [
   { href: "/saglik", label: "Sağlık", icon: HeartPulse, accent: "var(--accent-pink)" },
   { href: "/astroloji", label: "Astroloji", icon: Sparkles, accent: "var(--accent-lilac)" },
   { href: "/yapboz", label: "Yapboz", icon: Puzzle, accent: "var(--accent-yellow)" },
+  { href: "/maliyet", label: "Maliyet Hesaplama", icon: Calculator, accent: "var(--accent-mint)" },
   { href: "/parametreler", label: "Parametreler", icon: SlidersHorizontal, accent: "var(--accent-mint)" },
   { href: "/ayarlar", label: "Ayarlar", icon: Settings, accent: "var(--accent-pink)" },
 ];

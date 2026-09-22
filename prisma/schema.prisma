@@ -347,3 +347,43 @@ model GeneralTaskLog {
   @@unique([taskId, date])
   @@index([date])
 }
+
+// ---------------------------------------------------------------------------
+// MALİYET HESAPLAMA (el yapımı ürün maliyeti + kâr/komisyon ile tahmini satış)
+// ---------------------------------------------------------------------------
+
+// Bir ürün (örn. "Mum"): birden fazla maliyet kalemi (CostItem) içerir, ayrıca
+// hedef kâr oranı ve platform komisyon oranı burada tutulur — birim maliyet,
+// kalemlerin toplamından anlık hesaplanır (ayrı bir alanda saklanmaz).
+model CostProduct {
+  id           String     @id @default(cuid())
+  name         String // örn: "Mum"
+  profitMargin Float      @default(30) // hedef kâr oranı (%) — maliyet üzerinden
+  commission   Float      @default(0) // platform komisyon oranı (%) — satış fiyatı üzerinden
+  order        Int        @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  items        CostItem[]
+}
+
+// Bir ürünün tek bir maliyet kalemi (örn. "Parafin", "Stearin", "Boya").
+// Birim maliyet = purchaseCost / yieldCount olarak hesaplanır; purchaseAmount/
+// usagePerItem alanları sadece referans/gösterim amaçlıdır (kullanıcının
+// "1000 gr'dan kaç ürün çıkıyor" hesabını nasıl bulduğunu hatırlaması için).
+model CostItem {
+  id             String      @id @default(cuid())
+  product        CostProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId      String
+  name           String // örn: "Parafin"
+  purchaseAmount Float // satın alınan miktar (örn. 1000)
+  purchaseUnit   String      @default("gr") // gr, ml, adet, kg, lt...
+  usagePerItem   Float // birimde kullanılan miktar (örn. 50) veya yüzde (usageIsPercent true ise)
+  usageIsPercent Boolean     @default(false)
+  yieldCount     Float // bu alımdan kaç ürün çıkıyor (örn. 20)
+  purchaseCost   Float // alım tutarı (TL)
+  order          Int         @default(0)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([productId])
+}

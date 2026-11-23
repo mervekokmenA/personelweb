@@ -23,6 +23,8 @@ import { ayBuyusuModule } from "./ay-buyusu";
 import { ceyhanModule } from "./ceyhan-ezoterik-astroloji";
 import { frawleyModule } from "./frawley-vedik";
 import { turkceAstrolojiModule } from "./turkce-astroloji-kitaplari";
+import { cucenModule } from "./cucen-metafizik";
+import { dovmeModule } from "./dovme-semboller";
 
 /** Ek modüller: yüklenen her kitap/kaynak için bir iç modül ve internetten bulunan eksik konular. */
 export const EXTRA_MODULES: LearningModule[] = [
@@ -50,4 +52,6 @@ export const EXTRA_MODULES: LearningModule[] = [
   ceyhanModule,
   frawleyModule,
   turkceAstrolojiModule,
+  cucenModule,
+  dovmeModule,
 ];

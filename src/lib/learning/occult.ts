@@ -239,6 +239,25 @@ export const occultModule: LearningModule = {
           ],
         },
         {
+          id: "u12",
+          title: "12. Dion Fortune: Batı Gizem Geleneği ve Psişik Savunma",
+          description: "Dion Fortune'un iki klasiği (Mystical Qabalah, Psychic Self-Defence) yazarın kendi metninden; iddialar 'Fortune'a göre' diye atfedilir.",
+          lessons: [
+            lesson("fortune-hayat", "Dion Fortune: hayat, çevre ve eserler", "Violet Firth'ten Dion Fortune'a; Altın Şafak kökenli çevre, İç Işık Topluluğu ve başlıca kitapların kronolojisi.", {
+              tasks: ["Fortune'un 5 kitabı için yayın yılı, konu ve hedef kitle tablosu çıkar."],
+              resources: [web("Dion Fortune — Wikipedia", "https://en.wikipedia.org/wiki/Dion_Fortune"), web("Society of the Inner Light — Wikipedia", "https://en.wikipedia.org/wiki/Society_of_the_Inner_Light"), web("Global Grey — Psychic Self-Defence (tam metin, çevrimiçi)", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_psychic-self-defense_complete-text.html"), web("Global Grey — The Mystical Qabalah (tam metin, çevrimiçi)", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_mystical-qabalah_complete-text.html")],
+            }),
+            lesson("fortune-kabala", "The Mystical Qabalah: kitabın yapısı ve yöntemi", "Fortune'a göre Hayat Ağacı 'Batı gizem geleneğinin plan şeması'dır; kitabın bölümleri, Sephiroth'u anlatış biçimi ve 'öğretmen gözetimi' uyarısı.", {
+              tasks: ["Kitabın 27 bölümünü (Foreword + 1–27) 3 gruba ayır: yöntem, Ağaç'ın yapısı, tek tek Sephiroth; her gruptan bir paragraf özetle."],
+              resources: [fortuneQ],
+            }),
+            lesson("fortune-psisik", "Psychic Self-Defence: yapı, sınırlar ve eleştirel okuma", "1930 tarihli kitabın dört bölümlü yapısı; 'tanı tedaviden önce gelir' ilkesi; öznel rahatsızlık ile 'objektif saldırı' ayrımı ve modern ruh sağlığı açısından uyarılar.", {
+              tasks: ["Kitaptaki 9. bölümü (objektif saldırı ile öznel rahatsızlık ayrımı) oku; kendi cümlelerinle özetle ve ruh sağlığı uzmanına başvurma kriterlerini yaz."],
+              resources: [fortunePsy],
+            }),
+          ],
+        },
+        {
           id: "u11",
           title: "11. Beş Yıllık Pratik Yol Haritası",
           description: "Müfredatın tamamlanmış hâli: yıllara yayılmış çalışma planı.",

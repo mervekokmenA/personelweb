@@ -500,4 +500,89 @@ Kendi için "güvenlik planı" yaz: hangi belirtiler çıkarsa ara vereceğim, k
 Hedeflenen yetkinlikler bu modülün başındaki listededir. Gerçek deneyim, bu planı kesintisiz sürdürüp **kendi kayıtlarınla** doğrulamanla oluşur.`,
     verification: `Plan şablonudur.`,
   },
+  "fortune-hayat": {
+    body: `## Kimdir?
+
+Dion Fortune, doğum adıyla **Violet Mary Firth** (6 Aralık 1890, Llandudno, Galler – Ocak 1946). İlk kitabı *Machinery of the Mind* 1922'de doğum adıyla çıktı; sonraki kitaplarını "Dion Fortune" adıyla yayımladı. Altın Şafak kökenli çevreden (Alpha et Omega) ayrılıp kendi grubunu kurdu; grup sonradan **İç Işık Topluluğu (Society of the Inner Light)** adını aldı ve bugün hâlâ etkin.
+
+## Başlıca eserler (kaynaklarda anılanlar)
+
+| Yıl | Eser | Not |
+|---|---|---|
+| 1922 | Machinery of the Mind | Psikoloji ağırlıklı ilk kitap (Violet Firth adıyla) |
+| 1929 | Sane Occultism | Okültizme sağduyulu giriş |
+| 1930 | The Training and Work of an Initiate | Eğitim ve çalışma üzerine |
+| 1930 | Psychic Self-Defence | Bu ünitenin 3. dersi |
+| 1932 | Through the Gates of Death | Ölüm ve sonrası üzerine |
+| 1935 | The Mystical Qabalah | Bu ünitenin 2. dersi |
+
+*(Tarihler Wikipedia, Encyclopedia.com ve yayıncı sayfalarında derlenmiştir; ayrıntılı bir bibliyografya için biyografilere bak.)*
+
+## Biyografi kaynakları
+Alan Richardson, *Priestess: The Life and Magic of Dion Fortune*; Gareth Knight, *Dion Fortune and the Inner Light*; Susan Johnston Graf, *Talking to the Gods*. Biri diğerinden "daha güvenilir" diyen görüşler **bireysel yorumdur**; birden fazla biyografiyi karşılaştır.
+
+## Çalışma
+Kendi çalışma planında Fortune'u hangi sırayla okuyacağını yaz: önce kısa ve eleştirel okumaya uygun metin, sonra uzun sistematik metin.`,
+    verification: `**Kaynaklar:** [Wikipedia — Dion Fortune](https://en.wikipedia.org/wiki/Dion_Fortune), [Encyclopedia.com](https://www.encyclopedia.com/people/literature-and-arts/french-literature-biographies/dion-fortune), [Society of the Inner Light](https://en.wikipedia.org/wiki/Society_of_the_Inner_Light). Kaynaklar arasında ölüm tarihi ve topluluğun kuruluş yılı konusunda küçük **farklılıklar** var (Ocak 1946'nın 6'sı/8'i; 1922–1924). Kesin tarih gerekiyorsa biyografilere bak. *Cosmic Doctrine* hakkında ayrıntı verilmedi: araştırmada ayrı bir doğrulayıcı açıklama bulunamadı.`,
+  },
+  "fortune-kabala": {
+    body: `## Kitap
+
+*The Mystical Qabalah* (1935) Fortune'a göre Hayat Ağacı'nı **"Batı Esoterik Geleneği'nin plan şeması"** olarak sunar (Foreword). Yazar, Ağaç'ı "sahip olduğumuz en iyi meditasyon simgesi" diye niteler (1. bölüm, *The Yoga of the West*).
+
+## Bölüm haritası
+
+| Grup | Bölümler |
+|---|---|
+| Yöntem | 1 The Yoga of the West · 2 The Choice of a Path · 3 The Method of the Qabalah · 4 The Unwritten Qabalah |
+| Ağaç'ın yapısı | 5 Negative Existence · 6 Otz Chiim, the Tree of Life · 7 The Three Supernals · 8 The Patterns of the Tree · 9 The Ten Sephiroth in the Four Worlds · 10 The Paths upon the Tree · 11 The Subjective Sephiroth · 12 The Gods upon the Tree · 13 Practical Work upon the Tree · 14 General Considerations |
+| Sephiroth | 15 Kether · 16 Chokmah · 17 Binah · 18 Chesed · 19 Geburah · 20 Tiphareth · 21 The Four Lower Sephiroth · 22 Netzach · 23 Hod · 24 Yesod · 25 Malkuth · 26 The Qliphoth · 27 Conclusion |
+
+## Yazarın yöntemi (okuduğumuz kısımdan)
+
+- Qabalist, "gözün görebileceği somut bir simge" kurar ve **simgeden simgeye** akıl yürütür; Fortune bunu cebire benzetir (3. bölüm).
+- Ağaç "bilim, psikoloji, felsefe ve teolojinin derlemesi" olarak tanıtılır (3. bölüm).
+- Netzach için "Venüs küresi", Yesod için "Ay küresi" ilişkisi anılır (2.–3. bölüm). Kitabın geri kalanında Sephiroth karşılıklarını **kendi metninden** doğrula.
+- Fortune, uygulamanın anahtarlarını vermediğini ve çalışmanın **deneyimli bir öğretmenin kişisel gözetiminde** yapılması gerektiğini belirtir (1. bölüm).
+
+## Eleştirel not
+Fortune'un Ağaç anlatımı **Altın Şafak geleneğine** dayanır (karşılık tabloları için ayrıca Crowley'in *777* kitabıyla karşılaştır). Gelenekler arası farklar (Kabala'nın Yahudi kökenli ve Hermetik/Batı okumaları) bu modülün 5. ünitesinde ele alınmıştı.
+
+## Çalışma
+- Bölüm haritasını kullanarak 4 haftalık okuma planı yap (yöntem → yapı → ilk 5 Sephirah → alt Sephiroth).
+- Fortune'un bir Sephirah anlatımını Crowley'in *777* tablosuyla yan yana koy; farkları not et.`,
+    verification: `**Kaynak:** Kitabın çevrimiçi tam metni ([Global Grey](https://www.globalgreyebooks.com/online-ebooks/dion-fortune_mystical-qabalah_complete-text.html)): bölüm başlıkları ve Foreword–Bölüm 3 ile Bölüm 4'ün başı doğrudan okundu. **Bölüm 5–27'nin içeriği bu derse bilerek yazılmadı** (okunmadı); yalnızca başlıkları verildi. Tam içeriği kendin oku ve gerekirse bu dersi "Düzenle" ile genişlet. Yayın yılı (1935) yayıncı sayfasından.`,
+  },
+  "fortune-psisik": {
+    body: `## Kitap
+
+*Psychic Self-Defence* (1930), Fortune'un kendi deneyimindeki vakalara dayandığını söylediği bir kitaptır. Önsözde psişik saldırıların "genellikle fark edilenden çok daha yaygın" olduğu görüşünü savunur. Bu bir **yazar görüşüdür**; bilimsel olarak ölçülmüş bir bulgu olarak ele alınmaz.
+
+## Yapı
+
+| Bölüm | İçerik (başlıklar) |
+|---|---|
+| 1. Kısım — Saldırı türleri | 1 Signs of Psychic Attack · 2 Analysis of the Nature of Psychic Attack · 3 A Case of Modern Witchcraft · 4 Projection of the Etheric Body · 5 Vampirism · 6 Hauntings · 7 The Pathology of Non-Human Contacts · 8 The Risks Incidental to Ceremonial Magic |
+| 2. Kısım — Ayırıcı tanı | 9 Distinction Between Objective Psychic Attack and Subjective Psychic Disturbance · 10 Non-Occult Dangers of the Black Lodge · 11 The Psychic Element in Mental Disturbance |
+| 3. Kısım — Tanı | 12 Methods Employed in Making a Psychic Attack · 13–14 The Motives of Psychic Attack |
+| 4. Kısım — Savunma | 15 Physical Aspect of Psychic Attack and Defence · 16 Diagnosis of the Nature of an Attack · 17–20 Methods of Defence I–IV · Conclusion |
+
+## Okuduğumuz kısımdan ilkeler (1. bölüm)
+
+- Fortune, "Görünmeyen'in eşiği, yıkanmak için tehlikeli bir kıyıdır" benzetmesini kullanır.
+- Temel kural: **"tanı tedaviden önce gelmelidir."**
+- Saldırıya saldırıyla karşılık verilmemelidir.
+- Görünmeyen'in doğası gereği düşmanca olmadığı, **Sol El Yolu** uygulayıcılarınca "bozulduğunda/saptırıldığında" zararlı hâle geldiği savunulur.
+
+## Eleştirel okuma ve güvenlik
+
+1. Fortune'un **9. bölümde kendisinin yaptığı ayrıma** dikkat et: "objektif saldırı" ile "öznel psişik rahatsızlık". Kitabın kendi çerçevesi bile her şikâyeti psişik saldırıya bağlamamayı öğütler.
+2. Kaygı, uykusuzluk, panik, ses duyma, kendine zarar düşünceleri gibi belirtilerde **ruh sağlığı uzmanına** başvur; bu bir okült yorum meselesi değildir.
+3. Kitabın "savunma yöntemleri" bölümleri bu derste **uygulama talimatı olarak verilmemiştir**; metni kendin oku, gelenek içi bir anlatı olarak değerlendir.
+
+## Çalışma
+- 1. bölümü oku; "belirti listesindeki" her maddenin sıradan (tıbbi, psikolojik, çevresel) açıklamalarını yan sütuna yaz.
+- Fortune'un tanı-önce-tedavi ilkesini kendi çalışma günlüğüne uygula: bir sorunu yorumlamadan önce basit açıklamaları ele.`,
+    verification: `**Kaynak:** Kitabın çevrimiçi tam metni ([Global Grey](https://www.globalgreyebooks.com/online-ebooks/dion-fortune_psychic-self-defense_complete-text.html)); içindekiler listesi, Önsöz ve 1. bölümün ilk kısmı doğrudan okundu, alıntılar oradan. **2–20. bölümler okunmadı**; bu derste yalnızca başlıkları verildi, bu bölümlerin içeriği hakkında iddia yapılmadı. Yayın yılı (1930) yayıncı sayfasından. Psişik saldırı iddiası bilimsel olarak **doğrulanmış değildir**; ders bunu yazarın görüşü olarak sunar.`,
+  },
 };

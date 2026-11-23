@@ -90,6 +90,15 @@ export const occultContent: ModuleContent = {
       qz("Yoğun çalışma sırasında panik veya dissosiyasyon belirirse ne yapmalı?", ["Çalışmayı artırmak", "Ara vermek ve uzmandan destek almak", "Başkalarına anlatmamak", "İlaç kullanmak"], 1),
       qz("Sprengel yazışmaları hakkında doğru ifade hangisidir?", ["Tüm tarihçilerce doğrulanmıştır", "Gerçekliği tartışmalıdır", "Fransızca yazılmıştır", "Crowley'e aittir"], 1),
     ],
+    u12: [
+      qz("Dion Fortune'un doğum adı nedir?", ["Violet Mary Firth", "Mina Mathers", "Annie Besant", "Florence Farr"], 0),
+      qz("Fortune'un kurduğu topluluk sonradan hangi adı almıştır?", ["Society of the Inner Light", "Hermetic Order of the Golden Dawn", "Ordo Templi Orientis", "Theosophical Society"], 0),
+      qz("Fortune'a göre Hayat Ağacı nedir? (The Mystical Qabalah, Foreword)", ["Batı Esoterik Geleneği'nin plan şeması", "Yalnızca bir takvim", "Tarot kartlarının listesi", "Simya reçetesi"], 0),
+      qz("Fortune'un 'simgeden simgeye akıl yürütme' için kullandığı benzetme nedir?", ["Cebir", "Müzik", "Resim", "Mimari"], 0, "3. bölümde sembolün cebirdeki gibi bilinmeyene ulaşmak için kullanıldığını söyler."),
+      qz("Psychic Self-Defence'te vurgulanan temel kural hangisidir?", ["Tanı tedaviden önce gelmelidir", "Saldırıya saldırıyla karşılık verilmelidir", "Her rahatsızlık psişik saldırıdır", "Hiç tanı konmamalıdır"], 0),
+      qz("Kitabın 9. bölümü hangi ayrımı yapar?", ["Objektif psişik saldırı ile öznel psişik rahatsızlık", "Parafin ile soya mumu", "Kabala ile simya", "Gece ile gündüz"], 0),
+      qz("Kaygı, uykusuzluk ve benzeri belirtilerde bu modülün önerdiği ilk adım nedir?", ["Ruh sağlığı uzmanına başvurmak", "Hemen bir ritüel yapmak", "Kimseye anlatmamak", "Kitabı bırakmak"], 0),
+    ],
     u11: [
       qz("5 yıllık yol haritasında ilk yıl neyi hedefler?", ["Ustalık", "Temel okuma ve 365 günlük pratik kaydı", "Grup kurmak", "Kitap yayımlamak"], 1),
       qz("Astroloji modülü hangi yılın çalışmalarıyla entegre edilir?", ["Yıl 1", "Yıl 3", "Yıl 5", "Hiçbiri"], 1),
@@ -101,6 +110,10 @@ export const occultContent: ModuleContent = {
   notIncluded: `## Bu modülde bilinçli olarak eklenmeyenler ve nedenleri
 
 **Yöntem:** Bir bilgi, güvenilir bir kaynakta (akademik/ansiklopedik, birincil metin veya yüklediğin kitaplar) doğrulanamıyorsa ders metnine **olgu olarak** eklenmedi. Gelenek iddiaları "gelenek şöyle anlatır" kalıbıyla, doğrulanmış tarihsel olgulardan ayrı sunuldu.
+
+**Güncelleme (kaynak politikası):** Okültizm ve astrolojide her iddiayı internetten doğrulamak mümkün olmayabilir; bu yüzden tanınmış yazarların (Crowley, Dion Fortune, Lévi, Butler vb.) ve yüklediğin kitapların öğretileri **"yazara göre"** diye atfedilerek öğretilir. Tarihsel olgular ayrıca doğrulama notlarıyla işaretlenir.
+
+**Dion Fortune (12. ünite):** Yalnızca çevrimiçi tam metinde doğrudan okunabilen bölümlerden ders yazıldı. *Mystical Qabalah* bölüm 5–27 ve *Psychic Self-Defence* bölüm 2–20'nin **içeriği** okunmadığı için derse konmadı (yalnızca başlıklar); *Psychic Self-Defence*'in "savunma yöntemleri" talimat olarak verilmedi. *Cosmic Doctrine* ve diğer kitaplar için doğrulanmış bir metin okunmadığından ders yok.
 
 ### Eklenmeyenler
 

@@ -10,6 +10,9 @@ import { leviModule } from "./levi";
 import { auraModule } from "./aura";
 import { eterikCiftModule } from "./eterik-cift";
 import { bedenEnerjiModule } from "./beden-enerji";
+import { plotinosModule } from "./plotinos";
+import { cockrenModule } from "./cockren-simya";
+import { alchemyHanswilleModule } from "./alchemy-entschleierte";
 
 /** Ek modüller: yüklenen her kitap/kaynak için bir iç modül ve internetten bulunan eksik konular. */
 export const EXTRA_MODULES: LearningModule[] = [
@@ -24,4 +27,7 @@ export const EXTRA_MODULES: LearningModule[] = [
   auraModule,
   eterikCiftModule,
   bedenEnerjiModule,
+  plotinosModule,
+  cockrenModule,
+  alchemyHanswilleModule,
 ];

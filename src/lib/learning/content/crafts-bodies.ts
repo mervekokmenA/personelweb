@@ -130,7 +130,7 @@ Aynı kaba 3 tür pul dene (keçe, mantar, silikon); kayma ve çizilme açısın
 | Mum | Özellik |
 |---|---|
 | Parafin | Petrol türevi; farklı erime noktası/sertlik sınıfları; koku taşıma yeteneği genelde iyi |
-| Soya | Bitkisel; kaplı mum için yaygın; frosting ve ıslak nokta sorunları görülebilir |
+| Soya | Bitkisel; kaplı mum için yaygın; buzlanma (frosting) ve ıslak nokta sorunları görülebilir |
 | Stearin | Sert/yağ asidi; parafine eklenince sertlik ve parlaklık artabilir |
 | Karışımlar | Üretici tarafından tasarlanmış karışımlar; kaplı mum veya sütun için farklı ürünler |
 
@@ -195,7 +195,7 @@ Aynı partiden 3 mum: 3, 7 ve 14 gün dinlendir; koku yoğunluğunu kör testle 
 
 | Belirti | Olası neden | Dene |
 |---|---|---|
-| **Frosting** (beyaz kristal görünüm, özellikle bitkisel mumlarda) | Düşük döküm sıcaklığı, hızlı veya düzensiz soğuma | Döküm sıcaklığını/soğutmayı ayarla; estetik bir sorun |
+| **Buzlanma (frosting)** (beyaz kristal görünüm, özellikle bitkisel mumlarda) | Düşük döküm sıcaklığı, hızlı veya düzensiz soğuma | Döküm sıcaklığını/soğutmayı ayarla; estetik bir sorun |
 | **Islak nokta** (mum–kap ayrılması) | Soğuk kap, hızlı soğuma | Kabı ısıt, ortamı sabit tut |
 | **Tünelleme** | İlk yakışta yetersiz erime havuzu, küçük fitil | İlk yakışta havuzun kenarlara ulaşmasını bekle; fitili büyüt |
 | **Çökme/çukur** | Soğurken büzülme | İkinci "ısıl düzeltme" dökümü |
@@ -298,10 +298,10 @@ Yüzey, damar izi ve izin verilen fireyi gözle kontrol et. Tedarikçiden kalın
     body: `## Temel alet seti
 
 - Kesim matı, döner veya maket bıçağı, **metal cetvel**
-- **Pricking iron / delgi** (dikiş delikleri) ve çekiç (veya maul)
+- **Dikiş delgisi (pricking iron) / delgi** (dikiş delikleri) ve çekiç (veya maul)
 - 2 iğne, **mumlu iplik**
-- **Burnisher** (kenar parlatıcı), zımpara
-- **Skiver** (deri inceltme)
+- **Kenar parlatıcı (burnisher)** (kenar parlatıcı), zımpara
+- **İnceltme bıçağı (skiver)** (deri inceltme)
 - Kenar boyası (isteğe bağlı)
 
 ## Başlangıç
@@ -341,7 +341,7 @@ Bir kapak için tek sayfalık çizim yap: parçalar, kat sayısı, dikiş çizgi
 
 - **Keskin bıçak**, metal cetvel, **tek hamle**; kör bıçak kenarı yırtar.
 - Köşeleri **şablonla yuvarla**.
-- **Skiving**: Katlama ve dikiş olan bölgelerde deriyi incelt; kenarın kalın kalmasını önler.
+- **Deri inceltme (skiving)**: Katlama ve dikiş olan bölgelerde deriyi incelt; kenarın kalın kalmasını önler.
 - Kesimden önce **hurda deriyle** dene.
 
 ## Alıştırma
@@ -364,7 +364,7 @@ Aynı boyayı 3 farklı nem düzeyinde dene (kuru, hafif nemli, ıslak) ve sonuc
     body: `## Dikiş çizgisi
 
 1. Kenardan **sabit mesafede** çizgi çiz (genelde birkaç milimetre; derinin kalınlığına göre).
-2. **Pricking iron'u** dik tut; her sırada delikler **hizalı** ve adım **sabit** olmalı.
+2. **Dikiş delgisi (pricking iron)'u** dik tut; her sırada delikler **hizalı** ve adım **sabit** olmalı.
 3. Köşelerde adımı yeniden ayarla (dönüşü kapatacak şekilde).
 
 ## Alıştırma
@@ -372,7 +372,7 @@ Hurda deride 20 cm'lik bir sıra delik aç; adım aralıklarını cetvelle ölç
     verification: `**Kaynak:** [Dodson Designs](https://dodson-designs.com/?p=1424), [Instructables — Deri Dikişi](https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/).`,
   },
   "d-saddle": {
-    body: `## Saddle stitch
+    body: `## Eyer dikişi (saddle stitch)
 
 Her iki uca birer **iğne** takılır; aynı delikten **karşılıklı** geçilir. Böylece bir iplik kopsa bile dikiş tamamen çözülmez.
 
@@ -393,7 +393,7 @@ Aynı dikişi 5 kez tekrarla; ön ve arka yüzün eşitliğini ve gerginliğini 
 
 1. Kenarı **kademeli zımparala** (kaba → ince).
 2. **Hafifçe nemlendir**.
-3. **Burnisher** ile sürterek parlat/kapat.
+3. **Kenar parlatıcı (burnisher)** ile sürterek parlat/kapat.
 4. İstersen **kenar boyası** uygula.
 
 Düzgün kenar, profesyonel görünümü en çok belirleyen kısımdır.

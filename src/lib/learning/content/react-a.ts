@@ -684,10 +684,10 @@ UI → Page → Feature component/hook → Query hook → API servisi → Axios 
 \`\`\`
 Üst katman alt katmanı bilir; tersi olmaz. UI bileşeni doğrudan \`axios\` çağırmaz.
 
-## Server state ve client state
+## Server state ve istemci durumu (client state)
 
 - **Server state** (ürün listesi, siparişler): TanStack Query.
-- **UI state** (sidebar açık mı, modal): useState/Zustand.
+- **arayüz durumu (UI state)** (sidebar açık mı, modal): useState/Zustand.
 - Server verisini Zustand'a **kopyalama**.
 
 ## ADR (Mimari Karar Kaydı)

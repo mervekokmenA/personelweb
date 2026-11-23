@@ -42,7 +42,7 @@ export const reactContent: ModuleContent = {
     ],
     u5: [
       qz("Yeni bir kaynak oluşturan POST isteği başarıyla tamamlandığında genelde hangi durum kodu döner?", ["201 Created", "204 No Content", "301", "404"], 0),
-      qz("Sunucu durumu (server state) için hangisi uygun bir araçtır?", ["TanStack Query", "Yalnızca useState", "CSS değişkenleri", "localStorage"], 0),
+      qz("Sunucu durumu (sunucu durumu (server state)) için hangisi uygun bir araçtır?", ["TanStack Query", "Yalnızca useState", "CSS değişkenleri", "localStorage"], 0),
       qz("TanStack Query'de `staleTime` neyi belirler?", ["Verinin ne kadar süre taze sayılacağını", "Önbellekte kalma süresini", "İstek zaman aşımını", "Yeniden deneme sayısını"], 0, "Önbellekte kalma süresi gcTime'dır (v5)."),
       qz("Mutasyondan sonra liste neden `invalidateQueries` ile yenilenir?", ["Eski veriyi bayat işaretleyip güncel veriyi çekmek için", "Sayfayı kapatmak için", "State'i sıfırlamak için", "Cookie silmek için"], 0),
       qz("Sunucudan gelen listeyi Zustand store'a kopyalamak neden kötü bir fikirdir?", ["İkinci bir doğruluk kaynağı oluşur, senkron dışı kalır", "Zustand listeleri desteklemez", "Daha hızlıdır", "Güvenlik açığı oluşturur"], 0),

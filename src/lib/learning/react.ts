@@ -41,7 +41,7 @@ export const reactModule: LearningModule = {
   icon: "code",
   competencies: [
     "Sıfırdan bir React 19 + TypeScript uygulamasını mimarisini kurarak (feature-driven yapı) ayağa kaldırabilirim.",
-    "Server state (TanStack Query) ile client/UI state'i ayırır, gereksiz global state kullanmam.",
+    "Server state (TanStack Query) ile client/arayüz durumu (UI state)'i ayırır, gereksiz global state kullanmam.",
     "Formları (React Hook Form + Zod) erişilebilir ve doğrulamalı şekilde yazarım.",
     "REST API tasarlar, Node.js/Express veya Next.js route handler/server action ile PostgreSQL üzerinde uygularım.",
     "Kimlik doğrulama (JWT access/refresh veya oturum çerezi), RBAC ve temel güvenlik açıklarını (XSS, CSRF, SQLi, CORS) kavrar ve önlerim.",
@@ -170,8 +170,8 @@ export const reactModule: LearningModule = {
               tasks: ["`/api/products` ve `/api/orders` için OpenAPI/YAML sözleşmesi yaz (alan adı değişikliği senaryosu dahil)."],
               resources: [web("MDN — HTTP", "https://developer.mozilla.org/en-US/docs/Web/HTTP")],
             }),
-            lesson("axios-query", "Axios + TanStack Query", "Query key fabrikası, staleTime/gcTime, invalidation, mutation yaşam döngüsü, optimistic update, hata/yükleme/boş durumları.", {
-              tasks: ["productKeys fabrikası, useProducts/useCreateProduct hook'ları; server state'i Zustand'a kopyalama."],
+            lesson("axios-query", "Axios + TanStack Query", "Query key fabrikası, staleTime/gcTime, invalidation, mutation yaşam döngüsü, iyimser güncelleme (optimistic update), hata/yükleme/boş durumları.", {
+              tasks: ["productKeys fabrikası, useProducts/useCreateProduct hook'ları; sunucu durumu (server state)'i Zustand'a kopyalama."],
               resources: [tanstack],
             }),
             lesson("client-state", "Client state: Zustand ve Context", "Yalnızca UI durumu için küçük global store; neyin global olmaması gerektiği.", {
@@ -320,7 +320,7 @@ export const reactModule: LearningModule = {
       features: ["Kimlik doğrulama + JWT refresh + RBAC (ADMIN/SALES/OPERATIONS/VIEWER)", "Ürün CRUD (arama, kategori, aktif/pasif, stok, fiyat)", "Sipariş oluşturma, durum değiştirme, sayfalama/filtre", "XSS/CSRF/SQLi/CORS laboratuvarları", "Responsive + çok tarayıcılı test matrisi", "Unit + component + E2E testleri"],
       skills: ["mimari", "TanStack Query", "Node/SQL", "güvenlik", "test", "performans"],
       steps: ["Gün 1–2: HTML/CSS/JS temelleri ve repo", "Gün 3–5: React + TS + Router + Axios", "Gün 6–8: Node API, SQL, ürün/sipariş CRUD", "Gün 9–10: Auth, RBAC, güvenlik lab'ı", "Gün 11–12: Performans, responsive, a11y", "Gün 13–14: Testler, Git/PR akışı, production build"],
-      done: ["Definition of Done maddelerinin tamamı sağlanıyor (strict TS, lint temiz, testler, loading/error/empty durumları, izin kontrolü)", "Final demo akışı kesintisiz çalışıyor"],
+      done: ["Definition of Done maddelerinin tamamı sağlanıyor (strict TS, lint temiz, testler, yükleme/hata/boş durumları, izin kontrolü)", "Final demo akışı kesintisiz çalışıyor"],
     },
     {
       id: "blog",

@@ -5,16 +5,16 @@ const makeConcrete = web("Make: Beton Mumluk (Concrete Candleholder)", "https://
 const instrConcrete = web("Instructables — Kendin Yap Beton Çay Mumu Tutucusu (DIY Concrete Tea Light Candle Holder)", "https://www.instructables.com/DIY-Concrete-Tea-Light-Candle-Holder/");
 const instrCement = web("Instructables — Çimentodan Mumluk Nasıl Yapılır (How to Make Cement Candle Holders)", "https://www.instructables.com/How-to-Make-Cement-Candle-Holders");
 const waxGuide = web("CandleScience — Mum Rehberi (Wax Guide)", "https://www.candlescience.com/learning/wax-guide/", "Mum türleri, erime noktası ve koku yükü; tedarikçi verisi.");
-const soyTrouble = web("CandleScience — Soya Mumu Sorun Giderme (Soy Wax Troubleshooting)", "https://candlescience.com/wax/soy-wax-trouble-shooting-guide/", "Frosting, ıslak noktalar, çökme, tünelleme.");
+const soyTrouble = web("CandleScience — Soya Mumu Sorun Giderme (Soy Wax Troubleshooting)", "https://candlescience.com/wax/soy-wax-trouble-shooting-guide/", "Buzlanma (frosting), ıslak noktalar, çökme, tünelleme.");
 const containerTips = web("Candle Shack — Kaplı Mum İpuçları (Container Candle Tips)", "https://candle-shack.com/pages/container-candle-tips-and-tricks");
 const burnTest = web("Craftybase — Basit Mum Yanma Testi (Simple Candle Burn Test)", "https://craftybase.com/blog/how-to-conduct-a-simple-candle-burn-test", "Yanma testi protokolü (ASTM yönteminin özeti değildir; standardı ayrıca doğrula).");
 const astm = web("ANSI — Mumlar için Güvenlik Standartları (ASTM F2417, F2058…)", "https://webstore.ansi.org/industry/safety-standards/consumer-products/candles", "Standartlar ücretli; hangi standardın neyi kapsadığını öğrenmek için.");
 const maliyetPage = { title: "Bu sitede: Maliyet Hesaplama sayfası", url: "/maliyet", kind: "araç" as const, note: "Parafin/stearin/boya kalemlerini girip birim maliyet ve satış fiyatını hesapla.", free: true };
 
-const leatherMichaels = video("Michaels — Deri Defter Kapağı (Leather Journal Cover; başlangıç sınıfı, ~1 saat)", "https://www.michaels.com/class/vod/leather-journal-cover-1081916843", "Şablon, damga, boyama ve saddle stitch.");
+const leatherMichaels = video("Michaels — Deri Defter Kapağı (Leather Journal Cover; başlangıç sınıfı, ~1 saat)", "https://www.michaels.com/class/vod/leather-journal-cover-1081916843", "Şablon, damga, boyama ve eyer dikişi (saddle stitch).");
 const leatherDodson = web("Dodson Designs — Deri Defter Eğitimi (Leather Journal Tutorial)", "https://dodson-designs.com/?p=1424", "Boş defteri ölçüp kapak çıkarma, iplik uzunluğu hesabı.");
 const leatherInstr = web("Instructables — El Dikişi Deri Defter Kılıfı (Hand Stitched Leather Notebook Cover)", "https://www.instructables.com/Hand-Stitched-Leather-Notebook-Cover");
-const leatherStitch = web("Instructables — Deri Dikişi: Üç Yöntem (Leather Stitching: How-To Three Ways)", "https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/", "Saddle stitch ve diğer dikiş yöntemleri.");
+const leatherStitch = web("Instructables — Deri Dikişi: Üç Yöntem (Leather Stitching: How-To Three Ways)", "https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/", "Eyer dikişi (saddle stitch) ve diğer dikiş yöntemleri.");
 const leatherField = web("Instructables — Field Notes Deri Kılıf (Field Notes Leather Cover)", "https://instructables.com/Field-Notes-Leather-Cover", "Boyama, kenar bitirme, kalem tutacağı.");
 const weAllSew = web("We All Sew — Deri Defter Kılıfı Nasıl Yapılır (How to Make a Leather Notebook Cover)", "https://weallsew.com/how-to-make-a-leather-notebook-cover/");
 const tandyBlog = web("Tandy Leather Blog — Üç Katlı Deri Günlük Kılıfı (Trifold Leather Journal Cover)", "https://tandyleather.com/blogs/tandy-blog/gift-idea-trifold-leather-journal-cover-with-theoldpinkhouse");
@@ -33,10 +33,10 @@ export const craftsModule: LearningModule = {
   competencies: [
     "Beton/mum üretiminde her partiyi kayıt altına alan (reçete, sıcaklık, kürleme, fitil, test sonucu) tekrarlanabilir bir süreç yürütürüm.",
     "Farklı kalıpları tasarlar/seçer, yüzey hatalarını (hava kabarcığı, çatlak, lekelenme) nedenleriyle birlikte çözerim.",
-    "Mum türünü, fitil boyutunu ve koku yükünü yanma testiyle belirler, frosting/tünelleme/çökme gibi sorunları giderebilirim.",
+    "Mum türünü, fitil boyutunu ve koku yükünü yanma testiyle belirler, buzlanma (frosting)/tünelleme/çökme gibi sorunları giderebilirim.",
     "Güvenlik (toz, yanık, yangın) ve etiketleme gerekliliklerini bilir, ürünlerime uygularım.",
     "Deri türünü (bitkisel tabaklı/krom), kalınlığı ve işleme uygunluğunu seçebilir; kalıp çıkarıp kesim ve dikişi temiz yapabilirim.",
-    "Saddle stitch'i düzgün sıra, tutarlı adım ve doğru iplik boyuyla yapar, kenarları profesyonel bitiririm.",
+    "Eyer dikişi (saddle stitch)'i düzgün sıra, tutarlı adım ve doğru iplik boyuyla yapar, kenarları profesyonel bitiririm.",
     "Her ürün için gerçek birim maliyeti, fireyi ve işçilik süresini hesaplayıp fiyatlandırabilirim.",
     "Ürün serisi (en az 3 model) geliştirip fotoğraf, ambalaj ve satış kanalı hazırlayabilirim.",
     "Müşteri geri bildirimini ve iadeleri kalite sürecine dahil ederim.",
@@ -119,7 +119,7 @@ export const craftsModule: LearningModule = {
           title: "5. Sorun Giderme",
           description: "En sık yaşanan hatalar ve nedenleri.",
           lessons: [
-            lesson("b-sorun", "Frosting, ıslak noktalar, tünelleme, çökme, fitil sorunları", "Frosting bitkisel mumlarda estetik bir sorundur; düşük döküm sıcaklığı ve yavaş soğutma azaltır. Mum–kap ayrılması soğuk kap veya hızlı soğumadan olur. Tünelleme genelde ilk yakışta yetersiz erime havuzundan olur.", {
+            lesson("b-sorun", "Buzlanma (frosting), ıslak noktalar, tünelleme, çökme, fitil sorunları", "Buzlanma (frosting) bitkisel mumlarda estetik bir sorundur; düşük döküm sıcaklığı ve yavaş soğutma azaltır. Mum–kap ayrılması soğuk kap veya hızlı soğumadan olur. Tünelleme genelde ilk yakışta yetersiz erime havuzundan olur.", {
               tasks: ["Her sorun için 'belirti → olası neden → deneyeceğin değişiklik → sonuç' tablosu oluştur; 5 farklı döküm sorununu bilinçli olarak yeniden üretip çöz."],
               resources: [soyTrouble, containerTips],
             }),
@@ -146,7 +146,7 @@ export const craftsModule: LearningModule = {
     {
       id: "deri-defter",
       title: "Deri Defter Kılıfı Yapımı",
-      description: "Ölçüden kalıba, kesimden saddle stitch dikişe ve kenar bitirmeye kadar tam süreç.",
+      description: "Ölçüden kalıba, kesimden eyer dikişi (saddle stitch) dikişe ve kenar bitirmeye kadar tam süreç.",
       units: [
         {
           id: "d1",
@@ -157,7 +157,7 @@ export const craftsModule: LearningModule = {
               tasks: ["En az 3 farklı deri parçasıyla test: kesim, kenar, boyama, ıslatma, bükülme dayanımı kıyası.", "Deriyi hangi tedarikçiden aldığını, kalınlığını ve fiyatını kaydet."],
               resources: [tandy, leatherBook],
             }),
-            lesson("d-alet", "Temel alet seti", "Kesim matı, döner/maket bıçağı, metal cetvel, delgi/iğne çiziği (pricking iron), 2 iğne, mumlu iplik, kenar parlatıcı (burnisher), zımpara, skiver (inceltme), çekiç/delgi. Başlangıçta küçük bir set yeterli.", {
+            lesson("d-alet", "Temel alet seti", "Kesim matı, döner/maket bıçağı, metal cetvel, dikiş delgisi (pricking iron), 2 iğne, mumlu iplik, kenar parlatıcı (kenar parlatıcı (burnisher)), zımpara, inceltme bıçağı (skiver) (inceltme), çekiç/delgi. Başlangıçta küçük bir set yeterli.", {
               resources: [leatherMichaels, leatherDodson],
             }),
           ],
@@ -181,7 +181,7 @@ export const craftsModule: LearningModule = {
           title: "3. Kesim ve Hazırlık",
           description: "Temiz kesim ve doğru inceltme.",
           lessons: [
-            lesson("d-kesim", "Kesim: düz çizgi, köşe yuvarlama, skiving", "Keskin bıçak ve tek hamlede kesim; köşeleri şablonla yuvarla; dikişten ve katlamalardan önce kenarları skiver ile inceltme.", {
+            lesson("d-kesim", "Kesim: düz çizgi, köşe yuvarlama, deri inceltme (skiving)", "Keskin bıçak ve tek hamlede kesim; köşeleri şablonla yuvarla; dikişten ve katlamalardan önce kenarları inceltme bıçağı (skiver) ile inceltme.", {
               tasks: ["10 kez aynı parçayı kes; kenar dikliği ve boyut sapmasını ölç."],
               resources: [leatherMichaels, weAllSew],
             }),
@@ -199,7 +199,7 @@ export const craftsModule: LearningModule = {
               tasks: ["Hurda deri üzerinde 20 cm'lik sıra delik aç; adım aralıklarını cetvelle ölç."],
               resources: [leatherDodson, leatherStitch],
             }),
-            lesson("d-saddle", "Saddle stitch tekniği", "İki iğneyle aynı delikten karşılıklı geçiş; iplik boyu dikiş uzunluğunun ≥3 katı (kalın deride ≥4 kat). Sıra ve gerginlik tutarlı olmalı; sonda geri dikiş ile sabitle.", {
+            lesson("d-saddle", "Eyer dikişi (saddle stitch) tekniği", "İki iğneyle aynı delikten karşılıklı geçiş; iplik boyu dikiş uzunluğunun ≥3 katı (kalın deride ≥4 kat). Sıra ve gerginlik tutarlı olmalı; sonda geri dikiş ile sabitle.", {
               tasks: ["Aynı dikişi 5 kez tekrarla; her seferinde ön ve arka yüzeyin eşitliğini ve gerginliğini değerlendir."],
               resources: [leatherStitch, leatherInstr],
             }),
@@ -210,7 +210,7 @@ export const craftsModule: LearningModule = {
           title: "5. Kenar Bitirme ve Final",
           description: "Profesyonel ile amatörü ayıran kısım.",
           lessons: [
-            lesson("d-kenar", "Kenar bitirme: zımpara, nem, parlatma", "Kenarları kademeli zımparala, hafifçe nemlendir ve burnisher ile parlat; istenirse kenar boyası uygula.", {
+            lesson("d-kenar", "Kenar bitirme: zımpara, nem, parlatma", "Kenarları kademeli zımparala, hafifçe nemlendir ve kenar parlatıcı (burnisher) ile parlat; istenirse kenar boyası uygula.", {
               tasks: ["3 yöntemi karşılaştır: sadece zımpara, nem+parlatma, kenar boyası; sonuçlara göre standardını seç."],
               resources: [leatherField, leatherMichaels],
             }),
@@ -261,10 +261,10 @@ export const craftsModule: LearningModule = {
       title: "Deri Defter Kılıfı — A5 Temel Model",
       level: "Başlangıç",
       hours: 12,
-      description: "Kalıp, kesim, saddle stitch ve kenar bitirme ile ilk ürün.",
+      description: "Kalıp, kesim, eyer dikişi (saddle stitch) ve kenar bitirme ile ilk ürün.",
       features: ["Kâğıt prototip → deri", "Düzgün dikiş", "Parlatılmış kenar"],
-      skills: ["kalıp", "kesim", "saddle stitch", "kenar bitirme"],
-      steps: ["Ölçü ve kalıp", "Kesim ve skiving", "Delik açma", "Dikiş", "Kenar ve bitirme"],
+      skills: ["kalıp", "kesim", "eyer dikişi (saddle stitch)", "kenar bitirme"],
+      steps: ["Ölçü ve kalıp", "Kesim ve deri inceltme (skiving)", "Delik açma", "Dikiş", "Kenar ve bitirme"],
       done: ["Dikiş adımları eşit", "Defter rahat çıkıp giriyor", "Kenarlarda tüylenme yok"],
     },
     {

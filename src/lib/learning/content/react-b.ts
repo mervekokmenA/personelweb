@@ -40,7 +40,7 @@ Tek tip hata modeli arayüzde anlamlı mesaj göstermeyi kolaylaştırır.
     verification: `**Kaynak:** [MDN — HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP). Durum kodu ve yöntem semantiği HTTP spesifikasyonu (RFC 9110) ile uyumludur; REST tasarım kuralları yaygın pratiklerdir, tek bir resmi standart değildir.`,
   },
   "axios-query": {
-    body: `## TanStack Query ile server state
+    body: `## TanStack Query ile sunucu durumu (server state)
 
 \`\`\`tsx
 export const productKeys = {
@@ -71,7 +71,7 @@ export function useCreateProduct() {
 - **staleTime**: Veri ne kadar süre "taze" sayılır (bu sürede yeniden istek atılmaz).
 - **gcTime**: Kullanılmayan veri önbellekte ne kadar kalır.
 - **invalidate**: Mutasyondan sonra ilgili sorguları bayat işaretleyip yeniden çek.
-- **Optimistic update**: Sunucu yanıtı gelmeden arayüzü güncelle, hata olursa geri al.
+- **İyimser güncelleme (optimistic update)**: Sunucu yanıtı gelmeden arayüzü güncelle, hata olursa geri al.
 
 ## Durumlar
 \`isPending\`, \`isError\`, boş liste, kısmi veri — hepsini tasarla (yükleme iskeleti, hata + tekrar dene, boş durum).
@@ -81,7 +81,7 @@ productKeys fabrikası, useProducts/useCreateProduct/useUpdateProduct yaz; ürü
     verification: `**Kaynak:** [TanStack Query dokümantasyonu](https://tanstack.com/query/latest). \`isPending\` ve \`gcTime\` adlandırması v5'tir (v4'te \`isLoading\`/\`cacheTime\`); kullandığın sürümü kontrol et.`,
   },
   "client-state": {
-    body: `## Client/UI state
+    body: `## İstemci/arayüz durumu (client/arayüz durumu (UI state))
 
 Yalnızca **arayüze ait** küçük global durumlar: sidebar, modal, tablo yoğunluğu, tema.
 
@@ -505,7 +505,7 @@ jobs:
 \`\`\`
 
 ## Tanım: "Bitti" (Definition of Done)
-TS hatasız, lint temiz, ilgili testler var, loading/error/empty durumları, yetki kontrolü, anlamlı hata mesajı, production build başarılı.
+TS hatasız, lint temiz, ilgili testler var, yükleme/hata/boş durumları, yetki kontrolü, anlamlı hata mesajı, production build başarılı.
 
 ## Alıştırma
 Projene CI ekle; bir PR'da lint hatası bırakıp CI'ın engellemesini gör.`,
@@ -514,7 +514,7 @@ Projene CI ekle; bir PR'da lint hatası bırakıp CI'ın engellemesini gör.`,
   perf: {
     body: `## Ölç → optimize et → tekrar ölç
 
-**Core Web Vitals:** LCP (yükleme), INP (etkileşim), CLS (görsel kayma).
+**Temel Web Metrikleri (Core Web Vitals):** LCP (yükleme), INP (etkileşim), CLS (görsel kayma).
 
 ## Sık kazanımlar
 

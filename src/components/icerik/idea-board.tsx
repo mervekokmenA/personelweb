@@ -1,14 +1,148 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Trash2, ChevronDown, Copy, Check } from "lucide-react";
+import { Trash2, ChevronDown, Copy, Check, Pencil, Plus } from "lucide-react";
 import {
   cycleContentIdeaStatus,
   deleteContentIdea,
   deleteSelectedContentIdeas,
   deleteFilteredContentIdeas,
+  updateContentTranscript,
+  addContentTranscript,
+  deleteContentTranscript,
 } from "@/app/icerik/actions";
 import { StatusBadge } from "@/components/icerik/status-badge";
+
+interface Transcript {
+  id: string;
+  style: string;
+  text: string;
+}
+
+/** Tek bir transkripti gösterir; "Düzenle" ile stil adı ve metin yerinde düzenlenir. */
+function TranscriptCard({
+  t,
+  copied,
+  onCopy,
+}: {
+  t: Transcript;
+  copied: boolean;
+  onCopy: () => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [style, setStyle] = useState(t.style);
+  const [text, setText] = useState(t.text);
+  const [pending, startTransition] = useTransition();
+
+  function save() {
+    const fd = new FormData();
+    fd.set("id", t.id);
+    fd.set("style", style);
+    fd.set("text", text);
+    startTransition(async () => {
+      await updateContentTranscript(fd);
+      setEditing(false);
+    });
+  }
+
+  function remove() {
+    if (!window.confirm("Bu transkript silinsin mi?")) return;
+    const fd = new FormData();
+    fd.set("id", t.id);
+    startTransition(() => deleteContentTranscript(fd));
+  }
+
+  if (editing) {
+    return (
+      <div className="ag-transcript flex flex-col gap-2">
+        <input value={style} onChange={(e) => setStyle(e.target.value)} placeholder="Tarz adı" className="ag-input" />
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          rows={10}
+          className="ag-input w-full text-sm leading-relaxed"
+          style={{ borderRadius: "1rem" }}
+        />
+        <div className="flex justify-end gap-2">
+          <button type="button" onClick={() => { setStyle(t.style); setText(t.text); setEditing(false); }} className="ag-btn ag-btn-outline">
+            İptal
+          </button>
+          <button type="button" onClick={save} disabled={pending || !text.trim()} className="ag-btn ag-btn-dark">
+            {pending ? "Kaydediliyor…" : "Kaydet"}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="ag-transcript">
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <span className="ag-pill">{t.style}</span>
+        <div className="flex gap-1.5">
+          <button type="button" onClick={onCopy} className="ag-icon-btn" aria-label="Transkripti kopyala" title="Kopyala">
+            {copied ? <Check size={14} /> : <Copy size={14} />}
+          </button>
+          <button type="button" onClick={() => setEditing(true)} className="ag-icon-btn" aria-label="Transkripti düzenle" title="Düzenle">
+            <Pencil size={14} />
+          </button>
+          <button type="button" onClick={remove} disabled={pending} className="ag-icon-btn" aria-label="Transkripti sil" title="Sil">
+            <Trash2 size={14} />
+          </button>
+        </div>
+      </div>
+      <p className="whitespace-pre-line text-sm leading-relaxed">{t.text}</p>
+    </div>
+  );
+}
+
+/** Fikre yeni bir transkript ekleme formu. */
+function AddTranscript({ ideaId }: { ideaId: string }) {
+  const [open, setOpen] = useState(false);
+  const [style, setStyle] = useState("");
+  const [text, setText] = useState("");
+  const [pending, startTransition] = useTransition();
+
+  function save() {
+    const fd = new FormData();
+    fd.set("ideaId", ideaId);
+    fd.set("style", style);
+    fd.set("text", text);
+    startTransition(async () => {
+      await addContentTranscript(fd);
+      setStyle("");
+      setText("");
+      setOpen(false);
+    });
+  }
+
+  if (!open) {
+    return (
+      <button type="button" onClick={() => setOpen(true)} className="ag-transcript-toggle">
+        <Plus size={14} /> Transkript ekle
+      </button>
+    );
+  }
+  return (
+    <div className="ag-transcript flex flex-col gap-2">
+      <input value={style} onChange={(e) => setStyle(e.target.value)} placeholder="Tarz adı (örn. Hikaye anlatımı)" className="ag-input" />
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        rows={8}
+        placeholder="Transkript metni..."
+        className="ag-input w-full text-sm leading-relaxed"
+        style={{ borderRadius: "1rem" }}
+      />
+      <div className="flex justify-end gap-2">
+        <button type="button" onClick={() => setOpen(false)} className="ag-btn ag-btn-outline">İptal</button>
+        <button type="button" onClick={save} disabled={pending || !text.trim()} className="ag-btn ag-btn-dark">
+          {pending ? "Ekleniyor…" : "Ekle"}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export interface BoardIdea {
   id: string;
@@ -166,39 +300,26 @@ export function IdeaBoard({
                   </button>
                 </form>
               </div>
-              {idea.transcripts.length > 0 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => toggleOpen(idea.id)}
-                    aria-expanded={isOpen}
-                    className="ag-transcript-toggle"
-                  >
-                    <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
-                    {isOpen ? "Transkripti gizle" : `Transkripti göster (${idea.transcripts.length})`}
-                  </button>
-                  {isOpen && (
-                    <div className="grid gap-3 lg:grid-cols-2">
-                      {idea.transcripts.map((t) => (
-                        <div key={t.id} className="ag-transcript">
-                          <div className="mb-2 flex items-center justify-between gap-2">
-                            <span className="ag-pill">{t.style}</span>
-                            <button
-                              type="button"
-                              onClick={() => copyText(t.id, t.text)}
-                              className="ag-icon-btn"
-                              aria-label="Transkripti kopyala"
-                              title="Kopyala"
-                            >
-                              {copied === t.id ? <Check size={14} /> : <Copy size={14} />}
-                            </button>
-                          </div>
-                          <p className="text-sm leading-relaxed">{t.text}</p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </>
+              <button
+                type="button"
+                onClick={() => toggleOpen(idea.id)}
+                aria-expanded={isOpen}
+                className="ag-transcript-toggle"
+              >
+                <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                {isOpen
+                  ? "Transkripti gizle"
+                  : idea.transcripts.length > 0
+                    ? `Transkripti göster (${idea.transcripts.length})`
+                    : "Transkript ekle"}
+              </button>
+              {isOpen && (
+                <div className="grid gap-3 lg:grid-cols-2">
+                  {idea.transcripts.map((t) => (
+                    <TranscriptCard key={t.id} t={t} copied={copied === t.id} onCopy={() => copyText(t.id, t.text)} />
+                  ))}
+                  <AddTranscript ideaId={idea.id} />
+                </div>
               )}
             </div>
           );

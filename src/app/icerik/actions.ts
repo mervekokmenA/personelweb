@@ -112,3 +112,28 @@ export async function importDocContentIdeas() {
   });
   revalidatePath("/icerik");
 }
+
+export async function updateContentTranscript(formData: FormData) {
+  const id = String(formData.get("id"));
+  const style = String(formData.get("style") ?? "").trim() || "Transkript";
+  const text = String(formData.get("text") ?? "").trim();
+  if (!id || !text) return;
+  await prisma.contentTranscript.update({ where: { id }, data: { style, text } });
+  revalidatePath("/icerik");
+}
+
+export async function addContentTranscript(formData: FormData) {
+  const ideaId = String(formData.get("ideaId"));
+  const style = String(formData.get("style") ?? "").trim() || "Transkript";
+  const text = String(formData.get("text") ?? "").trim();
+  if (!ideaId || !text) return;
+  const order = await prisma.contentTranscript.count({ where: { ideaId } });
+  await prisma.contentTranscript.create({ data: { ideaId, style, text, order } });
+  revalidatePath("/icerik");
+}
+
+export async function deleteContentTranscript(formData: FormData) {
+  const id = String(formData.get("id"));
+  await prisma.contentTranscript.delete({ where: { id } });
+  revalidatePath("/icerik");
+}

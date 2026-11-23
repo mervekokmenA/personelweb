@@ -17,6 +17,8 @@ import { elementBuyuculuguModule } from "./element-buyuculugu";
 import { crowleyModule } from "./crowley-turkce";
 import { dortElementModule } from "./dort-element-homeopati";
 import { butlerMagicianModule } from "./butler-magician";
+import { lirvianModule } from "./lirvian";
+import { elementlerKisaModule } from "./elementler-kisa";
 
 /** Ek modüller: yüklenen her kitap/kaynak için bir iç modül ve internetten bulunan eksik konular. */
 export const EXTRA_MODULES: LearningModule[] = [
@@ -38,4 +40,6 @@ export const EXTRA_MODULES: LearningModule[] = [
   crowleyModule,
   dortElementModule,
   butlerMagicianModule,
+  lirvianModule,
+  elementlerKisaModule,
 ];

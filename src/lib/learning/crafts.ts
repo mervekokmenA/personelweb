@@ -1,23 +1,23 @@
 import type { LearningModule } from "./types";
 import { lesson, web, book, video } from "./helpers";
 
-const makeConcrete = web("Make: Concrete Candleholder", "https://makezine.com/article/craft/make-projects-concrete-candleholder/", "Kalıp, döküm ve bitirme için adım adım proje.");
-const instrConcrete = web("Instructables — DIY Concrete Tea Light Candle Holder", "https://www.instructables.com/DIY-Concrete-Tea-Light-Candle-Holder/");
-const instrCement = web("Instructables — How to Make Cement Candle Holders", "https://www.instructables.com/How-to-Make-Cement-Candle-Holders");
-const waxGuide = web("CandleScience — Mum Mumu Rehberi", "https://www.candlescience.com/learning/wax-guide/", "Mum türleri, erime noktası ve koku yükü; tedarikçi verisi.");
-const soyTrouble = web("CandleScience — Soya Mumu Sorun Giderme", "https://candlescience.com/wax/soy-wax-trouble-shooting-guide/", "Frosting, ıslak noktalar, çökme, tünelleme.");
-const containerTips = web("Candle Shack — Kaplı Mum İpuçları", "https://candle-shack.com/pages/container-candle-tips-and-tricks");
-const burnTest = web("Craftybase — Basit Mum Yanma Testi", "https://craftybase.com/blog/how-to-conduct-a-simple-candle-burn-test", "Yanma testi protokolü (ASTM yönteminin özeti değildir; standardı ayrıca doğrula).");
+const makeConcrete = web("Make: Beton Mumluk (Concrete Candleholder)", "https://makezine.com/article/craft/make-projects-concrete-candleholder/", "Kalıp, döküm ve bitirme için adım adım proje.");
+const instrConcrete = web("Instructables — Kendin Yap Beton Çay Mumu Tutucusu (DIY Concrete Tea Light Candle Holder)", "https://www.instructables.com/DIY-Concrete-Tea-Light-Candle-Holder/");
+const instrCement = web("Instructables — Çimentodan Mumluk Nasıl Yapılır (How to Make Cement Candle Holders)", "https://www.instructables.com/How-to-Make-Cement-Candle-Holders");
+const waxGuide = web("CandleScience — Mum Rehberi (Wax Guide)", "https://www.candlescience.com/learning/wax-guide/", "Mum türleri, erime noktası ve koku yükü; tedarikçi verisi.");
+const soyTrouble = web("CandleScience — Soya Mumu Sorun Giderme (Soy Wax Troubleshooting)", "https://candlescience.com/wax/soy-wax-trouble-shooting-guide/", "Frosting, ıslak noktalar, çökme, tünelleme.");
+const containerTips = web("Candle Shack — Kaplı Mum İpuçları (Container Candle Tips)", "https://candle-shack.com/pages/container-candle-tips-and-tricks");
+const burnTest = web("Craftybase — Basit Mum Yanma Testi (Simple Candle Burn Test)", "https://craftybase.com/blog/how-to-conduct-a-simple-candle-burn-test", "Yanma testi protokolü (ASTM yönteminin özeti değildir; standardı ayrıca doğrula).");
 const astm = web("ANSI — Mumlar için Güvenlik Standartları (ASTM F2417, F2058…)", "https://webstore.ansi.org/industry/safety-standards/consumer-products/candles", "Standartlar ücretli; hangi standardın neyi kapsadığını öğrenmek için.");
 const maliyetPage = { title: "Bu sitede: Maliyet Hesaplama sayfası", url: "/maliyet", kind: "araç" as const, note: "Parafin/stearin/boya kalemlerini girip birim maliyet ve satış fiyatını hesapla.", free: true };
 
-const leatherMichaels = video("Michaels — Deri Defter Kapağı (başlangıç sınıfı, ~1 saat)", "https://www.michaels.com/class/vod/leather-journal-cover-1081916843", "Şablon, damga, boyama ve saddle stitch.");
-const leatherDodson = web("Dodson Designs — Leather Journal Tutorial", "https://dodson-designs.com/?p=1424", "Boş defteri ölçüp kapak çıkarma, iplik uzunluğu hesabı.");
-const leatherInstr = web("Instructables — Hand Stitched Leather Notebook Cover", "https://www.instructables.com/Hand-Stitched-Leather-Notebook-Cover");
-const leatherStitch = web("Instructables — Leather Stitching: How-To Three Ways", "https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/", "Saddle stitch ve diğer dikiş yöntemleri.");
-const leatherField = web("Instructables — Field Notes Leather Cover", "https://instructables.com/Field-Notes-Leather-Cover", "Boyama, kenar bitirme, kalem tutacağı.");
-const weAllSew = web("We All Sew — How to Make a Leather Notebook Cover", "https://weallsew.com/how-to-make-a-leather-notebook-cover/");
-const tandyBlog = web("Tandy Leather Blog — Trifold Leather Journal Cover", "https://tandyleather.com/blogs/tandy-blog/gift-idea-trifold-leather-journal-cover-with-theoldpinkhouse");
+const leatherMichaels = video("Michaels — Deri Defter Kapağı (Leather Journal Cover; başlangıç sınıfı, ~1 saat)", "https://www.michaels.com/class/vod/leather-journal-cover-1081916843", "Şablon, damga, boyama ve saddle stitch.");
+const leatherDodson = web("Dodson Designs — Deri Defter Eğitimi (Leather Journal Tutorial)", "https://dodson-designs.com/?p=1424", "Boş defteri ölçüp kapak çıkarma, iplik uzunluğu hesabı.");
+const leatherInstr = web("Instructables — El Dikişi Deri Defter Kılıfı (Hand Stitched Leather Notebook Cover)", "https://www.instructables.com/Hand-Stitched-Leather-Notebook-Cover");
+const leatherStitch = web("Instructables — Deri Dikişi: Üç Yöntem (Leather Stitching: How-To Three Ways)", "https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/", "Saddle stitch ve diğer dikiş yöntemleri.");
+const leatherField = web("Instructables — Field Notes Deri Kılıf (Field Notes Leather Cover)", "https://instructables.com/Field-Notes-Leather-Cover", "Boyama, kenar bitirme, kalem tutacağı.");
+const weAllSew = web("We All Sew — Deri Defter Kılıfı Nasıl Yapılır (How to Make a Leather Notebook Cover)", "https://weallsew.com/how-to-make-a-leather-notebook-cover/");
+const tandyBlog = web("Tandy Leather Blog — Üç Katlı Deri Günlük Kılıfı (Trifold Leather Journal Cover)", "https://tandyleather.com/blogs/tandy-blog/gift-idea-trifold-leather-journal-cover-with-theoldpinkhouse");
 const tandy = web("Tandy Leather", "https://tandyleather.com", "Deri, alet ve eğitim içerikleri.");
 const leatherBook = book("The Leatherworking Handbook", "Valerie Michael", "Temel teknikler ve bitirme için kapsamlı rehber.");
 

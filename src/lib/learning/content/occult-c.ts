@@ -277,7 +277,7 @@ Powell'ın giriş bölümünü ve eterik çiftin işlevlerini anlatan bölümü 
 
 "Aura" 19.–20. yüzyıl okült ve Teosofik literatüründe insanın çevresindeki renkli bir alan olarak anlatıldı. Walter Kilner (*The Human Atmosphere*, 1911) boyalı ekranlarla aura "görmeyi" denedi; sonraki araştırmalar bunun optik/algısal etkilerle açıklanabileceğini gösterdi. **Kirlian fotoğrafı** (1939) olarak bilinen yöntem ise nem, basınç ve elektriksel korona boşalmalarıyla açıklanır; aura kanıtı sayılmaz.
 
-## Butler'ın *How to Read the Aura*'sı
+## Butler'ın *Aura Nasıl Okunur* (*How to Read the Aura*) kitabı
 
 Kitap (kitaplığında, 96 s.) aura algısı geliştirme, renklerin anlamı ve "eterik sızıntı" konularında pratik talimatlar verir. Bu içerik bir **geleneksel öğreti** olarak okunur.
 
@@ -509,12 +509,12 @@ Dion Fortune, doğum adıyla **Violet Mary Firth** (6 Aralık 1890, Llandudno, G
 
 | Yıl | Eser | Not |
 |---|---|---|
-| 1922 | Machinery of the Mind | Psikoloji ağırlıklı ilk kitap (Violet Firth adıyla) |
-| 1929 | Sane Occultism | Okültizme sağduyulu giriş |
-| 1930 | The Training and Work of an Initiate | Eğitim ve çalışma üzerine |
+| 1922 | Zihnin Makinesi (*Machinery of the Mind*) | Psikoloji ağırlıklı ilk kitap (Violet Firth adıyla) |
+| 1929 | Sağduyulu Okültizm (*Sane Occultism*) | Okültizme sağduyulu giriş |
+| 1930 | Bir İnisiyenin Eğitimi ve Çalışması (*The Training and Work of an Initiate*) | Eğitim ve çalışma üzerine |
 | 1930 | Psychic Self-Defence | Bu ünitenin 3. dersi |
-| 1932 | Through the Gates of Death | Ölüm ve sonrası üzerine |
-| 1935 | The Mystical Qabalah | Bu ünitenin 2. dersi |
+| 1932 | Ölümün Kapılarından (*Through the Gates of Death*) | Ölüm ve sonrası üzerine |
+| 1935 | Mistik Kabala (*The Mystical Qabalah*) | Bu ünitenin 2. dersi |
 
 *(Tarihler Wikipedia, Encyclopedia.com ve yayıncı sayfalarında derlenmiştir; ayrıntılı bir bibliyografya için biyografilere bak.)*
 
@@ -523,7 +523,7 @@ Alan Richardson, *Priestess: The Life and Magic of Dion Fortune*; Gareth Knight,
 
 ## Çalışma
 Kendi çalışma planında Fortune'u hangi sırayla okuyacağını yaz: önce kısa ve eleştirel okumaya uygun metin, sonra uzun sistematik metin.`,
-    verification: `**Kaynaklar:** [Wikipedia — Dion Fortune](https://en.wikipedia.org/wiki/Dion_Fortune), [Encyclopedia.com](https://www.encyclopedia.com/people/literature-and-arts/french-literature-biographies/dion-fortune), [Society of the Inner Light](https://en.wikipedia.org/wiki/Society_of_the_Inner_Light). Kaynaklar arasında ölüm tarihi ve topluluğun kuruluş yılı konusunda küçük **farklılıklar** var (Ocak 1946'nın 6'sı/8'i; 1922–1924). Kesin tarih gerekiyorsa biyografilere bak. *Cosmic Doctrine* hakkında ayrıntı verilmedi: araştırmada ayrı bir doğrulayıcı açıklama bulunamadı.`,
+    verification: `**Kaynaklar:** [Vikipedi — Dion Fortune (İngilizce)](https://en.wikipedia.org/wiki/Dion_Fortune), [Encyclopedia.com](https://www.encyclopedia.com/people/literature-and-arts/french-literature-biographies/dion-fortune), [İç Işık Topluluğu (Society of the Inner Light)](https://en.wikipedia.org/wiki/Society_of_the_Inner_Light). Kaynaklar arasında ölüm tarihi ve topluluğun kuruluş yılı konusunda küçük **farklılıklar** var (Ocak 1946'nın 6'sı/8'i; 1922–1924). Kesin tarih gerekiyorsa biyografilere bak. *Cosmic Doctrine* hakkında ayrıntı verilmedi: araştırmada ayrı bir doğrulayıcı açıklama bulunamadı.`,
   },
   "fortune-kabala": {
     body: `## Kitap
@@ -534,9 +534,9 @@ Kendi çalışma planında Fortune'u hangi sırayla okuyacağını yaz: önce k�
 
 | Grup | Bölümler |
 |---|---|
-| Yöntem | 1 The Yoga of the West · 2 The Choice of a Path · 3 The Method of the Qabalah · 4 The Unwritten Qabalah |
-| Ağaç'ın yapısı | 5 Negative Existence · 6 Otz Chiim, the Tree of Life · 7 The Three Supernals · 8 The Patterns of the Tree · 9 The Ten Sephiroth in the Four Worlds · 10 The Paths upon the Tree · 11 The Subjective Sephiroth · 12 The Gods upon the Tree · 13 Practical Work upon the Tree · 14 General Considerations |
-| Sephiroth | 15 Kether · 16 Chokmah · 17 Binah · 18 Chesed · 19 Geburah · 20 Tiphareth · 21 The Four Lower Sephiroth · 22 Netzach · 23 Hod · 24 Yesod · 25 Malkuth · 26 The Qliphoth · 27 Conclusion |
+| Yöntem | 1 Batı'nın Yogası (*The Yoga of the West*) · 2 Yol Seçimi (*The Choice of a Path*) · 3 Kabala'nın Yöntemi (*The Method of the Qabalah*) · 4 Yazılmamış Kabala (*The Unwritten Qabalah*) |
+| Ağaç'ın yapısı | 5 Olumsuz Varoluş (*Negative Existence*) · 6 Otz Chiim, Hayat Ağacı (*the Tree of Life*) · 7 Üç Yüce Sephirah (*The Three Supernals*) · 8 Ağaç'ın Örüntüleri (*The Patterns of the Tree*) · 9 Dört Âlemde On Sephirah (*The Ten Sephiroth in the Four Worlds*) · 10 Ağaç Üzerindeki Yollar (*The Paths upon the Tree*) · 11 Öznel Sephiroth (*The Subjective Sephiroth*) · 12 Ağaç Üzerindeki Tanrılar (*The Gods upon the Tree*) · 13 Ağaç Üzerinde Uygulamalı Çalışma (*Practical Work upon the Tree*) · 14 Genel Değerlendirmeler (*General Considerations*) |
+| Sephiroth | 15 Kether · 16 Chokmah · 17 Binah · 18 Chesed · 19 Geburah · 20 Tiphareth · 21 Dört Alt Sephirah (*The Four Lower Sephiroth*) · 22 Netzach · 23 Hod · 24 Yesod · 25 Malkuth · 26 Qliphoth (*The Qliphoth*) · 27 Sonuç (*Conclusion*) |
 
 ## Yazarın yöntemi (okuduğumuz kısımdan)
 
@@ -551,7 +551,7 @@ Fortune'un Ağaç anlatımı **Altın Şafak geleneğine** dayanır (karşılık
 ## Çalışma
 - Bölüm haritasını kullanarak 4 haftalık okuma planı yap (yöntem → yapı → ilk 5 Sephirah → alt Sephiroth).
 - Fortune'un bir Sephirah anlatımını Crowley'in *777* tablosuyla yan yana koy; farkları not et.`,
-    verification: `**Kaynak:** Kitabın çevrimiçi tam metni ([Global Grey](https://www.globalgreyebooks.com/online-ebooks/dion-fortune_mystical-qabalah_complete-text.html)): bölüm başlıkları ve Foreword–Bölüm 3 ile Bölüm 4'ün başı doğrudan okundu. **Bölüm 5–27'nin içeriği bu derse bilerek yazılmadı** (okunmadı); yalnızca başlıkları verildi. Tam içeriği kendin oku ve gerekirse bu dersi "Düzenle" ile genişlet. Yayın yılı (1935) yayıncı sayfasından.`,
+    verification: `**Kaynak:** Kitabın çevrimiçi tam metni ([Global Grey (İngilizce tam metin)](https://www.globalgreyebooks.com/online-ebooks/dion-fortune_mystical-qabalah_complete-text.html)): bölüm başlıkları ve Foreword–Bölüm 3 ile Bölüm 4'ün başı doğrudan okundu. **Bölüm 5–27'nin içeriği bu derse bilerek yazılmadı** (okunmadı); yalnızca başlıkları verildi. Tam içeriği kendin oku ve gerekirse bu dersi "Düzenle" ile genişlet. Yayın yılı (1935) yayıncı sayfasından.`,
   },
   "fortune-psisik": {
     body: `## Kitap
@@ -562,10 +562,10 @@ Fortune'un Ağaç anlatımı **Altın Şafak geleneğine** dayanır (karşılık
 
 | Bölüm | İçerik (başlıklar) |
 |---|---|
-| 1. Kısım — Saldırı türleri | 1 Signs of Psychic Attack · 2 Analysis of the Nature of Psychic Attack · 3 A Case of Modern Witchcraft · 4 Projection of the Etheric Body · 5 Vampirism · 6 Hauntings · 7 The Pathology of Non-Human Contacts · 8 The Risks Incidental to Ceremonial Magic |
-| 2. Kısım — Ayırıcı tanı | 9 Distinction Between Objective Psychic Attack and Subjective Psychic Disturbance · 10 Non-Occult Dangers of the Black Lodge · 11 The Psychic Element in Mental Disturbance |
-| 3. Kısım — Tanı | 12 Methods Employed in Making a Psychic Attack · 13–14 The Motives of Psychic Attack |
-| 4. Kısım — Savunma | 15 Physical Aspect of Psychic Attack and Defence · 16 Diagnosis of the Nature of an Attack · 17–20 Methods of Defence I–IV · Conclusion |
+| 1. Kısım — Saldırı türleri | 1 Psişik Saldırı Belirtileri (*Signs of Psychic Attack*) · 2 Psişik Saldırının Doğasının Çözümlenmesi (*Analysis of the Nature of Psychic Attack*) · 3 Modern Cadılığa Bir Örnek (*A Case of Modern Witchcraft*) · 4 Eterik Bedenin Yansıtılması (*Projection of the Etheric Body*) · 5 Vampirizm (*Vampirism*) · 6 Hayalet Musallatları (*Hauntings*) · 7 İnsan Olmayan Temasların Patolojisi (*The Pathology of Non-Human Contacts*) · 8 Törensel Büyünün Beraberindeki Riskler (*The Risks Incidental to Ceremonial Magic*) |
+| 2. Kısım — Ayırıcı tanı | 9 Objektif Psişik Saldırı ile Öznel Psişik Rahatsızlık Arasındaki Ayrım (*Distinction Between Objective Psychic Attack and Subjective Psychic Disturbance*) · 10 Kara Loca'nın Okült Olmayan Tehlikeleri (*Non-Occult Dangers of the Black Lodge*) · 11 Ruhsal Bozukluklarda Psişik Öğe (*The Psychic Element in Mental Disturbance*) |
+| 3. Kısım — Tanı | 12 Psişik Saldırıda Kullanılan Yöntemler (*Methods Employed in Making a Psychic Attack*) · 13–14 Psişik Saldırının Saikleri (*The Motives of Psychic Attack*) |
+| 4. Kısım — Savunma | 15 Psişik Saldırı ve Savunmanın Fiziksel Yönü (*Physical Aspect of Psychic Attack and Defence*) · 16 Saldırının Niteliğinin Tanısı (*Diagnosis of the Nature of an Attack*) · 17–20 Savunma Yöntemleri I–IV (*Methods of Defence I–IV*) · Sonuç |
 
 ## Okuduğumuz kısımdan ilkeler (1. bölüm)
 
@@ -583,6 +583,6 @@ Fortune'un Ağaç anlatımı **Altın Şafak geleneğine** dayanır (karşılık
 ## Çalışma
 - 1. bölümü oku; "belirti listesindeki" her maddenin sıradan (tıbbi, psikolojik, çevresel) açıklamalarını yan sütuna yaz.
 - Fortune'un tanı-önce-tedavi ilkesini kendi çalışma günlüğüne uygula: bir sorunu yorumlamadan önce basit açıklamaları ele.`,
-    verification: `**Kaynak:** Kitabın çevrimiçi tam metni ([Global Grey](https://www.globalgreyebooks.com/online-ebooks/dion-fortune_psychic-self-defense_complete-text.html)); içindekiler listesi, Önsöz ve 1. bölümün ilk kısmı doğrudan okundu, alıntılar oradan. **2–20. bölümler okunmadı**; bu derste yalnızca başlıkları verildi, bu bölümlerin içeriği hakkında iddia yapılmadı. Yayın yılı (1930) yayıncı sayfasından. Psişik saldırı iddiası bilimsel olarak **doğrulanmış değildir**; ders bunu yazarın görüşü olarak sunar.`,
+    verification: `**Kaynak:** Kitabın çevrimiçi tam metni ([Global Grey (İngilizce tam metin)](https://www.globalgreyebooks.com/online-ebooks/dion-fortune_psychic-self-defense_complete-text.html)); içindekiler listesi, Önsöz ve 1. bölümün ilk kısmı doğrudan okundu, alıntılar oradan. **2–20. bölümler okunmadı**; bu derste yalnızca başlıkları verildi, bu bölümlerin içeriği hakkında iddia yapılmadı. Yayın yılı (1930) yayıncı sayfasından. Psişik saldırı iddiası bilimsel olarak **doğrulanmış değildir**; ders bunu yazarın görüşü olarak sunar.`,
   },
 };

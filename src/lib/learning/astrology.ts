@@ -197,7 +197,7 @@ export const astrologyModule: LearningModule = {
     own("Saatler Astrolojisi ile Kehanet Sanatı", "saatler-astrolojisi.pdf", "Metin Kiraz; horary kaynağı (241 sayfa)", "Metin Kiraz"),
     own("Aleister Crowley'in Tüm Astrolojik Yazıları (Liber 536 vb.)", "aleister-crowley-in-tum-astrolojik-yazilar.pdf", "Ed. John Symonds & Kenneth Grant; Duckworth 1974; Türkçe (250 sayfa) — Crowley'in astroloji yorum dili", "Aleister Crowley"),
     own("Temel Astrolojik Yapı — Doğum Haritasının Hesaplanması", "temel-astroloji-aysel-ozturk.pdf", "Aysel Öztürk, Bilim Teknik Yayınevi, 2001 (164 sayfa) — el ile harita hesaplama", "Aysel Öztürk"),
-    own("Planetary Magick (dosya adı: incensi-planetari-moderni)", "incensi-planetari-moderni.pdf", "661 sayfa — gezegen magisi; içeriği doğrulanmadı; gezegen saatleri için ayrıca bkz. Atölye 1"),
+    own("Gezegen Magisi (Planetary Magick; dosya adı: incensi-planetari-moderni)", "incensi-planetari-moderni.pdf", "661 sayfa — gezegen magisi; içeriği doğrulanmadı; gezegen saatleri için ayrıca bkz. Atölye 1"),
     own("EZOTERİK & OKÜLT ASTROLOJİ — 49 Haftalık Kaynak Temelli Ders Kitabı", "ezoterik_okult_astroloji_49_haftalik_KAYNAK_DERS_KITABI.md", "Bu modülün çekirdek müfredatı (sitede ders ders açılır)"),
     own("Lirvian E. — Verilen Araştırmalar, Kendim İçin Kısa Notlar", "Lirvian_E._Verilen_Araştırmalar.pdf", "Kişisel notlar: astroloji temelleri, elementler, ses/ritim vb. (90 sayfa)"),
   ],

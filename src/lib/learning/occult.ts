@@ -2,27 +2,27 @@ import type { LearningModule } from "./types";
 import { lesson, web, book, own } from "./helpers";
 
 const sacredTexts = web("Sacred-Texts Arşivi — Ezoterizm", "https://sacred-texts.com/eso/index.htm", "Kamu malı klasikler (Mead, Waite, Mathers, Agrippa bölümleri vb.).");
-const esotericArchives = web("Esoteric Archives (Joseph H. Peterson)", "https://www.esotericarchives.com", "Grimuarlar, Agrippa, Dee/Enochian metinleri; akademik titizlikte dijital edisyonlar.");
-const copenhaver = book("Hermetica", "Brian P. Copenhaver", "Corpus Hermeticum'un akademik İngilizce çevirisi ve notları (Cambridge UP).");
-const yates = book("Giordano Bruno and the Hermetic Tradition", "Frances A. Yates", "Rönesans Hermetizmi'nin tarihsel çerçevesi.");
-const hanegraaff = book("Western Esotericism: A Guide for the Perplexed", "Wouter J. Hanegraaff", "Alanın akademik haritası; eleştirel okuma için başlangıç.");
-const faivre = book("Access to Western Esotericism", "Antoine Faivre", "Ezoterik düşüncenin dört temel özelliği.");
-const davies = book("Grimoires: A History of Magic Books", "Owen Davies", "Grimuar geleneğinin tarihi.");
-const hutton = book("The Triumph of the Moon", "Ronald Hutton", "Modern Pagan cadılığın (Wicca) tarihi; kaynak eleştirisi için örnek.");
-const agrippa = book("Three Books of Occult Philosophy", "Heinrich Cornelius Agrippa", "Rönesans magisinin temel derlemesi; ücretsiz çevrimiçi kopyaları var (Esoteric Archives, Sacred-Texts).", "https://www.esotericarchives.com/agrippa/agrippa3.htm", true);
-const regardieGD = book("The Golden Dawn", "Israel Regardie", "Altın Şafak sisteminin tam müfredatı (derecelendirilmiş çalışma programı).");
-const regardiePillar = book("The Middle Pillar", "Israel Regardie", "Kabalistik ışık/enerji meditasyonu; psikolojik çerçeve.");
-const fortuneQ = book("The Mystical Qabalah", "Dion Fortune", "Hayat Ağacı için en çok okunan modern giriş.");
-const fortunePsy = book("Psychic Self-Defense", "Dion Fortune", "Koruma ve psikolojik denge üzerine klasik.");
-const kaplan = book("Sefer Yetzirah: The Book of Creation", "Aryeh Kaplan", "Yaratılış Kitabı; yorumlu çeviri.");
-const scholem = book("Major Trends in Jewish Mysticism", "Gershom Scholem", "Kabala'nın tarihsel/akademik temel kitabı.");
-const jungAlchemy = book("Psychology and Alchemy (Toplu Eserler Cilt 12)", "C. G. Jung", "Simyanın psikolojik okuması.");
-const eliade = book("The Sacred and the Profane", "Mircea Eliade", "Kutsal ve sembolik düşüncenin dinler tarihi bakışı.");
-const waiteTarot = book("The Pictorial Key to the Tarot", "A. E. Waite", "Rider–Waite sisteminin kaynak metni.");
-const pollack = book("Seventy-Eight Degrees of Wisdom", "Rachel Pollack", "Tarot'un derinlikli modern yorumu.");
-const iamblichus = book("On the Mysteries (De Mysteriis)", "Iamblichus", "Teurji (kutsal ritüel) felsefesi; Clarke–Dillon–Hershbell çevirisi.");
-const wilson = book("The Occult: A History", "Colin Wilson", "Geniş tarihsel tur (popüler dil).");
-const crowley = book("Magick in Theory and Practice (Book 4, Bölüm III)", "Aleister Crowley", "Thelema'nın ritüel kuramı; eleştirel/tarihsel bağlamda oku.");
+const esotericArchives = web("Ezoterik Arşivler (Esoteric Archives — Joseph H. Peterson)", "https://www.esotericarchives.com", "Grimuarlar, Agrippa, Dee/Enochian metinleri; akademik titizlikte dijital edisyonlar.");
+const copenhaver = book("Hermetica (Hermes Metinleri)", "Brian P. Copenhaver", "Corpus Hermeticum'un akademik İngilizce çevirisi ve notları (Cambridge UP).");
+const yates = book("Giordano Bruno ve Hermetik Gelenek (Giordano Bruno and the Hermetic Tradition)", "Frances A. Yates", "Rönesans Hermetizmi'nin tarihsel çerçevesi.");
+const hanegraaff = book("Batı Ezoterizmi: Şaşkınlar İçin Rehber (Western Esotericism: A Guide for the Perplexed)", "Wouter J. Hanegraaff", "Alanın akademik haritası; eleştirel okuma için başlangıç.");
+const faivre = book("Batı Ezoterizmine Giriş (Access to Western Esotericism)", "Antoine Faivre", "Ezoterik düşüncenin dört temel özelliği.");
+const davies = book("Grimuarlar: Büyü Kitaplarının Tarihi (Grimoires: A History of Magic Books)", "Owen Davies", "Grimuar geleneğinin tarihi.");
+const hutton = book("Ayın Zaferi (The Triumph of the Moon)", "Ronald Hutton", "Modern Pagan cadılığın (Wicca) tarihi; kaynak eleştirisi için örnek.");
+const agrippa = book("Okült Felsefenin Üç Kitabı (Three Books of Occult Philosophy)", "Heinrich Cornelius Agrippa", "Rönesans magisinin temel derlemesi; ücretsiz çevrimiçi kopyaları var (Esoteric Archives, Sacred-Texts).", "https://www.esotericarchives.com/agrippa/agrippa3.htm", true);
+const regardieGD = book("Altın Şafak (The Golden Dawn)", "Israel Regardie", "Altın Şafak sisteminin tam müfredatı (derecelendirilmiş çalışma programı).");
+const regardiePillar = book("Orta Sütun (The Middle Pillar)", "Israel Regardie", "Kabalistik ışık/enerji meditasyonu; psikolojik çerçeve.");
+const fortuneQ = book("Mistik Kabala (The Mystical Qabalah)", "Dion Fortune", "Hayat Ağacı için en çok okunan modern giriş.");
+const fortunePsy = book("Psişik Savunma (Psychic Self-Defence)", "Dion Fortune", "Koruma ve psikolojik denge üzerine klasik.");
+const kaplan = book("Sefer Yetzirah: Yaratılış Kitabı (The Book of Creation)", "Aryeh Kaplan", "Yaratılış Kitabı; yorumlu çeviri.");
+const scholem = book("Yahudi Mistisizminde Ana Akımlar (Major Trends in Jewish Mysticism)", "Gershom Scholem", "Kabala'nın tarihsel/akademik temel kitabı.");
+const jungAlchemy = book("Psikoloji ve Simya (Psychology and Alchemy) — Toplu Eserler Cilt 12", "C. G. Jung", "Simyanın psikolojik okuması.");
+const eliade = book("Kutsal ve Kutsal Olmayan (The Sacred and the Profane)", "Mircea Eliade", "Kutsal ve sembolik düşüncenin dinler tarihi bakışı.");
+const waiteTarot = book("Tarot'a Resimli Anahtar (The Pictorial Key to the Tarot)", "A. E. Waite", "Rider–Waite sisteminin kaynak metni.");
+const pollack = book("Bilgeliğin Yetmiş Sekiz Derecesi (Seventy-Eight Degrees of Wisdom)", "Rachel Pollack", "Tarot'un derinlikli modern yorumu.");
+const iamblichus = book("Gizemler Üzerine (De Mysteriis)", "Iamblichus", "Teurji (kutsal ritüel) felsefesi; Clarke–Dillon–Hershbell çevirisi.");
+const wilson = book("Okült: Bir Tarih (The Occult: A History)", "Colin Wilson", "Geniş tarihsel tur (popüler dil).");
+const crowley = book("Kuramda ve Uygulamada Magick (Magick in Theory and Practice) — Book 4, Bölüm III", "Aleister Crowley", "Thelema'nın ritüel kuramı; eleştirel/tarihsel bağlamda oku.");
 
 export const occultModule: LearningModule = {
   id: "okultizm",
@@ -100,7 +100,7 @@ export const occultModule: LearningModule = {
             }),
             lesson("kabala-unveiled", "Mathers — Kabbalah Unveiled", "Zohar'dan seçilen üç kitap (Gizli Gizem Kitabı, Büyük ve Küçük Kutsal Toplantı) ve Rosenroth/Mathers çevirisinin sorunları.", {
               tasks: ["Giriş bölümünü oku; Mathers'ın hangi kaynaklara dayandığını ve bugün hangi eleştirilere uğradığını not et."],
-              resources: [own("The Kabbalah Unveiled", "kabbalah-unveiled.pdf", "S. L. MacGregor Mathers (386 sayfa)", "S. L. MacGregor Mathers")],
+              resources: [own("Kabala'nın Perdesi Kaldırıldı (The Kabbalah Unveiled)", "kabbalah-unveiled.pdf", "S. L. MacGregor Mathers (386 sayfa)", "S. L. MacGregor Mathers")],
             }),
             lesson("hayat-agaci", "Hayat Ağacı: 10 Sephira ve 22 yol", "Sephiroth'un isimleri, gezegen/element atamaları, yolların Tarot ve İbrani harfleriyle eşleşmeleri (Altın Şafak düzeni) ve alternatif düzenler.", {
               tasks: ["Hayat Ağacı'nı elle çiz; her Sephira için isim, gezegen, renk ve 2 kaynak kaydı çıkar."],
@@ -115,7 +115,7 @@ export const occultModule: LearningModule = {
           lessons: [
             lesson("levi-doktrin", "Eliphas Lévi — Yüksek Büyü Öğretisi (Cilt 1)", "Lévi'nin Dogme'u: mutlak kabala, 'bilmek, istemek, cesaret etmek, susmak', astral ışık kavramı. Tarihsel bağlam (1854 Fransa).", {
               tasks: ["Her bölümün sonunda 'Lévi ne iddia ediyor / dayandığı kaynak ne / benim değerlendirmem' tablosu doldur."],
-              resources: [own("Metafizik Maji Öğretisi ve Ritüeli — Cilt 1 (Öğreti)", "metafizik-maji-retisi-ve-riteli-cilt-1.pdf", "Mavi Kalem, çev. Faruk Gültekin, 2018", "Eliphas Lévi"), own("The Doctrine and Ritual of High Magic: A New Translation", "yuksek-buyu-oretisi-ve-ritueli-yeni-bir-ceviri-eliphas-levi.pdf", "Greer'in tanıtımıyla yeni İngilizce çeviri (480 sayfa)", "Eliphas Lévi")],
+              resources: [own("Metafizik Maji Öğretisi ve Ritüeli — Cilt 1 (Öğreti)", "metafizik-maji-retisi-ve-riteli-cilt-1.pdf", "Mavi Kalem, çev. Faruk Gültekin, 2018", "Eliphas Lévi"), own("Yüksek Büyünün Öğretisi ve Ritüeli: Yeni Bir Çeviri (The Doctrine and Ritual of High Magic)", "yuksek-buyu-oretisi-ve-ritueli-yeni-bir-ceviri-eliphas-levi.pdf", "Greer'in tanıtımıyla yeni İngilizce çeviri (480 sayfa)", "Eliphas Lévi")],
             }),
             lesson("levi-ritueli", "Lévi — Ritüel (Cilt 2)", "Ritüelin yapısı, kutsal alan, sembolik araçlar, eğitim ve ahlaki hazırlık. Ritüeli 'psikolojik teknoloji' olarak okuma.", {
               resources: [own("Metafizik Maji Öğretisi ve Ritüeli — Cilt 2 (Ritüel)", "metafizik-maji-retisi-ve-riteli-cilt-2.pdf", "Mavi Kalem, çev. Faruk Gültekin", "Eliphas Lévi")],
@@ -128,7 +128,7 @@ export const occultModule: LearningModule = {
               resources: [regardieGD, hutton],
             }),
             lesson("fortune-butler", "Dion Fortune ve W. E. Butler: Pratik Okültizm Okulu", "Eğitim disiplini, koruma, pathworking, 'Büyücü: Eğitimi ve Çalışması'. Sağlıklı pratik için sınırlar ve ahlak.", {
-              resources: [own("The Magician: His Training and Work", "w-e-butler-the-magician-his-training-and-work.pdf", "170 sayfa", "W. E. Butler"), fortunePsy, own("Pratik Okültizm: Günlük Yaşamda Uygulamalı Gizli Bilimler", "pratik-okultizm-gunluk-yasamda...pdf", "Hermes Yayınları (çev. Anita Tatlıer)")],
+              resources: [own("Büyücü: Eğitimi ve Çalışması (The Magician: His Training and Work)", "w-e-butler-the-magician-his-training-and-work.pdf", "170 sayfa", "W. E. Butler"), fortunePsy, own("Pratik Okültizm: Günlük Yaşamda Uygulamalı Gizli Bilimler", "pratik-okultizm-gunluk-yasamda...pdf", "Hermes Yayınları (çev. Anita Tatlıer)")],
             }),
             lesson("thelema", "Thelema ve Crowley'e eleştirel yaklaşım", "Crowley'in 'Magick' kuramı, Thelema'nın temel ilkeleri; kişilik kültü ve etik tartışmalar.", {
               resources: [crowley, wilson],
@@ -142,7 +142,7 @@ export const occultModule: LearningModule = {
           lessons: [
             lesson("gunluk-disiplin", "Günlük pratik: sessizlik, nefes, odaklanma, günlük tutma", "20–30 dakikalık sabit rutin; sihirli günlük (magical diary) şablonu: tarih, Ay evresi, çalışma, deneyim, rüya, sonuç ve eleştiri.", {
               tasks: ["100 gün kesintisiz günlük tut; haftalık ve aylık kısa değerlendirme yaz."],
-              resources: [own("Pratik Okültizm: Günlük Yaşamda Uygulamalı Gizli Bilimler", "pratik-okultizm-....pdf"), own("The Magician: His Training and Work (eğitim bölümleri)", "w-e-butler-the-magician....pdf")],
+              resources: [own("Pratik Okültizm: Günlük Yaşamda Uygulamalı Gizli Bilimler", "pratik-okultizm-....pdf"), own("Büyücü: Eğitimi ve Çalışması (eğitim bölümleri)", "w-e-butler-the-magician....pdf")],
             }),
             lesson("arinma", "Arınma ve koruma çalışmaları (banishing)", "Küçük Pentagram Arınma Ritüeli (LBRP) ve alternatif yaklaşımlar; sembolik/psikolojik rolü; aşırıya kaçmama.", {
               tasks: ["Altın Şafak ya da Fortune kaynağından LBRP metnini oku; kendi cümlelerinle adımların amacını yaz; 30 gün uygula ve deneyimlerini kayda geç."],
@@ -200,7 +200,7 @@ export const occultModule: LearningModule = {
               resources: [own("Eterik Çift — İnsanın Sağlık Aurası", "eterik-e-arthur-e-powell-1.pdf", "Arthur E. Powell (125 sayfa)", "Arthur E. Powell")],
             }),
             lesson("aura", "Aura ve algı", "Aura renkleri ve yorumları, 'psişik duyuların' gelişimi iddiaları; algı psikolojisi ile karşılaştırma.", {
-              resources: [own("How to Read the Aura", "how-to-read-the-aura.pdf", "W. E. Butler (96 sayfa)", "W. E. Butler"), own("Lirvian — Psişik algı ve yüksek duyular", "Lirvian_E._Verilen_Araştırmalar.pdf")],
+              resources: [own("Aura Nasıl Okunur (How to Read the Aura)", "how-to-read-the-aura.pdf", "W. E. Butler (96 sayfa)", "W. E. Butler"), own("Lirvian — Psişik algı ve yüksek duyular", "Lirvian_E._Verilen_Araştırmalar.pdf")],
             }),
             lesson("ezoterik-anatomi", "Ezoterik anatomi: bilinç olarak beden", "Çakralar, meridyenler, endokrin eşleşmeleri ve psikolojik kavramlarla ilişkisi. Burger'in modelini kaynaklarıyla birlikte ayrıştır.", {
               resources: [own("Ezoterik Anatomi: Bilinç Olarak Beden", "ezoterik-anatomi-bilinc-olarak-beden.pdf", "Bruce Burger (747 sayfa)", "Bruce Burger")],
@@ -245,7 +245,7 @@ export const occultModule: LearningModule = {
           lessons: [
             lesson("fortune-hayat", "Dion Fortune: hayat, çevre ve eserler", "Violet Firth'ten Dion Fortune'a; Altın Şafak kökenli çevre, İç Işık Topluluğu ve başlıca kitapların kronolojisi.", {
               tasks: ["Fortune'un 5 kitabı için yayın yılı, konu ve hedef kitle tablosu çıkar."],
-              resources: [web("Dion Fortune — Wikipedia", "https://en.wikipedia.org/wiki/Dion_Fortune"), web("Society of the Inner Light — Wikipedia", "https://en.wikipedia.org/wiki/Society_of_the_Inner_Light"), web("Global Grey — Psychic Self-Defence (tam metin, çevrimiçi)", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_psychic-self-defense_complete-text.html"), web("Global Grey — The Mystical Qabalah (tam metin, çevrimiçi)", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_mystical-qabalah_complete-text.html")],
+              resources: [web("Dion Fortune — Vikipedi (İngilizce)", "https://en.wikipedia.org/wiki/Dion_Fortune"), web("İç Işık Topluluğu (Society of the Inner Light) — Vikipedi (İngilizce)", "https://en.wikipedia.org/wiki/Society_of_the_Inner_Light"), web("Global Grey — Psişik Savunma (Psychic Self-Defence), İngilizce tam metin, çevrimiçi", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_psychic-self-defense_complete-text.html"), web("Global Grey — Mistik Kabala (The Mystical Qabalah), İngilizce tam metin, çevrimiçi", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_mystical-qabalah_complete-text.html")],
             }),
             lesson("fortune-kabala", "The Mystical Qabalah: kitabın yapısı ve yöntemi", "Fortune'a göre Hayat Ağacı 'Batı gizem geleneğinin plan şeması'dır; kitabın bölümleri, Sephiroth'u anlatış biçimi ve 'öğretmen gözetimi' uyarısı.", {
               tasks: ["Kitabın 27 bölümünü (Foreword + 1–27) 3 gruba ayır: yöntem, Ağaç'ın yapısı, tek tek Sephiroth; her gruptan bir paragraf özetle."],
@@ -315,11 +315,11 @@ export const occultModule: LearningModule = {
     },
   ],
   library: [
-    own("The Doctrine and Ritual of High Magic: A New Translation", "yuksek-buyu-oretisi-ve-ritueli-yeni-bir-ceviri-eliphas-levi.pdf", "Eliphas Lévi (480 sayfa)", "Eliphas Lévi"),
+    own("Yüksek Büyünün Öğretisi ve Ritüeli: Yeni Bir Çeviri (The Doctrine and Ritual of High Magic)", "yuksek-buyu-oretisi-ve-ritueli-yeni-bir-ceviri-eliphas-levi.pdf", "Eliphas Lévi (480 sayfa)", "Eliphas Lévi"),
     own("Metafizik Maji Öğretisi ve Ritüeli — Cilt 1 ve Cilt 2", "metafizik-maji-retisi-ve-riteli-cilt-1/2.pdf", "Mavi Kalem, çev. Faruk Gültekin (248 + 292 sayfa)", "Eliphas Lévi"),
-    own("The Kabbalah Unveiled", "kabbalah-unveiled.pdf", "S. L. MacGregor Mathers (386 sayfa)", "S. L. MacGregor Mathers"),
-    own("The Magician: His Training and Work", "w-e-butler-the-magician-his-training-and-work.pdf", "W. E. Butler (170 sayfa)", "W. E. Butler"),
-    own("How to Read the Aura", "how-to-read-the-aura.pdf", "W. E. Butler (96 sayfa)", "W. E. Butler"),
+    own("Kabala'nın Perdesi Kaldırıldı (The Kabbalah Unveiled)", "kabbalah-unveiled.pdf", "S. L. MacGregor Mathers (386 sayfa)", "S. L. MacGregor Mathers"),
+    own("Büyücü: Eğitimi ve Çalışması (The Magician: His Training and Work)", "w-e-butler-the-magician-his-training-and-work.pdf", "W. E. Butler (170 sayfa)", "W. E. Butler"),
+    own("Aura Nasıl Okunur (How to Read the Aura)", "how-to-read-the-aura.pdf", "W. E. Butler (96 sayfa)", "W. E. Butler"),
     own("Simya, Sanat ve Simyacılar", "Archibald_Cockren_-_Simya_Sanatı_ve_Simyacılar.pdf", "Archibald Cockren, çev. Murat Salam (127 sayfa)", "Archibald Cockren"),
     own("Alchemy (Die entschleierte Alchemie)", "alchemy.pdf", "91 sayfa", "Hanswille & Brumlich çevirisi"),
     own("Elemental Witchcraft (Element Büyücülüğü)", "element-buyuculuu-heron-michelle.pdf", "Michelle Heron (537 sayfa)", "Michelle Heron"),
@@ -331,15 +331,15 @@ export const occultModule: LearningModule = {
     own("Platon — İnsanın Kendini Yenmesi En Büyük Zaferdir", "Platon_Insanin_Kendini_Yenmesi.epub", "Taner Şanlıoğlu derlemesi (e-kitap)", "Taner Şanlıoğlu"),
     own("Plotinus — Enneadlar (seçki)", "plotinus-enneadlar.pdf", "Çev. Zeki Özcan, Asa Kitabevi (48 sayfa)", "Plotinos"),
     own("Metafizik: Kavram ve Problemleriyle Varlık Felsefesi", "metafizik-kavram-ve-problemleriyle-varlik-felsefesi.pdf", "Ed. A. Kadir Çüçen, Sentez Yayıncılık, 2018 (567 sayfa) — ontoloji/epistemoloji terimleri için referans", "A. Kadir Çüçen (ed.)"),
-    own("777 Revised", "acrowley-777-revised.pdf", "Aleister Crowley; ilk basım 1909, 1955 ek notlu baskı (168 sayfa) — correspondence tabloları", "Aleister Crowley"),
+    own("777 Gözden Geçirilmiş (777 Revised)", "acrowley-777-revised.pdf", "Aleister Crowley; ilk basım 1909, 1955 ek notlu baskı (168 sayfa) — correspondence tabloları", "Aleister Crowley"),
     own("Goetia vel Clavicula Salomonis Regis", "Crowley_-_Goetia.PDF", "Mathers/Crowley baskısı (98 sayfa) — tarihsel/edebî inceleme için", "S. L. MacGregor Mathers; ed. Aleister Crowley"),
     own("Aleister Crowley ve Sihirli Günlük Uygulaması", "aleister-crowley-ve-sihirli-gunluk-uygulamasi.pdf", "James Wasserman (derleyen), çev. Mustafa Çiftçioğlu (226 sayfa)", "James Wasserman"),
     own("Ay Çocuk (Moonchild)", "aliester-crowley-ay-cocuk.pdf", "Roman; Altıkırkbeş Yayın, 2004 (186 sayfa) — kurgu, öğreti kaynağı değil", "Aleister Crowley"),
-    own("Ars Vercanus: Advanced Magickal Techniques", "Ars_Vercanus__Advanced_Magickal_Technique.pdf", "Vasilios & Lynn Wennergren (435 sayfa) — modern pratik kılavuzu; içeriği doğrulanmadı", "Vasilios & Lynn Wennergren"),
-    own("Basick Magick: Your Path to Self Knowledge and Power", "basick-magick.pdf", "Michael Crowley (130 sayfa) — modern pratik kılavuzu; içeriği doğrulanmadı", "Michael Crowley"),
-    own("Planetary Magick (dosya adı: incensi-planetari-moderni)", "incensi-planetari-moderni.pdf", "661 sayfa — gezegen magisi için modern kılavuz; içeriği doğrulanmadı"),
-    own("The Body Meridians — Meridian Flows and Acu-Point Charts", "the-body-meridians.pdf", "Natural-health-zone.com (61 sayfa) — Geleneksel Çin tıbbı modeli; klinik iddialar eklenmedi"),
-    own("Polarity Therapy — Collected Works, Cilt 2", "randolph-stone-polarity-therapy-collected-works-vol-2.pdf", "Randolph Stone (232 sayfa) — alternatif tıp; sağlık iddiaları eklenmedi", "Randolph Stone"),
+    own("Ars Vercanus: İleri Magick Teknikleri (Advanced Magickal Techniques)", "Ars_Vercanus__Advanced_Magickal_Technique.pdf", "Vasilios & Lynn Wennergren (435 sayfa) — modern pratik kılavuzu; içeriği doğrulanmadı", "Vasilios & Lynn Wennergren"),
+    own("Temel Magick: Kendini Bilme ve Güce Giden Yol (Basick Magick)", "basick-magick.pdf", "Michael Crowley (130 sayfa) — modern pratik kılavuzu; içeriği doğrulanmadı", "Michael Crowley"),
+    own("Gezegen Magisi (Planetary Magick; dosya adı: incensi-planetari-moderni)", "incensi-planetari-moderni.pdf", "661 sayfa — gezegen magisi için modern kılavuz; içeriği doğrulanmadı"),
+    own("Vücut Meridyenleri — Meridyen Akışları ve Akupunktur Noktası Çizelgeleri (The Body Meridians)", "the-body-meridians.pdf", "Natural-health-zone.com (61 sayfa) — Geleneksel Çin tıbbı modeli; klinik iddialar eklenmedi"),
+    own("Polarite Terapisi — Toplu Eserler, Cilt 2 (Polarity Therapy)", "randolph-stone-polarity-therapy-collected-works-vol-2.pdf", "Randolph Stone (232 sayfa) — alternatif tıp; sağlık iddiaları eklenmedi", "Randolph Stone"),
     own("Elementler (2)", "elementler-2.pdf", "36 sayfa; element kavramı ve tarihi"),
     own("Lirvian E. — Verilen Araştırmalar, Kendim İçin Kısa Notlar", "Lirvian_E._Verilen_Araştırmalar.pdf", "Pisagor Okulu, Gerçek İsim Doktrini, Fohat/okült elektrik, elementler, meridyenler, psişik algı, ses, eterik beden, ontoloji (90 sayfa)"),
   ],

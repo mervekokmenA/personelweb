@@ -4,8 +4,8 @@ import { lesson, web, book, video, tool, own } from "./helpers";
 const reactDocs = web("React Resmi Dokümantasyon (Learn)", "https://react.dev/learn", "Hook'lar, durum yönetimi, efektler; resmi ve güncel.");
 const reactRef = web("React API Referansı", "https://react.dev/reference/react");
 const mdn = web("MDN Web Docs — Web Geliştirme Öğren", "https://developer.mozilla.org/en-US/docs/Learn_web_development");
-const jsinfo = web("The Modern JavaScript Tutorial", "https://javascript.info", "Derinlemesine, alıştırmalı JS anlatımı.");
-const tsHandbook = web("TypeScript Handbook", "https://www.typescriptlang.org/docs/handbook/intro.html");
+const jsinfo = web("Modern JavaScript Eğitimi (The Modern JavaScript Tutorial)", "https://javascript.info", "Derinlemesine, alıştırmalı JS anlatımı.");
+const tsHandbook = web("TypeScript El Kitabı (TypeScript Handbook)", "https://www.typescriptlang.org/docs/handbook/intro.html");
 const tanstack = web("TanStack Query Dokümantasyonu", "https://tanstack.com/query/latest");
 const rrouter = web("React Router Dokümantasyonu", "https://reactrouter.com");
 const nextDocs = web("Next.js Dokümantasyonu", "https://nextjs.org/docs");
@@ -25,11 +25,11 @@ const zod = web("Zod", "https://zod.dev");
 const rhf = web("React Hook Form", "https://react-hook-form.com");
 const tailwind = web("Tailwind CSS Dokümantasyonu", "https://tailwindcss.com/docs");
 const a11y = web("W3C WAI — Erişilebilirlik Temelleri", "https://www.w3.org/WAI/fundamentals/accessibility-intro/");
-const apg = web("WAI-ARIA Authoring Practices", "https://www.w3.org/WAI/ARIA/apg/");
-const eloquent = book("Eloquent JavaScript", "Marijn Haverbeke", "Ücretsiz çevrimiçi sürümü var.", "https://eloquentjavascript.net", true);
-const ydkjs = book("You Don't Know JS Yet", "Kyle Simpson", "Kapanışlar, kapsam, this, prototip — derin JS.", "https://github.com/getify/You-Dont-Know-JS", true);
-const ddia = book("Designing Data-Intensive Applications", "Martin Kleppmann", "Backend/veri mimarisi için referans kitap.");
-const refactoring = book("Refactoring (2. baskı)", "Martin Fowler", "Kod kalitesi ve güvenli yeniden düzenleme.");
+const apg = web("WAI-ARIA Yazım Uygulamaları (WAI-ARIA Authoring Practices)", "https://www.w3.org/WAI/ARIA/apg/");
+const eloquent = book("Akıcı JavaScript (Eloquent JavaScript)", "Marijn Haverbeke", "Ücretsiz çevrimiçi sürümü var.", "https://eloquentjavascript.net", true);
+const ydkjs = book("JS'i Henüz Bilmiyorsun (You Don't Know JS Yet)", "Kyle Simpson", "Kapanışlar, kapsam, this, prototip — derin JS.", "https://github.com/getify/You-Dont-Know-JS", true);
+const ddia = book("Veri Yoğun Uygulamalar Tasarlamak (Designing Data-Intensive Applications)", "Martin Kleppmann", "Backend/veri mimarisi için referans kitap.");
+const refactoring = book("Yeniden Düzenleme (Refactoring) — 2. baskı", "Martin Fowler", "Kod kalitesi ve güvenli yeniden düzenleme.");
 const roadmap = web("roadmap.sh — React Yol Haritası", "https://roadmap.sh/react", "Konu eksiklerini kontrol etmek için.");
 
 export const reactModule: LearningModule = {
@@ -98,7 +98,7 @@ export const reactModule: LearningModule = {
               resources: [tsHandbook],
             }),
             lesson("ts-react", "React + TypeScript kalıpları", "Props tipleri, olay tipleri, ref, generic bileşenler, discriminated union ile durum modelleme.", {
-              resources: [reactDocs, web("React TypeScript Cheatsheet", "https://react-typescript-cheatsheet.netlify.app")],
+              resources: [reactDocs, web("React TypeScript Kopya Kâğıdı (React TypeScript Cheatsheet)", "https://react-typescript-cheatsheet.netlify.app")],
             }),
             lesson("ts-runtime", "Çalışma zamanı doğrulama: Zod ve tip çıkarımı", "API yanıtlarına güvenmeden doğrula: `z.infer`, parse vs safeParse, form ve API şemalarının paylaşımı.", {
               tasks: ["Bir API yanıtını Zod şemasıyla doğrulayıp sapma durumunda anlamlı hata üret."],
@@ -120,7 +120,7 @@ export const reactModule: LearningModule = {
             }),
             lesson("react-effects", "Efektler, ref'ler ve 'efekte ihtiyacın olmayabilir'", "useEffect'in ne zaman gerektiği, temizleme, bağımlılıklar, useRef, senkronizasyon vs olay işleyici.", {
               tasks: ["Bir bileşende gereksiz efektleri bulup olay işleyiciye veya türetilmiş değere dönüştür."],
-              resources: [web("You Might Not Need an Effect", "https://react.dev/learn/you-might-not-need-an-effect")],
+              resources: [web("Bir Efekte İhtiyacın Olmayabilir (You Might Not Need an Effect)", "https://react.dev/learn/you-might-not-need-an-effect")],
             }),
             lesson("react-hooks-custom", "Özel hook'lar ve bileşen kompozisyonu", "Mantığı hook'a çıkar; compound components, render props yerine hook'lar; context'in doğru kullanımı.", {
               tasks: ["useLocalStorage, useDebounce, useMediaQuery hook'larını yaz ve test et."],
@@ -193,7 +193,7 @@ export const reactModule: LearningModule = {
             }),
             lesson("sql", "SQL ve PostgreSQL", "Tablolar, ilişkiler, JOIN, indeksler, transaction, sipariş toplamının sunucuda hesaplanması, migrasyonlar.", {
               tasks: ["customers/products/orders/order_items şemasını tasarla; stok düşüşünü transaction ile yap."],
-              resources: [pgDocs, book("SQL Performance Explained", "Markus Winand", "İndeks mantığı için kısa, çok iyi kitap (use-the-index-luke.com).", "https://use-the-index-luke.com", true)],
+              resources: [pgDocs, book("SQL Performansı Açıklandı (SQL Performance Explained)", "Markus Winand", "İndeks mantığı için kısa, çok iyi kitap (use-the-index-luke.com).", "https://use-the-index-luke.com", true)],
             }),
             lesson("orm", "Prisma (ORM) ve veri modelleme", "Şema, migrasyon, ilişkili sorgular, N+1, seed. Bu sitenin kendi Prisma şemasını okuyup incele.", {
               tasks: ["Bu repodaki prisma/schema.prisma dosyasını oku; yeni bir model + migrasyon ekle."],
@@ -366,5 +366,5 @@ export const reactModule: LearningModule = {
   library: [
     own("Enterprise React 19 + Vite — Kurumsal Frontend Mimarisi ve MVP Rehberi (iş ilanına uyumlu sürüm)", "REACT_ENTERPRISE_GUIDE_JOB_ALIGNED1.md", "84 saatlik ACME Distribution MVP planı, güvenlik/performans laboratuvarları, yetkinlik kontrol listesi (bu müfredatın 4. projesi)"),
   ],
-  resources: [reactDocs, reactRef, roadmap, eloquent, ydkjs, video("Josh Comeau — The Joy of React (kurs)", "https://www.joyofreact.com", "Ücretli kurs; React iç yapısını sezgisel anlatır.", "Josh Comeau"), tool("Chrome DevTools & Lighthouse", "https://developer.chrome.com/docs/devtools", "Profil, ağ ve performans ölçümü."), tool("React Developer Tools", "https://react.dev/learn/react-developer-tools")],
+  resources: [reactDocs, reactRef, roadmap, eloquent, ydkjs, video("Josh Comeau — React'in Keyfi (The Joy of React) — kurs", "https://www.joyofreact.com", "Ücretli kurs; React iç yapısını sezgisel anlatır.", "Josh Comeau"), tool("Chrome DevTools & Lighthouse", "https://developer.chrome.com/docs/devtools", "Profil, ağ ve performans ölçümü."), tool("React Developer Tools", "https://react.dev/learn/react-developer-tools")],
 };

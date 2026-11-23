@@ -26,7 +26,7 @@ Kuru çimento ve beton tozu **solunum, göz ve cilt** için tahriş edicidir; ı
 
 ## Alıştırma
 Kendi atölyen için 1 sayfalık kontrol listesi yaz: havalandırma, söndürücü yeri, eldiven/maske stoğu, atık yönetimi. Kullanacağın çimentonun **güvenlik bilgi formunu (SDS/MSDS)** üreticiden bul ve oku.`,
-    verification: `**Kaynak:** [Make: Concrete Candleholder](https://makezine.com/article/craft/make-projects-concrete-candleholder/), [Instructables — Cement Candle Holders](https://www.instructables.com/How-to-Make-Cement-Candle-Holders). Maske/eldiven önerisi bu kaynaklarda ve genel iş güvenliği pratiğinde yaygındır. Bölgendeki kesin yasal/iş güvenliği gereklilikleri için yerel mevzuata bak.`,
+    verification: `**Kaynak:** [Make: Beton Mumluk](https://makezine.com/article/craft/make-projects-concrete-candleholder/), [Instructables — Çimento Mumlukları](https://www.instructables.com/How-to-Make-Cement-Candle-Holders). Maske/eldiven önerisi bu kaynaklarda ve genel iş güvenliği pratiğinde yaygındır. Bölgendeki kesin yasal/iş güvenliği gereklilikleri için yerel mevzuata bak.`,
   },
   "b-malzeme": {
     body: `## Malzeme seçimi
@@ -42,7 +42,7 @@ Gerçek ürüne geçmeden **küçük plakalar** dök: farklı su oranı, pigment
 
 ## Alıştırma
 3 farklı su oranıyla numune plakası dök; yüzey sertliği, gözeneklilik ve renk farkını tabloya yaz. **Hangi oranın en iyi olduğu üreticinin aralığı içinde senin gözleminle belirlenir.**`,
-    verification: `**Kaynak:** [Instructables — Concrete Tea Light Holder](https://www.instructables.com/DIY-Concrete-Tea-Light-Candle-Holder/), [Make](https://makezine.com/article/craft/make-projects-concrete-candleholder/). Kaynaklar farklı karışım oranları verir; bu nedenle sabit oran yazılmadı.`,
+    verification: `**Kaynak:** [Instructables — Beton Çay Mumu Tutucusu](https://www.instructables.com/DIY-Concrete-Tea-Light-Candle-Holder/), [Make](https://makezine.com/article/craft/make-projects-concrete-candleholder/). Kaynaklar farklı karışım oranları verir; bu nedenle sabit oran yazılmadı.`,
   },
   "b-kalip": {
     body: `## Kalıp seçenekleri
@@ -109,7 +109,7 @@ Beton gözenekli; mum veya yağ gözeneklere işleyip dış yüzeyde leke yapabi
 
 ## Alıştırma
 3 farklı iç yüzey (kaplamasız, contalayıcı, çift kat) ile mum dök; 24 saat sonra dış yüzeyde yağ lekesi/sızdırma var mı gözle ve fotoğrafla.`,
-    verification: `**Kaynak:** [Instructables — Concrete Tea Light Holder](https://www.instructables.com/DIY-Concrete-Tea-Light-Candle-Holder/). Belirli bir contalayıcı markasının mumla uyumunu doğrulayamadım; bu nedenle marka önerilmedi.`,
+    verification: `**Kaynak:** [Instructables — Beton Çay Mumu Tutucusu](https://www.instructables.com/DIY-Concrete-Tea-Light-Candle-Holder/). Belirli bir contalayıcı markasının mumla uyumunu doğrulayamadım; bu nedenle marka önerilmedi.`,
   },
   "b-taban": {
     body: `## Taban
@@ -140,7 +140,7 @@ Her mumun **erime noktası, önerilen döküm sıcaklığı ve maksimum koku yü
 
 ## Alıştırma
 Kullanacağın mumun teknik sayfasını bul; erime noktası, döküm sıcaklığı ve önerilen koku yüzdesini bir tabloya yaz. Bulamadığın alanı "bilinmiyor" olarak bırak ve tedarikçiye sor.`,
-    verification: `**Kaynak:** [CandleScience — Wax Guide](https://www.candlescience.com/learning/wax-guide/). Sayısal değerler ürüne göre değiştiği için derse yazılmadı.`,
+    verification: `**Kaynak:** [CandleScience — Mum Rehberi](https://www.candlescience.com/learning/wax-guide/). Sayısal değerler ürüne göre değiştiği için derse yazılmadı.`,
   },
   "b-fitil": {
     body: `## Fitil seçimi
@@ -158,7 +158,7 @@ Fitil boyutu **kap çapına, mum türüne ve koku/boya yüküne** göre seçilir
 
 ## Alıştırma
 Aynı kap ve mumla 3 fitil boyutunu yanma testine sok; sonuç tablosu hazırla.`,
-    verification: `**Kaynak:** [Craftybase — Basit Mum Yanma Testi](https://craftybase.com/blog/how-to-conduct-a-simple-candle-burn-test), [Candle Shack — Container Candle Tips](https://candle-shack.com/pages/container-candle-tips-and-tricks). Bu bir **standart test** değildir (bkz. ASTM notu); yalnızca kendi ürününü ayarlamak için pratik bir yöntemdir.`,
+    verification: `**Kaynak:** [Craftybase — Basit Mum Yanma Testi](https://craftybase.com/blog/how-to-conduct-a-simple-candle-burn-test), [Candle Shack — Kaplı Mum İpuçları](https://candle-shack.com/pages/container-candle-tips-and-tricks). Bu bir **standart test** değildir (bkz. ASTM notu); yalnızca kendi ürününü ayarlamak için pratik bir yöntemdir.`,
   },
   "b-dokum-mum": {
     body: `## Isıtma ve döküm
@@ -175,7 +175,7 @@ Aynı kap ve mumla 3 fitil boyutunu yanma testine sok; sonuç tablosu hazırla.`
 
 ## Alıştırma
 5 döküm yap; her birinin kaydını tabloya gir. Yalnızca bir değişkeni değiştirdiğinde sonuç farkını ayırt edersin.`,
-    verification: `**Kaynak:** [Candle Shack — Container Candle Tips](https://candle-shack.com/pages/container-candle-tips-and-tricks), [CandleScience — Soy Wax Troubleshooting](https://candlescience.com/wax/soy-wax-trouble-shooting-guide/). Sıcaklık değerleri ürüne göre değiştiği için sabit sayı verilmedi.`,
+    verification: `**Kaynak:** [Candle Shack — Kaplı Mum İpuçları](https://candle-shack.com/pages/container-candle-tips-and-tricks), [CandleScience — Soya Mumu Sorun Giderme](https://candlescience.com/wax/soy-wax-trouble-shooting-guide/). Sıcaklık değerleri ürüne göre değiştiği için sabit sayı verilmedi.`,
   },
   "b-kurleme-mum": {
     body: `## Mum kürlemesi
@@ -188,7 +188,7 @@ Etikette genelde şunlar bulunur: ürün adı, içerik/koku, uyarılar (gözetim
 
 ## Alıştırma
 Aynı partiden 3 mum: 3, 7 ve 14 gün dinlendir; koku yoğunluğunu kör testle (başkasına yaktır) karşılaştır.`,
-    verification: `**Kaynak:** [CandleScience — Soy Wax Troubleshooting](https://candlescience.com/wax/soy-wax-trouble-shooting-guide/). Kürleme süreleri üreticiye göre farklıdır; kesin bir süre iddiası yapılmadı.`,
+    verification: `**Kaynak:** [CandleScience — Soya Mumu Sorun Giderme](https://candlescience.com/wax/soy-wax-trouble-shooting-guide/). Kürleme süreleri üreticiye göre farklıdır; kesin bir süre iddiası yapılmadı.`,
   },
   "b-sorun": {
     body: `## Sık mum sorunları
@@ -206,7 +206,7 @@ Bir sorun gördüğünde **tek değişken** değiştir, sonucu kaydet. Birden fa
 
 ## Alıştırma
 5 sorunun her biri için "belirti → olası neden → denediğin değişiklik → sonuç" tablosu doldur.`,
-    verification: `**Kaynak:** [CandleScience — Soy Wax Troubleshooting](https://candlescience.com/wax/soy-wax-trouble-shooting-guide/), [Candle Shack](https://candle-shack.com/pages/container-candle-tips-and-tricks). Çözümler üretici ve atölyeler arasında farklılık gösterir; hepsi deneme gerektirir.`,
+    verification: `**Kaynak:** [CandleScience — Soya Mumu Sorun Giderme](https://candlescience.com/wax/soy-wax-trouble-shooting-guide/), [Candle Shack](https://candle-shack.com/pages/container-candle-tips-and-tricks). Çözümler üretici ve atölyeler arasında farklılık gösterir; hepsi deneme gerektirir.`,
   },
   "b-concrete-sorun": {
     body: `## Beton hataları
@@ -256,7 +256,7 @@ Satış yapacaksan **ürün güvenliği ve etiketleme** düzenlemelerini (ilgili
 
 ## Alıştırma
 Satmayı düşündüğün ürün için bir etiket taslağı hazırla ve "hangi yasal gereklilik eksik olabilir?" listesi çıkar; bu listeyi bir uzmana/resmi kaynağa danışarak doğrula.`,
-    verification: `**Kaynak:** [ANSI — Candle Safety Standards](https://webstore.ansi.org/industry/safety-standards/consumer-products/candles). Standartların **adı** doğrulanabilir; **içeriği ücretli olduğundan okunmadı**. Türkiye mevzuatı doğrulanamadı → bilinçli olarak yazılmadı.`,
+    verification: `**Kaynak:** [ANSI — Mum Güvenlik Standartları](https://webstore.ansi.org/industry/safety-standards/consumer-products/candles). Standartların **adı** doğrulanabilir; **içeriği ücretli olduğundan okunmadı**. Türkiye mevzuatı doğrulanamadı → bilinçli olarak yazılmadı.`,
   },
   "b-fotograf": {
     body: `## Ürün fotoğrafı
@@ -292,7 +292,7 @@ Yüzey, damar izi ve izin verilen fireyi gözle kontrol et. Tedarikçiden kalın
 
 ## Alıştırma
 3 farklı deri parçasında kesim, kenar, boyama, ıslatma ve bükülme farkını karşılaştır.`,
-    verification: `**Kaynak:** [Tandy Leather](https://tandyleather.com), [Michaels — Leather Journal Cover](https://www.michaels.com/class/vod/leather-journal-cover-1081916843). Kalınlık bandı kaynaklarda **genel bir aralık**tır, bir standart değildir.`,
+    verification: `**Kaynak:** [Tandy Leather](https://tandyleather.com), [Michaels — Deri Defter Kapağı](https://www.michaels.com/class/vod/leather-journal-cover-1081916843). Kalınlık bandı kaynaklarda **genel bir aralık**tır, bir standart değildir.`,
   },
   "d-alet": {
     body: `## Temel alet seti
@@ -323,7 +323,7 @@ Kalıba **dikiş payını** ve varsa ek parçaları (kalem tutacağı, kart cebi
 
 ## Alıştırma
 A5 ve Field Notes boyutu için kâğıt prototip yap; kapanma payını ve defterin giriş-çıkışını kontrol et.`,
-    verification: `**Kaynak:** [Dodson Designs — Leather Journal Tutorial](https://dodson-designs.com/?p=1424), [Instructables — Field Notes Leather Cover](https://instructables.com/Field-Notes-Leather-Cover). Pay değerleri sabit verilmedi; defter kalınlığına göre değişir.`,
+    verification: `**Kaynak:** [Dodson Designs — Deri Defter Eğitimi](https://dodson-designs.com/?p=1424), [Instructables — Field Notes Deri Kılıf](https://instructables.com/Field-Notes-Leather-Cover). Pay değerleri sabit verilmedi; defter kalınlığına göre değişir.`,
   },
   "d-tasarim": {
     body: `## Kapak tasarımı
@@ -334,7 +334,7 @@ A5 ve Field Notes boyutu için kâğıt prototip yap; kapanma payını ve defter
 
 ## Alıştırma
 Bir kapak için tek sayfalık çizim yap: parçalar, kat sayısı, dikiş çizgileri, dikiş sırası.`,
-    verification: `**Kaynak:** [Tandy Blog — Trifold Journal Cover](https://tandyleather.com/blogs/tandy-blog/gift-idea-trifold-leather-journal-cover-with-theoldpinkhouse), [Instructables](https://instructables.com/Field-Notes-Leather-Cover).`,
+    verification: `**Kaynak:** [Tandy Blog — Üç Katlı Deri Günlük Kılıfı](https://tandyleather.com/blogs/tandy-blog/gift-idea-trifold-leather-journal-cover-with-theoldpinkhouse), [Instructables](https://instructables.com/Field-Notes-Leather-Cover).`,
   },
   "d-kesim": {
     body: `## Kesim
@@ -369,7 +369,7 @@ Aynı boyayı 3 farklı nem düzeyinde dene (kuru, hafif nemli, ıslak) ve sonuc
 
 ## Alıştırma
 Hurda deride 20 cm'lik bir sıra delik aç; adım aralıklarını cetvelle ölç ve sapmayı kaydet.`,
-    verification: `**Kaynak:** [Dodson Designs](https://dodson-designs.com/?p=1424), [Instructables — Leather Stitching](https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/).`,
+    verification: `**Kaynak:** [Dodson Designs](https://dodson-designs.com/?p=1424), [Instructables — Deri Dikişi](https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/).`,
   },
   "d-saddle": {
     body: `## Saddle stitch
@@ -386,7 +386,7 @@ Kaynaklarda genel kural: **dikiş uzunluğunun yaklaşık ≥3 katı**; kalın d
 
 ## Alıştırma
 Aynı dikişi 5 kez tekrarla; ön ve arka yüzün eşitliğini ve gerginliğini değerlendir.`,
-    verification: `**Kaynak:** [Instructables — Leather Stitching: Three Ways](https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/), [Instructables — Hand Stitched Notebook Cover](https://www.instructables.com/Hand-Stitched-Leather-Notebook-Cover), [Dodson Designs](https://dodson-designs.com/?p=1424). İplik boyu çarpanı kaynaklardaki **pratik kuraldır**, standart değildir.`,
+    verification: `**Kaynak:** [Instructables — Deri Dikişi: Üç Yöntem](https://www.instructables.com/Leather-Stitching-How-To-Three-Ways/), [Instructables — El Dikişi Defter Kılıfı](https://www.instructables.com/Hand-Stitched-Leather-Notebook-Cover), [Dodson Designs](https://dodson-designs.com/?p=1424). İplik boyu çarpanı kaynaklardaki **pratik kuraldır**, standart değildir.`,
   },
   "d-kenar": {
     body: `## Kenar bitirme
@@ -400,7 +400,7 @@ Düzgün kenar, profesyonel görünümü en çok belirleyen kısımdır.
 
 ## Alıştırma
 3 yöntemi karşılaştır: yalnızca zımpara, nem+parlatma, kenar boyası; kendi standardını seç.`,
-    verification: `**Kaynak:** [Instructables — Field Notes Leather Cover](https://instructables.com/Field-Notes-Leather-Cover), [Michaels sınıfı](https://www.michaels.com/class/vod/leather-journal-cover-1081916843).`,
+    verification: `**Kaynak:** [Instructables — Field Notes Deri Kılıf](https://instructables.com/Field-Notes-Leather-Cover), [Michaels sınıfı](https://www.michaels.com/class/vod/leather-journal-cover-1081916843).`,
   },
   "d-final": {
     body: `## Montaj ve kalite kontrol

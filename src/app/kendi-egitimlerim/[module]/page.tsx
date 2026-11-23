@@ -7,7 +7,8 @@ import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { Markdown } from "@/components/learning/markdown";
 import { getResolvedModule } from "@/lib/learning/resolve";
 import { getProgressMap, getQuizStats, moduleProgress, unitProgress } from "@/lib/learning/progress";
-import { progressKey } from "@/lib/learning";
+import { progressKey, getModule } from "@/lib/learning";
+import { topicOfModule, extraIdsForMain } from "@/lib/learning/extra/topics";
 import type { Resource } from "@/lib/learning/types";
 import { toggleProgress, addCustomLesson, saveModuleNotes, restoreLesson } from "../actions";
 
@@ -66,6 +67,38 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
             <p className="mt-1 text-xs ag-muted">Ne kadarı okundu: {m.source.readNote}</p>
           </div>
         )}
+        {(() => {
+          const topic = m.group === "ek" ? topicOfModule(m.id) : undefined;
+          const related = extraIdsForMain(m.id);
+          return (
+            <>
+              {topic && (
+                <p className="text-xs ag-muted">
+                  Konu: <Link href={`/kendi-egitimlerim#ek-${topic.id}`} className="underline">{topic.title}</Link>
+                  {topic.mainModule && getModule(topic.mainModule) && (
+                    <> · İlgili ana modül: <Link href={`/kendi-egitimlerim/${topic.mainModule}`} className="underline">{getModule(topic.mainModule)!.title}</Link></>
+                  )}
+                </p>
+              )}
+              {related.length > 0 && (
+                <div className="ag-quote-box max-w-3xl text-sm">
+                  <p><strong>İlgili ek modüller</strong> (yüklenen kitaplar ve konu modülleri):</p>
+                  {related.map(({ topic: t, ids }) => (
+                    <div key={t.id} className="mt-2">
+                      <p className="text-xs font-medium">{t.title}</p>
+                      <ul className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                        {ids.map((id) => {
+                          const em = getModule(id);
+                          return em ? <li key={id}><Link href={`/kendi-egitimlerim/${id}`} className="underline">{em.title}</Link></li> : null;
+                        })}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
+          );
+        })()}
         <div className="ag-panel flex flex-col gap-3">
           <div className="ag-progress"><span style={{ width: `${p.pct}%` }} /></div>
           <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">

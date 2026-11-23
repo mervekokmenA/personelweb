@@ -4,6 +4,7 @@ import { hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { getAllResolvedModules } from "@/lib/learning/resolve";
 import { getProgressMap, getQuizStats, moduleProgress } from "@/lib/learning/progress";
+import { EXTRA_TOPICS } from "@/lib/learning/extra/topics";
 
 export const dynamic = "force-dynamic";
 
@@ -71,28 +72,48 @@ export default async function KendiEgitimlerimPage() {
           <div className="flex flex-col gap-1">
             <h2 className="text-lg font-medium">Ek Modüller — yüklediğin kitaplar ve internetten bulunan eksik konular</h2>
             <p className="max-w-2xl text-sm ag-muted">
-              Her kitap (ve her eksik konu) için ayrı bir iç modül: yazar ve bağlam, bölüm bölüm ders, konu testi ve &quot;eklenmeyenler&quot; notu.
+              Her kitap (ve her eksik konu) ayrı bir iç modüldür; burada konularına göre gruplandı. Her birinde yazar ve bağlam, bölüm bölüm ders, konu testi ve &quot;eklenmeyenler&quot; notu bulunur.
               {" "}{extraDone}/{extraTotal} parça tamamlandı.
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {extraModules.map((m) => {
-              const p = moduleProgress(m, progress);
-              return (
-                <Link key={m.id} href={`/kendi-egitimlerim/${m.id}`} className="ag-stat group min-h-[8rem] hover:bg-white">
-                  <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-base font-medium leading-snug">{m.title}</h3>
-                    <span className="ag-icon-btn shrink-0 opacity-70 group-hover:opacity-100"><ArrowUpRight size={14} /></span>
-                  </div>
-                  <p className="text-xs ag-muted">{m.source?.author} · {m.source?.language}{m.source?.pages ? ` · ${m.source.pages} sayfa` : ""}</p>
-                  <div className="mt-auto flex flex-col gap-1.5">
-                    <div className="ag-progress"><span style={{ width: `${p.pct}%` }} /></div>
-                    <span className="text-xs ag-muted">%{p.pct} · {p.done}/{p.total} parça</span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          {(() => {
+            const byId = new Map(extraModules.map((m) => [m.id, m]));
+            const placed = new Set(EXTRA_TOPICS.flatMap((t) => t.moduleIds));
+            const leftover = extraModules.filter((m) => !placed.has(m.id));
+            const groups = EXTRA_TOPICS.map((t) => ({
+              id: t.id,
+              title: t.title,
+              description: t.description,
+              mods: t.moduleIds.map((id) => byId.get(id)).filter((m): m is NonNullable<typeof m> => !!m),
+            }));
+            if (leftover.length) groups.push({ id: "baska", title: "Diğer", description: "", mods: leftover });
+            return groups.filter((g) => g.mods.length > 0).map((g) => (
+              <div key={g.id} id={`ek-${g.id}`} className="flex flex-col gap-3">
+                <div>
+                  <h3 className="text-base font-medium">{g.title} <span className="text-xs font-normal ag-muted">({g.mods.length} modül)</span></h3>
+                  {g.description && <p className="text-xs ag-muted">{g.description}</p>}
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {g.mods.map((m) => {
+                    const p = moduleProgress(m, progress);
+                    return (
+                      <Link key={m.id} href={`/kendi-egitimlerim/${m.id}`} className="ag-stat group min-h-[8rem] hover:bg-white">
+                        <div className="flex items-start justify-between gap-2">
+                          <h4 className="text-base font-medium leading-snug">{m.title}</h4>
+                          <span className="ag-icon-btn shrink-0 opacity-70 group-hover:opacity-100"><ArrowUpRight size={14} /></span>
+                        </div>
+                        <p className="text-xs ag-muted">{m.source?.author} · {m.source?.language}{m.source?.pages ? ` · ${m.source.pages} sayfa` : ""}</p>
+                        <div className="mt-auto flex flex-col gap-1.5">
+                          <div className="ag-progress"><span style={{ width: `${p.pct}%` }} /></div>
+                          <span className="text-xs ag-muted">%{p.pct} · {p.done}/{p.total} parça</span>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            ));
+          })()}
         </section>
       )}
 

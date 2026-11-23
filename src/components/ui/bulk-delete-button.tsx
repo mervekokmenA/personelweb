@@ -10,12 +10,14 @@ export function BulkDeleteButton({
   label,
   confirmText,
   disabled = false,
+  variant = "danger",
 }: {
   action: (formData: FormData) => Promise<void>;
   hidden?: Record<string, string>;
   label: string;
   confirmText: string;
   disabled?: boolean;
+  variant?: "danger" | "primary";
 }) {
   const [pending, startTransition] = useTransition();
   return (
@@ -31,9 +33,13 @@ export function BulkDeleteButton({
       <button
         type="submit"
         disabled={disabled || pending}
-        className="flex items-center gap-1.5 rounded-lg border border-red-300 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-40"
+        className={
+          variant === "primary"
+            ? "ag-btn ag-btn-dark"
+            : "flex items-center gap-1.5 rounded-lg border border-red-300 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-40"
+        }
       >
-        <Trash2 size={13} /> {label}
+        {variant === "danger" && <Trash2 size={13} />} {label}
       </button>
     </form>
   );

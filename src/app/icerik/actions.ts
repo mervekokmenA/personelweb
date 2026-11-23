@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { randomUUID } from "node:crypto";
 
 const STATUS_CYCLE = ["NOT_STARTED", "IN_PROGRESS", "DONE"] as const;
 
@@ -82,4 +83,32 @@ export async function pickRandomIdea(): Promise<RandomIdea | null> {
     skip,
   });
   return idea;
+}
+
+/** Google dokümanından hazırlanan fikirleri + transkriptlerini içe aktarır; aynı başlıklı fikir zaten varsa atlar. */
+export async function importDocContentIdeas() {
+  const { default: data } = (await import("@/data/content-ideas.json")) as unknown as {
+    default: { title: string; category: string; format: string; transcripts: { style: string; text: string }[] }[];
+  };
+  const existing = new Set((await prisma.contentIdea.findMany({ select: { title: true } })).map((i) => i.title));
+  const fresh = data.filter((d) => !existing.has(d.title));
+  if (fresh.length === 0) return;
+
+  const ideas = fresh.map((d) => ({
+    id: randomUUID(),
+    title: d.title,
+    category: d.category,
+    format: d.format,
+    source: "doc",
+    transcripts: d.transcripts,
+  }));
+  await prisma.contentIdea.createMany({
+    data: ideas.map(({ id, title, category, format, source }) => ({ id, title, category, format, source })),
+  });
+  await prisma.contentTranscript.createMany({
+    data: ideas.flatMap((i) =>
+      i.transcripts.map((t, order) => ({ ideaId: i.id, style: t.style, text: t.text, order }))
+    ),
+  });
+  revalidatePath("/icerik");
 }

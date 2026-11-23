@@ -1,5 +1,6 @@
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
-import { addContentIdea } from "./actions";
+import { addContentIdea, importDocContentIdeas } from "./actions";
+import { BulkDeleteButton } from "@/components/ui/bulk-delete-button";
 import { IdeaBoard } from "@/components/icerik/idea-board";
 import { Lightbulb, Circle, Loader, CheckCircle2 } from "lucide-react";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
@@ -42,6 +43,7 @@ export default async function IcerikPage({
       orderBy: [{ category: "asc" }, { createdAt: "asc" }],
       skip: (page - 1) * PAGE_SIZE,
       take: PAGE_SIZE,
+      include: { transcripts: { orderBy: { order: "asc" } } },
     }),
     prisma.contentIdea.count({ where }),
     prisma.contentIdea.findMany({ distinct: ["category"], select: { category: true } }),
@@ -140,8 +142,29 @@ export default async function IcerikPage({
         </form>
       </section>
 
+      {totalCount === 0 && (
+        <section className="ag-panel flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm ag-muted">
+            Henüz fikir yok. Google dokümanındaki 300 fikri transkriptleriyle birlikte yükleyebilirsin.
+          </p>
+          <BulkDeleteButton
+            action={importDocContentIdeas}
+            label="Dokümandan Yükle (300 fikir)"
+            confirmText="300 fikir ve 600 transkript yüklenecek. Devam edilsin mi?"
+            variant="primary"
+          />
+        </section>
+      )}
+
       <IdeaBoard
-        ideas={ideas.map((i) => ({ id: i.id, title: i.title, category: i.category, format: i.format, status: i.status }))}
+        ideas={ideas.map((i) => ({
+          id: i.id,
+          title: i.title,
+          category: i.category,
+          format: i.format,
+          status: i.status,
+          transcripts: i.transcripts.map((t) => ({ id: t.id, style: t.style, text: t.text })),
+        }))}
         startIndex={(page - 1) * PAGE_SIZE}
         filter={{ q, category, status }}
         filteredTotal={total}

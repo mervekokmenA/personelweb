@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Trash2 } from "lucide-react";
+import { Trash2, ChevronDown, Copy, Check } from "lucide-react";
 import {
   cycleContentIdeaStatus,
   deleteContentIdea,
@@ -16,6 +16,7 @@ export interface BoardIdea {
   category: string;
   format: string | null;
   status: string;
+  transcripts: { id: string; style: string; text: string }[];
 }
 
 export function IdeaBoard({
@@ -33,6 +34,8 @@ export function IdeaBoard({
 }) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [pending, startTransition] = useTransition();
+  const [open, setOpen] = useState<Set<string>>(new Set());
+  const [copied, setCopied] = useState<string | null>(null);
 
   const allSelected = ideas.length > 0 && ideas.every((i) => selected.has(i.id));
 
@@ -43,6 +46,25 @@ export function IdeaBoard({
       else next.add(id);
       return next;
     });
+  }
+
+  function toggleOpen(id: string) {
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  async function copyText(id: string, text: string) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(id);
+      setTimeout(() => setCopied((c) => (c === id ? null : c)), 1500);
+    } catch {
+      /* pano erişimi yoksa sessizce geç */
+    }
   }
 
   function toggleAll() {
@@ -107,11 +129,15 @@ export function IdeaBoard({
         </div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid items-start gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {ideas.map((idea, i) => {
           const isSel = selected.has(idea.id);
+          const isOpen = open.has(idea.id);
           return (
-            <div key={idea.id} className={`ag-idea ${isSel ? "ag-idea-selected" : ""}`}>
+            <div
+              key={idea.id}
+              className={`ag-idea ${isSel ? "ag-idea-selected" : ""} ${isOpen ? "sm:col-span-2 xl:col-span-3" : ""}`}
+            >
               <div className="flex items-start justify-between gap-2">
                 <span className="ag-num">{String(startIndex + i + 1).padStart(2, "0")}</span>
                 <input
@@ -140,6 +166,40 @@ export function IdeaBoard({
                   </button>
                 </form>
               </div>
+              {idea.transcripts.length > 0 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => toggleOpen(idea.id)}
+                    aria-expanded={isOpen}
+                    className="ag-transcript-toggle"
+                  >
+                    <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                    {isOpen ? "Transkripti gizle" : `Transkripti göster (${idea.transcripts.length})`}
+                  </button>
+                  {isOpen && (
+                    <div className="grid gap-3 lg:grid-cols-2">
+                      {idea.transcripts.map((t) => (
+                        <div key={t.id} className="ag-transcript">
+                          <div className="mb-2 flex items-center justify-between gap-2">
+                            <span className="ag-pill">{t.style}</span>
+                            <button
+                              type="button"
+                              onClick={() => copyText(t.id, t.text)}
+                              className="ag-icon-btn"
+                              aria-label="Transkripti kopyala"
+                              title="Kopyala"
+                            >
+                              {copied === t.id ? <Check size={14} /> : <Copy size={14} />}
+                            </button>
+                          </div>
+                          <p className="text-sm leading-relaxed">{t.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           );
         })}

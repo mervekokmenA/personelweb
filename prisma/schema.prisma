@@ -122,18 +122,32 @@ enum ContentStatus {
 }
 
 model ContentIdea {
-  id        String        @id @default(cuid())
-  title     String
-  category  String        @default("Genel")
-  format    String? // Video, Yazı, Podcast, Kısa Video...
-  status    ContentStatus @default(NOT_STARTED)
-  notes     String?
-  source    String        @default("seed") // seed | manual | ai
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  id          String              @id @default(cuid())
+  title       String
+  category    String              @default("Genel")
+  format      String? // Video, Yazı, Podcast, Kısa Video...
+  status      ContentStatus       @default(NOT_STARTED)
+  notes       String?
+  source      String              @default("seed") // seed | manual | ai | doc
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  transcripts ContentTranscript[]
 
   @@index([status])
   @@index([category])
+}
+
+// Bir içerik fikrinin transkriptleri (örn. "Paradoks & Araştırma", "Sayısal Liste & İstatistik" tarzları)
+model ContentTranscript {
+  id        String      @id @default(cuid())
+  idea      ContentIdea @relation(fields: [ideaId], references: [id], onDelete: Cascade)
+  ideaId    String
+  style     String // tarz adı
+  text      String
+  order     Int         @default(0)
+  createdAt DateTime    @default(now())
+
+  @@index([ideaId])
 }
 
 // ---------------------------------------------------------------------------
@@ -173,14 +187,14 @@ model Training {
 }
 
 model TrainingNote {
-  id         String   @id @default(cuid())
-  training   Training @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+  id         String    @id @default(cuid())
+  training   Training  @relation(fields: [trainingId], references: [id], onDelete: Cascade)
   trainingId String
   title      String?
   content    String
   lessonDate DateTime?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
   @@index([trainingId])
 }
@@ -228,12 +242,12 @@ model WeightEntry {
 }
 
 model PeriodEntry {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   startDate DateTime
   endDate   DateTime?
   notes     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@index([startDate])
 }

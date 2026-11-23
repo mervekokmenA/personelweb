@@ -13,6 +13,8 @@ import { bedenEnerjiModule } from "./beden-enerji";
 import { plotinosModule } from "./plotinos";
 import { cockrenModule } from "./cockren-simya";
 import { alchemyHanswilleModule } from "./alchemy-entschleierte";
+import { elementBuyuculuguModule } from "./element-buyuculugu";
+import { crowleyModule } from "./crowley-turkce";
 
 /** Ek modüller: yüklenen her kitap/kaynak için bir iç modül ve internetten bulunan eksik konular. */
 export const EXTRA_MODULES: LearningModule[] = [
@@ -30,4 +32,6 @@ export const EXTRA_MODULES: LearningModule[] = [
   plotinosModule,
   cockrenModule,
   alchemyHanswilleModule,
+  elementBuyuculuguModule,
+  crowleyModule,
 ];

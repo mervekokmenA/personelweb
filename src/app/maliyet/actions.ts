@@ -105,3 +105,36 @@ export async function deleteAllProducts() {
   await prisma.costProduct.deleteMany();
   revalidatePath("/maliyet");
 }
+
+/** Ürünü tüm maliyet kalemleriyle birlikte kopyalar ve kopyanın sayfasına gider. */
+export async function duplicateProduct(formData: FormData) {
+  const id = String(formData.get("id"));
+  const source = await prisma.costProduct.findUnique({
+    where: { id },
+    include: { items: { orderBy: { order: "asc" } } },
+  });
+  if (!source) return;
+  const count = await prisma.costProduct.count();
+  const copy = await prisma.costProduct.create({
+    data: {
+      name: `${source.name} (kopya)`,
+      profitMargin: source.profitMargin,
+      commission: source.commission,
+      order: count,
+      items: {
+        create: source.items.map((i) => ({
+          name: i.name,
+          purchaseAmount: i.purchaseAmount,
+          purchaseUnit: i.purchaseUnit,
+          usagePerItem: i.usagePerItem,
+          usageIsPercent: i.usageIsPercent,
+          yieldCount: i.yieldCount,
+          purchaseCost: i.purchaseCost,
+          order: i.order,
+        })),
+      },
+    },
+  });
+  revalidatePath("/maliyet");
+  redirect(`/maliyet/${copy.id}`);
+}

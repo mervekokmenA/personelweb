@@ -5,7 +5,8 @@ import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { SaveToast } from "@/components/ui/save-toast";
-import { updateProduct, addCostItem, updateCostItem, deleteCostItem } from "../actions";
+import { updateProduct, addCostItem, updateCostItem, deleteCostItem, duplicateProduct } from "../actions";
+import { CopyProductButton } from "@/components/maliyet/copy-button";
 import { itemUnitCost, productUnitCost, computePricing, formatTl } from "@/lib/cost";
 
 export const dynamic = "force-dynamic";
@@ -45,6 +46,9 @@ export default async function MaliyetDetailPage({
           <ArrowLeft size={18} />
         </Link>
         <h1 className="text-2xl font-semibold">{product.name}</h1>
+        <div className="ml-auto">
+          <CopyProductButton action={duplicateProduct} id={product.id} label="Kopyala" />
+        </div>
       </div>
 
       {/* MALİYET KALEMLERİ */}

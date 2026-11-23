@@ -2,7 +2,8 @@ import Link from "next/link";
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { DeleteButton } from "@/components/ui/delete-button";
-import { addProduct, deleteProduct, deleteAllProducts } from "./actions";
+import { addProduct, deleteProduct, deleteAllProducts, duplicateProduct } from "./actions";
+import { CopyProductButton } from "@/components/maliyet/copy-button";
 import { BulkDeleteButton } from "@/components/ui/bulk-delete-button";
 import { productUnitCost, computePricing, formatTl } from "@/lib/cost";
 import { Calculator } from "lucide-react";
@@ -70,7 +71,10 @@ export default async function MaliyetPage() {
                 <Link href={`/maliyet/${p.id}`} className="font-medium leading-snug hover:underline">
                   {p.name}
                 </Link>
-                <DeleteButton action={deleteProduct} hidden={{ id: p.id }} />
+                <div className="flex items-center">
+                  <CopyProductButton action={duplicateProduct} id={p.id} />
+                  <DeleteButton action={deleteProduct} hidden={{ id: p.id }} />
+                </div>
               </div>
               <p className="text-xs text-muted">
                 {p.items.length} kalem · %{p.profitMargin} kâr · %{p.commission} komisyon

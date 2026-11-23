@@ -15,6 +15,8 @@ import { cockrenModule } from "./cockren-simya";
 import { alchemyHanswilleModule } from "./alchemy-entschleierte";
 import { elementBuyuculuguModule } from "./element-buyuculugu";
 import { crowleyModule } from "./crowley-turkce";
+import { dortElementModule } from "./dort-element-homeopati";
+import { butlerMagicianModule } from "./butler-magician";
 
 /** Ek modüller: yüklenen her kitap/kaynak için bir iç modül ve internetten bulunan eksik konular. */
 export const EXTRA_MODULES: LearningModule[] = [
@@ -34,4 +36,6 @@ export const EXTRA_MODULES: LearningModule[] = [
   alchemyHanswilleModule,
   elementBuyuculuguModule,
   crowleyModule,
+  dortElementModule,
+  butlerMagicianModule,
 ];

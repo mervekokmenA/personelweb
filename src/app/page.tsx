@@ -7,6 +7,7 @@ import { getHabitPeriods, dateKey } from "@/lib/habit-grid";
 import { computeDayCompletionPercent } from "@/lib/day-completion";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { ReadingDebtCard } from "@/components/dashboard/reading-debt-card";
+import { MoonWeekCard } from "@/components/dashboard/moon-week-card";
 import { DashboardCard } from "@/components/dashboard/dashboard-card";
 import { DailyTrendChart } from "@/components/dashboard/daily-trend-chart";
 import { HabitGoalChart, type HabitGoalDatum } from "@/components/dashboard/habit-goal-chart";
@@ -155,6 +156,8 @@ export default async function DashboardPage() {
       </div>
 
       <ReadingDebtCard summary={readingDebt} trend={readingTrend} />
+
+      <MoonWeekCard today={today} />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <DashboardCard href="/gunluk" icon={CalendarDays} title="Günlük Program" accent="var(--accent-mint)">

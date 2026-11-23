@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
-import { addTraining } from "./actions";
+import { addTraining, deleteFilteredTrainings } from "./actions";
+import { BulkDeleteButton } from "@/components/ui/bulk-delete-button";
 import { ExternalLink } from "lucide-react";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import type { Prisma } from "@/generated/prisma/client";
@@ -150,6 +151,17 @@ export default async function EgitimlerPage({
           </button>
         </form>
       </section>
+
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="text-xs text-muted">{trainings.length} eğitim listeleniyor</span>
+        <BulkDeleteButton
+          action={deleteFilteredTrainings}
+          hidden={{ q, category, status, type }}
+          disabled={trainings.length === 0}
+          label={q || category || status || type ? `Filtredekileri Sil (${trainings.length})` : `Tümünü Sil (${trainings.length})`}
+          confirmText={`${trainings.length} eğitim notlarıyla birlikte silinecek. Bu işlem geri alınamaz. Emin misin?`}
+        />
+      </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {trainings.map((t) => (

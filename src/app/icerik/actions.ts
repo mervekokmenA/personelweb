@@ -39,6 +39,31 @@ export async function deleteContentIdea(formData: FormData) {
   revalidatePath("/icerik");
 }
 
+function ideaFilter(formData: FormData) {
+  const q = String(formData.get("q") ?? "").trim();
+  const category = String(formData.get("category") ?? "");
+  const status = String(formData.get("status") ?? "");
+  return {
+    ...(q ? { title: { contains: q, mode: "insensitive" as const } } : {}),
+    ...(category ? { category } : {}),
+    ...(status ? { status: status as "NOT_STARTED" | "IN_PROGRESS" | "DONE" } : {}),
+  };
+}
+
+/** Seçilen fikirleri (ids = virgülle ayrılmış id listesi) siler. */
+export async function deleteSelectedContentIdeas(formData: FormData) {
+  const ids = String(formData.get("ids") ?? "").split(",").filter(Boolean);
+  if (ids.length === 0) return;
+  await prisma.contentIdea.deleteMany({ where: { id: { in: ids } } });
+  revalidatePath("/icerik");
+}
+
+/** Mevcut filtreye (arama/kategori/durum) uyan tüm fikirleri siler; filtre boşsa hepsini siler. */
+export async function deleteFilteredContentIdeas(formData: FormData) {
+  await prisma.contentIdea.deleteMany({ where: ideaFilter(formData) });
+  revalidatePath("/icerik");
+}
+
 export interface RandomIdea {
   id: string;
   title: string;

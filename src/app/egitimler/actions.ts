@@ -79,3 +79,20 @@ export async function deleteTrainingNote(formData: FormData) {
   await prisma.trainingNote.delete({ where: { id } });
   revalidatePath(`/egitimler/${trainingId}`);
 }
+
+/** Mevcut filtreye uyan tüm eğitimleri (notlarıyla birlikte) siler; filtre boşsa hepsini siler. */
+export async function deleteFilteredTrainings(formData: FormData) {
+  const q = String(formData.get("q") ?? "").trim();
+  const category = String(formData.get("category") ?? "");
+  const status = String(formData.get("status") ?? "");
+  const type = String(formData.get("type") ?? "");
+  await prisma.training.deleteMany({
+    where: {
+      ...(q ? { name: { contains: q, mode: "insensitive" as const } } : {}),
+      ...(category ? { category } : {}),
+      ...(status ? { status: status as "PLANNED" | "ONGOING" | "COMPLETED" | "PAUSED" } : {}),
+      ...(type ? { type: type as "FREE" | "PAID" } : {}),
+    },
+  });
+  revalidatePath("/egitimler");
+}

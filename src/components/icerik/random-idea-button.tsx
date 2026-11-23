@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Dices } from "lucide-react";
+import { Dices, ArrowUpRight } from "lucide-react";
 import { pickRandomIdea, cycleContentIdeaStatus, type RandomIdea } from "@/app/icerik/actions";
 
 export function RandomIdeaButton() {
@@ -18,28 +18,21 @@ export function RandomIdeaButton() {
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      <button
-        onClick={roll}
-        disabled={pending}
-        className="flex w-fit items-center gap-1.5 rounded-lg bg-accent-lilac px-4 py-1.5 text-sm font-medium disabled:opacity-60"
-      >
+    <div className="flex flex-col items-start gap-3">
+      <button onClick={roll} disabled={pending} className="ag-btn ag-btn-dark disabled:opacity-60">
         <Dices size={15} /> Bana bir fikir öner
+        <span className="grid h-6 w-6 place-items-center rounded-full bg-white text-black">
+          <ArrowUpRight size={13} />
+        </span>
       </button>
 
       {tried && !pending && (
-        <div className="card flex flex-wrap items-center gap-3 border-accent-lilac/40 bg-accent-lilac/10 p-3">
+        <div className="ag-panel flex flex-wrap items-center gap-3">
           {idea ? (
             <>
               <span className="text-sm font-medium">{idea.title}</span>
-              <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
-                {idea.category}
-              </span>
-              {idea.format && (
-                <span className="rounded-full bg-background px-2 py-0.5 text-xs text-muted border border-card-border">
-                  {idea.format}
-                </span>
-              )}
+              <span className="ag-pill">{idea.category}</span>
+              {idea.format && <span className="ag-pill">{idea.format}</span>}
               <form
                 action={async (fd) => {
                   await cycleContentIdeaStatus(fd);
@@ -47,13 +40,11 @@ export function RandomIdeaButton() {
                 }}
               >
                 <input type="hidden" name="id" value={idea.id} />
-                <button className="rounded-lg border border-card-border px-3 py-1 text-xs">
-                  Bunu seç, başka öner
-                </button>
+                <button className="ag-btn ag-btn-soft">Bunu seç, başka öner</button>
               </form>
             </>
           ) : (
-            <span className="text-sm text-muted">Yapılmadı durumunda fikir kalmamış 🎉</span>
+            <span className="text-sm ag-muted">Yapılmadı durumunda fikir kalmamış 🎉</span>
           )}
         </div>
       )}

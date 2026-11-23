@@ -2,7 +2,8 @@ import Link from "next/link";
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { DeleteButton } from "@/components/ui/delete-button";
-import { addProduct, deleteProduct } from "./actions";
+import { addProduct, deleteProduct, deleteAllProducts } from "./actions";
+import { BulkDeleteButton } from "@/components/ui/bulk-delete-button";
 import { productUnitCost, computePricing, formatTl } from "@/lib/cost";
 import { Calculator } from "lucide-react";
 
@@ -48,6 +49,16 @@ export default async function MaliyetPage() {
           </button>
         </form>
       </section>
+
+      {products.length > 0 && (
+        <div className="flex justify-end">
+          <BulkDeleteButton
+            action={deleteAllProducts}
+            label={`Tümünü Sil (${products.length})`}
+            confirmText={`${products.length} ürün ve tüm maliyet kalemleri silinecek. Bu işlem geri alınamaz. Emin misin?`}
+          />
+        </div>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((p) => {

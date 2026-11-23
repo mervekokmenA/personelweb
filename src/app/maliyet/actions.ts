@@ -100,3 +100,8 @@ export async function deleteCostItem(formData: FormData) {
   revalidatePath(`/maliyet/${productId}`);
   revalidatePath("/maliyet");
 }
+
+export async function deleteAllProducts() {
+  await prisma.costProduct.deleteMany();
+  revalidatePath("/maliyet");
+}

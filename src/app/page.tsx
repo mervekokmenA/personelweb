@@ -8,6 +8,8 @@ import { computeDayCompletionPercent } from "@/lib/day-completion";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { ReadingDebtCard } from "@/components/dashboard/reading-debt-card";
 import { MoonWeekCard } from "@/components/dashboard/moon-week-card";
+import { LearningWidgets } from "@/components/dashboard/learning-widgets";
+import { getLearningWidgetData } from "@/lib/learning/dashboard";
 import { DashboardCard } from "@/components/dashboard/dashboard-card";
 import { DailyTrendChart } from "@/components/dashboard/daily-trend-chart";
 import { HabitGoalChart, type HabitGoalDatum } from "@/components/dashboard/habit-goal-chart";
@@ -63,6 +65,9 @@ export default async function DashboardPage() {
     prisma.laserSession.findMany({ orderBy: { date: "desc" }, take: 1 }),
     computeReadingDebt(settings.dailyReadingPageTarget),
   ]);
+
+  // Eğitim tabloları yoksa/okunamazsa ana sayfa yine de açılsın.
+  const learningData = await getLearningWidgetData().catch(() => null);
 
   const countMap = Object.fromEntries(statusCounts.map((s) => [s.status, s._count]));
   const contentTotal = statusCounts.reduce((sum, s) => sum + s._count, 0);
@@ -158,6 +163,8 @@ export default async function DashboardPage() {
       <ReadingDebtCard summary={readingDebt} trend={readingTrend} />
 
       <MoonWeekCard today={today} />
+
+      {learningData && <LearningWidgets data={learningData} />}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <DashboardCard href="/gunluk" icon={CalendarDays} title="Günlük Program" accent="var(--accent-mint)">

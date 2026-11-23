@@ -72,7 +72,11 @@ export interface LearningModule {
   title: string;
   tagline: string;
   description: string;
-  icon: "code" | "eye" | "moon" | "hammer";
+  icon: "code" | "eye" | "moon" | "hammer" | "book";
+  /** "ana": dört ana modül, "ek": yüklenen bir kitap/kaynak için ek iç modül. */
+  group?: "ana" | "ek";
+  /** Ek modüllerde: kaynak kitabın bilgisi (dosya adı, dil, sayfa, ne kadarının okunduğu). */
+  source?: { file: string; author: string; language: string; pages?: number; readNote: string };
   tracks: Track[];
   /** "5 yıllık deneyimli" seviyede yapabilmen gerekenler. */
   competencies: string[];

@@ -60,6 +60,12 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
         <h1 className="ag-title">{m.title}</h1>
         <p className="max-w-3xl text-sm ag-muted">{m.description}</p>
         {m.disclaimer && <p className="ag-quote-box max-w-3xl text-xs ag-muted">{m.disclaimer}</p>}
+        {m.source && (
+          <div className="ag-quote-box max-w-3xl text-sm">
+            <p><strong>Ek modül · kaynak kitap:</strong> {m.source.author} — <em>{m.source.file}</em> ({m.source.language}{m.source.pages ? `, ${m.source.pages} sayfa` : ""})</p>
+            <p className="mt-1 text-xs ag-muted">Ne kadarı okundu: {m.source.readNote}</p>
+          </div>
+        )}
         <div className="ag-panel flex flex-col gap-3">
           <div className="ag-progress"><span style={{ width: `${p.pct}%` }} /></div>
           <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
@@ -70,7 +76,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
         </div>
       </header>
 
-      <section className="ag-panel">
+      {m.competencies.length > 0 && <section className="ag-panel">
         <details>
           <summary className="cursor-pointer text-sm font-medium">Hedef: 5 yıllık deneyim seviyesinde yapabileceklerin ({m.competencies.length})</summary>
           <ul className="ag-ul mt-3 flex list-disc flex-col gap-1.5 pl-5 text-sm">
@@ -80,7 +86,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
             Not: Bu liste hedef yetkinlikleri tanımlar. Müfredat + projeler bir temel ve yol haritası verir; gerçek deneyim seviyesi, düzenli ve uzun süreli uygulamayla (günlük, proje, geri bildirim) oluşur.
           </p>
         </details>
-      </section>
+      </section>}
 
       <section className="flex flex-col gap-6">
         <h2 className="text-xl font-medium">Programlar</h2>
@@ -177,7 +183,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
         )}
       </section>
 
-      <section className="flex flex-col gap-4">
+      {m.projects.length > 0 && <section className="flex flex-col gap-4">
         <h2 className="text-xl font-medium">Örnek Projeler ve Uygulamalar</h2>
         <div className="grid gap-3 lg:grid-cols-2">
           {m.projects.map((pr) => {
@@ -207,7 +213,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
             );
           })}
         </div>
-      </section>
+      </section>}
 
       {m.library.length > 0 && (
         <section className="ag-panel flex flex-col gap-3">
@@ -217,10 +223,10 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
         </section>
       )}
 
-      <section className="ag-panel flex flex-col gap-3">
+      {m.resources.length > 0 && <section className="ag-panel flex flex-col gap-3">
         <h2 className="text-xl font-medium">Dış kaynaklar</h2>
         <ul className="flex flex-col gap-2">{m.resources.map((r, i) => <ResourceItem key={i} r={r} />)}</ul>
-      </section>
+      </section>}
 
       <section className="ag-panel flex flex-col gap-3">
         <h2 className="text-xl font-medium">Eklenmeyenler ve doğrulama notları</h2>

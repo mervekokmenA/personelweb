@@ -8,6 +8,7 @@ import { reactContent } from "./content/react";
 import { occultContent } from "./content/occult";
 import { astrologyContent } from "./content/astrology";
 import { craftsContent } from "./content/crafts";
+import { EXTRA_MODULES } from "./extra";
 
 export * from "./types";
 
@@ -31,6 +32,7 @@ export const MODULES: LearningModule[] = [
   withContent(occultModule, occultContent),
   withContent(astrologyModule, astrologyContent),
   withContent(craftsModule, craftsContent),
+  ...EXTRA_MODULES,
 ];
 
 export function getModule(id: string): LearningModule | undefined {

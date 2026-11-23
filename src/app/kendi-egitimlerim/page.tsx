@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Code2, Eye, Moon, Hammer, ArrowUpRight, Library } from "lucide-react";
+import { Code2, Eye, Moon, Hammer, BookOpen, ArrowUpRight, Library } from "lucide-react";
 import { hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { getAllResolvedModules } from "@/lib/learning/resolve";
@@ -7,7 +7,7 @@ import { getProgressMap, getQuizStats, moduleProgress } from "@/lib/learning/pro
 
 export const dynamic = "force-dynamic";
 
-const ICONS = { code: Code2, eye: Eye, moon: Moon, hammer: Hammer } as const;
+const ICONS = { code: Code2, eye: Eye, moon: Moon, hammer: Hammer, book: BookOpen } as const;
 
 export default async function KendiEgitimlerimPage() {
   if (!hasDatabaseUrl) {
@@ -19,6 +19,11 @@ export default async function KendiEgitimlerimPage() {
     );
   }
   const [modules, progress, quizStats] = await Promise.all([getAllResolvedModules(), getProgressMap(), getQuizStats()]);
+
+  const extraModules = modules.filter((m) => m.group === "ek");
+  const extraStats = extraModules.map((m) => moduleProgress(m, progress));
+  const extraDone = extraStats.reduce((s, p) => s + p.done, 0);
+  const extraTotal = extraStats.reduce((s, p) => s + p.total, 0);
 
   return (
     <div className="agro flex flex-col gap-8">
@@ -32,7 +37,7 @@ export default async function KendiEgitimlerimPage() {
       </header>
 
       <div className="grid gap-4 md:grid-cols-2">
-        {modules.map((m) => {
+        {modules.filter((m) => m.group !== "ek").map((m) => {
           const Icon = ICONS[m.icon];
           const p = moduleProgress(m, progress);
           const units = m.tracks.flatMap((t) => t.units);
@@ -60,6 +65,36 @@ export default async function KendiEgitimlerimPage() {
           );
         })}
       </div>
+
+      {extraModules.length > 0 && (
+        <section id="ek-moduller" className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            <h2 className="text-lg font-medium">Ek Modüller — yüklediğin kitaplar</h2>
+            <p className="max-w-2xl text-sm ag-muted">
+              Her kitap için ayrı bir iç modül: yazar ve bağlam, bölüm bölüm ders, konu testi ve &quot;eklenmeyenler&quot; notu.
+              {" "}{extraDone}/{extraTotal} parça tamamlandı.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {extraModules.map((m) => {
+              const p = moduleProgress(m, progress);
+              return (
+                <Link key={m.id} href={`/kendi-egitimlerim/${m.id}`} className="ag-stat group min-h-[8rem] hover:bg-white">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="text-base font-medium leading-snug">{m.title}</h3>
+                    <span className="ag-icon-btn shrink-0 opacity-70 group-hover:opacity-100"><ArrowUpRight size={14} /></span>
+                  </div>
+                  <p className="text-xs ag-muted">{m.source?.author} · {m.source?.language}{m.source?.pages ? ` · ${m.source.pages} sayfa` : ""}</p>
+                  <div className="mt-auto flex flex-col gap-1.5">
+                    <div className="ag-progress"><span style={{ width: `${p.pct}%` }} /></div>
+                    <span className="text-xs ag-muted">%{p.pct} · {p.done}/{p.total} parça</span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       <p className="text-xs ag-muted">
         Bilgi kaynakları: her derste kaynaklar ve doğrulama notu yer alır; güvenilir bir kaynakta doğrulanamayan konular eklenmez ve nedeniyle birlikte

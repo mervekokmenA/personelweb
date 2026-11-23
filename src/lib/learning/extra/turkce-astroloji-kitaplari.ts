@@ -47,6 +47,7 @@ Kitabın zaman faktörleri başlıklarını kullanarak bir doğum saatini **yere
         qz("Kitapta zaman faktörleri içinde hangisi geçer?", ["Yıldız zamanı ve zaman eşitlemesi", "Burç yorumları", "Tarot", "Rünler"], 0),
         qz("Greenwich Ortalama Zamanı'nın modern karşılığı olarak hangisi anılır?", ["Evrensel Zaman (UT)", "Yaz saati", "Efsane zaman", "Yerel zaman"], 0),
         qz("Doğum haritası hesabı için hangi bilgi şarttır?", ["Doğum tarihi, saati ve yeri", "Yalnızca burç", "Yalnızca isim", "Yalnızca yaş"], 0),
+        qz("Öztürk kitabı hangi yıl yayımlanmıştır (1. baskı)?", ["2001", "1887", "1959", "2021"], 0),
       ],
     },
     {

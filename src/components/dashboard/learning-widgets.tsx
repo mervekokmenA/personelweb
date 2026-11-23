@@ -46,7 +46,7 @@ export function LearningWidgets({ data }: { data: LearningWidgetData }) {
               <li>
                 <Link href="/kendi-egitimlerim#ek-moduller" className="block rounded-md hover:bg-black/[0.03]">
                   <div className="mb-1 flex items-baseline justify-between text-xs">
-                    <span className="font-medium">Ek modüller ({extra.length} kitap)</span>
+                    <span className="font-medium">Ek modüller ({extra.length} modül)</span>
                     <span className="text-muted">%{extraPct} · {extraDone}/{extraTotal}</span>
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-black/10">

@@ -25,6 +25,8 @@ import { frawleyModule } from "./frawley-vedik";
 import { turkceAstrolojiModule } from "./turkce-astroloji-kitaplari";
 import { cucenModule } from "./cucen-metafizik";
 import { dovmeModule } from "./dovme-semboller";
+import { platonModule } from "./platon-epub";
+import { hermeticaModule, tarotTarihiModule, cakraTarihiModule, kybalionModule, helenistikAstrolojiModule } from "./konu-modulleri";
 
 /** Ek modüller: yüklenen her kitap/kaynak için bir iç modül ve internetten bulunan eksik konular. */
 export const EXTRA_MODULES: LearningModule[] = [
@@ -54,4 +56,10 @@ export const EXTRA_MODULES: LearningModule[] = [
   turkceAstrolojiModule,
   cucenModule,
   dovmeModule,
+  platonModule,
+  hermeticaModule,
+  tarotTarihiModule,
+  cakraTarihiModule,
+  kybalionModule,
+  helenistikAstrolojiModule,
 ];

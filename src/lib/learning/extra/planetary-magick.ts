@@ -122,6 +122,7 @@ Bir haftalık "gezegen günü planı" yap (Pzt Ay, Sal Mars, Çar Merkür, Per J
         qz("Kitapta zamanlama bölümünün adı nedir?", ["Times of Power", "Hours of Silence", "Calendar of Gods", "Day of Wrath"], 0),
         qz("Bu kitabın tabloları için doğru değerlendirme hangisidir?", ["Bağımsız doğrulanamayan, yazarların sunduğu karşılıklardır", "Tarihsel olarak kesinleşmiş verilerdir", "Bilimsel ölçümlerdir", "Devlet kayıtlarıdır"], 0),
         qz("Zamanlama sistemini 'planlama disiplini' olarak kullanmanın avantajı nedir?", ["Haftalık ritim ve odak sağlar", "Gezegenleri değiştirir", "Hava durumunu belirler", "Yasal güvence verir"], 0),
+        qz("Bu modül ritüel metinleri için neyi sağlar?", ["Bölüm haritası ve kaynak eleştirisini; talimatı değil", "Adım adım talimatı", "Satış fiyatlarını", "Tıbbi reçeteyi"], 0),
       ],
     },
   ],

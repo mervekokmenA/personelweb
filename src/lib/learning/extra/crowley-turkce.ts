@@ -48,6 +48,7 @@ export const crowleyModule = extraModule({
         qz("Türkçe baskıyı yayımlayan kuruluş hangisidir?", ["Altıkırkbeş Yayın", "Hermes", "Mitra", "Mavi Kalem"], 0),
         qz("Önsöz yazarının psikolojik yorumları nasıl değerlendirilmelidir?", ["Yorum/tahmin olarak; kanıtlanmış olgu sayılmaz", "Kesin kanıt olarak", "Yasal belge olarak", "Tıbbi rapor olarak"], 0),
         qz("'Lévi'nin reenkarnasyonu' iddiası kimden gelir?", ["Crowley'in kendi beyanı", "Mahkeme kararı", "Tarih kitabı", "Hukuk kaydı"], 0),
+        qz("Ay Çocuk romanının Türkçe çevirmeni kimdir (künyeye göre)?", ["Özgür Umut Hoşafçı", "Anita Tatlıer", "Faruk Gültekin", "Murat Sağlam"], 0),
       ],
     },
     {

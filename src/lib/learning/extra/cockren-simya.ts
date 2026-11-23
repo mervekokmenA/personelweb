@@ -101,6 +101,7 @@ Jung'un *Psychology and Alchemy* kitabına (Okültizm 7. ünite kaynak listesi) 
         qz("Okültizm modülü simyayı kaç katmanda ele alır?", ["Üç (laboratuvar, felsefî-sembolik, psikolojik)", "Bir", "İki", "Beş"], 0),
         qz("Kitabın 'pratik' kısmı için doğru değerlendirme hangisidir?", ["Bağımsız doğrulaması yoktur; talimat verilmez", "Klinik olarak kanıtlanmıştır", "Hakemli yayındır", "Resmî tıbbi kılavuzdur"], 0),
         qz("Jung simyayı nasıl okur?", ["İç dönüşümün sembolik süreci olarak", "Mutfak tarifi olarak", "Takvim olarak", "Tıp kitabı olarak"], 0),
+        qz("Cockren kitabında Beşinci Element hangi kısımda yer alır?", ["Pratik kısım", "Teorik kısım", "Önsöz", "Dizin"], 0),
       ],
     },
   ],

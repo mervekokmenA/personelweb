@@ -102,6 +102,7 @@ Kitaptaki "Ben Büyüyüm" büyüsü gibi bir başlık için "psikolojik amaç /
         qz("Ruh (spirit) elementinin yolu nedir?", ["Tamamlanma", "Egemenlik", "Hakikat", "Sevgi"], 0),
         qz("Tarihçilere göre Yılın Çarkı nerede şekillenmiştir?", ["20. yüzyıl modern Pagan geleneğinde", "Antik Roma'da", "Orta Çağ manastırlarında", "Eski Mısır'da"], 0),
         qz("Güvenli pratik için ilk önlem nedir?", ["Yangın, alerji ve havalandırma önlemleri", "Daha çok mum yakmak", "Pencereyi kapatmak", "Gece yalnız yapmak"], 0),
+        qz("Modern cadılığın 20. yüzyıl kökenini gösteren tarihçi kimdir?", ["Ronald Hutton", "Éliphas Lévi", "Plotinos", "A. E. Waite"], 0),
       ],
     },
   ],

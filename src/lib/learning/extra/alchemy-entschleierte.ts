@@ -102,6 +102,7 @@ Bu modül **hiçbir laboratuvar uygulaması önermez**; ağır metaller, asitler
         qz("Bu iddialar için doğru değerlendirme hangisidir?", ["Simya geleneğinin mitolojik/dinî iddialarıdır; bilimsel kanıtı yoktur", "Kanıtlanmıştır", "Resmî belgedir", "Klinik çalışmadır"], 0),
         qz("Bu modül laboratuvar uygulamasını neden önermez?", ["Ağır metaller, asitler ve cıva buharı tehlikelidir", "Çok kolay olduğu için", "Yasak olmadığı için", "Pahalı olduğu için"], 0),
         qz("Jung'un simya yaklaşımı nedir?", ["Simyayı bireyleşme sürecinin sembolik anlatımı olarak okur", "Simyayı mutfak kimyası sayar", "Simyayı reddeder", "Takvim sayar"], 0),
+        qz("Merkür–Kükürt–Tuz üçlüsü hangi geleneğin tria prima öğretisidir?", ["Paracelsus geleneği", "Hint Ayurveda", "Antik Mısır astronomisi", "Modern kimya"], 0),
       ],
     },
   ],

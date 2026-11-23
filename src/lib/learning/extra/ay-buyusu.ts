@@ -55,6 +55,7 @@ Her parçayı "tarihsel/kültürel bilgi", "bilimsel gerçek", "kişisel pratik/
         qz("Kitap kaç parçadan oluşur?", ["4", "2", "7", "12"], 0),
         qz("Kitapta 'meditasyon' bölümleri hangi parçadadır?", ["Parça 3 (ve 7. bölüm)", "Yalnızca ek", "Yalnızca sonuç", "Yok"], 0),
         qz("'Ay yaşamının bir parçası olarak' bahçecilik ve tarifler kitabın hangi kısmındadır?", ["Parça 4 (İleri Ay Büyüsü)", "Parça 1", "Parça 2", "Parça 3"], 0),
+        qz("Kitabın 20. ve 21. bölümleri neyi içerir?", ["Ay temalı yemek tarifleri ve içecek karışımları", "Burç yorumlarını", "Tarot kartlarını", "Astronomi hesaplarını"], 0),
       ],
     },
     {

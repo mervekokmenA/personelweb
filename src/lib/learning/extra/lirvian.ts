@@ -56,6 +56,7 @@ Başlıkların her birine yukarıdaki üç etiketten birini yaz ve etiketini ver
         qz("[K] etiketi neyi gösterir?", ["Klasik kaynakla doğrulanabilir bilgiyi", "Doğrulanamayan iddiayı", "Kişisel görüşü", "Reklamı"], 0),
         qz("Spinoza bölümü için doğru ifade hangisidir?", ["Gerçek bir felsefe sistemidir; kaynağı kontrol edilebilir", "Okült bir gelenektir", "Tıbbi bir teoridir", "Astrolojik bir tablodur"], 0),
         qz("Siddhiler ve psikokinezi iddiaları için doğru değerlendirme nedir?", ["Doğrulanmamış iddialardır; bilimsel kanıt yoktur", "Laboratuvarda kanıtlanmıştır", "Tıpta kullanılan yöntemlerdir", "Yasal haklardır"], 0),
+        qz("Notlardaki Spinoza bölümünde hangi ilke geçer?", ["Deus sive Natura (Tanrı veya Doğa)", "Dört mizaç", "Tetraktys", "Zümrüt Tablet"], 0),
       ],
     },
     {

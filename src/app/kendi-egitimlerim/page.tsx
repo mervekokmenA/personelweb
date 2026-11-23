@@ -69,9 +69,9 @@ export default async function KendiEgitimlerimPage() {
       {extraModules.length > 0 && (
         <section id="ek-moduller" className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
-            <h2 className="text-lg font-medium">Ek Modüller — yüklediğin kitaplar</h2>
+            <h2 className="text-lg font-medium">Ek Modüller — yüklediğin kitaplar ve internetten bulunan eksik konular</h2>
             <p className="max-w-2xl text-sm ag-muted">
-              Her kitap için ayrı bir iç modül: yazar ve bağlam, bölüm bölüm ders, konu testi ve &quot;eklenmeyenler&quot; notu.
+              Her kitap (ve her eksik konu) için ayrı bir iç modül: yazar ve bağlam, bölüm bölüm ders, konu testi ve &quot;eklenmeyenler&quot; notu.
               {" "}{extraDone}/{extraTotal} parça tamamlandı.
             </p>
           </div>

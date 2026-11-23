@@ -55,6 +55,7 @@ Yayıncı tanıtımındaki üç cümleyi "iddia" olarak işaretle ve her biri i�
         qz("Cilt 2'deki eserlerden biri hangisidir?", ["The Mysterious Sacrum", "The Kybalion", "The Book of the Law", "The Golden Dawn"], 0),
         qz("Polarite terapisi için kaynakların ortak sonucu nedir?", ["Hastalıkları tedavi ettiğine dair kanıt yetersizdir", "Klinik olarak kanıtlanmıştır", "FDA onaylı ilaçtır", "Cerrahi yöntemdir"], 0),
         qz("Yayıncı tanıtım metinlerini nasıl okumalıyız?", ["Tanıtım iddiası olarak, bağımsız kanıt gerektiren ifadeler olarak", "Bilimsel makale olarak", "Yasal belge olarak", "Tıbbi rapor olarak"], 0),
+        qz("Polarite terapisi sağlık sorunlarında doktorun yerini tutar mı?", ["Hayır; tıbbi tedavi değildir", "Evet, tamamen tutar", "Yalnızca kanserde tutar", "Yasal olarak zorunludur"], 0),
       ],
     },
     {

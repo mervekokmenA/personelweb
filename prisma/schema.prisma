@@ -401,3 +401,39 @@ model CostItem {
 
   @@index([productId])
 }
+
+// ---------------------------------------------------------------------------
+// KENDİ EĞİTİMLERİM (müfredat içeriği kodda; burada sadece ilerleme ve notlar)
+// ---------------------------------------------------------------------------
+
+// key = "<modül>/<ders>" (örn. "react/ts-basics") — ders tamamlanma durumu ve kişisel not.
+model LearningProgress {
+  id        String    @id @default(cuid())
+  key       String    @unique
+  done      Boolean   @default(false)
+  doneAt    DateTime?
+  note      String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// Müfredatta yaptığın düzenlemeler (ders metni, test soruları, eklenen dersler, notlar).
+// key örnekleri: "lesson:react/ts-basics", "custom:react/benim-dersim", "quiz:react/u3", "modnote:okultizm"
+model LearningEdit {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Konu denemesi (test) sonuçları: ilerleme grafiği için her deneme saklanır.
+model QuizAttempt {
+  id        String   @id @default(cuid())
+  unitKey   String // "react/u3"
+  score     Int
+  total     Int
+  createdAt DateTime @default(now())
+
+  @@index([unitKey])
+}

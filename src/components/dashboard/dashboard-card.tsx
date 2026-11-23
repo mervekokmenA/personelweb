@@ -1,28 +1,30 @@
 import Link from "next/link";
-import { type LucideIcon } from "lucide-react";
+import { ArrowUpRight, type LucideIcon } from "lucide-react";
 
 export function DashboardCard({
   href,
   icon: Icon,
   title,
-  accent,
   children,
 }: {
   href: string;
   icon: LucideIcon;
   title: string;
-  accent: string;
+  accent?: string;
   children: React.ReactNode;
 }) {
   return (
-    <Link href={href} className="card flex flex-col gap-2 p-4 transition-shadow hover:shadow-md">
-      <div className="flex items-center gap-2">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg" style={{ background: accent }}>
-          <Icon size={15} />
+    <Link href={href} className="ag-stat group min-h-[9rem] transition-colors hover:bg-white">
+      <div className="flex items-start justify-between">
+        <span className="ag-stat-icon">
+          <Icon size={18} />
         </span>
-        <h3 className="text-sm font-semibold">{title}</h3>
+        <span className="ag-icon-btn opacity-70 group-hover:opacity-100">
+          <ArrowUpRight size={14} />
+        </span>
       </div>
-      <div className="text-sm text-muted">{children}</div>
+      <h3 className="text-base font-medium">{title}</h3>
+      <div className="text-sm ag-muted">{children}</div>
     </Link>
   );
 }

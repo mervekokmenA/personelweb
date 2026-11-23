@@ -1,4 +1,5 @@
 import { DonutChart } from "./donut-chart";
+import { ClickableCard } from "@/components/ui/clickable-card";
 import { TR_DAYS_SHORT } from "@/lib/date";
 
 const ACCENTS = [
@@ -21,7 +22,7 @@ export function DailyTrendChart({ days }: DailyTrendChartProps) {
     : 0;
 
   return (
-    <section className="card p-5">
+    <ClickableCard href="/gunluk" className="card p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
           Günlük Planlar Nasıl Gidiyor?
@@ -46,6 +47,6 @@ export function DailyTrendChart({ days }: DailyTrendChartProps) {
           </div>
         ))}
       </div>
-    </section>
+    </ClickableCard>
   );
 }

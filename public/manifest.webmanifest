@@ -4,8 +4,8 @@
   "description": "Günlük program, içerik fikirleri, eğitimler ve astroloji takibi",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#faf7f2",
-  "theme_color": "#faf7f2",
+  "background_color": "#e9efe9",
+  "theme_color": "#e9efe9",
   "icons": [
     {
       "src": "/icon.svg",

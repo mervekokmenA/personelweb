@@ -89,11 +89,8 @@ export default async function ParametrelerPage() {
         </h2>
         <div className="flex flex-col gap-4">
           {focusAreas.map((a) => (
-            <form
-              key={a.id}
-              action={updateFocusArea}
-              className="flex flex-wrap items-center gap-2 rounded-lg bg-background p-3"
-            >
+            <div key={a.id} className="flex flex-wrap items-center gap-2 rounded-lg bg-background p-3">
+            <form action={updateFocusArea} className="flex flex-1 flex-wrap items-center gap-2">
               <input type="hidden" name="id" value={a.id} />
               <input
                 name="name"
@@ -120,9 +117,10 @@ export default async function ParametrelerPage() {
               <button className="rounded-lg bg-accent-mint px-3 py-1.5 text-xs font-medium">
                 Güncelle
               </button>
-              <DeleteButton action={deleteFocusArea} hidden={{ id: a.id }} />
               <SaveToast label="Alan güncellendi" />
             </form>
+            <DeleteButton action={deleteFocusArea} hidden={{ id: a.id }} />
+            </div>
           ))}
         </div>
 

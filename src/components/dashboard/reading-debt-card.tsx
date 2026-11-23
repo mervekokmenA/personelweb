@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ClickableCard } from "@/components/ui/clickable-card";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { logReadingPages } from "@/app/actions";
 import { toDateInputValue, TR_DAYS_SHORT } from "@/lib/date";
@@ -30,7 +31,7 @@ export function ReadingDebtCard({
 }) {
   const hasDebt = summary.debtPages > 0;
   return (
-    <section className="card p-5">
+    <ClickableCard href="/kitap-okuma" className="card p-5">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
           <BookOpen size={16} /> Kitap Okuma Borcu
@@ -102,6 +103,6 @@ export function ReadingDebtCard({
           </div>
         ))}
       </div>
-    </section>
+    </ClickableCard>
   );
 }

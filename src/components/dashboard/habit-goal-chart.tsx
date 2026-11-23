@@ -1,4 +1,5 @@
 import { DonutChart } from "./donut-chart";
+import { ClickableCard } from "@/components/ui/clickable-card";
 import { formatHabitFrequency, type HabitFrequency } from "@/lib/habit-grid";
 
 const ACCENTS = [
@@ -22,7 +23,7 @@ export interface HabitGoalDatum {
 
 export function HabitGoalChart({ habits }: { habits: HabitGoalDatum[] }) {
   return (
-    <section className="card p-5">
+    <ClickableCard href="/aliskanliklar" className="card p-5">
       <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">
         Alışkanlık Hedeflerim
       </h2>
@@ -45,6 +46,6 @@ export function HabitGoalChart({ habits }: { habits: HabitGoalDatum[] }) {
           ))}
         </div>
       )}
-    </section>
+    </ClickableCard>
   );
 }

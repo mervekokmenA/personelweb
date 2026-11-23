@@ -142,9 +142,9 @@ export default async function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-semibold">Merhaba 🌙</h1>
-          <p className="text-sm text-muted">{formatTrLong(today)}</p>
+        <div className="flex flex-col gap-3">
+          <span className="ag-tag w-fit"><span className="ag-dot" /> {formatTrLong(today)}</span>
+          <h1 className="ag-title">Merhaba, Merve</h1>
         </div>
         <Link
           href="/gunluk"

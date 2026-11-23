@@ -26,10 +26,10 @@ export const hermeticaModule = extraModule({
           title: "Corpus Hermeticum: Ficino ve Casaubon",
           summary: "Rönesans'ta çeviri (Ficino) ve 17. yy.'da tarihlendirme (Casaubon): 'Mısır bilgeliği' efsanesinin çözülmesi.",
           body: `## Çeviri
-- **Marsilio Ficino**, Corpus Hermeticum'un ilk **14 risalesini** *Pimander* adıyla Latinceye çevirdi. Kaynaklara göre çeviri **1463'te tamamlandı** (Cosimo'ya mektup bu tarihlidir) ancak **1471'de yayımlandı**; tarih farkı "tamamlama" ile "basım" arasındaki farktan gelir.
+- **Marsilio Ficino**, Corpus Hermeticum'un ilk **14 risalesini** *Pimander* adıyla Latinceye çevirdi. Kaynaklara göre çeviri **1463'te tamamlandı** (Cosimo'ya mektup bu tarihlidir) ancak **1471'de yayımlandı** (Belirsiz: bazı kaynaklar çeviriyi 1471 olarak verir); tarih farkı "tamamlama" ile "basım" arasındaki farktan gelir.
 
 ## Tarihleme
-- **Isaac Casaubon (1614)**, Hermetik metinlerin eski Mısır kaynaklı olmadığını, **MS 2.–3. yüzyıla** ait Helenistik metinler olduğunu savundu. (Kaynaklar, bu görüşün tek başına onun olmadığını, bazı yazarların önce benzer şüpheleri dile getirdiğini ve **Ralph Cudworth'un (1678)** Casaubon'un argümanındaki kusurları gösterdiğini not eder.)
+- **Isaac Casaubon (1614)**, Hermetik metinlerin eski Mısır kaynaklı olmadığını, **MS 2.–3. yüzyıla** ait Helenistik metinler olduğunu savundu. (Kaynaklar, bu görüşün tek başına onun olmadığını, bazı yazarların önce benzer şüpheleri dile getirdiğini ve **Ralph Cudworth'un (1678)** Casaubon'un argümanındaki kusurları gösterdiğini not eder (Belirsiz).)
 - Modern çalışma **Hermetizm**'i geç antik dönem **Mısır–Yunan** harmanı olarak okur; "Hermes Trismegistos" gelenekte sonradan **Thoth–Hermes** özdeşleşmesiyle oluşmuş bir figürdür.
 
 ## Okuma notu
@@ -49,7 +49,7 @@ Elindeki bir kitapta "Hermes" atfı olan üç cümle bul ve her biri için "hang
 - Batı'da **Latince** *Tabula Smaragdina* versiyonlarının en eskileri **12. yüzyıla** gider.
 
 ## Sonuç
-Zümrüt Tablet **Eski Mısır'dan gelen bir yazıt değildir**; bilinen en eski belgeleri **İslam dünyasındaki simya yazını**dır. "Aşağıdaki yukarıdakiyle aynıdır" öğretisinin Hermetik/simya ve astrolojik gelenekte geç antik veya erken ortaçağ kökenli olması muhtemeldir; kesin köken **tartışmalıdır**.
+Zümrüt Tablet **Eski Mısır'dan gelen bir yazıt değildir**; bilinen en eski belgeleri **İslam dünyasındaki simya yazını**dır. "Aşağıdaki yukarıdakiyle aynıdır" öğretisinin Hermetik/simya ve astrolojik gelenekte geç antik veya erken ortaçağ kökenli olması muhtemeldir (Belirsiz); kesin köken **tartışmalıdır** (Belirsiz).
 
 ## Cockren kitabıyla bağ
 Cockren'in kitabı Zümrüt Tablet ile başlar (ek modül *Simya Sanatı ve Simyacılar*); metnin Türkçe sürümü bu arkaplan **bilgisi olmadan** okunursa tarihî kökeni yanlış anlaşılabilir.
@@ -100,7 +100,7 @@ export const tarotTarihiModule = extraModule({
           summary: "En eski korunmuş desteler 15. yüzyıl İtalyası'nda 'tarocchi' oyunu için yapıldı.",
           body: `## Kaynaklara göre
 - **Tarot'un belgelenmiş ilk kullanımı bir kâğıt oyunudur**: Kuzey İtalya'da (Milano) **15. yüzyılın ortalarında** hazırlanan el boyaması **Visconti–Sforza** desteleri, **tarocchi** adlı bir "koz oyunu" (*trick-taking*) içindir.
-- Kaynaklar Visconti–Sforza destesinin tarihini **1440'lar–1460'lar** arasında verir; bazı kaynaklar tek tek komisyon sahiplerini farklı gösterir (Francesco Sforza / Bianca Maria Visconti). **1422** gibi daha eski bir tarih **şüphelidir**.
+- Kaynaklar Visconti–Sforza destesinin tarihini **1440'lar–1460'lar** arasında verir (Belirsiz); bazı kaynaklar tek tek komisyon sahiplerini farklı gösterir (Francesco Sforza / Bianca Maria Visconti (Belirsiz)). **1422** gibi daha eski bir tarih **şüphelidir**.
 - Tarot, **ilk dönemde kehanet aracı değildir**; "Antik Mısır kitabı/Thoth Kitabı" anlatısı sonradan çıkmıştır.
 
 ## Çalışma
@@ -112,8 +112,8 @@ Visconti–Sforza destesinin görsellerini çevrimiçi bir müze/arşiv kaynağ�
           title: "Okült Tarot: Etteilla, Lévi, Altın Şafak ve Waite–Smith (1909)",
           summary: "18. yy.'dan itibaren kehanet ve okült semboller kartlara eklendi.",
           body: `## Kaynaklara göre
-- Tarot'a **okült anlamlar 1780'lerde** yüklenmiştir. **Etteilla (Jean-Baptiste Alliette)** kehanet için tasarlanmış ilk deste olarak anılır; astroloji ve simya sembolizmi ekledi ve **kartomansi** terimini ortaya attı (bazı kaynaklar onu "ilk profesyonel Tarot okuyucusu" sayar; bu **tartışmalıdır**).
-- **Court de Gébelin'in 1781 tarihli çalışması** (Tarot'un Mısır kökenli olduğu savı) bu aramada ayrıntılı doğrulanmadı.
+- Tarot'a **okült anlamlar 1780'lerde** yüklenmiştir. **Etteilla (Jean-Baptiste Alliette)** kehanet için tasarlanmış ilk deste olarak anılır; astroloji ve simya sembolizmi ekledi ve **kartomansi** terimini ortaya attı (bazı kaynaklar onu "ilk profesyonel Tarot okuyucusu" sayar; bu **tartışmalıdır** (Belirsiz)).
+- **Court de Gébelin'in 1781 tarihli çalışması** (Tarot'un Mısır kökenli olduğu savı) bu aramada ayrıntılı doğrulanmadı (Belirsiz).
 - **Éliphas Lévi** ve Altın Şafak, Tarot'u **İbrani harfleri ve Hayat Ağacı** ile eşledi (bkz. ek modüller *Lévi* ve *777*).
 - **Rider–Waite–Smith** destesi **1909'da Londra'da Rider tarafından** yayımlandı; **A. E. Waite** Büyük Arkana için ayrıntılı yönergeler verdi, **Pamela Colman Smith** küçük arkanayı **ilk kez tamamen resimli** olarak çizdi; ikisi de Altın Şafak üyesiydi.
 
@@ -145,7 +145,7 @@ Altın Şafak'ın Tarot–harf eşleşmelerini Lévi'ninkiyle karşılaştıran 
 export const cakraTarihiModule = extraModule({
   id: "ek-cakra-modeli-tarihi",
   title: "Batı'daki Çakra Modelinin Tarihi: Tantra'dan Teosofi'ye",
-  tagline: "Yedi çakralı modelin Leadbeater (1927) ve Woodroffe (1919) üzerinden yolculuğu",
+  tagline: "Yedi çakralı modelin Leadbeater (1927) ve Woodroffe (1918/1919 — Belirsiz) üzerinden yolculuğu",
   description:
     "Powell, Butler, Burger ve Lirvian notlarında geçen 'çakra/enerji merkezi' anlatımının nereden geldiğini internet kaynaklarıyla açıklayan konu modülü. Batı'da yaygın yedi çakra şemasının doğrudan antik Tantra aktarımı olmadığını gösterir.",
   source: { file: "İnternet kaynakları (kitap yüklemesi yok)", author: "Wikipedia, Theosophical Society (Quest) ve Kurt Leland'ın 'Rainbow Body' özeti", language: "İngilizce kaynaklardan Türkçe özet", readNote: "İkincil kaynak özetleri; birincil metinler (Woodroffe, Leadbeater) okunmadı." },
@@ -178,12 +178,12 @@ Burger, Powell ve Lirvian notlarındaki çakra listelerini karşılaştır: hang
         },
         {
           id: "ck-batida",
-          title: "Woodroffe (1919) ve Leadbeater (1927)",
+          title: "Woodroffe (1918/1919 — Belirsiz) ve Leadbeater (1927)",
           summary: "Shat Chakra Nirupana çevirisi ve 'The Chakras'ın klerovyans iddiası.",
           body: `## Kronoloji (kaynaklara göre)
 - **1880'ler:** Blavatsky ve diğer teosofistler.
 - **~1910:** Leadbeater *The Inner Life*'ta çakralardan söz eder.
-- **1918–1919:** Sir **John Woodroffe (Arthur Avalon)** *The Serpent Power*'ı yayımlar; içinde 16. yüzyıla ait ***Shat Chakra Nirupana*** ("Altı Çakranın Tarifi") çevirisi vardır; bazı yorumlara göre bu, daha büyük bir metnin **yalnızca bir bölümüdür**. Tarihler kaynaklara göre bir yıl oynar (çeviri 1918, kitap 1919).
+- **1918–1919 (Belirsiz):** Sir **John Woodroffe (Arthur Avalon)** *The Serpent Power*'ı yayımlar; içinde 16. yüzyıla ait ***Shat Chakra Nirupana*** ("Altı Çakranın Tarifi") çevirisi vardır; bazı yorumlara göre bu, daha büyük bir metnin **yalnızca bir bölümüdür**. Tarihler kaynaklara göre bir yıl oynar (çeviri 1918, kitap 1919 (Belirsiz)).
 - **1927:** **C. W. Leadbeater**, *The Chakras*: Batılı okur için ilk açıklamalardan biri; çizimleri **klerovyans gözlemine** dayandırdığını söyler.
 
 ## Sonuç
@@ -234,8 +234,8 @@ export const kybalionModule = extraModule({
           summary: "Yogi Publication Society, yazarlık tartışması ve 'kayıp metin yorumu' kurgusu.",
           body: `## Kaynaklara göre
 - Kitap **"Üç İnisiye" (Three Initiates)** imzasıyla **1908'de Chicago'da Yogi Publication Society** tarafından yayımlandı.
-- Yazarlık için en çok **William Walker Atkinson (1862–1932)** gösterilir; **Mitch Horowitz**, belge ve bağlam kanıtlarının çoğunun Atkinson'un **tek başına** yazdığını gösterdiğini, ayrıca Atkinson'un **1912 Who's Who in America** kaydında kendisini yazar olarak bildirdiğini söyler. **Wikipedia** onu "muhtemel yazar" olarak listeler; Macmillan tanıtımı "yazarlardan biri veya tek yazar" diye verir.
-- **Paul Foster Case** üçüncü isim olarak söylentiye karışır; bir kaynak bunun zaman çizelgesiyle (Case 1908'de Chicago'ya yeni gelmişti) **uyuşmadığını** ileri sürer.
+- Yazarlık için en çok **William Walker Atkinson (1862–1932)** gösterilir (Belirsiz); **Mitch Horowitz**, belge ve bağlam kanıtlarının çoğunun Atkinson'un **tek başına** yazdığını gösterdiğini, ayrıca Atkinson'un **1912 Who's Who in America** kaydında kendisini yazar olarak bildirdiğini söyler. **Wikipedia** onu "muhtemel yazar" olarak listeler; Macmillan tanıtımı "yazarlardan biri veya tek yazar" diye verir.
+- **Paul Foster Case** üçüncü isim olarak söylentiye karışır (Belirsiz); bir kaynak bunun zaman çizelgesiyle (Case 1908'de Chicago'ya yeni gelmişti) **uyuşmadığını** ileri sürer.
 - Kitap kendisini **eski, gizli bir Hermetik eserin yorumu** olarak sunar; o eserin "aforizmaları" yalnızca alıntılanır. Bir değerlendirmeye göre içerik, **antik bir dille yeniden yazılmış Yeni Düşünce (New Thought)** ilkelerini andırır.
 - Yedi ilke: **Zihincilik, Karşılıklılık (Correspondence), Titreşim, Kutupluluk, Ritim, Neden–Sonuç, Cinsiyet**.
 

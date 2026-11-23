@@ -503,7 +503,7 @@ Hedeflenen yetkinlikler bu modülün başındaki listededir. Gerçek deneyim, bu
   "fortune-hayat": {
     body: `## Kimdir?
 
-Dion Fortune, doğum adıyla **Violet Mary Firth** (6 Aralık 1890, Llandudno, Galler – Ocak 1946). İlk kitabı *Machinery of the Mind* 1922'de doğum adıyla çıktı; sonraki kitaplarını "Dion Fortune" adıyla yayımladı. Altın Şafak kökenli çevreden (Alpha et Omega) ayrılıp kendi grubunu kurdu; grup sonradan **İç Işık Topluluğu (Society of the Inner Light)** adını aldı ve bugün hâlâ etkin.
+Dion Fortune, doğum adıyla **Violet Mary Firth** (6 Aralık 1890, Llandudno, Galler – Ocak 1946 (Belirsiz)). İlk kitabı *Machinery of the Mind* 1922'de doğum adıyla çıktı; sonraki kitaplarını "Dion Fortune" adıyla yayımladı. Altın Şafak kökenli çevreden (Alpha et Omega) ayrılıp kendi grubunu kurdu; grup sonradan **İç Işık Topluluğu (Society of the Inner Light)** adını aldı ve bugün hâlâ etkin.
 
 ## Başlıca eserler (kaynaklarda anılanlar)
 

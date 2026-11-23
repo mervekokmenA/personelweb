@@ -66,7 +66,7 @@ Bu ek modülde yer alan "zamanlama" fikrini Astroloji modülünün "gezegen saat
       quiz: [
         qz("Kitabın yazarları kimdir?", ["Melita Denning ve Osborne Phillips", "Dion Fortune", "Israel Regardie", "Eliphas Lévi"], 0),
         qz("Kaynaklarda Ordo Aurum Solis hangi yıl kurulmuş gösterilir?", ["1897", "1497", "1947", "1987"], 0),
-        qz("'Ogdoadic Tradition' hakkında doğru ifade hangisidir?", ["Düzenin kendi atfettiği bir gelenektir; bağımsız izlenebilirliği tartışmalıdır", "Tarihsel olarak kesinleşmiştir", "Antik Mısır tapınak kaydıdır", "Bir bilimsel disiplindir"], 0),
+        qz("'Ogdoadic Tradition' hakkında doğru ifade hangisidir?", ["Düzenin kendi atfettiği bir gelenektir; bağımsız izlenebilirliği tartışmalıdır (Belirsiz)", "Tarihsel olarak kesinleşmiştir", "Antik Mısır tapınak kaydıdır", "Bir bilimsel disiplindir"], 0),
         qz("Kitabın Part One'ında hangi başlık vardır?", ["Times of Power", "Rite of the Heart's Desire", "Olympic Dream Evocation", "Magical Apparel"], 0),
         qz("Bu modül hangi içeriği vermez?", ["Ritüel metinleri ve talimatları", "Bölüm haritasını", "Yazar bağlamını", "Kaynak notlarını"], 0),
       ],

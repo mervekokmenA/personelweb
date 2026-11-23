@@ -36,8 +36,8 @@ export const leviModule = extraModule({
 ## İki baskının farkları (ders için en öğretici kısım)
 | Konu | Greer'in tanıtımı | Mavi Kalem biyografisi |
 |---|---|---|
-| Hapis süresi | 11 ay | 8 ay |
-| Evlilik | 1846'da Noémie Cadiot; evlilik başarısızlıkla 1853'te sona erdi | Marie-Neomi Cadiot ile 1846 (yaşı "18" yazılıyor); ayrılık 7. yıl |
+| Hapis süresi (Belirsiz) | 11 ay | 8 ay |
+| Evlilik (Belirsiz) | 1846'da Noémie Cadiot; evlilik başarısızlıkla 1853'te sona erdi | Marie-Neomi Cadiot ile 1846 (yaşı "18" yazılıyor); ayrılık 7. yıl |
 | Tarih/olgu iddiaları | Daha kayıtlı bir tarih anlatısı | Bazı iddialar "kesinlik taşımıyor" notuyla (ör. mason locası üyeliği) |
 
 Farklılık, **ikincil biyografilerin kendi içinde tutarsız olabildiğini** gösterir; bunları **birincil kayıtlarla** (nüfus kaydı, yargı kayıtları) kontrol etmek gerekir.

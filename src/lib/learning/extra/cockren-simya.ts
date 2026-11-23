@@ -46,7 +46,7 @@ export const cockrenModule = extraModule({
 2. bölümde Cockren, 12. yüzyıl simyacısı **Artephius**'u **"yaklaşık bin yıl yaşadığı rivayet edilen"** bir yazar olarak sunar ve onun "beşinci elementi kullanarak" uzun yaşadığını söylediği bir pasajı aktarır. Aynı bölümde Haçlı Seferleri döneminde simya merkezinin **İspanya'ya** kaydığı ve simyanın İspanya'ya **Araplar aracılığıyla** geldiği söylenir; ayrıca *Le Roman de la Rose* ve 13. yüzyıl kaynakları anılır.
 
 ## Tarihsel not (kısa)
-- **Basil Valentine**: Kaynaklarda genellikle **takma ad** olarak değerlendirilir; 18. yüzyılda yazıların **Johann Thölde** (yaklaşık 1565–1624) tarafından yazıldığı ileri sürülmüştür; güncel araştırma daha temkinlidir: Thölde'nin yanında başkalarının da katkısı olabilir. Antimon üzerine *Triumphal Chariot of Antimony*'nin Leipzig baskısı 1604 veya 1624 olarak farklı kaynaklarda geçer (tarih tutarsızdır).
+- **Basil Valentine**: Kaynaklarda genellikle **takma ad** olarak değerlendirilir; 18. yüzyılda yazıların **Johann Thölde** (yaklaşık 1565–1624) tarafından yazıldığı ileri sürülmüştür (Belirsiz); güncel araştırma daha temkinlidir: Thölde'nin yanında başkalarının da katkısı olabilir. Antimon üzerine *Triumphal Chariot of Antimony*'nin Leipzig baskısı 1604 veya 1624 olarak farklı kaynaklarda geçer (tarih tutarsızdır) (Belirsiz).
 - **Nicolas Flamel** (genel bilgi): Paris'te yaşamış gerçek bir kâtip/kitapçıdır; "filozof taşını bulduğu" efsanesi ise ölümünden yüzyıllar sonra gelişmiştir. *(Bu derste bağımsız kaynakla doğrulanmadı.)*
 - "Bin yıl yaşadı" gibi anlatılar **efsane/alegori** niteliğindedir; yaşam uzatma iddiaları tıbben doğrulanmamıştır.
 

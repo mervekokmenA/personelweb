@@ -32,7 +32,7 @@ export const dovmeModule = extraModule({
 ## Doğrulama
 - **Ötzi (Buz Adam)** Alp dağlarındaki buzulda bulunan, yaklaşık **5.300 yıl** önce (≈ MÖ 3250) ölmüş mumyadır; **61 dövme** taşır. Smithsonian ve bilimsel makaleler dünyanın **bilinen en eski korunmuş dövmeleri** olduğunu belirtir (kaynaklarda yaş 5.000–5.300 arası farklı verilir).
 - **Bıyık dövmeli mumya**, Şili'deki **Chinchorro** mumyasıdır (1983'te bulundu). Eskiden Ötzi'den daha yaşlı sanıldı çünkü **radyokarbon tarihi "3.830 BP" yanlışlıkla "MÖ 3.830" diye okundu** ve yaş yaklaşık 4.000 yıl şişti. Düzeltilmiş aralık **MÖ 2563–1972** civarıdır; yani **Ötzi'den çok daha genç**tir. "7200 yıl" bilgisi **bir yayın hatasının yayılmış hâlidir**.
-- **Eski Mısır'da Hathor sembolünün iç bacağa doğurganlık için çizilmesi** notu: Mısır'da dövmeli mumya buluntuları vardır (kadın mumyalarında); işlevleri tartışmalıdır ve "doğurganlık" gibi kesin işlev iddiaları **yorumdur**.
+- **Eski Mısır'da Hathor sembolünün iç bacağa doğurganlık için çizilmesi** notu: Mısır'da dövmeli mumya buluntuları vardır (kadın mumyalarında); işlevleri tartışmalıdır (Belirsiz) ve "doğurganlık" gibi kesin işlev iddiaları **yorumdur**.
 
 ## Ders
 "Her yaygın istatistik/tarih bilgisi" için kaynağı ve **orijinal ölçümü** kontrol et; bir yanlış (3.830 BP / BC) yıllarca kopyalanabilir.

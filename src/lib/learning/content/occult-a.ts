@@ -15,7 +15,7 @@ Krotone'deki topluluk önce dinsel-ahlaki bir kardeşlikti (Apollon ve Musalar k
 - **Akusmatikoi ("dinleyenler")**: Ustanın kısa sözlerini (akousmata) ve yaşam kurallarını olduğu gibi kabul edenler.
 - **Mathematikoi ("öğrenenler")**: Aritmetik, müzik kuramı, astronomi ve geometriyi araştıranlar.
 
-Bu ikiliğin Pisagor'un kendi döneminden mi, ölümünden sonra mı çıktığı tartışmalıdır.
+Bu ikiliğin Pisagor'un kendi döneminden mi, ölümünden sonra mı çıktığı tartışmalıdır (Belirsiz).
 
 ## Sayı ve uyum
 
@@ -75,7 +75,7 @@ Rönesans'ta metinlerin Musa'dan eski, çok kadim bir Mısır bilgeliği olduğu
 
 ## Ficino ve Hermetizmin Avrupa'ya dönüşü
 
-Marsilio Ficino, Cosimo de' Medici'nin isteğiyle Platon çevirisini bırakıp Hermetica'yı **1463**'te Latinceye çevirdi (*Pimander*). İlk basım **1471**'de yapıldı. Bu çeviri Rönesans ezoterizminin kapısını açtı (bkz. sonraki ünite).
+Marsilio Ficino, Cosimo de' Medici'nin isteğiyle Platon çevirisini bırakıp Hermetica'yı **1463**'te Latinceye çevirdi (*Pimander*). İlk basım **1471**'de yapıldı (Belirsiz). Bu çeviri Rönesans ezoterizminin kapısını açtı (bkz. sonraki ünite).
 
 ## Zümrüt Tablet (Tabula Smaragdina)
 
@@ -183,7 +183,7 @@ Owen Davies'in *Grimoires: A History of Magic Books* kitabından bir grimuarın 
 
 ## Kaynaklar ve tarihleme
 
-- **Sefer Yetzirah (Yaratılış Kitabı)**: 10 *sefirot* ve 22 İbrani harfi üzerinden evrenin yaratılışını anlatan kısa metin. Tarihlendirmesi tartışmalıdır: çoğu araştırmacı MS 2.–6. yüzyıllar arasında bir yer verir; bazıları daha geç (7. yüzyıl) önerir. Metin bütünlüklü tek yazarlı olmayabilir.
+- **Sefer Yetzirah (Yaratılış Kitabı)**: 10 *sefirot* ve 22 İbrani harfi üzerinden evrenin yaratılışını anlatan kısa metin. Tarihlendirmesi tartışmalıdır (Belirsiz): çoğu araştırmacı MS 2.–6. yüzyıllar arasında bir yer verir; bazıları daha geç (7. yüzyıl) önerir. Metin bütünlüklü tek yazarlı olmayabilir.
 - **Zohar**: Kabalanın ana metni sayılır. 13. yüzyılın sonlarında İspanya'da Moşe de León tarafından dolaşıma sokuldu. Gershom Scholem'in "büyük ölçüde de León'a ait" görüşü uzun süre hâkim oldu; sonraki araştırmacılar (Yehuda Liebes, Moshe Idel) bir **çevre/grup** yazımı ve eski malzemenin katkısını vurgular. Geleneksel görüşe göre ise çok daha eski bir metindir.
 
 ## Sefirot nedir?

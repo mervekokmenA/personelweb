@@ -13,7 +13,7 @@ export const occultContent: ModuleContent = {
       qz("Tetraktys neyi simgeler ve neden sayılır?", ["Kare bir sembol, 4 element", "10 noktalı, 1+2+3+4 = 10 olan bir şekil", "Üç köşeli bir çember", "Haç şekli"], 1),
       qz("Platon'un 'Mağara alegorisi' hangi eserde geçer?", ["Timaios", "Symposium", "Devlet (VII. kitap)", "Kratylos"], 2),
       qz("Corpus Hermeticum için bugünkü akademik görüş hangisidir?", ["Musa'dan önceki Mısır metinleri", "MS 1.–3. yy. Yunanca felsefi-dinsel metinler", "Ortaçağ Arap simya risaleleri", "19. yüzyıl Teosofik metinleri"], 1, "Casaubon 1614'te metinlerin Hristiyanlık sonrası olduğunu gösterdi."),
-      qz("Ficino, Corpus Hermeticum'u hangi yılda Latinceye çevirmiş (tamamlamış) kabul edilir?", ["1263", "1463", "1563", "1663"], 1, "1463'te tamamlandı; ilk basım 1471'dir."),
+      qz("Ficino, Corpus Hermeticum'u hangi yılda Latinceye çevirmiş (tamamlamış) kabul edilir?", ["1263", "1463", "1563", "1663"], 1, "1463'te tamamlandı; ilk basım 1471'dir (Belirsiz)."),
       qz("Nag Hammadi buluntusu hangi alanla ilgilidir?", ["Hermetik simya el yazmaları", "Gnostik metinler", "Kabala'nın Zohar nüshası", "Grimuarlar"], 1),
       qz("Iamblichus'un teurji anlayışı neyi vurgular?", ["Yalnızca felsefi düşünceyle kurtuluş", "Kutsal ritüeller ve sembollerle ruhun yükselişi", "Maddenin reddi", "Astrolojiden kaçınma"], 1),
     ],

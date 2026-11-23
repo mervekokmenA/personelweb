@@ -21,6 +21,8 @@ import { lirvianModule } from "./lirvian";
 import { elementlerKisaModule } from "./elementler-kisa";
 import { ayBuyusuModule } from "./ay-buyusu";
 import { ceyhanModule } from "./ceyhan-ezoterik-astroloji";
+import { frawleyModule } from "./frawley-vedik";
+import { turkceAstrolojiModule } from "./turkce-astroloji-kitaplari";
 
 /** Ek modüller: yüklenen her kitap/kaynak için bir iç modül ve internetten bulunan eksik konular. */
 export const EXTRA_MODULES: LearningModule[] = [
@@ -46,4 +48,6 @@ export const EXTRA_MODULES: LearningModule[] = [
   elementlerKisaModule,
   ayBuyusuModule,
   ceyhanModule,
+  frawleyModule,
+  turkceAstrolojiModule,
 ];

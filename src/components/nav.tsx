@@ -7,9 +7,10 @@ import { useState } from "react";
 import { applyNavOrder } from "@/lib/nav-items";
 
 export function Nav({ order }: { order?: string[] }) {
-  const items = applyNavOrder(order);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const items = applyNavOrder(order);
+  if (pathname === "/giris") return null;
 
   return (
     <>

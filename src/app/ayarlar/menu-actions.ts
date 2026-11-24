@@ -31,3 +31,10 @@ export async function resetNavOrder() {
   await prisma.learningEdit.deleteMany({ where: { key: NAV_ORDER_KEY } });
   revalidatePath("/", "layout");
 }
+
+/** Sürükle-bırak sonrası tam sırayı kaydeder (bilinmeyenler atılır, eksikler sona eklenir). */
+export async function saveNavOrder(order: string[]) {
+  if (!Array.isArray(order) || order.length > 50 || !order.every((x) => typeof x === "string")) return;
+  const hrefs = applyNavOrder(order).map((i) => i.href);
+  await save(hrefs);
+}

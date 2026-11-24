@@ -450,6 +450,21 @@ model StudyCardState {
   @@index([dueAt])
 }
 
+// Yüklenen kitapların metni: bölümlere ayrılmış, yalnızca veritabanında tutulur (repoya konmaz).
+// bookId: ek modül kimliği (örn. "ek-goetia"); site giriş korumalıdır (SITE_PASSWORD).
+model BookChapter {
+  id        String   @id @default(cuid())
+  bookId    String
+  idx       Int // kitap içindeki sıra (0'dan)
+  title     String
+  content   String
+  chars     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([bookId, idx])
+  @@index([bookId])
+}
+
 // Müfredatta yaptığın düzenlemeler (ders metni, test soruları, eklenen dersler, notlar).
 // key örnekleri: "lesson:react/ts-basics", "custom:react/benim-dersim", "quiz:react/u3", "modnote:okultizm"
 model LearningEdit {

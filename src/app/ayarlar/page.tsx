@@ -7,7 +7,10 @@ import { ConfirmForm } from "@/components/ui/confirm-form";
 import { getAllResolvedModules } from "@/lib/learning/resolve";
 import { getProgressMap, moduleProgress } from "@/lib/learning/progress";
 import { resetLearningProgress, completeLearningModule } from "./egitim-actions";
-import { Download, ExternalLink, Smartphone, DatabaseBackup, GraduationCap } from "lucide-react";
+import { applyNavOrder } from "@/lib/nav-items";
+import { getNavOrder } from "@/lib/nav-order";
+import { moveNavItem, resetNavOrder } from "./menu-actions";
+import { Download, ExternalLink, Smartphone, DatabaseBackup, GraduationCap, ArrowUp, ArrowDown, ListOrdered } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -28,6 +31,7 @@ export default async function AyarlarPage() {
     ? await Promise.all([getAllResolvedModules(), getProgressMap()])
     : [[], new Map()];
   const learnRows = learnModules.map((m) => ({ m, p: moduleProgress(m, learnProgress) }));
+  const navItems = applyNavOrder(hasDatabaseUrl ? await getNavOrder() : undefined);
   const githubInfo = getGithubReleaseInfo();
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "";
 
@@ -121,6 +125,40 @@ export default async function AyarlarPage() {
       <section className="card p-5 text-sm text-muted">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide">Uygulama Adresi</h2>
         <p>{appUrl || "NEXT_PUBLIC_APP_URL tanımlı değil."}</p>
+      </section>
+
+      <section className="card p-5">
+        <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+          <ListOrdered size={16} /> Menü Sıralaması
+        </h2>
+        <p className="mb-4 text-sm text-muted">Soldaki menünün sırasını okları kullanarak değiştir; değişiklik hemen kaydedilir.</p>
+        {!hasDatabaseUrl && <DbSetupNotice />}
+        <ol className="flex flex-col divide-y divide-card-border text-sm">
+          {navItems.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <li key={item.href} className="flex items-center gap-3 py-1.5">
+                <Icon size={16} className="text-muted" />
+                <span className="flex-1">{item.label}</span>
+                {(["-1", "1"] as const).map((dir) => {
+                  const disabled = dir === "-1" ? i === 0 : i === navItems.length - 1;
+                  return (
+                    <form key={dir} action={moveNavItem}>
+                      <input type="hidden" name="href" value={item.href} />
+                      <input type="hidden" name="dir" value={dir} />
+                      <button disabled={disabled || !hasDatabaseUrl} aria-label={`${item.label} ${dir === "-1" ? "yukarı" : "aşağı"} taşı`} className="rounded-md border border-card-border p-1.5 text-muted hover:text-foreground disabled:opacity-30">
+                        {dir === "-1" ? <ArrowUp size={14} /> : <ArrowDown size={14} />}
+                      </button>
+                    </form>
+                  );
+                })}
+              </li>
+            );
+          })}
+        </ol>
+        <form action={resetNavOrder} className="mt-3">
+          <button className="text-xs text-muted underline" disabled={!hasDatabaseUrl}>Varsayılan sıraya dön</button>
+        </form>
       </section>
 
       <section className="card p-5">

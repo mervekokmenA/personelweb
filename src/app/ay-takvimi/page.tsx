@@ -126,14 +126,14 @@ export default async function AyTakvimiPage({
                   href={`/ay-takvimi?date=${key}`}
                   title={label}
                   aria-current={isSel ? "date" : undefined}
-                  className={`flex min-h-[4.5rem] flex-col items-center gap-0.5 rounded-xl px-0.5 py-1.5 text-center transition-colors hover:bg-accent-lilac/20 sm:min-h-[5.5rem] ${
+                  className={`flex min-h-[4.5rem] flex-col items-center gap-0.5 rounded-xl px-0.5 py-1.5 text-center transition-colors hover:bg-accent-lilac/20 sm:min-h-[6.25rem] ${
                     isSel ? "bg-accent-lilac/40 ring-2 ring-accent-lilac" : isToday ? "ring-1 ring-accent-lilac" : ""
                   }`}
                 >
                   <span className={`text-xs ${isToday ? "font-bold" : "font-medium"}`}>{day.getUTCDate()}</span>
                   <MoonIcon angle={angle} size={30} title={label} />
-                  <span className="hidden text-[10px] leading-tight text-muted sm:block">
-                    {ev ? ev.name : ""}
+                  <span className={`hidden text-[10px] leading-tight sm:block ${ev ? "font-semibold moon-silver" : "text-muted"}`}>
+                    {label}
                   </span>
                 </Link>
               );

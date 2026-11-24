@@ -2,44 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  CalendarDays,
-  Lightbulb,
-  GraduationCap,
-  Sparkles,
-  Moon,
-  HeartPulse,
-  ListChecks,
-  Settings,
-  SlidersHorizontal,
-  Puzzle,
-  Calculator,
-  Library,
-  Languages,
-  Menu,
-  X,
-} from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { applyNavOrder } from "@/lib/nav-items";
 
-const NAV_ITEMS = [
-  { href: "/", label: "Ana Sayfa", icon: LayoutDashboard, accent: "var(--accent-blue)" },
-  { href: "/gunluk", label: "Günlük Program", icon: CalendarDays, accent: "var(--accent-mint)" },
-  { href: "/icerik", label: "İçerik Fikirleri", icon: Lightbulb, accent: "var(--accent-yellow)" },
-  { href: "/egitimler", label: "Eğitimler", icon: GraduationCap, accent: "var(--accent-blue)" },
-  { href: "/aliskanliklar", label: "Alışkanlıklar", icon: ListChecks, accent: "var(--accent-lilac)" },
-  { href: "/saglik", label: "Sağlık", icon: HeartPulse, accent: "var(--accent-pink)" },
-  { href: "/astroloji", label: "Astroloji", icon: Sparkles, accent: "var(--accent-lilac)" },
-  { href: "/ay-takvimi", label: "Ay Takvimi", icon: Moon, accent: "var(--accent-lilac)" },
-  { href: "/yapboz", label: "Yapboz", icon: Puzzle, accent: "var(--accent-yellow)" },
-  { href: "/dil", label: "Yabancı Dil", icon: Languages, accent: "var(--accent-blue)" },
-  { href: "/kendi-egitimlerim", label: "Kendi Eğitimlerim", icon: Library, accent: "var(--accent-lilac)" },
-  { href: "/maliyet", label: "Maliyet Hesaplama", icon: Calculator, accent: "var(--accent-mint)" },
-  { href: "/parametreler", label: "Parametreler", icon: SlidersHorizontal, accent: "var(--accent-mint)" },
-  { href: "/ayarlar", label: "Ayarlar", icon: Settings, accent: "var(--accent-pink)" },
-];
-
-export function Nav() {
+export function Nav({ order }: { order?: string[] }) {
+  const items = applyNavOrder(order);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -59,13 +27,13 @@ export function Nav() {
       </header>
 
       <nav
-        className={`${open ? "flex" : "hidden"} md:flex flex-col gap-1 border-r border-card-border bg-card p-4 md:sticky md:top-0 md:h-screen md:w-64 md:shrink-0`}
+        className={`${open ? "flex" : "hidden"} md:flex flex-col gap-1 border-r border-card-border bg-card p-4 md:sticky md:top-0 md:h-screen md:w-64 md:shrink-0 md:overflow-y-auto md:overscroll-contain`}
       >
         <Link href="/" onClick={() => setOpen(false)} className="mb-6 hidden px-2 md:block">
           <span className="ag-tag mb-2 w-fit"><span className="ag-dot" /> Kişisel Panel</span>
           <h1 className="text-xl font-medium">Merve</h1>
         </Link>
-        {NAV_ITEMS.map((item) => {
+        {items.map((item) => {
           const active = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
           const Icon = item.icon;
           return (

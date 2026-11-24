@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Nav } from "@/components/nav";
+import { getNavOrder } from "@/lib/nav-order";
+
+// Menü sırası ayarlardan okunur; derleme sırasında veritabanına dokunmamak için dinamik.
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Kişisel Panel",
@@ -12,11 +16,12 @@ export const viewport: Viewport = {
   themeColor: "#e9efe9",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navOrder = await getNavOrder();
   return (
     <html lang="tr" className="h-full antialiased">
       <head>
@@ -33,7 +38,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full">
         <div className="flex min-h-screen min-w-0 flex-col md:flex-row">
-          <Nav />
+          <Nav order={navOrder} />
           <main className="min-w-0 flex-1 px-4 py-6 md:px-8 md:py-8">{children}</main>
         </div>
       </body>

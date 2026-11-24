@@ -14,7 +14,7 @@ export function MoonWeekCard({ today }: { today: Date }) {
   const todayStr = toDateInputValue(today);
 
   return (
-    <section className="card p-5">
+    <section className="moon-theme card p-5">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
           <Moon size={16} /> Bu Haftanın Ay Takvimi

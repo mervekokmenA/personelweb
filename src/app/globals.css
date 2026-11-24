@@ -253,3 +253,31 @@ a:active {
   .ag-opt-right { background: #1f4a2c; color: #d7f0dd; }
   .ag-opt-wrong { background: #52241f; color: #f4d9d5; }
 }
+
+/* Ay Takvimi: yıldızlı mor-lacivert gece + gümüş Ay (sulu boya Ay evreleri görseline göre) */
+.moon-theme {
+  --background: #14112b;
+  --card: #1f1b3b;
+  --card-border: #3a3566;
+  --foreground: #ecebf6;
+  --muted: #a9a6c6;
+  --accent-lilac: #8f7fd1;
+  color: var(--foreground);
+  background-color: #14112b;
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(92, 70, 140, 0.45), transparent 55%),
+    radial-gradient(ellipse at 95% 35%, rgba(58, 44, 112, 0.5), transparent 55%),
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 38% 8%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.2px 1.2px at 62% 22%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 86% 12%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 24% 46%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.2px 1.2px at 74% 58%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 8% 78%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 50% 88%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 92% 82%, rgba(255, 255, 255, 0.5), transparent);
+  background-attachment: scroll;
+}
+.moon-theme .card { background: rgba(31, 27, 59, 0.88); border-color: var(--card-border); backdrop-filter: blur(2px); }
+.moon-theme .ag-icon-btn { background: #2a2550; border-color: var(--card-border); color: var(--foreground); }
+.moon-theme .moon-silver { color: #d3d6d2; }

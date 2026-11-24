@@ -10,6 +10,7 @@ import {
   formatTrTime,
   MOON_QUARTER_NAMES,
 } from "@/lib/astro/moon";
+import { PHASE_GUIDE, PERIOD_NOTE } from "@/lib/astro/moon-guide";
 import { addDays, dayKey, formatTrLong, toDateInputValue, todayKey } from "@/lib/date";
 
 export const dynamic = "force-dynamic";
@@ -71,8 +72,12 @@ export default async function AyTakvimiPage({
   const selAngle = selEvent ? selEvent.quarter * 90 : detail.angle;
   const selLabel = selEvent ? MOON_QUARTER_NAMES[selEvent.quarter] : detail.phaseName;
 
+  // Seçili günün evre rehberi: çeyrek olayı varsa o evre, yoksa o günün evresi
+  const selPhaseIndex = selEvent ? selEvent.quarter * 2 : detail.phaseIndex;
+  const guide = PHASE_GUIDE[selPhaseIndex];
+
   return (
-    <div className="flex flex-col gap-6">
+    <div className="moon-theme flex flex-col gap-6 rounded-3xl p-4 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="flex items-center gap-2 text-2xl font-semibold">
           <Moon size={22} /> Ay Takvimi
@@ -140,6 +145,12 @@ export default async function AyTakvimiPage({
           <p className="text-sm text-muted">{formatTrLong(selected)}</p>
           <MoonIcon angle={selAngle} size={120} title={selLabel} />
           <h2 className="text-xl font-semibold">{selLabel}</h2>
+          {guide.alias && <p className="-mt-2 text-xs text-muted">({guide.alias})</p>}
+          <div className="w-full rounded-2xl border border-card-border bg-black/20 p-3 text-left text-sm">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wide moon-silver">{guide.keyword}</p>
+            <p>{guide.meaning}</p>
+            <p className="mt-2 text-xs text-muted">{guide.themes}</p>
+          </div>
           {selEvent && (
             <p className="text-sm">
               Tam an: <strong>{formatTrTime(selEvent.time)}</strong> (Türkiye saati)
@@ -194,6 +205,45 @@ export default async function AyTakvimiPage({
               </li>
             ))}
         </ul>
+      </section>
+
+      <section className="card p-4 sm:p-5" aria-label="Ay evreleri rehberi">
+        <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted">Ay evreleri rehberi</h2>
+        <p className="mb-4 text-xs text-muted">
+          Sekiz evre, Yeni Ay&apos;dan başlayarak sırayla. Seçili günün evresi vurgulanır.
+        </p>
+        <div className="flex flex-col gap-5">
+          {(["büyüyen", "küçülen"] as const).map((period) => (
+            <div key={period} className="flex flex-col gap-2">
+              <p className="text-xs font-medium moon-silver">{PERIOD_NOTE[period]}</p>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {PHASE_GUIDE.filter((g) => (period === "büyüyen" ? g.index <= 3 : g.index >= 4)).map((g) => {
+                  const active = g.index === selPhaseIndex;
+                  return (
+                    <li key={g.index} className={`flex gap-3 rounded-2xl border p-3 ${active ? "border-accent-lilac bg-accent-lilac/15" : "border-card-border bg-black/15"}`}>
+                      <MoonIcon angle={g.index * 45} size={52} title={g.name} />
+                      <div className="min-w-0 text-sm">
+                        <p className="font-semibold">
+                          {g.name}
+                          {g.alias && <span className="font-normal text-muted"> · {g.alias}</span>}
+                          {active && <span className="ml-2 rounded-full bg-accent-lilac/40 px-2 py-0.5 text-[10px] font-medium">seçili gün</span>}
+                        </p>
+                        <p className="text-xs font-medium moon-silver">{g.keyword}</p>
+                        <p className="mt-1 text-xs text-muted">{g.shape}</p>
+                        <p className="mt-1.5">{g.meaning}</p>
+                        <p className="mt-1.5 text-xs text-muted">{g.themes}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-xs text-muted">
+          Kaynak: eklediğin iki görsel (astrokronos.com &quot;Ay Fazları&quot;, @witchthetrials &quot;Ay&apos;ın Evreleri&quot;) birleştirildi. Anahtar sözcükler ve &quot;uygun görülür&quot; denilen çalışmalar geleneksel / ezoterik yorumlardır;
+          bilimsel bir doğrulamaları yoktur, sağlık ya da karar için dayanak yapma. Evrelerin görünümü ve zamanları ise gökbilimsel olarak hesaplanır.
+        </p>
       </section>
     </div>
   );

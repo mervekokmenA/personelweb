@@ -112,6 +112,10 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
             <span className="ag-muted">Ders süresi: ~{p.hoursDone}/{p.hours} sa</span>
             <span className="ag-muted">Proje: {p.projectsDone}/{p.projectsTotal} (~{p.projectHours} sa)</span>
           </div>
+          <div className="flex flex-wrap gap-2">
+            <Link href={`/kendi-egitimlerim/tekrar?modul=${m.id}`} className="ag-btn ag-btn-outline">Bu modülün tekrar kartları</Link>
+            <Link href="/kendi-egitimlerim/yanlislarim" className="ag-btn ag-btn-outline">Yanlışlarım</Link>
+          </div>
           <p className="text-xs ag-muted">İstediğin parçaya atlayıp göz atabilirsin; parça yalnızca kutuyu işaretlersen ya da derste &quot;Tamamla ve sonrakine geç&quot; dersen tamamlanır. Sıfırlama ve toplu tamamlama Ayarlar&apos;da.</p>
         </div>
       </header>

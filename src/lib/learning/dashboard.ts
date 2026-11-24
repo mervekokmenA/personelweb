@@ -3,6 +3,7 @@ import { getAllResolvedModules } from "./resolve";
 import { getProgressMap, moduleProgress } from "./progress";
 import { moduleLessons, progressKey } from "./index";
 import { getLearningStats } from "./stats";
+import { getReviewCounts } from "./review";
 
 export interface LearningWidgetData {
   /** Yalnızca başlanmış (en az bir parçası tamamlanmış) eğitimler; en son çalışılan başta. */
@@ -16,6 +17,8 @@ export interface LearningWidgetData {
   totalDone: number;
   totalLessons: number;
   streak: number;
+  studyReady: number;
+  mistakes: number;
   weekDone: number;
   weeklyGoal: number;
 }
@@ -78,10 +81,12 @@ export async function getLearningWidgetData(): Promise<LearningWidgetData> {
     ? Math.round((recentQuizzes.reduce((s, q) => s + q.score / q.total, 0) / recentQuizzes.length) * 100)
     : null;
 
-  const stats = await getLearningStats(allModules, progress);
+  const [stats, review] = await Promise.all([getLearningStats(allModules, progress), getReviewCounts(allModules, progress)]);
 
   return {
     streak: stats.streak,
+    studyReady: review.due + review.fresh,
+    mistakes: review.mistakes,
     weekDone: stats.weekDone,
     weeklyGoal: stats.weeklyGoal,
     modules: summaries,

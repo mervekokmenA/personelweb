@@ -205,11 +205,43 @@ export async function saveModuleNotes(formData: FormData) {
   revalidatePath(`${BASE}/${moduleId}`);
 }
 
+export interface QuizResultInput { unitKey: string; h: string; chosen: number; ok: boolean }
+
+const UNIT_KEY_RE = /^[a-z0-9-]+\/[A-Za-z0-9-]+$/;
+
+function validResults(results: QuizResultInput[] | undefined): QuizResultInput[] {
+  if (!Array.isArray(results) || results.length > 80) return [];
+  return results.filter((r) => UNIT_KEY_RE.test(r.unitKey) && /^[a-z0-9]{4,8}$/.test(r.h) && Number.isInteger(r.chosen) && r.chosen >= 0 && r.chosen < 10 && typeof r.ok === "boolean");
+}
+
+/** Soru bazlı sonuçları işler: yanlışlar kaydedilir, daha önce yanlış yapılıp şimdi doğru bilinenler çözüldü sayılır. */
+async function applyQuizResults(results: QuizResultInput[]) {
+  const now = new Date();
+  for (const r of results) {
+    if (r.ok) {
+      await prisma.quizMistake.updateMany({ where: { unitKey: r.unitKey, qHash: r.h, resolved: false }, data: { resolved: true, resolvedAt: now } });
+    } else {
+      await prisma.quizMistake.upsert({
+        where: { unitKey_qHash: { unitKey: r.unitKey, qHash: r.h } },
+        create: { unitKey: r.unitKey, qHash: r.h, lastChosen: r.chosen, lastWrongAt: now },
+        update: { wrongCount: { increment: 1 }, lastChosen: r.chosen, lastWrongAt: now, resolved: false, resolvedAt: null },
+      });
+    }
+  }
+}
+
 /** Test sonucunu kaydeder (istemci puanı hesaplayıp gönderir; sunucu aralığı doğrular). */
-export async function recordQuizAttempt(unitKey: string, score: number, total: number) {
-  if (!/^[a-z0-9-]+\/[A-Za-z0-9-]+$/.test(unitKey)) return;
+export async function recordQuizAttempt(unitKey: string, score: number, total: number, results?: QuizResultInput[]) {
+  if (!UNIT_KEY_RE.test(unitKey)) return;
   if (!Number.isInteger(score) || !Number.isInteger(total) || total < 1 || total > 50 || score < 0 || score > total) return;
   await prisma.quizAttempt.create({ data: { unitKey, score, total } });
+  await applyQuizResults(validResults(results));
+  revalidatePath(BASE, "layout");
+}
+
+/** "Yanlışlarımı çöz" modu: yalnızca yanlış kayıtlarını günceller, puan geçmişine eklemez. */
+export async function recordMistakeReview(results: QuizResultInput[]) {
+  await applyQuizResults(validResults(results));
   revalidatePath(BASE, "layout");
 }
 

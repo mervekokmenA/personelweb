@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Code2, Eye, Moon, Hammer, BookOpen, ArrowUpRight, Library, Search, StickyNote } from "lucide-react";
+import { Code2, Eye, Moon, Hammer, BookOpen, ArrowUpRight, Library, Search, StickyNote, Layers, XCircle } from "lucide-react";
 import { hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { getAllResolvedModules } from "@/lib/learning/resolve";
 import { getProgressMap, getQuizStats, moduleProgress } from "@/lib/learning/progress";
 import { EXTRA_TOPICS } from "@/lib/learning/extra/topics";
 import { getLearningStats } from "@/lib/learning/stats";
+import { getReviewCounts } from "@/lib/learning/review";
 import { findLesson } from "@/lib/learning";
 import { TempoPanel, type BookmarkItem, type WeakQuiz } from "@/components/learning/tempo-panel";
 
@@ -24,7 +25,7 @@ export default async function KendiEgitimlerimPage() {
   }
   const [modules, progress, quizStats] = await Promise.all([getAllResolvedModules(), getProgressMap(), getQuizStats()]);
 
-  const stats = await getLearningStats(modules, progress);
+  const [stats, review] = await Promise.all([getLearningStats(modules, progress), getReviewCounts(modules, progress)]);
   const byModule = new Map(modules.map((m) => [m.id, m]));
   const bookmarks: BookmarkItem[] = stats.bookmarks.flatMap((b) => {
     const m = byModule.get(b.moduleId);
@@ -59,6 +60,8 @@ export default async function KendiEgitimlerimPage() {
             <input name="q" type="search" placeholder="Derslerde ve notlarda ara…" aria-label="Eğitimlerde ara" className="ag-input flex-1" />
             <button className="ag-btn ag-btn-dark">Ara</button>
           </form>
+          <Link href="/kendi-egitimlerim/tekrar" className="ag-btn ag-btn-dark"><Layers size={14} /> Tekrar kartları ({review.due + review.fresh} hazır)</Link>
+          <Link href="/kendi-egitimlerim/yanlislarim" className="ag-btn ag-btn-outline"><XCircle size={14} /> Yanlışlarım ({review.mistakes})</Link>
           <Link href="/kendi-egitimlerim/notlar" className="ag-btn ag-btn-outline"><StickyNote size={14} /> Notlarım</Link>
         </div>
       </header>

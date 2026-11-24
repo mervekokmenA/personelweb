@@ -417,6 +417,39 @@ model LearningProgress {
   updatedAt DateTime  @updatedAt
 }
 
+// Testte yanlış yapılan sorular (soru metni özetiyle eşleşir; doğru yanıtlanınca "çözüldü" olur).
+model QuizMistake {
+  id          String    @id @default(cuid())
+  unitKey     String // "react/u3"
+  qHash       String // soru metninin özeti
+  wrongCount  Int       @default(1)
+  lastChosen  Int
+  lastWrongAt DateTime  @default(now())
+  resolved    Boolean   @default(false)
+  resolvedAt  DateTime?
+
+  @@unique([unitKey, qHash])
+  @@index([resolved])
+}
+
+// Ders soruları ve test soruları için aralıklı tekrar durumu (Yabancı Dil kartlarıyla aynı algoritma).
+// cardId: "q:<modül>/<ünite>:<özet>" (test sorusu) veya "l:<modül>/<ders>:<özet>" (ders sorusu)
+model StudyCardState {
+  id           String    @id @default(cuid())
+  cardId       String    @unique
+  ease         Float     @default(2.5)
+  intervalDays Int       @default(0)
+  reps         Int       @default(0)
+  lapses       Int       @default(0)
+  dueAt        DateTime
+  lastReviewAt DateTime?
+  suspended    Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([dueAt])
+}
+
 // Müfredatta yaptığın düzenlemeler (ders metni, test soruları, eklenen dersler, notlar).
 // key örnekleri: "lesson:react/ts-basics", "custom:react/benim-dersim", "quiz:react/u3", "modnote:okultizm"
 model LearningEdit {

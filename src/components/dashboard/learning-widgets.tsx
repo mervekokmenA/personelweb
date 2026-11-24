@@ -107,6 +107,10 @@ export function LearningWidgets({ data }: { data: LearningWidgetData }) {
               <div className="h-full rounded-full" style={{ width: `${Math.min(100, Math.round((data.weekDone / data.weeklyGoal) * 100))}%`, background: "var(--accent-mint)" }} />
             </div>
           </div>
+          <p className="text-xs text-muted">
+            <Link href="/kendi-egitimlerim/tekrar" className="underline">{data.studyReady} tekrar kartı hazır</Link>
+            {data.mistakes > 0 && <> · <Link href="/kendi-egitimlerim/yanlislarim" className="underline">{data.mistakes} yanlış</Link></>}
+          </p>
           <p className="mt-auto text-xs text-muted">
             Toplam: {data.totalDone}/{data.totalLessons} parça tamamlandı.
           </p>

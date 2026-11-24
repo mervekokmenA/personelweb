@@ -2,10 +2,15 @@
 
 import { useState, useTransition } from "react";
 import { CheckCircle2, XCircle, RotateCcw } from "lucide-react";
-import { recordQuizAttempt } from "@/app/kendi-egitimlerim/actions";
+import { recordQuizAttempt, recordMistakeReview } from "@/app/kendi-egitimlerim/actions";
 import type { QuizQuestion } from "@/lib/learning/types";
 
-export function QuizRunner({ unitKey, questions }: { unitKey: string; questions: QuizQuestion[] }) {
+export interface QuizMeta { unitKey: string; h: string; label?: string }
+
+export function QuizRunner({ unitKey, questions: initialQuestions, meta: initialMeta, review }: { unitKey: string; questions: QuizQuestion[]; meta: QuizMeta[]; review?: boolean }) {
+  // Kontrol sonrası sunucu sayfayı yeniler (çözülen yanlışlar listeden düşer); oturum boyunca ilk soru listesi sabit kalır.
+  const [questions] = useState(initialQuestions);
+  const [meta] = useState(initialMeta);
   const [answers, setAnswers] = useState<(number | null)[]>(() => questions.map(() => null));
   const [checked, setChecked] = useState(false);
   const [pending, startTransition] = useTransition();
@@ -16,7 +21,8 @@ export function QuizRunner({ unitKey, questions }: { unitKey: string; questions:
 
   function check() {
     setChecked(true);
-    startTransition(() => recordQuizAttempt(unitKey, score, questions.length));
+    const results = questions.map((q, i) => ({ unitKey: meta[i].unitKey, h: meta[i].h, chosen: answers[i] ?? 0, ok: answers[i] === q.answer }));
+    startTransition(() => (review ? recordMistakeReview(results) : recordQuizAttempt(unitKey, score, questions.length, results)));
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -32,7 +38,7 @@ export function QuizRunner({ unitKey, questions }: { unitKey: string; questions:
           <span className="text-3xl font-medium">%{pct}</span>
           <div className="text-sm">
             <p className="font-medium">{score}/{questions.length} doğru {pct >= 70 ? "— geçtin ✓" : "— geçme sınırı %70, ilgili parçaları tekrar okuyup yeniden dene"}</p>
-            <p className="ag-muted">Sonuç kaydedildi; program sayfasında en iyi puanın görünür.</p>
+            <p className="ag-muted">{review ? "Doğru bildiklerin \"çözüldü\" sayıldı; yanlışların listede kalır." : "Sonuç kaydedildi; yanlışların \"Yanlışlarım\" listesine eklendi, en iyi puanın program sayfasında görünür."}</p>
           </div>
           <button onClick={reset} className="ag-btn ag-btn-dark ml-auto"><RotateCcw size={14} /> Yeniden dene</button>
         </div>
@@ -40,6 +46,7 @@ export function QuizRunner({ unitKey, questions }: { unitKey: string; questions:
 
       {questions.map((q, qi) => (
         <section key={qi} className="ag-panel flex flex-col gap-3">
+          {meta[qi].label && <p className="text-xs ag-muted">{meta[qi].label}</p>}
           <p className="font-medium"><span className="ag-muted">{qi + 1}. </span>{q.q}</p>
           <div className="flex flex-col gap-2">
             {q.options.map((o, oi) => {

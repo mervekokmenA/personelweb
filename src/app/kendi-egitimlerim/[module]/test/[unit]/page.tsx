@@ -5,6 +5,7 @@ import { hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { QuizRunner } from "@/components/learning/quiz-runner";
 import { getResolvedModule } from "@/lib/learning/resolve";
+import { hashText } from "@/lib/learning/review";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +33,7 @@ export default async function QuizPage({ params }: { params: Promise<{ module: s
       {questions.length === 0 ? (
         <p className="ag-panel text-sm ag-muted">Bu program için henüz soru yok. &quot;Soruları düzenle&quot; ile ekleyebilirsin.</p>
       ) : (
-        <QuizRunner unitKey={`${m.id}/${unit.id}`} questions={questions} />
+        <QuizRunner unitKey={`${m.id}/${unit.id}`} questions={questions} meta={questions.map((q) => ({ unitKey: `${m.id}/${unit.id}`, h: hashText(q.q) }))} />
       )}
     </div>
   );

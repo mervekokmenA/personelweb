@@ -37,6 +37,13 @@ export async function GET() {
     readingTargetChanges,
     generalTasks,
     generalTaskLogs,
+    learningProgress,
+    learningEdits,
+    quizAttempts,
+    quizMistakes,
+    studyCardStates,
+    langCardStates,
+    langReviewLogs,
   ] = await Promise.all([
     prisma.appSettings.findMany(),
     prisma.focusArea.findMany(),
@@ -58,6 +65,13 @@ export async function GET() {
     prisma.readingTargetChange.findMany(),
     prisma.generalTask.findMany(),
     prisma.generalTaskLog.findMany(),
+    prisma.learningProgress.findMany(),
+    prisma.learningEdit.findMany(),
+    prisma.quizAttempt.findMany(),
+    prisma.quizMistake.findMany(),
+    prisma.studyCardState.findMany(),
+    prisma.langCardState.findMany(),
+    prisma.langReviewLog.findMany(),
   ]);
 
   const backup = {
@@ -82,6 +96,13 @@ export async function GET() {
     readingTargetChanges,
     generalTasks,
     generalTaskLogs,
+    learningProgress,
+    learningEdits,
+    quizAttempts,
+    quizMistakes,
+    studyCardStates,
+    langCardStates,
+    langReviewLogs,
   };
 
   const filename = `kisisel-panel-yedek-${toDateInputValue(new Date())}.json`;

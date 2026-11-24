@@ -10,7 +10,9 @@ import { resetLearningProgress, completeLearningModule } from "./egitim-actions"
 import { applyNavOrder } from "@/lib/nav-items";
 import { getNavOrder } from "@/lib/nav-order";
 import { MenuOrderEditor } from "@/components/ayarlar/menu-order-editor";
-import { Download, ExternalLink, Smartphone, DatabaseBackup, GraduationCap, ListOrdered } from "lucide-react";
+import { HomeLayoutDialog } from "@/components/ayarlar/home-layout-dialog";
+import { getHomeLayout } from "@/lib/home-layout";
+import { Download, ExternalLink, Smartphone, DatabaseBackup, GraduationCap, ListOrdered, LayoutDashboard } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -32,6 +34,7 @@ export default async function AyarlarPage() {
     : [[], new Map()];
   const learnRows = learnModules.map((m) => ({ m, p: moduleProgress(m, learnProgress) }));
   const navItems = applyNavOrder(hasDatabaseUrl ? await getNavOrder() : undefined);
+  const homeLayout = await getHomeLayout();
   const githubInfo = getGithubReleaseInfo();
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "";
 
@@ -134,6 +137,14 @@ export default async function AyarlarPage() {
         <p className="mb-4 text-sm text-muted">Soldaki menünün sırasını tutamaçtan (⋮⋮) sürükleyip bırakarak ya da okları kullanarak değiştir; değişiklik hemen kaydedilir.</p>
         {!hasDatabaseUrl && <DbSetupNotice />}
         <MenuOrderEditor initial={navItems.map((i) => i.href)} enabled={hasDatabaseUrl} />
+      </section>
+
+      <section className="card p-5">
+        <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+          <LayoutDashboard size={16} /> Ana Sayfa Düzeni
+        </h2>
+        <p className="mb-4 text-sm text-muted">Ana sayfadaki bölümlerin sırasını değiştir veya istemediklerini gizle.</p>
+        <HomeLayoutDialog initialOrder={homeLayout.order} initialHidden={[...homeLayout.hidden]} enabled={hasDatabaseUrl} />
       </section>
 
       <section className="card p-5">

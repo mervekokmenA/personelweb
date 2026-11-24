@@ -44,6 +44,8 @@ export async function GET() {
     studyCardStates,
     langCardStates,
     langReviewLogs,
+    lifeItems,
+    lifeRoutineChecks,
   ] = await Promise.all([
     prisma.appSettings.findMany(),
     prisma.focusArea.findMany(),
@@ -72,6 +74,8 @@ export async function GET() {
     prisma.studyCardState.findMany(),
     prisma.langCardState.findMany(),
     prisma.langReviewLog.findMany(),
+    prisma.lifeItem.findMany(),
+    prisma.lifeRoutineCheck.findMany(),
   ]);
 
   const backup = {
@@ -103,6 +107,8 @@ export async function GET() {
     studyCardStates,
     langCardStates,
     langReviewLogs,
+    lifeItems,
+    lifeRoutineChecks,
   };
 
   const filename = `kisisel-panel-yedek-${toDateInputValue(new Date())}.json`;

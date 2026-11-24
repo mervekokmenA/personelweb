@@ -15,6 +15,11 @@ import { getLangWidgetData } from "@/lib/lang/db";
 import { DashboardCard } from "@/components/dashboard/dashboard-card";
 import { DailyTrendChart } from "@/components/dashboard/daily-trend-chart";
 import { HabitGoalChart, type HabitGoalDatum } from "@/components/dashboard/habit-goal-chart";
+import { RoutineCard } from "@/components/rutin/routine-card";
+import { getRoutineToday } from "@/lib/life";
+import { getHomeLayout } from "@/lib/home-layout";
+import { HOME_SECTIONS } from "@/lib/home-sections";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   CalendarDays,
@@ -69,6 +74,8 @@ export default async function DashboardPage() {
   ]);
 
   // Eğitim tabloları yoksa/okunamazsa ana sayfa yine de açılsın.
+  const routineItems = await getRoutineToday(today).catch(() => []);
+  const homeLayout = await getHomeLayout();
   const learningData = await getLearningWidgetData().catch(() => null);
   const langData = await getLangWidgetData().catch(() => null);
 
@@ -148,6 +155,68 @@ export default async function DashboardPage() {
     })
   );
 
+  const sections: Record<string, ReactNode> = {
+    reading: <ReadingDebtCard summary={readingDebt} trend={readingTrend} />,
+    routine: <RoutineCard items={routineItems} />,
+    moon: <MoonWeekCard today={today} />,
+    learning: learningData ? <LearningWidgets data={learningData} /> : null,
+    lang: langData ? <LangWidget stats={langData.stats} reviewedToday={langData.reviewedToday} /> : null,
+    shortcuts: (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <DashboardCard href="/gunluk" icon={CalendarDays} title="Günlük Program" accent="var(--accent-mint)">
+            Bugün {todayCompletions}/{activeRoutines} rutin tamamlandı, {todayBlocksCount} zaman bloğu planlı.
+          </DashboardCard>
+
+          <DashboardCard href="/icerik" icon={Lightbulb} title="İçerik Fikirleri" accent="var(--accent-yellow)">
+            {contentTotal} fikirden {countMap.DONE ?? 0} tanesi yapıldı, {countMap.IN_PROGRESS ?? 0} tanesi devam ediyor.
+          </DashboardCard>
+
+          <DashboardCard href="/egitimler" icon={GraduationCap} title="Eğitimler" accent="var(--accent-blue)">
+            {ongoingTrainings.length > 0
+              ? ongoingTrainings.map((t) => t.name).join(", ")
+              : "Şu an devam eden eğitim yok."}
+          </DashboardCard>
+
+          <DashboardCard href="/aliskanliklar" icon={ListChecks} title="Alışkanlık Takibi" accent="var(--accent-lilac)">
+            {activeHabits.length} aktif alışkanlık, bugün {habitDoneToday} tanesi işaretlendi.
+          </DashboardCard>
+
+          <DashboardCard href="/saglik" icon={HeartPulse} title="Sağlık" accent="var(--accent-pink)">
+            {cycle.daysUntilNext !== null
+              ? `Sonraki adete ${cycle.daysUntilNext} gün. `
+              : "Henüz adet kaydı yok. "}
+            {laser.daysUntilNext !== null && `Lazer için ${laser.daysUntilNext} gün.`}
+          </DashboardCard>
+
+          <DashboardCard href="/astroloji" icon={Sparkles} title="Astroloji" accent="var(--accent-lilac)">
+            Bugünün transit haritasını ve natal karşılaştırmasını gör.
+          </DashboardCard>
+        </div>
+    ),
+    trend: <DailyTrendChart days={dailyTrend} />,
+    habits: <HabitGoalChart habits={habitGoals} />,
+  };
+
+  // Ayarlardan düzenlenen sıra ve görünürlük; yarım genişlikli iki bölüm art arda ise yan yana gösterilir.
+  const half = new Set(HOME_SECTIONS.filter((x) => x.half).map((x) => x.id));
+  const visible = homeLayout.order.filter((id) => !homeLayout.hidden.has(id) && sections[id]);
+  const blocks: ReactNode[] = [];
+  for (let k = 0; k < visible.length; k++) {
+    const id = visible[k];
+    const nextId = visible[k + 1];
+    if (half.has(id) && nextId && half.has(nextId)) {
+      blocks.push(
+        <div key={id} className="grid gap-6 lg:grid-cols-2">
+          <div className="min-w-0">{sections[id]}</div>
+          <div className="min-w-0">{sections[nextId]}</div>
+        </div>,
+      );
+      k++;
+    } else {
+      blocks.push(<div key={id} className="min-w-0">{sections[id]}</div>);
+    }
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -163,47 +232,7 @@ export default async function DashboardPage() {
         </Link>
       </div>
 
-      <ReadingDebtCard summary={readingDebt} trend={readingTrend} />
-
-      <MoonWeekCard today={today} />
-
-      {learningData && <LearningWidgets data={learningData} />}
-      {langData && <LangWidget stats={langData.stats} reviewedToday={langData.reviewedToday} />}
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <DashboardCard href="/gunluk" icon={CalendarDays} title="Günlük Program" accent="var(--accent-mint)">
-          Bugün {todayCompletions}/{activeRoutines} rutin tamamlandı, {todayBlocksCount} zaman bloğu planlı.
-        </DashboardCard>
-
-        <DashboardCard href="/icerik" icon={Lightbulb} title="İçerik Fikirleri" accent="var(--accent-yellow)">
-          {contentTotal} fikirden {countMap.DONE ?? 0} tanesi yapıldı, {countMap.IN_PROGRESS ?? 0} tanesi devam ediyor.
-        </DashboardCard>
-
-        <DashboardCard href="/egitimler" icon={GraduationCap} title="Eğitimler" accent="var(--accent-blue)">
-          {ongoingTrainings.length > 0
-            ? ongoingTrainings.map((t) => t.name).join(", ")
-            : "Şu an devam eden eğitim yok."}
-        </DashboardCard>
-
-        <DashboardCard href="/aliskanliklar" icon={ListChecks} title="Alışkanlık Takibi" accent="var(--accent-lilac)">
-          {activeHabits.length} aktif alışkanlık, bugün {habitDoneToday} tanesi işaretlendi.
-        </DashboardCard>
-
-        <DashboardCard href="/saglik" icon={HeartPulse} title="Sağlık" accent="var(--accent-pink)">
-          {cycle.daysUntilNext !== null
-            ? `Sonraki adete ${cycle.daysUntilNext} gün. `
-            : "Henüz adet kaydı yok. "}
-          {laser.daysUntilNext !== null && `Lazer için ${laser.daysUntilNext} gün.`}
-        </DashboardCard>
-
-        <DashboardCard href="/astroloji" icon={Sparkles} title="Astroloji" accent="var(--accent-lilac)">
-          Bugünün transit haritasını ve natal karşılaştırmasını gör.
-        </DashboardCard>
-      </div>
-
-      <DailyTrendChart days={dailyTrend} />
-
-      <HabitGoalChart habits={habitGoals} />
+      {blocks}
     </div>
   );
 }

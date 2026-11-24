@@ -13,6 +13,7 @@ import {
   Calculator,
   Library,
   Languages,
+  Target,
 } from "lucide-react";
 
 export const NAV_ITEMS = [
@@ -20,6 +21,7 @@ export const NAV_ITEMS = [
   { href: "/gunluk", label: "Günlük Program", icon: CalendarDays, accent: "var(--accent-mint)" },
   { href: "/icerik", label: "İçerik Fikirleri", icon: Lightbulb, accent: "var(--accent-yellow)" },
   { href: "/egitimler", label: "Eğitimler", icon: GraduationCap, accent: "var(--accent-blue)" },
+  { href: "/rutinim", label: "Rutin & Hedefler", icon: Target, accent: "var(--accent-yellow)" },
   { href: "/aliskanliklar", label: "Alışkanlıklar", icon: ListChecks, accent: "var(--accent-lilac)" },
   { href: "/saglik", label: "Sağlık", icon: HeartPulse, accent: "var(--accent-pink)" },
   { href: "/astroloji", label: "Astroloji", icon: Sparkles, accent: "var(--accent-lilac)" },

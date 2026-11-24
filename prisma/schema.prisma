@@ -466,6 +466,34 @@ model BookChapter {
   @@index([bookId])
 }
 
+// Rutinim / Hedeflerim / Hayallerim: kind = "routine" | "goal" | "dream".
+// Rutin maddeleri her gün işaretlenebilir (LifeRoutineCheck).
+model LifeItem {
+  id        String             @id @default(cuid())
+  kind      String
+  text      String
+  priority  Int? // 1 = en yüksek öncelik
+  note      String?
+  done      Boolean            @default(false)
+  order     Int                @default(0)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  checks    LifeRoutineCheck[]
+
+  @@index([kind, order])
+}
+
+model LifeRoutineCheck {
+  id        String   @id @default(cuid())
+  item      LifeItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  itemId    String
+  date      DateTime
+  createdAt DateTime @default(now())
+
+  @@unique([itemId, date])
+  @@index([date])
+}
+
 // Müfredatta yaptığın düzenlemeler (ders metni, test soruları, eklenen dersler, notlar).
 // key örnekleri: "lesson:react/ts-basics", "custom:react/benim-dersim", "quiz:react/u3", "modnote:okultizm"
 model LearningEdit {

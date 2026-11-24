@@ -277,6 +277,67 @@ export const reactModule: LearningModule = {
         },
       ],
     },
+    {
+      id: "atolye",
+      title: "Proje Atölyesi: Finans Takipçisi (adım adım)",
+      units: [
+        {
+          id: "w1",
+          title: "A1. Hazırlık: plan, iskelet, veritabanı",
+          description: "Kod yazmadan önce planla; sonra çalışan, tipli, veritabanına bağlı bir iskelet kur.",
+          lessons: [
+            lesson("at-plan", "Planlama: hikâyeler, veri modeli, klasör yapısı", "Kabul ölçütleri, 3 tablolu şema, 'para = kuruş' kararı.", { minutes: 60, resources: [nextDocs] }),
+            lesson("at-kurulum", "Kurulum: Next.js 16, Prisma 7, ortam değişkenleri", "create-next-app, bağımlılıklar, ilk migrasyon, Vitest; sık kurulum hataları.", { minutes: 90, resources: [nextDocs, prismaDocs, vitest] }),
+          ],
+        },
+        {
+          id: "w2",
+          title: "A2. Saf mantık ve doğrulama (önce test)",
+          description: "Framework'ten bağımsız, testli çekirdek: para, doğrulama, CSV.",
+          lessons: [
+            lesson("at-para", "Para işlemleri ve ilk testler", "TDD ile parseTutar/formatTutar; float tuzağı.", { minutes: 90, resources: [vitest] }),
+            lesson("at-zod", "Zod şemaları, hata mesajları, CSV güvenliği", "Sunucuda doğrulama, alan bazlı Türkçe hatalar, CSV enjeksiyonu.", { minutes: 90, resources: [zod] }),
+          ],
+        },
+        {
+          id: "w3",
+          title: "A3. Veri katmanı ve kimlik doğrulama",
+          description: "Kullanıcıya bağlı sorgular; kayıt, giriş ve imzalı çerez oturumu.",
+          lessons: [
+            lesson("at-sorgu", "Prisma sorguları: filtre, sayfalama, özet, N+1", "Tek dosyada, her zaman userId'li sorgular.", { minutes: 90, resources: [prismaDocs] }),
+            lesson("at-oturum", "Kayıt/giriş/çıkış, bcrypt, jose oturumu, DAL", "Parola özeti, httpOnly çerez, kullanıcı numaralandırma, React 19 form sıfırlama tuzağı.", { minutes: 150, resources: [nextDocs, owasp] }),
+          ],
+        },
+        {
+          id: "w4",
+          title: "A4. İşlemler: eylemler, formlar, liste",
+          description: "Sunucu eylemleri, useActionState, URL'de filtre ve sayfalama.",
+          lessons: [
+            lesson("at-eylem", "Sunucu eylemleri ve işlem formu", "Doğrulama, sahiplik kontrolü, IDOR, revalidatePath.", { minutes: 150, resources: [nextDocs, owaspTop10] }),
+            lesson("at-liste", "İşlem listesi: URL durumu, sayfalama, erişilebilir tablo", "searchParams, boş durum, erişilebilirlik.", { minutes: 120, resources: [nextDocs, a11y] }),
+          ],
+        },
+        {
+          id: "w5",
+          title: "A5. Özet, kategoriler, dışa aktarma, yetki",
+          description: "Panoyu tamamla ve yetkilendirmeyi uçtan uca gözden geçir.",
+          lessons: [
+            lesson("at-ozet", "Aylık özet ve kategori yönetimi", "groupBy, erişilebilir grafik, silme kuralı (3 katman).", { minutes: 120, resources: [prismaDocs] }),
+            lesson("at-csv", "CSV rotası, proxy.ts ve yetkilendirme denetimi", "Route Handler, BOM, iyimser proxy kontrolü vs gerçek yetki.", { minutes: 90, resources: [nextDocs, owasp] }),
+          ],
+        },
+        {
+          id: "w6",
+          title: "A6. Kalite, yayın ve kendi başına genişletme",
+          description: "Uçtan uca test, canlıya alma ve bağımsız çalışma görevleri.",
+          lessons: [
+            lesson("at-e2e", "Uçtan uca test (Playwright)", "Kullanıcı yolculuğu, veri yalıtımı, kırılgan test kaynakları.", { minutes: 90, resources: [playwright] }),
+            lesson("at-yayin", "Yayınlama: Vercel + Neon", "migrate deploy, ortam değişkenleri, üretim kontrol listesi.", { minutes: 90, resources: [vercelDocs, prismaDocs] }),
+            lesson("at-genislet", "Kendi başına genişlet: 6 görev ve öz değerlendirme", "Kabul ölçütü → test → en küçük dilim.", { minutes: 240, resources: [nextDocs] }),
+          ],
+        },
+      ],
+    },
   ],
   projects: [
     {

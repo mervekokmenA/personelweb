@@ -60,7 +60,7 @@ Bu başlıkların hiçbiri **bağımsız, tekrarlanabilir deneylerle doğrulanm�
 Modern pratik okültizmin dilini (enerji, merkez, kalkan, kanal) anlamak; Powell, Burger, Butler ve Lirvian notlarıyla karşılaştırmak için faydalıdır.
 
 ## Çalışma
-Kitaptaki "beklenen sonuç alınmazsa" listesini oku; hangi maddenin çürütülebilir bir iddiayı **kurtarmak için** kullanılabileceğini (yanlışlanamazlık sorunu) tartış.`,
+Dersteki "beklenen sonuç alınmazsa" gerekçelerinden hangisinin çürütülebilir bir iddiayı **kurtarmak için** kullanılabileceğini (yanlışlanamazlık sorunu) tartış.`,
           verification: `Başlıklar PDF içindekilerinden alındı; açıklamalar yazara atfedilmiş özet/yorumdur. Bilimsel doğrulama yoktur; bu yüzden eleştirel not eklendi.`,
         },
       ],
@@ -93,7 +93,7 @@ Kitaptaki "beklenen sonuç alınmazsa" listesini oku; hangi maddenin çürütül
 Teknik adımları burada öğretilmez; yalnızca kitabın hangi teknikleri **hangi başlık altında** sunduğunu bilirsin. Uygulama düşüncen varsa kitabı, deneyimli bir öğretmenle ve **ruh sağlığına dikkat ederek** oku.
 
 ## Çalışma
-Başlık haritasından her teknik için "ne için kullanılır (kitabın iddiası), başka hangi gelenekte benzeri var?" tablosu yap (ör. Butler/Powell, Lévi, Regardie).`,
+Dersteki başlık haritasından her teknik için "ne için kullanılır (kitabın iddiası), başka hangi gelenekte benzeri var?" tablosu yap (ör. Butler/Powell, Lévi, Regardie).`,
           verification: `Başlıklar PDF içindekilerinden. Teknik adımlar bilerek derse konmadı.`,
         },
         {
@@ -112,7 +112,7 @@ Kehanet (geçmiş, şimdi, gelecek, uzaktan görme) · Etherik varlıklar (basit
 - **Kehanet:** Geçmiş/şimdi/gelecek ayrımı yazarın "zamanın doğası" tartışmasına dayanır; öngörü doğruluğu bağımsız doğrulanmamıştır.
 
 ## Çalışma
-Kitabın "Ethical Use of Magick" kısmını oku ve kendi etik ilkelerini 5 maddede yaz.`,
+Dersteki etik bölümünü temel alarak kendi etik ilkelerini 5 maddede yaz.`,
           verification: `Konu listesi PDF içindekilerinden. Şifa ve kehanet iddiaları doğrulanmamıştır; derste açık uyarı eklendi.`,
         },
       ],

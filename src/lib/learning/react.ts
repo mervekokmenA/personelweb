@@ -195,8 +195,8 @@ export const reactModule: LearningModule = {
               tasks: ["customers/products/orders/order_items şemasını tasarla; stok düşüşünü transaction ile yap."],
               resources: [pgDocs, book("SQL Performansı Açıklandı (SQL Performance Explained)", "Markus Winand", "İndeks mantığı için kısa, çok iyi kitap (use-the-index-luke.com).", "https://use-the-index-luke.com", true)],
             }),
-            lesson("orm", "Prisma (ORM) ve veri modelleme", "Şema, migrasyon, ilişkili sorgular, N+1, seed. Bu sitenin kendi Prisma şemasını okuyup incele.", {
-              tasks: ["Bu repodaki prisma/schema.prisma dosyasını oku; yeni bir model + migrasyon ekle."],
+            lesson("orm", "Prisma (ORM) ve veri modelleme", "Şema, migrasyon, ilişkili sorgular, N+1, seed. Bu sitenin kendi Prisma şemasından alınan örnekler derste yer alır.", {
+              tasks: ["Derste verilen Prisma şemasındaki ilişkiyi ve onDelete davranışını kendi cümlelerinle açıkla; yeni bir model + migrasyon ekle."],
               resources: [prismaDocs],
             }),
             lesson("auth", "Kimlik doğrulama: JWT access/refresh ve oturum çerezleri", "Access token bellekte, refresh token HttpOnly çerezde; Axios interceptor ve eşzamanlı 401 kuyruğu; çıkış; RBAC (ADMIN/SALES/OPERATIONS/VIEWER).", {
@@ -250,7 +250,7 @@ export const reactModule: LearningModule = {
           description: "Bu sitenin kendisi gibi: App Router, Server Components, server actions, Prisma.",
           lessons: [
             lesson("next-app", "Next.js App Router ve Server Components", "Sunucu/istemci bileşen sınırı, veri çekme, önbellekleme ve yeniden doğrulama, dinamik rotalar, loading/error dosyaları.", {
-              tasks: ["Bu repoda `src/app/maliyet` sayfasını oku: server component + server action + revalidatePath akışını açıkla."],
+              tasks: ["Derstedeki maliyet akışı kodunu inceleyip server component + server action + revalidatePath akışını açıkla."],
               resources: [nextDocs],
             }),
             lesson("next-data", "Server actions, form akışı ve veri tutarlılığı", "FormData ile mutasyon, doğrulama, revalidation, optimistik arayüz, hata yönetimi.", {

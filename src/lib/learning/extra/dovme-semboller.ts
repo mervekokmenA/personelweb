@@ -110,7 +110,7 @@ Kendi dövme/sembol fikrin için 1 ay sürecek bir "deneme dönemi" planı yaz: 
 Bu, **akademik** bir kaynak: saha ve literatür taramasıyla dövmeyi **antropoloji/sanat tarihi** çerçevesinde ele alır; "sembol → anlam" iddialarını **kültürel bağlam** içinde okur (Okültizm modülü 9. ünite).
 
 ## Çalışma
-Bir motif seç (ör. koç, tarak, çadır); tezin ilgili bölümünü oku, motifin **hangi bölgede, hangi toplulukta, hangi anlamla** geçtiğini tabloya yaz ve kendi sembol listenle karşılaştır.`,
+Dersteki motif tablosundan bir motif seç (ör. koç, tarak, çadır); motifin **hangi bölgede, hangi toplulukta, hangi anlamla** geçtiğini tabloya yaz ve kendi sembol listenle karşılaştır.`,
           verification: `Tezin özet ve içindekiler bölümleri PDF'ten doğrudan okundu. Bölüm gövdeleri (motif katalogları, saha bulguları) bu derste okunmadı; tezin bilimsel niteliği (hakemli bir yüksek lisans tezi olması) kapak/künyeden görülür, içeriğin doğruluğu bağımsız olarak değerlendirilmedi.`,
         },
       ],

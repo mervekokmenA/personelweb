@@ -125,8 +125,13 @@ Iamblichus (yaklaşık MS 245–325), ruhun yalnızca felsefi düşünceyle değ
 
 Rönesans yazarları genellikle **magia naturalis** (doğanın gizli niteliklerini kullanan bilgi) ile şeytanlarla ilişkili "kara büyü"yü ayırır. Savunulan "magi" kutsal mıknatıs, bitki, taş, müzik ve gökbilimin gizli ilişkilerini incelemekti. Kilise ve çağdaş eleştirmenler bu ayrımı her zaman kabul etmedi.
 
+## Okuma metni: Ficino ve Pico'dan seçmeler (özet)
+**Ficino, *De vita libri tres*, III. kitap (*De vita coelitus comparanda*, "Hayatı gökten almak üzerine"):** Kitap, hekimin ve düşünürün **gök cisimlerinin etkisinden** yararlanma yollarını tartışır. Temel kavram **spiritus** (ruh/nefes): insan ile evren arasında aracı ince bir töz. Güneş, Jüpiter ve Venüs "yararlı" gezegenlerdir; Satürn ve Mars çoğu zaman "zararlı". Müzik, koku, renk, bitki ve taşların bu etkiyi çekmesi savunulur. Ficino bunu **şeytani büyü** değil, **doğal magi** (doğanın gizli niteliklerini kullanma) diye savunur.
+
+**Pico, *Oratio* (Onur Üzerine Konuşma, 1486):** Tanrı Adem'e şöyle der (özet): "*Sana belirli bir yer, belirli bir yüz, belirli bir görev vermedik… kendi iraden doğrultusunda onu belirlersin.*" İnsan, **kendi doğasını şekillendiren** bir varlıktır; ya "hayvanlara inebilir" ya da "ilahi olanlara yükselebilir". Pico'nun Kabala'ya yönelmesi, bu **yükseliş** fikrinin Hristiyan okumasıdır.
+
 ## Çalışma
-- *De vita* (III. kitap) ve Pico'nun Oratio'sunun İngilizce çevirilerinden birer bölüm oku.
+- "Doğal magi"nin bugünkü bilim ile ortak ve ayrışan yönlerini yaz.
 - "Doğal magi"nin bugünkü bilim ile ortak ve ayrışan yönlerini yaz.`,
     verification: `**Doğrulandı:** Ficino'nun Platon ve Hermetica çevirileri, *De vita libri tres* (1489), Pico'nun 1486 tezleri ve Kabala'yı Hristiyan bağlamda kullanması; kaynaklar: [Stanford Encyclopedia — Ficino](https://plato.stanford.edu/entries/ficino/), [SEP — Pico della Mirandola](https://plato.stanford.edu/entries/pico-della-mirandola/). Yates'in *Giordano Bruno and the Hermetic Tradition* kitabı bu dönemi tartışan klasiktir (bazı tezleri sonradan eleştirilmiştir).`,
   },
@@ -190,9 +195,15 @@ Owen Davies'in *Grimoires: A History of Magic Books* kitabından bir grimuarın 
 
 Sefirot, Tanrı'nın kendini açığa vurduğu on "yayılım/nitelik"tir (Keter, Hokhmah, Binah, Hesed, Gevurah, Tiferet, Netzah, Hod, Yesod, Malkhut). Sefer Yetzirah'ın sefirot listesi sonraki Kabala'dan biraz farklıdır.
 
+## Okuma metni: Zohar'ın yazarlığı tartışması
+- **Gelenek:** Zohar, **Şimon bar Yohay**'a (MS 2. yy.) ve öğrencilerine atfedilir.
+- **Scholem (1941, *Major Trends in Jewish Mysticism*):** Metnin 13. yüzyıl sonunda **Moşe de León** tarafından yazıldığı/dolaşıma sokulduğu tezini savundu; kanıtları arasında Aramice'nin kusurları, sonraki dönem kavramları ve ortaçağ felsefesine yakınlık var.
+- **Sonraki araştırmalar:** **Yehuda Liebes** ve **Moshe Idel**, tek yazar yerine **bir çevre/grup** yazımını ve eski malzemenin katkısını vurgular. **Daniel Matt**'ın Stanford baskısı (*The Zohar: Pritzker Edition*) bu akademik tartışmayı dikkate alan modern bir çeviridir.
+- **Sonuç:** Kesin bir tek yazar bilinmiyor; 13. yüzyıl sonu İspanya'sında oluştuğu görüşü akademide yaygındır, geleneksel görüş ise çok daha eskiye atıf yapar.
+
 ## Çalışma
-1. Scholem'in *Major Trends in Jewish Mysticism* ilk iki bölümünü oku; Zohar'ın yazarlık tartışmasını bir sayfada özetle.
-2. Kaplan'ın Sefer Yetzirah çevirisinin girişini okuyarak dönemlendirme tartışmasını yaz.`,
+1. Aşağıdaki okuma metnine dayanarak Zohar'ın yazarlık tartışmasını bir sayfada özetle.
+2. Sefer Yetzirah için dönemlendirme tartışmasını (MS 2.–6. yy. ile 7. yy. önerisi) kendi cümlelerinle yaz.`,
     verification: `**Doğrulandı:** Sefer Yetzirah için 2.–6. yy. aralığı ve 7. yy. önerisi (Tzahi Weiss) ile metnin birleşik yapısı tezi (Wolfson); Zohar'ın 13. yy. sonunda de León tarafından dolaşıma sokulduğu görüşünün hâkim olduğu ve Liebes/Idel gibi araştırmacılarla tartışıldığı. Kaynaklar: [Sefaria — Sefer Yetzirah](https://www.sefaria.org.il/Sefer_Yetzirah), [Wikipedia — Sefer Yetzirah](https://en.wikipedia.org/wiki/Sefer_Yetzirah), [National Library of Israel — Zohar](https://www.nli.org.il/en/discover/judaism/jewish-bookshelf/zohar), [Britannica — Moses de León](https://britannica.com/biography/Moses-de-Leon).
 
 **Not:** Kaynakların bir kısmı ansiklopedik/popüler olduğundan, derslerde "Scholem'e göre" gibi atıflar kullanıldı; birincil akademik metinle (Scholem, Idel) doğrulanmalıdır.`,

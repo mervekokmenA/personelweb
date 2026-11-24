@@ -57,7 +57,7 @@ Butler, "neden bir büyü kitabı daha?" sorusuna şöyle cevap verir: **büyü 
 Butler gizlilik karşıtı bir duruş sergiler ama kendisi de **adını vermediği bir "Usta"ya** dayanır (önsözde); bu, bilgi kaynağını denetlenemez kılar.
 
 ## Çalışma
-Butler'ın "iki grup" ayrımını kendi okuma planına uygula: bir kitabın hangi bölümleri "zaten kamuya açık" kaynaklara, hangileri iddiaya dayanıyor?`,
+Dersteki "iki grup" ayrımını kendi okuma planına uygula: okuduğun bir kitabın hangi bölümleri "zaten kamuya açık" kaynaklara, hangileri iddiaya dayanıyor?`,
           verification: `1. bölümün giriş sayfaları OCR ile okundu; ifadeler özetlendi. Crowley atfı Butler'a aittir; *777* girişiyle benzerliği ek modül *777*'den doğrulanabilir. Kaynak adları (Rama Prasad, Woodroffe) metinde geçen atıflardır.`,
         },
       ],

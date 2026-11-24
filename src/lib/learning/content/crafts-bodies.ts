@@ -25,7 +25,27 @@ Kuru çimento ve beton tozu **solunum, göz ve cilt** için tahriş edicidir; ı
 | Çocuk/hayvan | Atölye alanı erişilemez olsun |
 
 ## Alıştırma
-Kendi atölyen için 1 sayfalık kontrol listesi yaz: havalandırma, söndürücü yeri, eldiven/maske stoğu, atık yönetimi. Kullanacağın çimentonun **güvenlik bilgi formunu (SDS/MSDS)** üreticiden bul ve oku.`,
+Kendi atölyen için 1 sayfalık kontrol listesi yaz: havalandırma, söndürücü yeri, eldiven/maske stoğu, atık yönetimi. Kullanacağın çimentonun **güvenlik bilgi formunu (SDS)** üreticiden bul; aşağıdaki bölüm listesine göre en önemli 5 bölümü kendi listene aktar.
+
+## Güvenlik bilgi formu (SDS) nasıl okunur?
+SDS, GHS/CLP standardına göre **16 bölümden** oluşur (sıra hep aynıdır):
+
+| No | Bölüm | Senin için önemi |
+|---|---|---|
+| 1 | Madde/ürün ve firma kimliği | Doğru ürünün formu mu? |
+| **2** | **Zararlılık tanımı** | Etiket simgeleri, uyarı cümleleri (örn. cilt/göz tahrişi) |
+| 3 | Bileşim/içerik | Kimyasal içerik |
+| **4** | **İlk yardım önlemleri** | Göze/cilde bulaşırsa ne yapılır |
+| 5 | Yangınla mücadele | Uygun söndürücü |
+| 6 | Kaza sonucu yayılma | Dökülme/toz temizliği |
+| **7** | **Elleçleme ve depolama** | Nasıl saklanır, nelerle karışmaz |
+| **8** | **Maruziyet kontrolü / kişisel korunma** | Hangi maske, eldiven, gözlük |
+| 9–11 | Fiziksel/kimyasal özellikler, kararlılık, toksikoloji | Referans |
+| 12 | Ekolojik bilgi | Çevreye etkisi |
+| **13** | **Bertaraf (atık) bilgileri** | Atığı nasıl atacaksın |
+| 14–16 | Taşımacılık, yasal mevzuat, diğer bilgiler | Referans |
+
+Üretici sitesinde formu bulamazsan satıcıdan iste; **formu olmayan bir ürünü kullanma.**`,
     verification: `**Kaynak:** [Make: Beton Mumluk](https://makezine.com/article/craft/make-projects-concrete-candleholder/), [Instructables — Çimento Mumlukları](https://www.instructables.com/How-to-Make-Cement-Candle-Holders). Maske/eldiven önerisi bu kaynaklarda ve genel iş güvenliği pratiğinde yaygındır. Bölgendeki kesin yasal/iş güvenliği gereklilikleri için yerel mevzuata bak.`,
   },
   "b-malzeme": {

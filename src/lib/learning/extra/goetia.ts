@@ -43,8 +43,19 @@ Bu modül yalnızca ilk kısım olan **Goetia**'yı, yani PDF'in konusunu işler
 ## Önemli ayrım
 Kitabın kendisi Süleyman'a ait olduğunu **iddia eder**; tarih çalışmaları ise bunun bir gelenek atfı olduğunu, derlemenin çok daha geç olduğunu söyler. "Süleyman yazdı" demek bir iddia aktarımıdır, tarihsel olgu değildir.
 
+## Lemegeton'un beş kısmı (klasik yapı)
+| Kısım | Ad | Konu |
+|---|---|---|
+| 1 | **Ars Goetia** | 72 ruhun listesi, mühürleri ve nitelikleri |
+| 2 | **Ars Theurgia-Goetia** | Yönlere bağlı ruhlar (31 ruh) |
+| 3 | **Ars Paulina** | Gün ve gece saatlerine bağlı melekler |
+| 4 | **Ars Almadel** | "Almadel" adlı mum tablasıyla ilişkilendirilen melek düzenleri |
+| 5 | **Ars Notoria** | Bilgi ve hafıza için dualar (en eski kısım sayılır) |
+
+> Sıra ve sayılar, sonraki baskılara ve el yazmasına göre değişir; Mathers/Crowley 1904 baskısı yalnızca **Ars Goetia**'yı içerir.
+
 ## Çalışma
-Elindeki PDF'in içindekiler yapısına bakıp Lemegeton'un 5 kısmını kendi cümlelerinle bir tabloya yaz.`,
+Yukarıdaki 5 kısmı kendi cümlelerinle bir tabloya yaz; her kısım için "kaynağı ne kadar eski / hangi baskıda var?" sütunu ekle.`,
           verification: `**Kaynak:** [Wikipedia — The Lesser Key of Solomon](https://en.wikipedia.org/wiki/The_Lesser_Key_of_Solomon), [Esoteric Archives — Goetia](https://esotericarchives.com/solomon/goetia.htm). Kitabın kısa tanıtım bölümü PDF'ten okundu. Derleme tarihi (17. yy. ortası) kaynaklarda genel kabul olarak geçer; kesin tarih tartışmalıdır.`,
         },
         {
@@ -67,7 +78,7 @@ Goetia'nın en belirgin kaynağı olarak **Johann Weyer**'in şeytan kataloğu *
 Weyer katalogunun ilk basım yılı (1577 mi, 1583 mü) (Belirsiz) ve Weyer'in kaç ruh saydığı (Belirsiz) kaynaklar arasında **tutarsızdır**; bu derste kesin bir sayı iddia edilmez.
 
 ## Çalışma
-*Kendi araştırman:* Weyer'in kataloğunun çevrimiçi metnini bul (Esoteric Archives'te var), ilk 5 ruhu Goetia ile karşılaştır ve farkları tabloya yaz.`,
+Dersteki Weyer–Goetia karşılaştırmasına (ruh sayısı, sıra, farklar) dayanarak iki katalog arasındaki farkı tabloya yaz.`,
           verification: `**Kaynak:** [Wikipedia — The Lesser Key of Solomon](https://en.wikipedia.org/wiki/The_Lesser_Key_of_Solomon), [Esoteric Archives — Weyer](https://www.faculty.umb.edu/gary_zabel/Courses/Phil%20281b/Philosophy%20of%20Magic/Arcana/Witchcraft%20and%20Grimoires/weyer.htm). Kaynaklar 69/72 sayısı ve basım yılı konusunda **birbiriyle uyuşmuyor**; bu yüzden bu ayrıntılar kesinlik iddiası olmadan verildi.`,
         },
         {
@@ -126,7 +137,7 @@ PDF'in içindeki ana bölümler (kitabın kendi başlıklarıyla):
 Çağırma metinlerinin ve araç çizimlerinin **nasıl uygulanacağı** burada öğretilmez; yalnızca ne olduklarını bilirsin. Bu tür metinlerin içeriği bir grimuar olarak tarihî-edebî açıdan incelenir.
 
 ## Çalışma
-Kendi PDF'inde bölümlerin sayfa aralıklarını bul ve bir içindekiler tablosu hazırla.`,
+Dersteki 5 kısım listesine göre kendi PDF'inin bölümlerini işaretleyip bir içindekiler tablosu hazırla.`,
           verification: `**Kaynak:** PDF'in başlıkları ve satır yapısı doğrudan okundu (Conjuration/Invocation/Triangle/Hexagram/Pentagram/Magic Ring/Secret Seal başlıkları metinde geçer). Bölümlerin içeriği ve ruh listesi bu derse bilerek yazılmadı (bkz. "Eklenmeyenler").`,
         },
         {

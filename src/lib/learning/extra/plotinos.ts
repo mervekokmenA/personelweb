@@ -33,8 +33,15 @@ Yazıları **öğrencisi Porphyrios** düzenledi. "**Enneadlar**" adı, yazılar
 ## Üç ilke (SEP özeti)
 Plotinos'un metafiziği üç temel ilkeye dayanır: **Bir** (veya **İyi**), **Zekâ (Nous)** ve **Ruh**.
 
+## Enneadlar'da atıf sistemi
+Plotinos'un 54 risalesi, öğrencisi Porphyrios tarafından **6 Ennead × 9 risale** olarak düzenlendi. Atıf **Ennead.risale (kronolojik sıra)** biçiminde yazılır; kronolojik sıra Plotinos'un yazış sırasıdır. Örnekler:
+- **I.6 (1)** — *Güzellik Üzerine*: Ennead I, 6. risale; Plotinos'un yazdığı **ilk** risale.
+- **V.1 (10)** — *Üç Ana Töz Üzerine* (Bir–Nous–Ruh).
+- **VI.9 (9)** — *İyi ya da Bir Üzerine*.
+- **I.8 (51)** — *Kötülüğün Doğası Üzerine*.
+
 ## Çalışma
-Elindeki PDF'in içindekiler listesindeki her başlığın yanındaki "V, II (2)"-tipi atıfları bir tabloya yaz; hangi Ennead ve kronolojik numaraya karşılık geldiklerini belirle.`,
+Aşağıdaki dört atfı çöz (hangi Ennead, hangi risale, kronolojik sıra) ve sonra aynı yöntemle kendi PDF'indeki 5 atfı tabloya yaz.`,
           verification: `**Kaynak:** [Stanford Encyclopedia of Philosophy — Plotinus (arşiv sürümleri)](https://plato.stanford.edu/archives/fall2005/entries/plotinus/). SEP arşiv sürümlerinden alınmıştır; güncel sürümle ayrıntılar farklılaşabilir. Atıf biçimi PDF içindekilerinden okundu.`,
         },
         {
@@ -92,7 +99,7 @@ Yukarıdaki cümleler **risale başlıklarından ve Plotinos'un iyi bilinen öğ
 Yeni-Platonculuk, Rönesans Hermetizmi'ni (Ficino), Kabalacılık ve teurji anlayışlarını etkiledi. Bu yüzden Plotinos, "okült" literatürdeki **emanasyon (sudûr)** fikrinin klasik felsefi kaynaklarından biridir.
 
 ## Çalışma
-Bu bölümdeki altı soru kümesinden birini seç; PDF'te ilgili risaleyi bul, bir sayfalık okuma notu yaz.`,
+Bu bölümdeki altı soru kümesinden birini seç ve dersteki özeti temel alarak bir sayfalık okuma notu yaz.`,
           verification: `İçindekiler PDF'ten, üç ilke ve temel öğreti [SEP](https://plato.stanford.edu/archives/fall2005/entries/plotinus/) özetinden. Risale gövdeleri okunmadı; bu yüzden ayrıntılı argümanlar derse yazılmadı. Yeni-Platonculuğun Ficino ve Hermetik geleneğe etkisi genel bilgidir (Okültizm modülü 3. ünite).`,
         },
       ],

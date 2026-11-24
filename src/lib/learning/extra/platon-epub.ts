@@ -44,7 +44,7 @@ Platon'un MÖ 428–347'de Atina'da zengin bir ailede doğduğu ve Sokrates'in �
 > Tablo ders yazarının **eşlemesidir**; kitap diyalog adlarını sistematik olarak vermez.
 
 ## Çalışma
-Her başlık için ilgili diyaloğun bir sayfasını oku ve kitaptaki anlatımın aslına ne kadar sadık olduğunu (1–5 puan) değerlendir.`,
+Dersteki her başlık özetini, Okültizm modülü Platon dersindeki **okuma metnindeki** (Devlet VII, Symposium, Timaios) anlatımla karşılaştır ve kitabın anlatımının aslına ne kadar sadık olduğunu (1–5 puan) değerlendir.`,
           verification: `Künye, önsöz ve "Platon kimdir?" bölümü epub'tan okundu; yedi bölüm başlığı doğrudan alındı. Başlık–diyalog eşlemesi Platon'un bilinen eserlerine dayalı ders yazarı değerlendirmesidir; satır satır doğrulama yapılmadı.`,
         },
       ],
@@ -77,8 +77,17 @@ Kitap, "Mantık dışı arzular en iyi olma düşüncesine baskın çıkarak… 
 ## Ders
 Popüler felsefe kitaplarında **"X yazdırdı" / "X'e göre"** ifadeleri için: (1) eserin adı ve bölümü, (2) bağlam (kimin ağzından, hangi amaçla), (3) en eski kaynak.
 
+## Phaidros (Phaedrus): kısa okuma metni
+Diyalog üç konuşma içerir:
+1. **Lysias'ın konuşması** (okunan metin): "Âşık olmayan kişiye teslim olmak, âşığa teslim olmaktan daha iyidir"; sevgi, yargıyı bozan bir hastalık gibi sunulur.
+2. **Sokrates'in birinci konuşması:** Aynı tezi daha düzenli biçimde savunur; ancak sonra bunu **tanrıya karşı bir saygısızlık** sayıp geri çeker.
+3. **Sokrates'in ikinci konuşması (palinodi, 244a–257b):** Aşk, "**ilahi delilik**" olabilir. Dört tür ilahi delilik sayılır: kehanet (Apollon), arınma/ayin (Dionysos), şiir (Musalar) ve **aşk** (Afrodit/Eros).
+   - **Ruhun savaş arabası benzetmesi (246a–254e):** Ruh, iki atlı bir araba ve sürücüdür: bir at soylu ve itaatkâr, diğeri asi ve tutkulu; sürücü akıldır. Güzelliği görünce ruh "kanatlanır" ve idealar dünyasında gördüğü Güzel'i hatırlar (*anamnesis*).
+
+Bu metin, ezoterik gelenekte **ruhun kanatlanması ve yükselişi** fikrinin kaynaklarından biridir.
+
 ## Çalışma
-*Phaidros*'tan (tercüme) ilk konuşma ile Sokrates'in ikinci konuşmasını oku; kitabın "aşk" bölümüyle karşılaştır.`,
+Aşağıdaki *Phaidros* özetini kitabın "aşk" bölümüyle karşılaştır: hangi noktalar örtüşüyor, hangileri kitapta eksik veya farklı?`,
           verification: `**Kaynak:** [Stanford Encyclopedia — Elias](https://plato.stanford.edu/entries/elias/) ve Heath, *A History of Greek Mathematics* alıntıları ([jordanbell2357 — Heath](https://jordanbell2357.github.io/quotes/heath-greek-mathematics.html)) üzerinden yapılan arama; Philoponus/Elias'ın aktardığı tarih ikincil özetlerden. Kitabın ilgili bölümleri epub'tan okundu. Platon'un ruh göçü anlatımı (*Phaidon, Menon, Devlet X*) ve *Phaidros* bağlamı genel felsefe tarihi bilgisidir; birincil metinle bu derste doğrulanmadı.`,
         },
       ],

@@ -81,7 +81,7 @@ Başlıkların her birine yukarıdaki üç etiketten birini yaz ve etiketini ver
 - "Kürelerin müziği" Platon/Aristoteles geleneğinde bir **felsefi fikirdir**, fiziksel ses değildir.
 
 ## Çalışma
-Notlardaki Pisagor bölümünün her paragrafını [K]/[Y]/[?] ile etiketle ve Okültizm modülü 1. ünite derslerindeki "doğrulama" notlarıyla karşılaştır.`,
+Okültizm modülü 1. ünitedeki **Pisagor dersinde** yer alan notların [K]/[?]/[Y] etiketli özeti ile bu dersteki kaynak eleştirisini karşılaştır; her paragraf için etiketini ve gerekçeni yaz.`,
           verification: `Notların Pisagor bölümü PDF'ten okundu. Pisagor'un yazılı eser bırakmadığı ve kaynakların geç/efsaneli olduğu genel tarih bilgisidir (Okültizm modülü 1. ünite, Wikipedia/SEP kaynaklarına bakınız). "Biyoelektrik" ifadelerinin antik kaynaklarda bulunmaması ders yazarının değerlendirmesidir.`,
         },
         {

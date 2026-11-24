@@ -102,8 +102,17 @@ Bu uyarıyı kendi çalışma notuna yaz ve kitaptan alacağın her "enerji/şif
 - Akupunktur ile ilgili klinik araştırmaların sonuçları durum bazında farklılık gösterir; "bu nokta şu hastalığa iyi gelir" tarzı iddialar **tıbbi tavsiye değildir**.
 - Kitapçık, çizelgeleri bir bilgi referansı olarak sunar; **nokta listelerinin doğruluğu** (isimlendirme, konum) ders kapsamında doğrulanmadı.
 
+## Akupunktur için klinik kanıt: genel tablo (resmi sağlık kurumlarının özet değerlendirmeleri)
+- **Daha tutarlı olumlu sonuç:** Kronik ağrı türlerinde (bel ağrısı, boyun ağrısı, diz osteoartriti), gerilim tipi baş ağrısı ve migren önlemede çalışmalar akupunkturun **bakım/plasebo karşılaştırmasında fayda gösterebildiğini** bildirir.
+- **Karışık veya yetersiz kanıt:** Birçok başka durum için sonuçlar tutarsızdır ya da çalışmalar düşük kalitelidir.
+- **Plasebo sorunu:** "Sahte" akupunktur (iğnenin yanlış noktaya veya yüzeysel batırılması) bile çoğu çalışmada belirgin etki gösterir; bu, etkinin bir kısmının **beklenti ve temas gibi özgül olmayan etkenlerden** gelebileceğini düşündürür.
+- **Güvenlik:** Eğitimli uygulayıcı ve steril tek kullanımlık iğnelerle ciddi yan etkiler nadirdir; hijyen veya yanlış uygulamada enfeksiyon/organ zedelenmesi riski vardır.
+- **"Meridyen/Qi" kavramları** anatomik olarak gösterilememiş geleneksel kavramlardır; kanıt, kavramın doğruluğunu değil, uygulamanın bazı durumlardaki etkisini inceler.
+
+> Bu bir genel özettir; ayrıntı ve güncellik için sağlık kurumlarının güncel kılavuzlarına bak.
+
 ## Çalışma
-GÇT'nin klinik kanıtları için NCCIH gibi resmi bir kurumun akupunktur sayfasını oku ve kendi özetini yaz.`,
+Yukarıdaki kanıt özetini kullanarak GÇT (akupunktur) için kendi 5 maddelik "ne biliyoruz / ne bilmiyoruz" özetini yaz.`,
           verification: `İçindekiler PDF'ten okundu (meridyen adları, orta meridyenler, meridyen saati). "Anatomik yapı gösterilmemiştir" ifadesi genel bilgidir; bu derste bir kaynak URL'sine bağlanmadı (bkz. "Eklenmeyenler").`,
         },
       ],

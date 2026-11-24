@@ -135,9 +135,77 @@ Sistemleri **birbirinin aynısı** gibi sunmak yanlıştır; adları, başlangı
 
 Tropikal zodyakta konak = Ay'ın boylamı / 12,857°; sidereal sistemlerde ayanamsa farkı hesaba katılır. Birçok astroloji yazılımı konak hesabını otomatik yapar.
 
+## Konak tabloları (başlangıç noktaları)
+**Arap konakları (28; tropikal zodyak, her biri 12°51'26'')**
+
+| No | Ad | Başlangıç |
+|---|---|---|
+| 1 | Al-Sharatain | Koç 0°00' |
+| 2 | Al-Butain | Koç 12°51' |
+| 3 | Al-Thurayya | Koç 25°43' |
+| 4 | Al-Dabaran | Boğa 8°34' |
+| 5 | Al-Haqah | Boğa 21°26' |
+| 6 | Al-Han'ah | İkizler 4°17' |
+| 7 | Al-Dhira | İkizler 17°09' |
+| 8 | Al-Nathrah | Yengeç 0°00' |
+| 9 | Al-Tarf | Yengeç 12°51' |
+| 10 | Al-Jabhah | Yengeç 25°43' |
+| 11 | Al-Zubrah | Aslan 8°34' |
+| 12 | Al-Sarfah | Aslan 21°26' |
+| 13 | Al-Awwa | Başak 4°17' |
+| 14 | Al-Simak | Başak 17°09' |
+| 15 | Al-Ghafr | Terazi 0°00' |
+| 16 | Al-Zubana | Terazi 12°51' |
+| 17 | Al-Iklil | Terazi 25°43' |
+| 18 | Al-Qalb | Akrep 8°34' |
+| 19 | Al-Shaulah | Akrep 21°26' |
+| 20 | Al-Na'am | Yay 4°17' |
+| 21 | Al-Baldah | Yay 17°09' |
+| 22 | Sa'd al-Dhabih | Oğlak 0°00' |
+| 23 | Sa'd Bula | Oğlak 12°51' |
+| 24 | Sa'd al-Su'ud | Oğlak 25°43' |
+| 25 | Sa'd al-Akhbiyah | Kova 8°34' |
+| 26 | Al-Fargh al-Mukdim | Kova 21°26' |
+| 27 | Al-Fargh al-Mu'akhkhir | Balık 4°17' |
+| 28 | Batn al-Hut | Balık 17°09' |
+
+**Hint nakshatraları (27; sidereal zodyak, her biri 13°20')**
+
+| No | Ad | Başlangıç (Mesha 0°'dan) |
+|---|---|---|
+| 1 | Ashwini | Koç 0°00' |
+| 2 | Bharani | Koç 13°20' |
+| 3 | Krittika | Koç 26°40' |
+| 4 | Rohini | Boğa 10°00' |
+| 5 | Mrigashira | Boğa 23°20' |
+| 6 | Ardra | İkizler 6°40' |
+| 7 | Punarvasu | İkizler 20°00' |
+| 8 | Pushya | Yengeç 3°20' |
+| 9 | Ashlesha | Yengeç 16°40' |
+| 10 | Magha | Aslan 0°00' |
+| 11 | Purva Phalguni | Aslan 13°20' |
+| 12 | Uttara Phalguni | Aslan 26°40' |
+| 13 | Hasta | Başak 10°00' |
+| 14 | Chitra | Başak 23°20' |
+| 15 | Swati | Terazi 6°40' |
+| 16 | Vishakha | Terazi 20°00' |
+| 17 | Anuradha | Akrep 3°20' |
+| 18 | Jyeshtha | Akrep 16°40' |
+| 19 | Mula | Yay 0°00' |
+| 20 | Purva Ashadha | Yay 13°20' |
+| 21 | Uttara Ashadha | Yay 26°40' |
+| 22 | Shravana | Oğlak 10°00' |
+| 23 | Dhanishta | Oğlak 23°20' |
+| 24 | Shatabhisha | Kova 6°40' |
+| 25 | Purva Bhadrapada | Kova 20°00' |
+| 26 | Uttara Bhadrapada | Balık 3°20' |
+| 27 | Revati | Balık 16°40' |
+
+Doğum Ay'ının boylamını bir efemerisinden aldıktan sonra, boylam ÷ 12,857 (Arap) veya boylam ÷ 13,333 (nakshatra) işleminin tam kısmı + 1 konak numarasını verir. Konak **yorumları** gelenekten geleneğe ve yazardan yazara değiştiği için burada tek bir yorum verilmez.
+
 ## Çalışma
-- Doğum Ay'ının hangi Arap konağında ve hangi nakshatra'da olduğunu bul; geleneksel yorumları **iki ayrı kaynakta** karşılaştır.
-- Aynı konak için Agrippa'nın veya Esoteric Archives'daki metnin yorumunu oku; modern uygulamalarla farklarını yaz.`,
+- Doğum Ay'ının hangi Arap konağında ve hangi nakshatra'da olduğunu yukarıdaki tablolarla bul (boylamı bir efemerisinden al).
+- Tablodan bulduğun konağın adını, başlangıç derecesini ve kendi gözlemini (o gün Ay'ın bulunduğu konakla ilgili ne hissettin/yaşadın?) not et; yorumları bilimsel doğrulaması olmayan **geleneksel yorumlar** olarak etiketle.`,
       verification: `**Kaynak durumu:** Arap 28, Hint 27 ve Çin 28 bölümlü sistemler ile konakların talisman literatüründe kullanıldığı genel alan bilgisidir; ders metni (Ders 36) bu sistemlerin karıştırılmaması gerektiğini vurgular. Ayrıntılı derece değerleri (12°51', 13°20') matematiksel bölme sonucudur (360/28, 360/27). Konak yorumları için birincil kaynak olarak Esoteric Archives ve Agrippa kullanılmalıdır.`,
     },
     eleksiyon: {

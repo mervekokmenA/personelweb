@@ -261,10 +261,43 @@ const orders = await prisma.order.findMany({
 - Üretimde \`prisma migrate deploy\`.
 
 ## Bu sitenin şeması
-Bu repodaki \`prisma/schema.prisma\` dosyasını oku: \`CostProduct\`/\`CostItem\` ilişkisini, \`LearningProgress\` modelini ve migrasyonlarını incele.
+Bu sitenin kendi şemasından iki model (sayfa içi kopya; dosyayı açmana gerek yok). \`CostProduct\` ile \`CostItem\` **bire-çok** ilişkidir; \`onDelete: Cascade\` ürün silinince kalemlerini de siler:
+
+\`\`\`prisma
+model CostProduct {
+  id           String     @id @default(cuid())
+  name         String
+  profitMargin Float      @default(30)
+  commission   Float      @default(0)
+  order        Int        @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  items        CostItem[]
+}
+
+model CostItem {
+  id        String      @id @default(cuid())
+  product   CostProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  name      String
+  // ... fiyat/miktar alanları
+}
+
+model LearningProgress {
+  id     String    @id @default(cuid())
+  key    String    @unique   // "react/ts-basics"
+  done   Boolean   @default(false)
+  doneAt DateTime?
+  note   String?
+}
+\`\`\`
+
+- \`@relation(fields, references, onDelete)\`: yabancı anahtar (\`productId\`) ve silme davranışı.
+- \`@unique\` (\`key\`): aynı ilerleme anahtarı iki kez oluşamaz; \`upsert\` ile "varsa güncelle, yoksa oluştur" yapılır.
+- Her şema değişikliği \`prisma migrate dev\` ile bir **SQL migrasyon dosyası** üretir (\`prisma/migrations/...\`); üretimde \`prisma migrate deploy\` çalışır.
 
 ## Alıştırma
-Yeni bir model ekle (örn. Customer), migrasyon üret ve bir server action ile CRUD yaz.`,
+Yukarıdaki üç modelden birini seç ve ona ilişkili yeni bir model ekle (örn. \`Customer\` ve \`Order\`); şemayı kendi projende yaz, migrasyon üret ve bir server action ile CRUD yaz.`,
     verification: `**Kaynak:** [Prisma dokümantasyonu](https://www.prisma.io/docs). Prisma 7 ile istemci/yapılandırma biçimi önceki sürümlerden farklıdır (bu repoda \`prisma.config.ts\` kullanılır); güncel dokümana bak.`,
   },
   auth: {
@@ -548,13 +581,38 @@ export default async function Page() {
 \`"use client"\` yalnızca etkileşim (state, event, tarayıcı API) gereken yaprak bileşenlerde kullanılır.
 
 ## Bu sitedeki örnek akış
-\`src/app/maliyet\` klasörü: sayfa (server) → form → **server action** (\`actions.ts\`) → Prisma → \`revalidatePath\`.
+Bu sitedeki maliyet sayfasının akışı (sayfa içi kopya):
+
+\`\`\`ts
+// actions.ts  →  "use server": bu dosyadaki fonksiyonlar sunucuda çalışır
+"use server";
+import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+export async function addProduct(formData: FormData) {
+  const name = String(formData.get("name") ?? "").trim();
+  if (!name) return;
+  const count = await prisma.costProduct.count();
+  const product = await prisma.costProduct.create({ data: { name, order: count } });
+  revalidatePath("/maliyet");               // liste sayfasının önbelleğini geçersiz kıl
+  redirect(\`/maliyet/\${product.id}\`);        // yeni ürünün sayfasına git
+}
+\`\`\`
+
+\`\`\`tsx
+// page.tsx (Server Component): veriyi doğrudan veritabanından okur
+const products = await prisma.costProduct.findMany({ orderBy: { order: "asc" } });
+// <form action={addProduct}> : tarayıcıdan gelen form, sunucuda addProduct'u çalıştırır
+\`\`\`
+
+Akış: **sayfa (server)** → **form (action={addProduct})** → **server action** → **Prisma** → **\`revalidatePath\`** → yeniden sunucu render. Etkileşim gereken yerlerde (ör. silme onayı) küçük bir \`"use client"\` bileşeni kullanılır.
 
 ## Önemli
 Bu depo **güncel Next.js sürümünü** kullanır; sürümler arası kırıcı değişiklikler olabilir. Kod yazmadan önce \`node_modules/next/dist/docs/\` altındaki ilgili rehbere bak. (Örneğin bu sürümde \`params\` ve \`searchParams\` **Promise**'tir ve \`await\` edilir.)
 
 ## Alıştırma
-\`src/app/maliyet\` sayfasını satır satır oku; hangi bileşenin sunucu, hangisinin istemci olduğunu işaretle; revalidasyonun ne zaman tetiklendiğini açıkla.`,
+Yukarıdaki kodu satır satır incele: hangi parçanın sunucuda, hangisinin istemcide çalıştığını işaretle; \`revalidatePath\` olmasaydı kullanıcı ne görürdü, bir cümleyle açıkla.`,
     verification: `**Kaynak:** Kendi repondaki \`node_modules/next/dist/docs/\` ve [Next.js dokümantasyonu](https://nextjs.org/docs). \`params\`/\`searchParams\` Promise davranışı bu repodaki sayfalarda görülebilir (\`await params\`).`,
   },
   "next-data": {

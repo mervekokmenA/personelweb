@@ -116,8 +116,15 @@ Kitabın içindekilerinden "sitede olan / olmayan" iki sütunlu bir liste çıka
 - **Ayurveda:** Köklü bir geleneksel tıp sistemidir; ancak **doşa tipolojileri** ve tedavi iddiaları modern klinik standartlarla sınanmamış veya sınırlı kanıtlıdır. İlaç/bitki kullanımı **etkileşim ve toksisite** riski taşır.
 - **Karar:** Bu bölüm modülde yalnızca **başlık düzeyinde** anılır; sağlık kararlarını doktorlara bırak.
 
+## Ayurveda ürünleri ve güvenlik: resmi sağlık kurumlarının genel uyarıları
+- Bazı **geleneksel Ayurvedik ilaçlarda (özellikle rasa shastra)** ağır metaller (kurşun, cıva, arsenik) bulunabildiği, bazı ürün incelemelerinde zararlı düzeylere rastlandığı bildirilmiştir.
+- Bu ürünler birçok ülkede **ilaç gibi denetlenmez**; içerik ve dozaj değişkendir.
+- Ayurvedik tedaviler **kanıta dayalı tıbbın yerine geçirilmemelidir**; ciddi hastalıkta doktor kontrolü gerekir.
+- Kullandığın bitkisel ürünleri/ilaçları **doktoruna ve eczacına söyle**; ilaç etkileşimi olabilir.
+- Klinik araştırmalar sınırlı ve çoğunlukla düşük kalitelidir; belirli iddialar için "kanıt yok" demek, "etkisiz" demek değildir.
+
 ## Çalışma
-Ayurveda hakkında NCCIH (ABD) veya benzer bir resmi kurumun genel bilgi sayfasını oku ve kendi 5 maddelik güvenlik notunu yaz.`,
+Yukarıdaki güvenlik özetini kendi 5 maddelik güvenlik notuna dönüştür.`,
           verification: `İçindekiler PDF'ten okundu (tıp astrolojisi başlıkları). Kanıt durumu değerlendirmesi genel bilgiye dayanır; bu derste URL kaynağı eklenmedi (bkz. "Eklenmeyenler").`,
         },
       ],

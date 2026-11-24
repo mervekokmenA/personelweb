@@ -238,8 +238,20 @@ Burger, Powell ve Lirvian notlarındaki çakra listelerini karşılaştır: hang
 ## Sonuç
 Powell'ın *Eterik Çift* kitabındaki yedi merkez (Teosofi derlemesi) bu **Teosofi çizgisinin** ürünüdür; Burger/Lirvian gibi modern kaynaklar da onu devralır. Bu, bir yapının "yanlış" olduğu anlamına gelmez; **tarihsel olarak aktarım zincirinin Teosofi'den geçtiği** anlamına gelir.
 
+## Woodroffe (*Şat-Çakra-Nirupana*, 1919) ile Leadbeater (*The Chakras*, 1927) karşılaştırması
+| Çakra | Yaprak (her iki kaynakta) | Woodroffe (tantrik kaynak) | Leadbeater (Teosofik) |
+|---|---|---|---|
+| Muladhara | 4 | element **toprak**, sarı kare | renk **kırmızı** |
+| Svadhisthana | 6 | element **su**, beyaz hilal | renk **turuncu** |
+| Manipura | 10 | element **ateş**, kırmızı üçgen | renk **sarı** |
+| Anahata | 12 | element **hava**, duman rengi altıgen | renk **yeşil** |
+| Vishuddha | 16 | element **eter**, beyaz daire | renk **mavi** |
+| Ajna | 2 | (ay/zihin merkezi) | 96 yapraklı, **çivit/indigo** |
+
+**Ortak:** Sanskrit adlar, yaprak sayıları (Ajna dışında) ve bedendeki sıra. **Farklı:** "gökkuşağı renkleri" 20. yy. Teosofik bir sistemdir, Woodroffe'un tantrik kaynağında yoktur; element ve geometrik yantra (şekil) tantrik kaynaktandır.
+
 ## Çalışma
-*The Chakras* PDF'ini (archive.org'da halka açık) ve Woodroffe'un *Shat Chakra Nirupana* çevirisini yan yana okuyup hangi özelliklerin (renk, yaprak sayısı, element) ortak olduğunu tabloya yaz.`,
+Aşağıdaki karşılaştırma tablosunu kullanarak hangi özelliklerin (renk, yaprak sayısı, element) ortak, hangilerinin farklı olduğunu kendi cümlelerinle yaz.`,
           verification: `**Kaynak:** [Wikipedia — Chakra](https://en.wikipedia.org/wiki/Chakra), [Quest — Rainbow Body](https://www.theosophical.org/publications/quest-magazine/the-rainbow-body-how-the-western-chakra-system-came-to-be). Woodroffe tarihleri tam metinden (önsöz tarihi) ve Dover künyesinden doğrulandı. Leadbeater'ın kitabı okunmadı.`,
         },
       ],

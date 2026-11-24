@@ -91,8 +91,11 @@ Kitaptaki bölümlerden birini seç; yukarıdaki dört soruyu cevapla ve cevapla
 ## Okuma biçimi
 Simya modülü (Okültizm 7. ünite) simyanın tarihini **laboratuvar kimyası, felsefî-sembolik ve psikolojik (Jung) okuma** olarak üç katmanda ele alır. Bu kitabın pratik bölümü, **ilk katmanla** doğrudan ilgilidir ve bu yüzden en riskli ve en az doğrulanmış kısımdır.
 
+## Jung'un simya okuması (kısa özet)
+**C. G. Jung**, *Psychology and Alchemy* (1944) kitabında simya metinlerini **bilinçdışı süreçlerin sembolik anlatımı** olarak okur: *nigredo* (karartma), *albedo* (beyazlatma), *rubedo* (kızartma) aşamaları kişinin **bireyleşme (individuation)** yolculuğuna benzetilir; "taş" benliğin simgesidir. Jung bunu simyacıların niyetinin tarihsel bir kanıtı olarak değil, **kendi psikolojisi için bir yorum çerçevesi** olarak sunar; simyacıların çoğu hem maden hem de dinsel-felsefi dönüşümle ilgileniyordu.
+
 ## Çalışma
-Jung'un *Psychology and Alchemy* kitabına (Okültizm 7. ünite kaynak listesi) bakıp simyayı "iç dönüşüm süreci" olarak okuyan yaklaşımla bu kitabın yaklaşımını karşılaştır.`,
+Aşağıdaki Jung özetiyle bu kitabın yaklaşımını karşılaştır: simya burada kimya mı, ruhsal süreç mi, yoksa ikisi birden mi?`,
           verification: `Başlıklar PDF içindekilerinden. Cıva ve ağır metallerin toksik olduğu genel bilgidir. "Metallerden ilaç" iddiasının bilimsel dayanağı bulunmadığı kanaati ders yazarının değerlendirmesidir; ayrı bir kaynak okunmamıştır.`,
         },
       ],

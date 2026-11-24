@@ -38,7 +38,7 @@ export const eterikCiftModule = extraModule({
 Bu kitap bir **araştırma raporu değil, bir Teosofi derlemesidir**; içindeki bilgi "gözlem" olarak sunulan, bağımsız doğrulanmamış iddialardan oluşur.
 
 ## Çalışma
-Önsözdeki üç uyarıyı (kanıt girişimi yok, kaynak Besant/Leadbeater, hatalara dikkat) kendi cümlelerinle yaz; bu kitabı kaynak göstererek yazdığın bir makalede nasıl atıf yapacağını planla.`,
+Dersteki üç uyarıyı (kanıt girişimi yok, kaynak Besant/Leadbeater, hatalara dikkat) kendi cümlelerinle yaz; bu kitabı kaynak göstererek yazdığın bir makalede nasıl atıf yapacağını planla.`,
           verification: `Yayıncı önsözü ve önsöz Türkçe PDF'ten doğrudan okundu (makine çevirisi olduğu için ifadeler özetlenmiştir). Kitabın ilk basım yılı (1925) önsözde geçer. Teosofi derlemesi olduğu ve kanıt iddia etmediği, metnin kendi beyanıdır.`,
         },
         {

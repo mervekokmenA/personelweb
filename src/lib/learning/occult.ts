@@ -56,15 +56,15 @@ export const occultModule: LearningModule = {
           description: "Batı ezoterizminin felsefi kökleri.",
           lessons: [
             lesson("pisagor", "Pisagor okulu ve sayı sembolizmi", "Krotone okulu, inisiyasyon dereceleri (akusmatikoi–mathematikoi), sayıların 'kozmik düzen' olarak anlaşılması, sessizlik ve disiplin pratikleri.", {
-              tasks: ["Lirvian notlarındaki Pisagor bölümünü oku; birincil kaynak olarak Iamblichus/Porphyry'nin 'Pisagor'un Yaşamı' metinleriyle karşılaştır.", "Tetraktys ve ilk 10 sayının sembolik anlamlarını kendi şemanda göster."],
+              tasks: ["Sayfadaki okuma metnindeki [K]/[?]/[Y] etiketlerinden en az 8 satırlık bir kaynak-eleştirisi tablosu yap.", "Tetraktys'i çiz; ilk 4 sayıyı 2:1, 3:2, 4:3 oranlarıyla eşleyip tel uzunluklarını hesapla."],
               resources: [own("Lirvian E. — Kendim İçin Kısa Notlar (Pisagor Okulu)", "Lirvian_E._Verilen_Araştırmalar.pdf"), iamblichus],
             }),
             lesson("platon", "Platon ve ruhun yükselişi", "İdealar kuramı, mağara alegorisi, Timaios'ta kozmos, nefs/ruh bölünmesi; 'insanın kendini yenmesi'. Okült düşüncede Platoncu mirasın izleri.", {
-              tasks: ["Devlet VII (Mağara), Symposium (Diotima konuşması) ve Timaios'u oku; her biri için 1 sayfa özet."],
+              tasks: ["Mağara alegorisinin 5 adımını kendi hayatından bir örnekle yeniden yaz.", "Bölünmüş çizgi ve Diotima'nın 6 basamağını birer tabloya dök; Timaios'taki element–çokyüzlü eşleşmesini ekle."],
               resources: [own("Platon — İnsanın Kendini Yenmesi En Büyük Zaferdir", "Platon_Insanin_Kendini_Yenmesi.epub", "Taner Şanlıoğlu derlemesi", "Taner Şanlıoğlu"), web("Project Gutenberg (Platon eserleri)", "https://www.gutenberg.org", "Kamu malı İngilizce çeviriler.")],
             }),
             lesson("hermetizm", "Hermetizm: Corpus Hermeticum ve Zümrüt Tablet", "Hermes Trismegistos geleneği, Poimandres, 'yukarıda olan aşağıda olan gibidir'; Zümrüt Tablet'in simya ve astrolojideki yeri.", {
-              tasks: ["Poimandres'i (CH I) oku, yaratılış ve ruhun yükselişi anlatısını özetle.", "Zümrüt Tablet'in 3 farklı çevirisini karşılaştır (Cockren kitabının girişindeki versiyon dahil)."],
+              tasks: ["Poimandres'in 9 adımlık özetini kendi 10 maddelik özetine dönüştür ve yedi bölge tablosunu doldur.", "Zümrüt Tablet'in sayfadaki üç sürümünü yan yana koy; farklı sözcükleri işaretle."],
               resources: [copenhaver, sacredTexts, own("Simya, Sanat ve Simyacılar (Zümrüt Tablet ile başlar)", "Archibald_Cockren_-_Simya_Sanatı_ve_Simyacılar.pdf")],
             }),
             lesson("gnostik", "Gnostisizm ve Yeni-Platonculuk", "Gnostik kozmoloji, Plotinos'un 'Bir'i, Iamblichus ve teurji. Ritüelin felsefi gerekçesi.", {
@@ -81,11 +81,11 @@ export const occultModule: LearningModule = {
               resources: [yates, hanegraaff],
             }),
             lesson("agrippa", "Agrippa — Okült Felsefe Üç Kitap", "Üç dünya (elementer, göksel, entelektüel), sayılar ve 'karşılıklar (correspondences)' sisteminin kaynağı.", {
-              tasks: ["Birinci kitaptan elementler, ikinci kitaptan sayılar ve gezegen karşılıklarını çıkarıp kendi tabloda topla (kaynağını sayfa/bölümle yaz)."],
+              tasks: ["Elementler ve 1–12 sayıları tablolarını kendi tablona yaz; her satıra 'gözlem mi, sembol mü?' notu ekle.", "Gezegen karelerinin satır ve hücre toplamlarını formülle kendin hesapla."],
               resources: [agrippa, esotericArchives],
             }),
             lesson("grimuar", "Grimuarlar: Süleyman'ın Anahtarı, Picatrix, Enochian", "Grimuar nedir, kimler yazdı, nasıl dolaştı? Metin eleştirisi ve güvenilirlik; John Dee'nin Enoch sistemi.", {
-              tasks: ["Davies'in kitabından bir grimuarın tarihçesini çıkar; elindeki baskıların hangi el yazmasına dayandığını bul."],
+              tasks: ["Sayfadaki dört grimuar tablosuna 'en eski el yazması / baskıya esas / çeviri zinciri' sütunlarını ekle.", "Süleyman'ın Anahtarı için 14.–15. yy.'dan 1889 Mathers baskısına bir zaman çizelgesi çiz."],
               resources: [davies, esotericArchives],
             }),
           ],
@@ -99,7 +99,7 @@ export const occultModule: LearningModule = {
               resources: [scholem, kaplan],
             }),
             lesson("kabala-unveiled", "Mathers — Kabbalah Unveiled", "Zohar'dan seçilen üç kitap (Gizli Gizem Kitabı, Büyük ve Küçük Kutsal Toplantı) ve Rosenroth/Mathers çevirisinin sorunları.", {
-              tasks: ["Giriş bölümünü oku; Mathers'ın hangi kaynaklara dayandığını ve bugün hangi eleştirilere uğradığını not et."],
+              tasks: ["Mathers'ın giriş iddialarını 'iddia / dayanak / değerlendirmem' tablosuna dök (en az 3 satır).", "Çeviri zincirini (Aramice → Latince → İngilizce → Türkçe) çiz ve her halkadaki risk türünü yaz."],
               resources: [own("Kabala'nın Perdesi Kaldırıldı (The Kabbalah Unveiled)", "kabbalah-unveiled.pdf", "S. L. MacGregor Mathers (386 sayfa)", "S. L. MacGregor Mathers")],
             }),
             lesson("hayat-agaci", "Hayat Ağacı: 10 Sephira ve 22 yol", "Sephiroth'un isimleri, gezegen/element atamaları, yolların Tarot ve İbrani harfleriyle eşleşmeleri (Altın Şafak düzeni) ve alternatif düzenler.", {
@@ -145,7 +145,7 @@ export const occultModule: LearningModule = {
               resources: [own("Pratik Okültizm: Günlük Yaşamda Uygulamalı Gizli Bilimler", "pratik-okultizm-....pdf"), own("Büyücü: Eğitimi ve Çalışması (eğitim bölümleri)", "w-e-butler-the-magician....pdf")],
             }),
             lesson("arinma", "Arınma ve koruma çalışmaları (banishing)", "Küçük Pentagram Arınma Ritüeli (LBRP) ve alternatif yaklaşımlar; sembolik/psikolojik rolü; aşırıya kaçmama.", {
-              tasks: ["Altın Şafak ya da Fortune kaynağından LBRP metnini oku; kendi cümlelerinle adımların amacını yaz; 30 gün uygula ve deneyimlerini kayda geç."],
+              tasks: ["Dört adımın sembolik amacını kendi cümlelerinle yaz; yön–element–arkanjel–isim tablosu yap.", "İsteğe bağlı: bir hafta boyunca günlüğüne zihinsel sakinlik puanı (1–10) yaz ve veriyi yorumla."],
               resources: [regardieGD, fortunePsy],
             }),
             lesson("orta-sutun", "Orta Sütun ve ışık meditasyonu", "Kabalistik enerji merkezleri üzerine meditasyon; nefes ve görselleştirme; riskleri ve temel kuralları.", {
@@ -244,15 +244,15 @@ export const occultModule: LearningModule = {
           description: "Dion Fortune'un iki klasiği (Mystical Qabalah, Psychic Self-Defence) yazarın kendi metninden; iddialar 'Fortune'a göre' diye atfedilir.",
           lessons: [
             lesson("fortune-hayat", "Dion Fortune: hayat, çevre ve eserler", "Violet Firth'ten Dion Fortune'a; Altın Şafak kökenli çevre, İç Işık Topluluğu ve başlıca kitapların kronolojisi.", {
-              tasks: ["Fortune'un 5 kitabı için yayın yılı, konu ve hedef kitle tablosu çıkar."],
+              tasks: ["Sayfadaki kitap tablosundan 5 kitabı seçip her biri için yayın yılı, konu ve hedef kitleyi kendi tablona yaz.", "'Kurgu / kuramsal / uygulamalı' sütunu ekleyip bir okuma planı yaz."],
               resources: [web("Dion Fortune — Vikipedi (İngilizce)", "https://en.wikipedia.org/wiki/Dion_Fortune"), web("İç Işık Topluluğu (Society of the Inner Light) — Vikipedi (İngilizce)", "https://en.wikipedia.org/wiki/Society_of_the_Inner_Light"), web("Global Grey — Psişik Savunma (Psychic Self-Defence), İngilizce tam metin, çevrimiçi", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_psychic-self-defense_complete-text.html"), web("Global Grey — Mistik Kabala (The Mystical Qabalah), İngilizce tam metin, çevrimiçi", "https://www.globalgreyebooks.com/online-ebooks/dion-fortune_mystical-qabalah_complete-text.html")],
             }),
             lesson("fortune-kabala", "The Mystical Qabalah: kitabın yapısı ve yöntemi", "Fortune'a göre Hayat Ağacı 'Batı gizem geleneğinin plan şeması'dır; kitabın bölümleri, Sephiroth'u anlatış biçimi ve 'öğretmen gözetimi' uyarısı.", {
-              tasks: ["Kitabın 27 bölümünü (Foreword + 1–27) 3 gruba ayır: yöntem, Ağaç'ın yapısı, tek tek Sephiroth; her gruptan bir paragraf özetle."],
+              tasks: ["Hayat Ağacı'nı elle çiz; her Sephira için isim, gezegen ve renk yaz ve sayfadaki tabloyla karşılaştır.", "27 bölümü (bölüm haritası dersin içinde) 3 gruba ayır; her gruptan bir paragraf özet yaz."],
               resources: [fortuneQ],
             }),
             lesson("fortune-psisik", "Psychic Self-Defence: yapı, sınırlar ve eleştirel okuma", "1930 tarihli kitabın dört bölümlü yapısı; 'tanı tedaviden önce gelir' ilkesi; öznel rahatsızlık ile 'objektif saldırı' ayrımı ve modern ruh sağlığı açısından uyarılar.", {
-              tasks: ["Kitaptaki 9. bölümü (objektif saldırı ile öznel rahatsızlık ayrımı) oku; kendi cümlelerinle özetle ve ruh sağlığı uzmanına başvurma kriterlerini yaz."],
+              tasks: ["Sayfadaki 'sıradan açıklamalar' tablosuna kendi örneklerini ekle.", "Uzmana başvuru ölçütlerini kendi sözlerinle yeniden yaz."],
               resources: [fortunePsy],
             }),
           ],

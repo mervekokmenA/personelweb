@@ -42,7 +42,7 @@ Kitap, Crowley'in "magick" yazımını ilk kullanan modern isim olduğunu, bunun
 "Dünyadaki her şey iç bilincini yansıtır" savı kitabın felsefi varsayımıdır, kanıtlanmış bir olgu değildir.
 
 ## Çalışma
-Üç seviyeyi (öğrenci/adept/master) kitabın tarifine göre tablolaştır; kendi gelişimini hangi ölçütlerle gözlemleyeceğini yaz.`,
+Üç seviyeyi (öğrenci/adept/master) dersteki tarife göre tablolaştır; kendi gelişimini hangi ölçütlerle gözlemleyeceğini yaz.`,
           verification: `Giriş bölümü PDF'ten doğrudan okundu; alıntılar özetlenmiştir. "K yazımı" gerekçeleri kitabın beyanıdır; Crowley'in yazımı benimsediği genel bilgidir (Wikipedia: Magick).`,
         },
         {
@@ -106,7 +106,7 @@ Kendi "genel uygulama kuralların" için bir sayfalık taslak yaz; hangilerinin 
 Ritüel metinleri ve adımları verilmez. Orta Sütun ve Pentagram/Hexagram arınmasının tarihî kökenleri için Okültizm modülü 6. ünite (Altın Şafak) dersine bak.
 
 ## Çalışma
-Her ritüelin hangi kaynaktan geldiğini (kitabın dipnot/biblografyasından) araştır.`,
+Dersteki ritüel listesinde her ritüelin hangi **kaynak geleneğe** (Altın Şafak, Hermetik, Enochian vb.) ait olduğunu tabloda işaretle; belirsizleri "(Belirsiz)" yaz.`,
           verification: `Başlıklar PDF içindekilerinden. "Kökeni" sütunu genel bilgiyle yapılmış tahmini sınıflandırmadır; kitabın kendisinden doğrulanmadı.`,
         },
         {

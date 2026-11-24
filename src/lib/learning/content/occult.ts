@@ -3,9 +3,22 @@ import { qz } from "../helpers";
 import { occultBodiesA } from "./occult-a";
 import { occultBodiesB } from "./occult-b";
 import { occultBodiesC } from "./occult-c";
+import { OCCULT_READING } from "./occult-reading";
+
+/** Okuma içeriğini dersin "## Çalışma" bölümünden önce ekler; eski "oku" yönergeli Çalışma bölümünü sayfa içi çalışmayla değiştirir. */
+function withReading(bodies: ModuleContent["bodies"]): ModuleContent["bodies"] {
+  const out = { ...bodies };
+  for (const [id, r] of Object.entries(OCCULT_READING)) {
+    const cur = out[id];
+    if (!cur) continue;
+    const head = cur.body.replace(/\n## Çalışma[\s\S]*$/, "");
+    out[id] = { ...cur, body: `${head}\n\n${r.reading}\n\n${r.work}` };
+  }
+  return out;
+}
 
 export const occultContent: ModuleContent = {
-  bodies: { ...occultBodiesA, ...occultBodiesB, ...occultBodiesC },
+  bodies: withReading({ ...occultBodiesA, ...occultBodiesB, ...occultBodiesC }),
   quizzes: {
     u1: [
       qz("Pisagor topluluğunun yerleştiği Güney İtalya kenti hangisidir?", ["Syrakusa", "Krotone", "Napoli", "Pompei"], 1, "Pisagor'un Krotone'de topluluk kurduğu kaynaklarda (SEP, Britannica) yer alır."),

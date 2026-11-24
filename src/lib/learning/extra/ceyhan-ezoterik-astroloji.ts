@@ -59,7 +59,7 @@ Yazar astrolojinin dünyada **birçok üniversitede okutulduğunu**, **Kepler Ak
 Bir kitabın girişindeki **otorite çağrışımlı** ifadeleri (kurum, ünlü isim) tek tek denetleme alışkanlığı kazanmak.
 
 ## Çalışma
-Başka bir kitabın girişinden iki "otorite alıntısı" seç ve aynı yöntemle (kim, nerede, ne zaman söyledi?) doğrula.`,
+Dersteki doğrulama yöntemini (kim, nerede, ne zaman söyledi?) kendi okuduğun herhangi bir kitaptaki iki "otorite alıntısına" uygula.`,
           verification: `**Kaynak:** [Wikipedia — Kepler College](https://en.wikipedia.org/wiki/Kepler_College), [Nature — Einstein astrology hoax özeti](https://www.nature.com/articles/d41586-018-05004-4), [History.com — Things Einstein never said](https://www.history.com/news/here-are-6-things-albert-einstein-never-said), [Scientific American — Lunacy and the Full Moon](https://www.scientificamerican.com/article/lunacy-and-the-full-moon/). Sophia Centre ve London School of Astrology bilgileri bu aramada doğrulanmadı. Giriş metni PDF'ten okundu.`,
         },
       ],

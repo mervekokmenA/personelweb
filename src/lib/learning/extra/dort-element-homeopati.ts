@@ -58,8 +58,11 @@ Dört mizaç teorisi (kan, balgam, sarı ve kara safra) Hipokrat/Galen geleneği
 ## Sonuç
 Bu PDF'teki eşleştirmeler **tarihsel/astrolojik simgesel bir şemadır**; kişinin sağlığı veya tedavisi için rehber değildir. Sağlık sorunlarında hekim ve kanıta dayalı tedavi gerekir.
 
+## NHMRC 2015 incelemesi: kısa özet
+Avustralya Ulusal Sağlık ve Tıbbi Araştırma Konseyi (NHMRC), 2015'te homeopatinin sağlık sorunlarında etkinliğini inceledi. Sonuç: **homeopatinin herhangi bir sağlık durumunda etkili olduğuna dair güvenilir kanıt yoktur**; incelenen çalışmalarda plasebodan üstün bir etki gösterilememiştir. Rapor, bireylerin homeopati sonrası iyileştiğini bildirmesinin (doğal seyir, plasebo, eşlik eden bakım gibi etkenlerle) **kanıt olmadığını** vurgular.
+
 ## Çalışma
-NHMRC'nin 2015 inceleme sayfasını (Conversation özetinden ulaşılabilir) oku ve hakem eleştirisini kendi cümlelerinle özetle.`,
+Yukarıdaki NHMRC özetini kendi cümlelerinle yaz ve "plasebo üstü etki" ile "bireysel deneyim" arasındaki farkı açıkla.`,
           verification: `**Kaynak:** [The Conversation — No evidence homeopathy is effective (NHMRC review)](https://theconversation.com/no-evidence-homeopathy-is-effective-nhmrc-review-25368), [The Conversation — Health experts find no evidence homeopathy works, again](https://theconversation.com/health-experts-find-no-evidence-homeopathy-works-again-38651). İncelemenin yöntem tartışması ikincil kaynaklardan. Humoral teorinin terk edilmesi genel tıp tarihi bilgisidir; bu aramada doğrulanmadı.`,
         },
       ],

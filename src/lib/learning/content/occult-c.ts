@@ -71,8 +71,19 @@ Regardie psikoterapist yetiştirmişti (Jung ve Reich çevrelerine yakın); kita
 - Daha önce panik/dissosiyatif yaşantı geçmişin varsa uzmanla konuşmadan başlama.
 - Süreyi kısa tut (10–15 dk) ve topraklanma (su içme, yürüyüş) ile bitir.
 
+## Orta Sütun: merkezler tablosu (tarihsel betimleme)
+| Sıra | Merkez (Sephira) | Bedende yeri | Geleneksel İbranice isim (Altın Şafak/Regardie) |
+|---|---|---|---|
+| 1 | **Kether** | Başın üstü | Eheieh |
+| 2 | **Daath** (genellikle) | Boğaz | Yehovah Elohim |
+| 3 | **Tiphareth** | Kalp/göğüs | Yehovah Eloah va-Daath |
+| 4 | **Yesod** | Kasık/üreme bölgesi | Shaddai El Chai |
+| 5 | **Malkuth** | Ayaklar | Adonai ha-Aretz |
+
+Her merkez için bir **ışık küresi** imgelenir; çalışma Regardie'de ritmik nefes ve isimlerin "titreştirilmesi" ile birleştirilir. Bu bir **tarihsel betimlemedir**; çalışma güvenliği için yukarıdaki risk bölümüne bak.
+
 ## Çalışma
-- Kitabın giriş ve temel egzersiz bölümünü oku; her merkezin imge/isim/nefes düzenini tabloya yaz.
+- Yukarıdaki tabloyu kendi tablona yaz ve her merkez için imge/isim/bedendeki yer sütunlarını doldur.
 - 4 hafta uygulayıp günlükte **beden hissi + ruh hali + uyku** kaydı tut.`,
     verification: `**Doğrulandı:** Regardie'nin *The Middle Pillar* kitabı (1938, Hayat Ağacı'ndaki ışık/meditasyon çalışması). Kaynak: [Wikipedia — Israel Regardie](https://en.wikipedia.org/wiki/Israel_Regardie) ve [Encyclopedia.com](https://encyclopedia.com/science/encyclopedias-almanacs-transcripts-and-maps/israel-regardie-1907-1985). Güvenlik uyarıları genel zihin sağlığı pratiğidir; belirli bir kaynaktan alıntı değildir.`,
   },
@@ -153,7 +164,7 @@ Zodyağın 12 burcu 4 elemente (ateş: Koç-Aslan-Yay; toprak: Boğa-Başak-Oğl
 Dört element **modern kimyada geçerli bir model değildir**; tarihsel ve sembolik bir sınıflandırmadır. Bu müfredatta elementler sembolik dil olarak çalışılır.
 
 ## Çalışma
-Astroloji modülündeki **Ders 5** (elementler ve nitelikler) ile birlikte oku; element–nitelik tablosunu belleğinde yeniden kur.`,
+Yukarıdaki element–nitelik tablosunu, ezber yapmadan, kendi cümlelerinle yeniden kur ve her elementin hangi mizaca (kan, balgam, sarı safra, kara safra) karşılık geldiğini yaz.`,
     verification: `**Doğrulandı (genel):** Empedokles'in dört kökü, Aristoteles'in dört niteliği ve mizaç kuramı felsefe/tıp tarihinde standart bilgidir. Burç–element eşleşmesi astrolojinin standart tablosudur. Kaynak: [Stanford Encyclopedia — Empedocles](https://plato.stanford.edu/entries/empedocles/) ve [SEP — Aristotle's Natural Philosophy](https://plato.stanford.edu/entries/aristotle-natphil/).`,
   },
   "element-pratik": {
@@ -266,8 +277,17 @@ Kitaplığındaki Powell kitabını okurken **iki sütun** tut:
 1. *Kitap ne anlatıyor?* (Teosofik model)
 2. *Bu iddia hangi kaynaktan geliyor / test edilebilir mi?* (Leadbeater'ın "gözlemleri", sonraki aktarımlar)
 
+## Okuma metni: Powell/Teosofi çizgisindeki 5 temel iddia ve sınıflandırması
+| İddia | Sınıflandırma |
+|---|---|
+| Fiziksel bedenle iç içe bir "eterik çift" (*Linga Sharira*) vardır | Tarihsel Teosofik model; **test edilemez** |
+| Eterik çift, **prana** ile fiziksel bedeni besler | Tarihsel model; **test edilemez** |
+| Bu yapı ölümden sonra çözülür | Dinsel/metafizik inanç; **test edilemez** |
+| Belirli merkezler (ör. dalak merkezi) enerji alıp dağıtır | Tarihsel model; fizyolojik karşılığı **gösterilmemiştir** |
+| "Gören kişiler" (Leadbeater) bu yapıyı **gözlemleyebilir** | **Test edilebilir** bir iddia olabilir, ancak kontrollü, kör çalışmalarla desteklenmemiştir |
+
 ## Çalışma
-Powell'ın giriş bölümünü ve eterik çiftin işlevlerini anlatan bölümü oku; modeldeki 5 temel iddiayı listele ve her birini "tarihsel model / test edilemez / test edilebilir" olarak sınıflandır.`,
+Yukarıdaki beş iddiayı kendi cümlelerinle yeniden yaz ve sınıflandırmaya itiraz etmek istediğin bir satırı gerekçesiyle not et.`,
     verification: `**Doğrulandı:** *The Etheric Double*'ın 1925'te yayımlandığı, "The Astral Body"nin 1926'da devam kitabı olduğu ve serinin Teosofik bir derleme olduğu. Kaynak: [Goodreads edisyon kaydı](https://www.goodreads.com/work/editions/1282567-the-etheric-double-theosophical-classics-series?page=3), [Theosophy World](https://theosophy.world/fr/node/592).
 
 **Eklenmedi:** Eterik bedenin "sağlık aurası", enerji sızıntısı ve **iyileştirme** iddiaları — klinik veya fiziksel kanıt yok. Yalnızca tarihsel model olarak sunuldu.`,
@@ -385,8 +405,17 @@ Hanegraaff, ezoterizmin Batı'nın akademik ve kilise merkezli kültürü taraf�
 
 5 yıllık deneyimli bir pratisyeni acemiden ayıran şey, alanın **ne olduğunu ve ne olmadığını** tarihsel ve eleştirel çerçevede anlamasıdır.
 
+## Okuma metni: Faivre'in altı özelliği (tam liste)
+Antoine Faivre'e göre Batı ezoterizmini tanımlayan **dört temel** ve **iki ek** özellik:
+1. **Karşılıklar** (*correspondences*): Evrendeki her şey sembolik/gerçek karşılıklarla bağlıdır (makrokozmos–mikrokozmos).
+2. **Yaşayan doğa**: Doğa canlı, anlamlı ve katmanlıdır.
+3. **Hayal gücü ve aracılık**: İmgelem, semboller, ritüeller ve aracı varlıklar yoluyla gizli bilgiye ulaşılır.
+4. **Dönüşüm deneyimi**: Bilgi yalnızca kuramsal değil, kişiyi **içten dönüştüren** bir deneyimdir.
+5. *(isteğe bağlı)* **Uyum/karşılaştırma (concordance)**: Farklı geleneklerin ortak bir öze sahip olduğu düşüncesi.
+6. *(isteğe bağlı)* **Aktarım (transmission)**: Bilginin öğretmenden öğrenciye (inisiyasyonla) aktarılması.
+
 ## Çalışma
-Hanegraaff'ın *Western Esotericism: A Guide for the Perplexed* kitabının ilk bölümlerini oku; Faivre'in özelliklerini Altın Şafak, Lévi ve Hermetizm örnekleriyle sına.`,
+Faivre'in özelliklerini (aşağıda) Altın Şafak, Lévi ve Hermetizm örnekleriyle sına.`,
     verification: `**Kaynak durumu:** Faivre'in dört özellik çerçevesi ve Hanegraaff'ın "reddedilmiş bilgi" yaklaşımı akademik literatürde yaygın olarak atıf alır (bkz. *Access to Western Esotericism*, *Western Esotericism: A Guide for the Perplexed*). Bu derste kitaplara yeniden sayfa düzeyinde bakılmadı; ayrıntılar için kitapların kendisi esas alınmalıdır.`,
   },
   "kaynak-elestirisi": {

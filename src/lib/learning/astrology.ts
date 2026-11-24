@@ -118,7 +118,7 @@ export const astrologyModule: LearningModule = {
               resources: [timeanddate, own("Okült Astroloji ve Ritüel Zamanlama (Ders 35)", "49 haftalık ders kitabı", "Planetary hours ve Chaldean order")],
             }),
             lesson("konaklar", "28 Ay konağı (Lunar mansions)", "Ay'ın 28 günlük yolculuğunun Arap/Hint/Çin geleneklerindeki bölümleri; ritüel ve eleksiyon kullanımları, kaynak farklılıkları.", {
-              tasks: ["Doğum Ay'ının bulunduğu konağı bul ve geleneksel yorumunu iki kaynaktan karşılaştır."],
+              tasks: ["Derstekileri kullanarak doğum Ay'ının bulunduğu konağı bul ve tablodaki ad/başlangıç bilgilerini kendi notuna yaz."],
               resources: [web("Esoteric Archives (Agrippa ve grimuar metinleri)", "https://www.esotericarchives.com", "Ay konakları için tarihsel metinler (İngilizce).")],
             }),
             lesson("eleksiyon", "Eleksiyon: ritüel/başlangıç için tarih seçme", "Kontrol listesi: Ay güçlü ve uygun fazda mı, VOC değil mi, yükselen ve yöneticisi iyi durumda mı, gezegen günü/saati amaca uygun mu, retrograd/tutulma var mı, Merkür–Mars–Satürn zorlayıcı açıları var mı?", {

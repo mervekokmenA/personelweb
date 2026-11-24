@@ -61,8 +61,17 @@ Teosofi, Doğu kavramlarını (karma, reenkarnasyon, "Yedili insan", **Fohat**, 
 
 Blavatsky'nin "Usta" (Mahatma) mektupları ve kaynakların özgünlüğü hakkında tartışmalar vardır (örn. 1885 Hodgson raporu). Teosofiyi hem tarihsel etkisi hem de iddialarının kaynak durumu açısından değerlendir.
 
+## Okuma metni: Teosofik Cemiyet'in ayrılması (özet)
+- **1875–1895:** Cemiyetin kurucuları Blavatsky, Olcott ve Judge; merkez Hindistan'da **Adyar**'a (1882) taşındı.
+- **1884–1886:** Blavatsky'ye yöneltilen "Usta mektupları" sahtekârlığı iddiaları (Hodgson raporu, 1885) cemiyette güven krizi yarattı.
+- **1891:** Blavatsky öldü; **Annie Besant** ve **Judge** öne çıktı.
+- **1894–1895:** Judge'a yönelik "usta mektuplarını uydurma" suçlamaları ortaya çıktı. 1895'te **Amerikan Kolu**, Judge'ın önderliğinde Adyar'dan bağımsızlığını ilan etti.
+- **1896–1898:** Judge öldü; **Katherine Tingley** bağımsız kolun lideri oldu ve merkez önce Point Loma'ya, sonra **Pasadena** çevresine taşındı.
+- **Sonuç:** İki ana kol — **Adyar** (Besant, daha sonra Leadbeater; "Dünya Öğretmeni" vurgusu) ve **Pasadena** (Tingley; Blavatsky'nin öğretisinin "saf" sürdürüldüğü iddiası) — farklı yorum çizgileri izler.
+> Tarihler ve ayrıntılar kaynağa göre küçük farklılık gösterebilir; iki kolun kendi anlatıları farklıdır.
+
 ## Çalışma
-Adyar'ın ve Pasadena'nın kendi tarih sayfalarını oku (iki farklı perspektif); ayrışmanın nedenlerini 5 maddede yaz.`,
+Aşağıdaki okuma metnine dayanarak ayrışmanın nedenlerini 5 maddede yaz.`,
     verification: `**Doğrulandı:** Kuruluş (1875, New York; 17 Kasım resmi gün olarak anılır), Isis Unveiled (1877), The Secret Doctrine (1888) ve Adyar/Pasadena ayrımı. Kaynaklar: [Theosophical Society Adyar — erken tarih](https://www.ts-adyar.org/early-history), [Britannica — Theosophy](https://www.britannica.com/topic/theosophy). Bazı kaynaklar kuruluş tarihini Eylül 1875 (18 Eylül) olarak verir; 17 Kasım Adyar'ın "Kuruluş Günü"dür.
 
 **Not:** Hodgson raporu (1885) bilgisi genel alan bilgisidir; kaynak sayfasında bu derste yeniden aranmadı.`,
@@ -84,8 +93,19 @@ Düzen derecelere ayrılmış bir müfredat sundu: Neophyte'dan başlayarak elem
 
 Bugün birçok modern ritüel (arınma, element çağırma, Orta Sütun) ve correspondence tablosu doğrudan veya dolaylı olarak Altın Şafak sisteminden gelir.
 
+## Okuma metni: Altın Şafak'ın Dış Düzen dereceleri
+| Derece (kod) | Element | Sephira | Bilgi dersleri (genel konu başlıkları) |
+|---|---|---|---|
+| **Neophyte (0=0)** | — | — | İnisiyasyon, temel semboller |
+| **Zelator (1=10)** | Toprak | Malkuth | İbrani harfleri, burçlar, Tarot'un Küçük Arkana'sı |
+| **Theoricus (2=9)** | Hava | Yesod | Hayat Ağacı yolları, gezegenler |
+| **Practicus (3=8)** | Su | Hod | Kabala'nın temelleri, elementler, ritüel araçları |
+| **Philosophus (4=7)** | Ateş | Netzach | Daha ileri Kabala ve astroloji, geomansi |
+
+(Sonrasında **İkinci Düzen:** Adeptus Minor ve ötesi.) Dereceler elementlere, elementler Ağaç'ın alt Sephirothlarına bağlanır. Bu, sistemin "dünyadan göğe yükseliş" mantığıdır.
+
 ## Çalışma
-Regardie'nin *Golden Dawn* kitabındaki **Neophyte–Philosophus** bilgi derslerini (Knowledge Lectures) bir tabloya dök; hangilerinin Kabala/Tarot/astroloji/ritüel olduğunu işaretle.`,
+Aşağıdaki derece tablosunu kendi tablona kopyala ve her derecedeki çalışma alanlarını (Kabala/Tarot/astroloji/ritüel) işaretle.`,
     verification: `**Doğrulandı:** Kuruluşun 1888'de Londra'da Westcott, Woodman, Mathers tarafından yapıldığı; Isis-Urania tapınağının 1888'de açıldığı; Woodman'ın 1891'de ölümü ve Mathers'ın liderliği; Sprengel yazışmalarının gerçekliğinin tartışmalı olması; Regardie'nin *The Golden Dawn*'ı 1937–40 civarında yayımlaması (kaynaklar 1937–41 veya 1938–40 de verir). Kaynaklar: [Wikipedia — Hermetic Order of the Golden Dawn](https://en.wikipedia.org/wiki/Hermetic_Order_of_the_Golden_Dawn), [Branch — Denisoff](https://branchcollective.org/?p=1987), [Encyclopedia.com — Regardie](https://encyclopedia.com/science/encyclopedias-almanacs-transcripts-and-maps/israel-regardie-1907-1985). Kaynaklar arasında kuruluş tarihi 1887/1888 farklılığı vardır.
 
 **Not:** Üye listesi (Yeats, Farr, Waite, Crowley) genel alan bilgisidir ve kaynaklarda yaygın biçimde anılır.`,
@@ -110,7 +130,7 @@ W. E. Butler, Fortune çevresinden gelen bir okült yazar ve eğitmendir. *The M
 Bu yazarların "etki" ve "saldırı" iddiaları **ölçülebilir kanıta** dayanmaz. Disiplin ve öz-gözlem yönleri ise bugün de değerlidir; ayrımı bilerek oku.
 
 ## Çalışma
-Butler'ın kitabından eğitim programının aşamalarını çıkar; bunu bir **12 aylık plan** tablosuna dönüştür (günde 20–30 dk).`,
+Dersteki ortak ilkelerden (uzun vadeli disiplin, karakter eğitimi, psikolojik denge) yola çıkarak kendi **12 aylık çalışma planı** tablonu yaz (günde 20–30 dk): ay / odak / ölçüt.`,
     verification: `**Doğrulandı:** Fortune'un *Mystical Qabalah*'ının 1935'te Williams & Norgate'ten çıktığı; İç Işık Kardeşliği'nin 1920'lerin sonlarında kurulduğu (kaynaklar 1924 veya 1929 verir) ve sonradan Society of the Inner Light olduğu. Kaynak: [Wikipedia — Society of the Inner Light](https://en.wikipedia.org/wiki/Society_of_the_Inner_Light). Fortune'un doğum yılı kaynaklara göre 1890 veya 1891'dir; "yaklaşık" yazıldı.
 
 **Eklenmedi:** Butler'ın tarih/yaşam bilgileri ve *The Magician*'ın kesin yayın yılı bu çalışmada doğrulanamadı; bu yüzden "20. yüzyıl ortası" denildi.`,

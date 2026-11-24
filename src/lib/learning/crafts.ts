@@ -53,7 +53,7 @@ export const craftsModule: LearningModule = {
           description: "Çimento ve mum için güvenli çalışma alanı; doğru malzeme seçimi.",
           lessons: [
             lesson("b-guvenlik", "Çalışma alanı, toz ve kişisel koruyucu ekipman", "Kuru çimento tozu solunum ve cilt için tehlikelidir: toz maskesi, eldiven, gözlük kullan; hava akımı sağla; atık suyu lavaboya dökme.", {
-              tasks: ["Atölye güvenlik kontrol listeni yaz (havalandırma, yangın söndürücü, tezgah örtüsü, atık yönetimi).", "Kullanacağın çimento/beton ürününün güvenlik bilgi formunu (SDS) oku."],
+              tasks: ["Atölye güvenlik kontrol listeni yaz (havalandırma, yangın söndürücü, tezgah örtüsü, atık yönetimi).", "Ders metnindeki SDS bölüm listesini kullanarak elindeki ürünün etiketinde/tedarikçi sayfasında 2, 4, 7, 8 ve 13. bölümleri bul ve kendi güvenlik kontrol listene ekle."],
               resources: [makeConcrete, instrCement],
             }),
             lesson("b-malzeme", "Çimento/beton türleri, katkılar, pigmentler", "İnce taneli çimento bazlı karışımlar dekoratif döküm için tercih edilir. Karışım oranı ürünün etiketine göre belirlenir; eğitim kaynakları 3:1–4:1 gibi farklı oranlar önerir, bu yüzden üretici talimatı belirleyicidir. Pigment ve katkı etkilerini küçük numune plakalarıyla dene.", {

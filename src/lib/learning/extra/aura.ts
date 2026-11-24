@@ -108,7 +108,7 @@ Kendi hayatında "yorulduğun" üç durumu yaz; her biri için önce sıradan a�
 Kilner ekranlarının gösterdiği iddia edilen "aura", **bilimsel olarak doğrulanmış bir olgu değildir**; görsel/optik etkilerle (ardıl görüntü, kontrast, beklenti) açıklanması yaygın bir bilimsel yorumdur. Deney yapmayı düşünüyorsan: **boyalı ekranlar göze zararlı olabilir**, yapma.
 
 ## Çalışma
-Kilner'ın 1911 kitabının çevrimiçi metninden (Sacred Texts) bir bölümü oku ve kendi yöntem eleştirini yaz: kör deney var mı, kontrol grubu var mı?`,
+Dersteki Kilner yöntem özetine dayanarak kendi yöntem eleştirini yaz: kör deney var mı, kontrol grubu var mı, ekran/cam filtre nasıl kullanılmış?`,
           verification: `**Kaynak:** [Sacred Texts — The Human Atmosphere](https://sacred-texts.com/eso/tha/tha02.htm), [Wellcome Collection kaydı](https://wellcomecollection.org/works/t94es3zc/items?canvas=2). Butler'ın Kilner ekranı anlatımı PDF'ten okundu. BMJ 1912 incelemesi ve replikasyon ayrıntıları ikincil kaynaktan geldi; orijinal metinle doğrulanmadı. "Optik etki" yorumu ders yazarının genel bilimsel değerlendirmesidir.`,
         },
       ],

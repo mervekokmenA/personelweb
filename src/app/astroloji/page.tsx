@@ -6,6 +6,8 @@ import { dayKey, toDateInputValue, todayKey, formatTrLong } from "@/lib/date";
 import { ChartWheel, PositionTable } from "@/components/astroloji/chart-wheel";
 import { TransitDatePicker } from "@/components/astroloji/transit-date-picker";
 import { PLANET_LABELS_TR } from "@/lib/astro/ephemeris";
+import { AstroGuide } from "@/components/astroloji/astro-guide";
+import Link from "next/link";
 import { AlertTriangle, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -13,9 +15,32 @@ export const dynamic = "force-dynamic";
 export default async function AstrolojiPage({
   searchParams,
 }: {
-  searchParams: Promise<{ date?: string }>;
+  searchParams: Promise<{ date?: string; sekme?: string }>;
 }) {
   const params = await searchParams;
+  const isGuide = params.sekme === "rehber";
+  const tabs = (
+    <nav className="flex gap-2" aria-label="Astroloji sekmeleri">
+      {[
+        { href: "/astroloji", label: "Vedik Harita / Transit", active: !isGuide },
+        { href: "/astroloji?sekme=rehber", label: "Astroloji Rehberi", active: isGuide },
+      ].map((t) => (
+        <Link key={t.href} href={t.href} aria-current={t.active ? "page" : undefined}
+          className={`rounded-full border px-4 py-1.5 text-sm font-medium ${t.active ? "border-transparent bg-foreground text-background" : "border-card-border text-muted hover:text-foreground"}`}>
+          {t.label}
+        </Link>
+      ))}
+    </nav>
+  );
+  if (isGuide) {
+    return (
+      <div className="flex flex-col gap-6">
+        <h1 className="text-2xl font-semibold">Astroloji Rehberi</h1>
+        {tabs}
+        <AstroGuide />
+      </div>
+    );
+  }
   const date = params.date ?? toDateInputValue(todayKey());
 
   const now = new Date();
@@ -42,6 +67,7 @@ export default async function AstrolojiPage({
         <h1 className="text-2xl font-semibold">Vedik Astroloji</h1>
         <TransitDatePicker date={date} />
       </div>
+      {tabs}
       <p className="text-sm text-muted">{formatTrLong(dayKey(date))} — sidereal (Lahiri) zodyak, whole sign ev sistemi</p>
 
       {!natal && (

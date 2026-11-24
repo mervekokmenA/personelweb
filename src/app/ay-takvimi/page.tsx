@@ -240,10 +240,6 @@ export default async function AyTakvimiPage({
             </div>
           ))}
         </div>
-        <p className="mt-4 text-xs text-muted">
-          Kaynak: eklediğin iki görsel (astrokronos.com &quot;Ay Fazları&quot;, @witchthetrials &quot;Ay&apos;ın Evreleri&quot;) birleştirildi. Anahtar sözcükler ve &quot;uygun görülür&quot; denilen çalışmalar geleneksel / ezoterik yorumlardır;
-          bilimsel bir doğrulamaları yoktur, sağlık ya da karar için dayanak yapma. Evrelerin görünümü ve zamanları ise gökbilimsel olarak hesaplanır.
-        </p>
       </section>
     </div>
   );

@@ -82,7 +82,12 @@ export default async function AyTakvimiPage({
         <h1 className="flex items-center gap-2 text-2xl font-semibold">
           <Moon size={22} /> Ay Takvimi
         </h1>
-        <MoonDatePicker date={selectedStr} />
+        <div className="flex flex-wrap items-center gap-2">
+          <Link href="/ay-takvimi/dongu" className="ag-btn ag-btn-soft inline-flex items-center gap-1.5 text-sm">
+            <Moon size={15} /> Ay Döngüsü
+          </Link>
+          <MoonDatePicker date={selectedStr} />
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">

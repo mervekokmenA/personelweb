@@ -112,6 +112,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
             <span className="ag-muted">Ders süresi: ~{p.hoursDone}/{p.hours} sa</span>
             <span className="ag-muted">Proje: {p.projectsDone}/{p.projectsTotal} (~{p.projectHours} sa)</span>
           </div>
+          <p className="text-xs ag-muted">İstediğin parçaya atlayıp göz atabilirsin; parça yalnızca kutuyu işaretlersen ya da derste &quot;Tamamla ve sonrakine geç&quot; dersen tamamlanır. Sıfırlama ve toplu tamamlama Ayarlar&apos;da.</p>
         </div>
       </header>
 

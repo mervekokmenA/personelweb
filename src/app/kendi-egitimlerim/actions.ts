@@ -29,8 +29,31 @@ export async function toggleProgress(formData: FormData) {
     update: { done, doneAt: done ? new Date() : null },
     create: { key, done, doneAt: done ? new Date() : null },
   });
+  revalidatePath("/");
   revalidatePath(BASE);
   if (moduleId) revalidatePath(`${BASE}/${moduleId}`, "layout");
+}
+
+/** Parçayı tamamlandı işaretler (zaten tamamsa dokunmaz) ve sıradaki parçaya geçer. Ön izleme bağlantıları işaretlemez. */
+export async function completeAndNext(formData: FormData) {
+  const moduleId = str(formData, "moduleId");
+  const lessonId = str(formData, "lessonId");
+  const nextId = str(formData, "nextId");
+  assertModule(moduleId);
+  const ID = /^[A-Za-z0-9-]+$/;
+  if (!ID.test(lessonId)) return;
+  const key = `${moduleId}/${lessonId}`;
+  const current = await prisma.learningProgress.findUnique({ where: { key } });
+  if (!current?.done) {
+    await prisma.learningProgress.upsert({
+      where: { key },
+      update: { done: true, doneAt: new Date() },
+      create: { key, done: true, doneAt: new Date() },
+    });
+  }
+  revalidatePath("/");
+  revalidatePath(BASE, "layout");
+  redirect(ID.test(nextId) ? `${BASE}/${moduleId}/${nextId}` : `${BASE}/${moduleId}`);
 }
 
 export async function saveLessonNote(formData: FormData) {

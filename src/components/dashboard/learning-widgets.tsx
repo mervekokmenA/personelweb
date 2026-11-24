@@ -6,11 +6,9 @@ const BARS = ["var(--accent-blue)", "var(--accent-lilac)", "var(--accent-mint)",
 
 /** Ana sayfa: Kendi Eğitimlerim için küçük widget'lar */
 export function LearningWidgets({ data }: { data: LearningWidgetData }) {
-  const main = data.modules.filter((m) => m.group === "ana");
-  const extra = data.modules.filter((m) => m.group === "ek");
-  const extraDone = extra.reduce((s, m) => s + m.done, 0);
-  const extraTotal = extra.reduce((s, m) => s + m.total, 0);
-  const extraPct = extraTotal ? Math.round((extraDone / extraTotal) * 100) : 0;
+  const shown = data.modules.slice(0, 8);
+  const hidden = data.modules.length - shown.length;
+  const GROUP_LABEL = { ana: "", ek: "Ek", dil: "Dil" } as const;
 
   return (
     <section className="flex flex-col gap-3" aria-label="Kendi Eğitimlerim özeti">
@@ -28,34 +26,38 @@ export function LearningWidgets({ data }: { data: LearningWidgetData }) {
           <h3 className="flex items-center gap-2 text-sm font-medium">
             <GraduationCap size={15} /> İlerleme
           </h3>
-          <ul className="flex flex-col gap-2.5">
-            {main.map((m, i) => (
-              <li key={m.id}>
-                <Link href={`/kendi-egitimlerim/${m.id}`} className="block rounded-md hover:bg-black/[0.03]">
-                  <div className="mb-1 flex items-baseline justify-between text-xs">
-                    <span className="font-medium">{m.title}</span>
-                    <span className="text-muted">%{m.pct} · {m.done}/{m.total}</span>
+          {shown.length === 0 ? (
+            <p className="text-sm text-muted">Henüz başladığın bir eğitim yok. Bir parçayı &quot;Tamamla ve sonrakine geç&quot; ile bitirdiğinde burada ilerleme yüzdesi görünür.</p>
+          ) : (
+            <ul className="flex flex-col gap-2.5">
+              {shown.map((m, i) => (
+                <li key={m.id}>
+                  <div className="mb-1 flex items-baseline justify-between gap-2 text-xs">
+                    <Link href={`/kendi-egitimlerim/${m.id}`} className="min-w-0 truncate font-medium hover:underline">
+                      {m.group !== "ana" && <span className="mr-1 rounded bg-black/[0.06] px-1 text-[10px] text-muted">{GROUP_LABEL[m.group]}</span>}
+                      {m.title}
+                    </Link>
+                    <span className="shrink-0 text-muted">%{m.pct} · {m.done}/{m.total}</span>
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-black/10" role="progressbar" aria-valuenow={m.pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${m.title} ilerlemesi`}>
                     <div className="h-full rounded-full" style={{ width: `${m.pct}%`, background: BARS[i % BARS.length] }} />
                   </div>
-                </Link>
-              </li>
-            ))}
-            {extra.length > 0 && (
-              <li>
-                <Link href="/kendi-egitimlerim#ek-moduller" className="block rounded-md hover:bg-black/[0.03]">
-                  <div className="mb-1 flex items-baseline justify-between text-xs">
-                    <span className="font-medium">Ek modüller ({extra.length} modül)</span>
-                    <span className="text-muted">%{extraPct} · {extraDone}/{extraTotal}</span>
-                  </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-black/10">
-                    <div className="h-full rounded-full" style={{ width: `${extraPct}%`, background: "var(--accent-pink)" }} />
-                  </div>
-                </Link>
-              </li>
-            )}
-          </ul>
+                  {m.nextLessonId && (
+                    <Link href={`/kendi-egitimlerim/${m.id}/${m.nextLessonId}`} className="mt-0.5 inline-flex items-center gap-0.5 text-[11px] text-muted hover:text-foreground">
+                      Devam et <ArrowRight size={11} />
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+          {(hidden > 0 || data.notStarted > 0) && (
+            <p className="text-[11px] text-muted">
+              {hidden > 0 && <>+{hidden} eğitim daha · </>}
+              {data.notStarted > 0 && <>{data.notStarted} eğitim henüz başlanmadı · </>}
+              <Link href="/kendi-egitimlerim" className="underline">Tümü</Link>
+            </p>
+          )}
         </div>
 
         <div className="card flex flex-col gap-2 p-4">

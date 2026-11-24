@@ -10,7 +10,7 @@ import { getResolvedModule } from "@/lib/learning/resolve";
 import { getProgressMap } from "@/lib/learning/progress";
 import { findLesson, progressKey } from "@/lib/learning";
 import astrologyData from "@/data/learning/astrology-lessons.json";
-import { toggleProgress, saveLessonNote } from "../../actions";
+import { toggleProgress, saveLessonNote, completeAndNext } from "../../actions";
 
 export const dynamic = "force-dynamic";
 
@@ -122,9 +122,24 @@ export default async function LessonPage({ params }: { params: Promise<{ module:
         </form>
       </section>
 
-      <nav className="flex flex-wrap justify-between gap-3">
-        {prev ? <Link href={`${base}/${prev.id}`} className="ag-btn ag-btn-outline"><ArrowLeft size={14} /> {prev.title}</Link> : <span />}
-        {next ? <Link href={`${base}/${next.id}`} className="ag-btn ag-btn-dark">{next.title} <ArrowRight size={14} /></Link> : <span />}
+      <nav className="flex flex-col gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          {prev ? <Link href={`${base}/${prev.id}`} className="ag-btn ag-btn-outline"><ArrowLeft size={14} /> {prev.title}</Link> : <span />}
+          <div className="flex flex-wrap items-center gap-2">
+            {next && <Link href={`${base}/${next.id}`} className="ag-btn ag-btn-outline">Sadece göz at: {next.title} <ArrowRight size={14} /></Link>}
+            <form action={completeAndNext}>
+              <input type="hidden" name="moduleId" value={m.id} />
+              <input type="hidden" name="lessonId" value={l.id} />
+              <input type="hidden" name="nextId" value={next?.id ?? ""} />
+              <button className="ag-btn ag-btn-dark">
+                {next ? (info?.done ? "Sonraki parçaya geç" : "Tamamla ve sonrakine geç") : info?.done ? "Modüle dön" : "Tamamla ve bitir"} <ArrowRight size={14} />
+              </button>
+            </form>
+          </div>
+        </div>
+        <p className="text-xs ag-muted">
+          &quot;Tamamla ve sonrakine geç&quot; bu parçayı otomatik tamamlandı işaretler. Önceki/&quot;Sadece göz at&quot; bağlantıları ve modül listesinden başka bir parçaya atlamak ise yalnızca ön izlemedir; parça işaretlenmez.
+        </p>
       </nav>
     </div>
   );

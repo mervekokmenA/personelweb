@@ -3,7 +3,11 @@ import { triggerApkBuild, refreshApkBuildStatus } from "./actions";
 import { getGithubReleaseInfo } from "@/lib/github";
 import { RefreshButton } from "@/components/ayarlar/refresh-button";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
-import { Download, ExternalLink, Smartphone, DatabaseBackup } from "lucide-react";
+import { ConfirmForm } from "@/components/ui/confirm-form";
+import { getAllResolvedModules } from "@/lib/learning/resolve";
+import { getProgressMap, moduleProgress } from "@/lib/learning/progress";
+import { resetLearningProgress, completeLearningModule } from "./egitim-actions";
+import { Download, ExternalLink, Smartphone, DatabaseBackup, GraduationCap } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +24,10 @@ export default async function AyarlarPage() {
   const builds = hasDatabaseUrl
     ? await prisma.apkBuild.findMany({ orderBy: { triggeredAt: "desc" }, take: 10 })
     : [];
+  const [learnModules, learnProgress] = hasDatabaseUrl
+    ? await Promise.all([getAllResolvedModules(), getProgressMap()])
+    : [[], new Map()];
+  const learnRows = learnModules.map((m) => ({ m, p: moduleProgress(m, learnProgress) }));
   const githubInfo = getGithubReleaseInfo();
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "";
 
@@ -113,6 +121,66 @@ export default async function AyarlarPage() {
       <section className="card p-5 text-sm text-muted">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide">Uygulama Adresi</h2>
         <p>{appUrl || "NEXT_PUBLIC_APP_URL tanımlı değil."}</p>
+      </section>
+
+      <section className="card p-5">
+        <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+          <GraduationCap size={16} /> Eğitim İlerlemesi
+        </h2>
+        <p className="mb-4 text-sm text-muted">
+          Parçalar normalde, derste &quot;Tamamla ve sonrakine geç&quot; dediğinde otomatik tamamlanır; listeden atlayıp
+          göz atmak işaretlemez. Buradan bir eğitimi tamamlandı işaretleyebilir ya da ilerlemesini sıfırlayabilirsin.
+          Sıfırlama notlarını silmez; test sonuçlarını silmek için kutuyu işaretle.
+        </p>
+        {!hasDatabaseUrl && <DbSetupNotice />}
+        {learnRows.length > 0 && (
+          <>
+            <ConfirmForm
+              action={resetLearningProgress}
+              message="TÜM eğitimlerin ilerlemesi sıfırlanacak (notlar korunur). Emin misin?"
+              className="mb-4 flex flex-wrap items-center gap-3"
+            >
+              <button className="rounded-lg border border-red-300 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50">
+                Tüm eğitim ilerlemesini sıfırla
+              </button>
+              <label className="flex items-center gap-1.5 text-xs text-muted">
+                <input type="checkbox" name="quizzes" value="1" /> Test sonuçlarını da sil
+              </label>
+            </ConfirmForm>
+            <details>
+              <summary className="cursor-pointer text-sm font-medium">Eğitim bazında ({learnRows.length})</summary>
+              <ul className="mt-3 flex flex-col divide-y divide-card-border text-sm">
+                {learnRows.map(({ m, p }) => (
+                  <li key={m.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 py-2">
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-medium">{m.title}</p>
+                      <p className="text-xs text-muted">%{p.pct} · {p.done}/{p.total} parça{p.projectsTotal > 0 && ` · proje ${p.projectsDone}/${p.projectsTotal}`}</p>
+                    </div>
+                    <form action={completeLearningModule}>
+                      <input type="hidden" name="moduleId" value={m.id} />
+                      <button disabled={p.total > 0 && p.done === p.total} className="rounded-lg border border-card-border px-3 py-1 text-xs disabled:opacity-40">
+                        Tamamlandı işaretle
+                      </button>
+                    </form>
+                    <ConfirmForm
+                      action={resetLearningProgress}
+                      hidden={{ moduleId: m.id }}
+                      message={`"${m.title}" ilerlemesi sıfırlanacak (notlar korunur). Emin misin?`}
+                      className="flex items-center gap-2"
+                    >
+                      <label className="flex items-center gap-1 text-[11px] text-muted">
+                        <input type="checkbox" name="quizzes" value="1" /> testler de
+                      </label>
+                      <button disabled={p.done === 0 && p.projectsDone === 0} className="rounded-lg border border-red-300 px-3 py-1 text-xs text-red-600 disabled:opacity-40">
+                        Sıfırla
+                      </button>
+                    </ConfirmForm>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </>
+        )}
       </section>
 
       <section className="card p-5">

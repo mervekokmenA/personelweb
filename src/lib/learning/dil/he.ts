@@ -168,7 +168,7 @@ Harflerin altına/üstüne konan noktalar **ünlüleri** gösterir. Çocuk kitap
 **סֵפֶר** = sefer (kitap); **שָׁלוֹם** = şalom; **תּוֹדָה** = toda.
 
 ## Bu sitedeki kartlarda
-Kartların **ön yüzü harekelidir**; **örnek cümleler harekesizdir** (gerçek metin gibi) ve altında Latin okunuşu verilir.`,
+Kartların **ön yüzü harekelidir**; **örnek cümleler harekesizdir** (gerçek metin gibi). Latin okunuşu yalnızca 100 Temel İfade ile A1–A2 kartlarında cümlenin altında verilir; B1 ve üstü kartlarda cümle okunuşu yoktur, 🔊 düğmesiyle dinleyebilirsin.`,
               verification: VERIF_GENEL,
               tasks: ["5 ünlü harekeyi bir harfle (ב) yazıp seslendir."],
             },
@@ -467,7 +467,7 @@ Kartlardaki 3 fiil için (לאכול, לעבוד, ללמוד) geçmiş ve şimdi
 Önce **100 Temel İfade** destesi (varsayılan: günde 10 yeni kart → **10 günde** biter). Ardından **A1 → A2 → B1...**
 
 ## Kartlardaki biçimler
-- **Ön yüz harekelidir** (örn. **שָׁלוֹם**); **örnek cümleler harekesizdir** ve altında Latin okunuşu vardır.
+- **Ön yüz harekelidir** (örn. **שָׁלוֹם**); **örnek cümleler harekesizdir**; cümle okunuşu yalnızca Temel İfadeler ile A1–A2'de vardır (B1 ve üstünde yok).
 - Fiiller **mastar** (ל-) biçimindedir; şimdiki zaman biçimi notlarda belirtilir.
 - Eril biçim esas alınır; dişil biçim anlam veya nottadır.
 
@@ -483,7 +483,7 @@ Kartta takıldığında kökü hatırlamaya çalış (bkz. «Kök sistemi» ders
           ],
           quiz: [
             qz("Kartlarda İbranice ön yüz nasıl yazılır?", ["Harekeli (nikudlu)", "Harekesiz", "Latin harfleriyle", "Rakamlarla"], 0),
-            qz("Örnek cümleler nasıl yazılır?", ["Harekesiz, altında Latin okunuşuyla", "Harekeli", "Yalnızca Türkçe", "Yalnızca okunuşla"], 0),
+            qz("Örnek cümleler nasıl yazılır?", ["Harekesiz (gerçek metin gibi)", "Harekeli", "Yalnızca Türkçe", "Yalnızca okunuşla"], 0),
             qz("İbranice kartlarda fiiller hangi biçimdedir?", ["Mastar (ל-)", "Geçmiş zaman", "Gelecek zaman", "Emir"], 0),
             qz("Kart seviyeleri (A1–C2) için doğru ifade hangisidir?", ["Frekans bandına göre tahminîdir", "Resmî CEFR listesidir", "Rastgeledir", "Sınav puanıdır"], 0),
             qz("Hata bulursan ne yapabilirsin?", ["Kartı düzenleyebilirsin", "Hiçbir şey yapamazsın", "Kartı silemezsin ve düzenleyemezsin", "Siteyi kapatırsın"], 0),

@@ -92,3 +92,11 @@ export async function toggleRoutineCheck(formData: FormData) {
   else await prisma.lifeRoutineCheck.create({ data: { itemId, date } });
   refresh();
 }
+
+/** Satırın sıra numarasını (aynı numara birden fazla maddede olabilir) günceller; boş = numarasız. */
+export async function setLifePriority(formData: FormData) {
+  const id = String(formData.get("id") ?? "");
+  if (!id) return;
+  await prisma.lifeItem.update({ where: { id }, data: { priority: parsePriority(formData.get("priority")) } });
+  refresh();
+}

@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { ArrowDown, ArrowUp, Check, Pencil, Plus, Trash2, X } from "lucide-react";
-import { addLifeItem, deleteLifeItem, moveLifeItem, switchLifeKind, toggleLifeDone, updateLifeItem } from "@/app/rutinim/actions";
+import { addLifeItem, deleteLifeItem, moveLifeItem, setLifePriority, switchLifeKind, toggleLifeDone, updateLifeItem } from "@/app/rutinim/actions";
 import type { LifeItemView, LifeKind } from "@/lib/life";
 
 const OTHER: Record<LifeKind, { kind: LifeKind; label: string }[]> = {
@@ -33,7 +33,7 @@ function Row({ item, first, last, canMove }: { item: LifeItemView; first: boolea
           <input name="note" defaultValue={item.note ?? ""} placeholder="Not (isteğe bağlı)" className="ag-input" aria-label="Not" />
           {item.kind !== "routine" && (
             <label className="flex items-center gap-2 text-xs text-muted">
-              Öncelik (1 = en yüksek):
+              Sıra no (aynı numara birden fazla maddede olabilir):
               <input name="priority" type="number" min={1} max={99} defaultValue={item.priority ?? ""} className="ag-input w-20 !py-1" />
             </label>
           )}
@@ -64,7 +64,22 @@ function Row({ item, first, last, canMove }: { item: LifeItemView; first: boolea
           <p className={`text-sm ${item.done ? "line-through opacity-60" : ""}`}>{item.text}</p>
           {item.note && <p className="mt-1 text-xs text-muted">{item.note}</p>}
         </div>
-        {item.priority && <span className="ag-pill shrink-0">{item.priority}. öncelik</span>}
+        {item.kind !== "routine" && (
+          <label className="flex shrink-0 items-center gap-1 text-[11px] text-muted">
+            Sıra no
+            <input
+              key={`${item.id}-${item.priority ?? ""}`}
+              type="number"
+              min={1}
+              max={99}
+              defaultValue={item.priority ?? ""}
+              aria-label="Sıra no"
+              className="ag-input w-16 !px-2 !py-1 text-center text-sm"
+              onBlur={(e) => { if (e.currentTarget.value !== String(item.priority ?? "")) run(setLifePriority, { id: item.id, priority: e.currentTarget.value }); }}
+              onKeyDown={(e) => { if (e.key === "Enter") e.currentTarget.blur(); }}
+            />
+          </label>
+        )}
       </div>
       <div className="flex flex-wrap items-center gap-1 pl-8 text-xs">
         {canMove && <button type="button" aria-label="Yukarı taşı" disabled={first} onClick={() => run(moveLifeItem, { id: item.id, dir: "-1" })} className="rounded-md border border-card-border p-1 text-muted hover:text-foreground disabled:opacity-30"><ArrowUp size={13} /></button>}
@@ -104,7 +119,7 @@ export function LifeListEditor({ kind, items, canMove = true }: { kind: LifeKind
       >
         <input type="hidden" name="kind" value={kind} />
         <textarea name="text" required rows={2} placeholder="Yeni madde…" aria-label="Yeni madde" className="ag-textarea min-w-[14rem] flex-1" />
-        {kind !== "routine" && <input name="priority" type="number" min={1} max={99} placeholder="Öncelik" aria-label="Öncelik" className="ag-input w-24" />}
+        {kind !== "routine" && <input name="priority" type="number" min={1} max={99} placeholder="Sıra no" aria-label="Sıra no" className="ag-input w-24" />}
         <button className="ag-btn ag-btn-dark" disabled={pending}><Plus size={14} /> Ekle</button>
       </form>
     </div>

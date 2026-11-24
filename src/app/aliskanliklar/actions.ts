@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { dayKey } from "@/lib/date";
+import { dayKey, todayKey } from "@/lib/date";
 import { revalidatePath } from "next/cache";
 
 export async function addHabit(formData: FormData) {
@@ -63,4 +63,17 @@ export async function toggleHabitActive(formData: FormData) {
   if (!current) return;
   await prisma.habit.update({ where: { id }, data: { active: !current.active } });
   revalidatePath("/aliskanliklar");
+}
+
+/** Tüm işaretlemeleri siler ve alışkanlığın başlangıcını bugüne alır (tarihler bugünden yeniden başlar). */
+export async function resetHabit(formData: FormData) {
+  const id = String(formData.get("id"));
+  const habit = await prisma.habit.findUnique({ where: { id } });
+  if (!habit) return;
+  await prisma.$transaction([
+    prisma.habitCompletion.deleteMany({ where: { habitId: id } }),
+    prisma.habit.update({ where: { id }, data: { startDate: todayKey() } }),
+  ]);
+  revalidatePath("/aliskanliklar", "layout");
+  revalidatePath("/");
 }

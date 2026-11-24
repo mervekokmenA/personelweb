@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, RotateCcw } from "lucide-react";
 import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
-import { toggleHabitDay } from "../actions";
+import { toggleHabitDay, resetHabit } from "../actions";
+import { ConfirmForm } from "@/components/ui/confirm-form";
 import { getHabitView, dateKey, computeStreaks, formatHabitFrequency } from "@/lib/habit-grid";
 import { TR_MONTHS_SHORT } from "@/lib/date";
 
@@ -40,9 +41,20 @@ export default async function HabitHistoryPage({ params }: { params: Promise<{ i
 
   return (
     <div className="flex flex-col gap-6">
-      <Link href="/aliskanliklar" className="flex w-fit items-center gap-1 rounded-lg border border-card-border px-3 py-1.5 text-sm text-muted hover:text-foreground">
-        <ArrowLeft size={14} /> Alışkanlık Takibi
-      </Link>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Link href="/aliskanliklar" className="flex w-fit items-center gap-1 rounded-lg border border-card-border px-3 py-1.5 text-sm text-muted hover:text-foreground">
+          <ArrowLeft size={14} /> Alışkanlık Takibi
+        </Link>
+        <ConfirmForm
+          action={resetHabit}
+          hidden={{ id }}
+          message={`"${habit.title}" için tüm işaretlemeler silinecek ve tarihler bugünden yeniden başlayacak. Emin misin?`}
+        >
+          <button className="flex items-center gap-1 rounded-lg border border-card-border px-3 py-1.5 text-sm text-muted hover:text-foreground">
+            <RotateCcw size={14} /> Sıfırla
+          </button>
+        </ConfirmForm>
+      </div>
       <header className="flex flex-col gap-1">
         <h1 className="text-2xl font-semibold">{habit.title}</h1>
         <p className="text-sm text-muted">

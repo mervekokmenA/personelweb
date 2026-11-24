@@ -1,9 +1,10 @@
-import { toggleHabitDay, deleteHabit, toggleHabitActive } from "@/app/aliskanliklar/actions";
+import { toggleHabitDay, deleteHabit, toggleHabitActive, resetHabit } from "@/app/aliskanliklar/actions";
+import { ConfirmForm } from "@/components/ui/confirm-form";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { dateKey, formatHabitFrequency, type HabitFrequency, type HabitPeriod, type HabitStreaks } from "@/lib/habit-grid";
 import Link from "next/link";
-import { Flame, History } from "lucide-react";
+import { Flame, History, RotateCcw } from "lucide-react";
 
 const PERIOD_UNIT: Record<HabitFrequency, string> = {
   DAILY: "gün",
@@ -75,6 +76,15 @@ export function HabitCard({
               {active ? "Pasifleştir" : "Aktifleştir"}
             </button>
           </form>
+          <ConfirmForm
+            action={resetHabit}
+            hidden={{ id }}
+            message={`"${title}" için tüm işaretlemeler silinecek ve tarihler bugünden yeniden başlayacak. Emin misin?`}
+          >
+            <button className="rounded-md p-1.5 text-muted hover:bg-black/5 hover:text-foreground" aria-label="Sıfırla" title="Sıfırla: işaretlemeleri sil, tarihleri bugünden başlat">
+              <RotateCcw size={15} />
+            </button>
+          </ConfirmForm>
           <DeleteButton action={deleteHabit} hidden={{ id }} />
         </div>
       </div>

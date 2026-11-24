@@ -52,7 +52,7 @@ Yazar astrolojinin dünyada **birçok üniversitede okutulduğunu**, **Kepler Ak
 | Kepler Akademisi/College Seattle'da | Gerçek bir kurum; ancak 2000'de **geçici devlet yetkisi** alıp 2010'da akreditasyonu tamamlayamadığı için **artık derece veren bir kurum değil**, **sertifika/diploma programı** olarak çalışır (Wikipedia). "Dünyanın en büyük akademisi" ifadesi doğrulanamadı |
 | "Dolunayda cinayet ve kazalar artar" | **Kanıt yok**: Rotton & Kelly (1985) meta-analizi ve sonraki incelemeler (bkz. ek modül *Ay Büyüsü*) |
 | **Einstein alıntısı** | **Uydurmadır**: *Nature* ve *Skeptical Inquirer*'e göre metin, astrolog **Werner Hirsig**'in 1950 tarihli *Manuel d'astrologie* kitabının önsözünden (veya benzer bir astrolojik kaynaktan) gelir; Einstein'a ait olduğuna dair kanıt yok ve Einstein'ın bilinen tek astroloji yorumu onu **sözde bilim** olarak niteler |
-| Moskova/Çin akademileri | Bu derste doğrulanamadı (Belirsiz) |
+| Moskova/Çin akademileri | Bu derste doğrulanamadı |
 | Kuantum mekaniğinin astrolojiyi desteklemesi | **Mantık sıçraması**: kuantum mekaniği astrolojiyi desteklemez (bkz. ek modül *Lirvian*) |
 
 ## Dersin amacı

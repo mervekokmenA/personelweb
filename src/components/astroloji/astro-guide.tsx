@@ -160,7 +160,7 @@ export function AstroGuide() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="card p-4 sm:p-5">
-          <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted">Nikola Stojanovic derece teorisi (Belirsiz)</h2>
+          <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted">Nikola Stojanovic derece teorisi</h2>
           <p className="mb-3 text-xs text-muted">Kaynak görsele göre: bir burcun içindeki derece, o derecenin &quot;gerçek ifadesi&quot; olan burcu temsil eder. 0° = bulunduğu burcun gerçek ifadesi.</p>
           <ul className="flex flex-col gap-1 text-sm">
             {STOJANOVIC_ROWS.map((r) => (
@@ -170,7 +170,7 @@ export function AstroGuide() {
         </section>
 
         <section className="card p-4 sm:p-5">
-          <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted">Kritik dereceler (Belirsiz)</h2>
+          <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted">Kritik dereceler</h2>
           <p className="mb-3 text-xs text-muted">Görseldeki listedir; kaynakları ve yöntem tutarlılığı bağımsız olarak doğrulanamadı.</p>
           <ul className="flex flex-col gap-2 text-sm">
             {CRITICAL_DEGREES.map((c) => (

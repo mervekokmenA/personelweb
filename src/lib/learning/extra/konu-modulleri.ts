@@ -27,10 +27,10 @@ export const hermeticaModule = extraModule({
           title: "Corpus Hermeticum: Ficino ve Casaubon",
           summary: "Rönesans'ta çeviri (Ficino) ve 17. yy.'da tarihlendirme (Casaubon): 'Mısır bilgeliği' efsanesinin çözülmesi.",
           body: `## Çeviri
-- **Marsilio Ficino**, Corpus Hermeticum'un ilk **14 risalesini** *Pimander* adıyla Latinceye çevirdi. Kaynaklara göre çeviri **1463'te tamamlandı** (Cosimo'ya mektup bu tarihlidir) ancak **1471'de yayımlandı** (Belirsiz: bazı kaynaklar çeviriyi 1471 olarak verir); tarih farkı "tamamlama" ile "basım" arasındaki farktan gelir.
+- **Marsilio Ficino**, Corpus Hermeticum'un ilk **14 risalesini** *Pimander* adıyla Latinceye çevirdi. Kaynaklara göre çeviri **1463'te tamamlandı** (Cosimo'ya mektup bu tarihlidir) ancak **1471'de yayımlandı** (bazı kaynaklar çeviriyi 1471 olarak verir); tarih farkı "tamamlama" ile "basım" arasındaki farktan gelir.
 
 ## Tarihleme
-- **Isaac Casaubon (1614)**, Hermetik metinlerin eski Mısır kaynaklı olmadığını, **MS 2.–3. yüzyıla** ait Helenistik metinler olduğunu savundu. (Kaynaklar, bu görüşün tek başına onun olmadığını, bazı yazarların önce benzer şüpheleri dile getirdiğini ve **Ralph Cudworth'un (1678)** Casaubon'un argümanındaki kusurları gösterdiğini not eder (Belirsiz).)
+- **Isaac Casaubon (1614)**, Hermetik metinlerin eski Mısır kaynaklı olmadığını, **MS 2.–3. yüzyıla** ait Helenistik metinler olduğunu savundu. (Kaynaklar, bu görüşün tek başına onun olmadığını, bazı yazarların önce benzer şüpheleri dile getirdiğini ve **Ralph Cudworth'un (1678)** Casaubon'un argümanındaki kusurları gösterdiğini not eder.)
 - Modern çalışma **Hermetizm**'i geç antik dönem **Mısır–Yunan** harmanı olarak okur; "Hermes Trismegistos" gelenekte sonradan **Thoth–Hermes** özdeşleşmesiyle oluşmuş bir figürdür.
 
 ## Okuma notu
@@ -50,7 +50,7 @@ Elindeki bir kitapta "Hermes" atfı olan üç cümle bul ve her biri için "hang
 - Batı'da **Latince** *Tabula Smaragdina* versiyonlarının en eskileri **12. yüzyıla** gider.
 
 ## Sonuç
-Zümrüt Tablet **Eski Mısır'dan gelen bir yazıt değildir**; bilinen en eski belgeleri **İslam dünyasındaki simya yazını**dır. "Aşağıdaki yukarıdakiyle aynıdır" öğretisinin Hermetik/simya ve astrolojik gelenekte geç antik veya erken ortaçağ kökenli olması muhtemeldir (Belirsiz); kesin köken **tartışmalıdır** (Belirsiz).
+Zümrüt Tablet **Eski Mısır'dan gelen bir yazıt değildir**; bilinen en eski belgeleri **İslam dünyasındaki simya yazını**dır. "Aşağıdaki yukarıdakiyle aynıdır" öğretisinin Hermetik/simya ve astrolojik gelenekte geç antik veya erken ortaçağ kökenli olması muhtemeldir; kesin köken **tartışmalıdır**.
 
 ## Cockren kitabıyla bağ
 Cockren'in kitabı Zümrüt Tablet ile başlar (ek modül *Simya Sanatı ve Simyacılar*); metnin Türkçe sürümü bu arkaplan **bilgisi olmadan** okunursa tarihî kökeni yanlış anlaşılabilir.
@@ -103,7 +103,7 @@ Bu **Gnostik/Platoncu renkli** bir metindir ve dinî bir anlatıdır; tarihsel o
 
 ## Çalışma
 Anlatıdaki "iniş" ve "yükseliş" aşamalarını yan yana iki sütunda yaz; ruhun yedi bölgede sıyrılan yeteneklerini kendi cümlenle yorumla (metin bunları bölgelerle eşleştirir; ayrıntı için çevirinin kendisine bak).`,
-          verification: `**Okunan:** Copenhaver, *Hermetica* (Cambridge UP, 1992; ilk basım 1992, 1995 ciltsiz) — archive.org tam metin OCR'ı; **Poimandres §1–26 kelimesi kelimesine okundu.** Tırnak içi kısa alıntılar bu çeviriden serbest Türkçe verilmiştir. **Okunmayan/doğrulanmayan:** §27–32 (kapanış vaazı ve ilahi) — yalnızca özetler görüldü ve bu özetler birbiriyle çelişti, bu yüzden yazılmadı; Mead çevirisi okunmadı; CH XIII ("yeniden doğuş") okunmadı. Yedi yöneticinin gezegenlerle özdeşliği genel yorumdur (Belirsiz).`,
+          verification: `**Okunan:** Copenhaver, *Hermetica* (Cambridge UP, 1992; ilk basım 1992, 1995 ciltsiz) — archive.org tam metin OCR'ı; **Poimandres §1–26 kelimesi kelimesine okundu.** Tırnak içi kısa alıntılar bu çeviriden serbest Türkçe verilmiştir. **Okunmayan/doğrulanmayan:** §27–32 (kapanış vaazı ve ilahi) — yalnızca özetler görüldü ve bu özetler birbiriyle çelişti, bu yüzden yazılmadı; Mead çevirisi okunmadı; CH XIII ("yeniden doğuş") okunmadı. Yedi yöneticinin gezegenlerle özdeşliği genel yorumdur.`,
         },
       ],
       quiz: [
@@ -149,7 +149,7 @@ export const tarotTarihiModule = extraModule({
           summary: "En eski korunmuş desteler 15. yüzyıl İtalyası'nda 'tarocchi' oyunu için yapıldı.",
           body: `## Kaynaklara göre
 - **Tarot'un belgelenmiş ilk kullanımı bir kâğıt oyunudur**: Kuzey İtalya'da (Milano) **15. yüzyılın ortalarında** hazırlanan el boyaması **Visconti–Sforza** desteleri, **tarocchi** adlı bir "koz oyunu" (*trick-taking*) içindir.
-- Kaynaklar Visconti–Sforza destesinin tarihini **1440'lar–1460'lar** arasında verir (Belirsiz); bazı kaynaklar tek tek komisyon sahiplerini farklı gösterir (Francesco Sforza / Bianca Maria Visconti (Belirsiz)). **1422** gibi daha eski bir tarih **şüphelidir**.
+- Kaynaklar Visconti–Sforza destesinin tarihini **1440'lar–1460'lar** arasında verir; bazı kaynaklar tek tek komisyon sahiplerini farklı gösterir (Francesco Sforza / Bianca Maria Visconti). **1422** gibi daha eski bir tarih **şüphelidir**.
 - Tarot, **ilk dönemde kehanet aracı değildir**; "Antik Mısır kitabı/Thoth Kitabı" anlatısı sonradan çıkmıştır.
 
 ## Çalışma
@@ -161,8 +161,8 @@ Visconti–Sforza destesinin görsellerini çevrimiçi bir müze/arşiv kaynağ�
           title: "Okült Tarot: Etteilla, Lévi, Altın Şafak ve Waite–Smith (1909)",
           summary: "18. yy.'dan itibaren kehanet ve okült semboller kartlara eklendi.",
           body: `## Kaynaklara göre
-- Tarot'a **okült anlamlar 1780'lerde** yüklenmiştir. **Etteilla (Jean-Baptiste Alliette)** kehanet için tasarlanmış ilk deste olarak anılır; astroloji ve simya sembolizmi ekledi ve **kartomansi** terimini ortaya attı (bazı kaynaklar onu "ilk profesyonel Tarot okuyucusu" sayar; bu **tartışmalıdır** (Belirsiz)).
-- **Court de Gébelin'in 1781 tarihli çalışması** (Tarot'un Mısır kökenli olduğu savı) bu aramada ayrıntılı doğrulanmadı (Belirsiz).
+- Tarot'a **okült anlamlar 1780'lerde** yüklenmiştir. **Etteilla (Jean-Baptiste Alliette)** kehanet için tasarlanmış ilk deste olarak anılır; astroloji ve simya sembolizmi ekledi ve **kartomansi** terimini ortaya attı (bazı kaynaklar onu "ilk profesyonel Tarot okuyucusu" sayar; bu **tartışmalıdır**).
+- **Court de Gébelin'in 1781 tarihli çalışması** (Tarot'un Mısır kökenli olduğu savı) bu aramada ayrıntılı doğrulanmadı.
 - **Éliphas Lévi** ve Altın Şafak, Tarot'u **İbrani harfleri ve Hayat Ağacı** ile eşledi (bkz. ek modüller *Lévi* ve *777*).
 - **Rider–Waite–Smith** destesi **1909'da Londra'da Rider tarafından** yayımlandı; **A. E. Waite** Büyük Arkana için ayrıntılı yönergeler verdi, **Pamela Colman Smith** küçük arkanayı **ilk kez tamamen resimli** olarak çizdi; ikisi de Altın Şafak üyesiydi.
 
@@ -313,7 +313,7 @@ Her merkezin tarifinin ardından metin, ona odaklanan kişi için faydalar sayar
 
 ## Dikkat
 - Her merkezin **bija harfleri ve renkleri** yorumcular arasında ve Batı'daki popüler çakra tablolarında **farklılaşır**; popüler "yedi renk" (gökkuşağı) şeması bu metinde yoktur. Metin **altı merkez + Sahasrara** der.
-- Ayet 14'te "Ba'dan **Puraṃdara**'ya kadar" harfler denir; bu, geleneksel olarak Sanskrit alfabesinde La harfini gösterir (genel bilgi, (Belirsiz): OCR'da doğrulanmadı).
+- Ayet 14'te "Ba'dan **Puraṃdara**'ya kadar" harfler denir; bu, geleneksel olarak Sanskrit alfabesinde La harfini gösterir (genel bilgi,: OCR'da doğrulanmadı).
 
 ## Çalışma
 1. Tabloyu Powell ve Burger notlarındaki çakra listeleriyle karşılaştır: yaprak sayıları ve unsurlar birebir aynı mı?
@@ -388,8 +388,8 @@ export const kybalionModule = extraModule({
           summary: "Yogi Publication Society, yazarlık tartışması ve 'kayıp metin yorumu' kurgusu.",
           body: `## Kaynaklara göre
 - Kitap **"Üç İnisiye" (Three Initiates)** imzasıyla **1908'de Chicago'da Yogi Publication Society** tarafından yayımlandı.
-- Yazarlık için en çok **William Walker Atkinson (1862–1932)** gösterilir (Belirsiz); **Mitch Horowitz**, belge ve bağlam kanıtlarının çoğunun Atkinson'un **tek başına** yazdığını gösterdiğini, ayrıca Atkinson'un **1912 Who's Who in America** kaydında kendisini yazar olarak bildirdiğini söyler. **Wikipedia** onu "muhtemel yazar" olarak listeler; Macmillan tanıtımı "yazarlardan biri veya tek yazar" diye verir.
-- **Paul Foster Case** üçüncü isim olarak söylentiye karışır (Belirsiz); bir kaynak bunun zaman çizelgesiyle (Case 1908'de Chicago'ya yeni gelmişti) **uyuşmadığını** ileri sürer.
+- Yazarlık için en çok **William Walker Atkinson (1862–1932)** gösterilir; **Mitch Horowitz**, belge ve bağlam kanıtlarının çoğunun Atkinson'un **tek başına** yazdığını gösterdiğini, ayrıca Atkinson'un **1912 Who's Who in America** kaydında kendisini yazar olarak bildirdiğini söyler. **Wikipedia** onu "muhtemel yazar" olarak listeler; Macmillan tanıtımı "yazarlardan biri veya tek yazar" diye verir.
+- **Paul Foster Case** üçüncü isim olarak söylentiye karışır; bir kaynak bunun zaman çizelgesiyle (Case 1908'de Chicago'ya yeni gelmişti) **uyuşmadığını** ileri sürer.
 - Kitap kendisini **eski, gizli bir Hermetik eserin yorumu** olarak sunar; o eserin "aforizmaları" yalnızca alıntılanır. Bir değerlendirmeye göre içerik, **antik bir dille yeniden yazılmış Yeni Düşünce (New Thought)** ilkelerini andırır.
 - Yedi ilke: **Zihincilik, Karşılıklılık (Correspondence), Titreşim, Kutupluluk, Ritim, Neden–Sonuç, Cinsiyet**.
 
@@ -494,7 +494,7 @@ Batlamyus tahminin **mümkün** olduğunu savunur, ama kapsamını bilerek dar t
 
 ## Neden önemli?
 Tetrabiblos'un en çok alıntılanan yönü, astrolojiyi **doğal nedensellik** (ısı, nem, soğuk, kuruluk) üzerinden açıklamaya çalışmasıdır. Bu, **bilimsel olarak doğrulanmış bir açıklama değildir**; antik doğa felsefesinin bir kuramıdır. Modern kontrollü çalışmalar astrolojik tahminlerin tutarlı biçimde başarılı olduğunu göstermemiştir (Carlson 1985, *Nature*; genel bilgi, bu derste yeniden doğrulanmadı).`,
-          verification: `**Okunan:** Robbins (Loeb, 1940) çevirisinin LacusCurtius baskısı — içindekiler (tüm kitaplar) ve I. Kitap 1–20. bölümler: [Tetrabiblos](https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Ptolemy/Tetrabiblos/home.html). Alıntılar kısa tutuldu ve serbest Türkçe verildi. **Okunmayan:** II–IV. kitaplar, I. kitap 21–24. bölümler. Sitenin çevirinin kamu malı olduğu iddiası doğrulanmadı (Belirsiz). Carlson çalışması bu derste yeniden okunmadı; genel bilgi olarak belirtildi.`,
+          verification: `**Okunan:** Robbins (Loeb, 1940) çevirisinin LacusCurtius baskısı — içindekiler (tüm kitaplar) ve I. Kitap 1–20. bölümler: [Tetrabiblos](https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Ptolemy/Tetrabiblos/home.html). Alıntılar kısa tutuldu ve serbest Türkçe verildi. **Okunmayan:** II–IV. kitaplar, I. kitap 21–24. bölümler. Sitenin çevirinin kamu malı olduğu iddiası doğrulanmadı. Carlson çalışması bu derste yeniden okunmadı; genel bilgi olarak belirtildi.`,
         },
         {
           id: "tb-gezegen",
@@ -567,7 +567,7 @@ Burada "ev" gezegenin **burç sahipliği**dir (modern anlamıyla "yönetici"). H
 
 ## Çalışma
 Yukarıdaki tabloları ezberlemek yerine, modern ders kitaplarındaki yönetici/yücelme tablosuyla karşılaştır; farkları not al.`,
-          verification: `**Okunan:** Tetrabiblos I.11–I.19, Robbins çevirisi, LacusCurtius; ev ve yücelme atamaları metnin kelimesi kelimesine bölümleriyle karşılaştırıldı. Sitedeki ikincil özet bazı atamalarda (Venüs, Mars evleri) metinden saptı; yalnızca kelimesi kelimesine okunan metin kullanıldı. 4. üçgendeki Ay–Venüs eş yönetimi ayrıntısı özetten alındı (Belirsiz). Terim ve sınırlar (20. bölüm), Keldani yöntemi (21.) ve sonrası okunmadı.`,
+          verification: `**Okunan:** Tetrabiblos I.11–I.19, Robbins çevirisi, LacusCurtius; ev ve yücelme atamaları metnin kelimesi kelimesine bölümleriyle karşılaştırıldı. Sitedeki ikincil özet bazı atamalarda (Venüs, Mars evleri) metinden saptı; yalnızca kelimesi kelimesine okunan metin kullanıldı. 4. üçgendeki Ay–Venüs eş yönetimi ayrıntısı özetten alındı. Terim ve sınırlar (20. bölüm), Keldani yöntemi (21.) ve sonrası okunmadı.`,
         },
       ],
       quiz: [

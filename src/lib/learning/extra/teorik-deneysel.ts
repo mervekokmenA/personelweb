@@ -48,7 +48,7 @@ Crowley, *Goetia* girişinde (1904) ritüelin **duyusal girdiler yoluyla beyin d
 ## 3. Beklenti, telkin ve ideomotor açıklaması
 Bir ritüelin içinde şu etkenler bir arada bulunur: karanlık ya da loş ışık, tütsü, tekrarlanan söz, uzun bekleme, güçlü beklenti. Bunların her biri **algıyı ve beden tepkisini etkileyebilir**.
 - **Michael Faraday'ın 1853 masa döndürme (table-turning) incelemesi** bunun tarihsel örneğidir: Faraday, masanın hareketinin katılımcıların **farkında olmadan kullandığı kas gücünden** geldiğini, basit bir düzenekle (iki tahta ve arasındaki cam makaralar) ölçerek gösterdi; katılımcılar parmaklarının masayı ittiğini öğrenince olay genellikle sona erdi. Bu sonuç, dokunmadan hareket iddialarını açıklamaz (sınırı).
-- "**İdeomotor etki**" terimi sonradan William Carpenter'a atfedilir; terimin ilk kullanım yılı kaynaklarda **1852 / 1888 olarak tutarsızdır (Belirsiz)**.
+- "**İdeomotor etki**" terimi sonradan William Carpenter'a atfedilir; terimin ilk kullanım yılı kaynaklarda **1852 / 1888 olarak tutarsızdır**.
 
 ## Üç modelin karşılaştırılması
 | | Gelenek içi | Crowley | Beklenti/telkin |
@@ -131,7 +131,7 @@ Cochrane derlemesi "Placebo interventions for all clinical conditions" (Hróbjar
 
 ## Çalışma
 Bir kitaptaki şifa iddiasını seç; "bunu ölçen kör, kontrollü bir çalışma var mı?" sorusunu cevaplamak için Cochrane'de arama yap ve sonucu bir paragrafla yaz.`,
-          verification: `**Kaynak:** Rosa ve ark. 1998 [PDF](https://library.stlawu.edu/system/files/2020-12/rosa_close_look_at_therapeutic_touch.pdf) ve [Wikipedia — Therapeutic touch](https://en.wikipedia.org/wiki/Therapeutic_touch) (21 uygulayıcı, 280 deneme, 123 doğru = %44: arama sonuçlarında doğrulandı; makalenin tam metni satır satır okunmadı). STEP: [PubMed 16569567](https://pubmed.ncbi.nlm.nih.gov/16569567/) (1.802 hasta; %52 / %51 / %59 — özet düzeyinde doğrulandı; ikincil özetlerde %58,6 olarak da geçer (Belirsiz)). Plasebo: [Cochrane CD003974](https://www.cochrane.org/CD003974/placebo-interventions-all-clinical-conditions) — sürümler arasında bulgular farklı özetleniyor; ayrıntılı sayı verilmedi.`,
+          verification: `**Kaynak:** Rosa ve ark. 1998 [PDF](https://library.stlawu.edu/system/files/2020-12/rosa_close_look_at_therapeutic_touch.pdf) ve [Wikipedia — Therapeutic touch](https://en.wikipedia.org/wiki/Therapeutic_touch) (21 uygulayıcı, 280 deneme, 123 doğru = %44: arama sonuçlarında doğrulandı; makalenin tam metni satır satır okunmadı). STEP: [PubMed 16569567](https://pubmed.ncbi.nlm.nih.gov/16569567/) (1.802 hasta; %52 / %51 / %59 — özet düzeyinde doğrulandı; ikincil özetlerde %58,6 olarak da geçer). Plasebo: [Cochrane CD003974](https://www.cochrane.org/CD003974/placebo-interventions-all-clinical-conditions) — sürümler arasında bulgular farklı özetleniyor; ayrıntılı sayı verilmedi.`,
         },
         {
           id: "te-lanet-nocebo",

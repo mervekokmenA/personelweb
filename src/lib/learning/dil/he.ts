@@ -15,7 +15,7 @@ export const heModule = dilModule({
     author: "MyJewishLearning, Chabad.org, Wikipedia, Universal Dependencies (HebBinyan)",
     language: "İngilizce kaynaklardan Türkçe ders",
     readNote:
-      "Alfabe, binyan ve hareke sistemi internet kaynaklarıyla doğrulandı. Begadkefat (בגדכפ״ת) ayrıntıları aramada bulunamadı; Modern İbranice'deki durum genel bilgiyle verildi (Belirsiz). Örnekler yapay zekâ ile hazırlandı.",
+      "Alfabe, binyan ve hareke sistemi internet kaynaklarıyla doğrulandı. Begadkefat (בגדכפ״ת) ayrıntıları aramada bulunamadı; Modern İbranice'deki durum genel bilgiyle verildi. Örnekler yapay zekâ ile hazırlandı.",
   },
   resources: [
     web("MyJewishLearning — How To Read the Hebrew Alphabet", "https://www.myjewishlearning.com/article/how-to-read-the-hebrew-alphabet/"),
@@ -108,7 +108,7 @@ Oku ve kelime sonlarına dikkat et: **שלום, גן, אף, עץ, מלך** (şal
 - **כּ** = k, **כ** = h (ח'ye benzer)
 - **פּ** = p, **פ** = f
 
-(Eski İbranice'de ג ד ת harfleri de benzer değişim gösterirdi; **Modern İbranice'de bu ayrım yoktur**. — genel bilgi, Belirsiz.)
+(Eski İbranice'de ג ד ת harfleri de benzer değişim gösterirdi; **Modern İbranice'de bu ayrım yoktur**. )
 
 ## Şin ve sin
 **שׁ** (nokta sağda) = **ş**, **שׂ** (nokta solda) = **s**. Normal yazıda nokta yazılmaz; hangisinin okunacağı kelimeyi bilmekle öğrenilir.
@@ -206,7 +206,7 @@ Kartlardaki okunuş Türkçe okuyucuya göredir: **ş** = ש, **h** = ח/כ, **t
 
 ## Alıştırma
 Şunları yüksek sesle söyle: **חבר, חיים, אחד, עיר, רחוב, צהריים, שלום, תודה**.`,
-              verification: VERIF_GENEL + " Ayin/resh'in modern telaffuzu için genel dilbilim bilgisi (Belirsiz: bölgesel ve bireysel farklar var).",
+              verification: VERIF_GENEL + " Ayin/resh'in modern telaffuzu için genel dilbilim bilgisi (bölgesel ve bireysel farklar var).",
             },
           ],
           quiz: [
@@ -497,7 +497,7 @@ Kartta takıldığında kökü hatırlamaya çalış (bkz. «Kök sistemi» ders
 - **Düzensiz (zayıf, gırtlaklı) köklerin çekimi ve tüm binyan çekim tabloları:** Düzenli köklerle örneklendi; düzensiz köklerin ayrıntıları kaynaktan satır satır doğrulanmadı.
 - **Yapı hâli (smihut) ve edat çekimlerinin tamamı:** Kısa değinildi; tam tablolar yok.
 - **Kitabî/Tevrat İbranicesi:** Bu modül Modern İbranice içindir.
-- **Begadkefat (בגדכפ"ת) ayrıntıları:** Aramada kaynak bulunamadı; Modern İbranice'de yalnızca ב/כ/פ ayrımının sesli olduğu genel bilgiyle yazıldı (Belirsiz).
+- **Begadkefat (בגדכפ"ת) ayrıntıları:** Aramada kaynak bulunamadı; Modern İbranice'de yalnızca ב/כ/פ ayrımının sesli olduğu genel bilgiyle yazıldı.
 - **Okunuşların ses kaydı:** Tarayıcının sesli okuma özelliği kullanılır; İbranice ses bazı cihazlarda bulunmayabilir.
 - **Kartların anadili konuşan biri tarafından doğrulanması:** Yapılmadı; harekeler ve okunuşlar yapay zekâ ile hazırlandı.`,
 });

@@ -14,14 +14,14 @@ Aşağıdaki özet, notlardaki bölümün sırasını izler; her ifade bu modül
 - Kadınların da kabul edildiği ve mülkiyetin ortak olduğu (*koinonia*) anlatılır. **[?]** Bu ayrıntılar Iamblichus'tan (MS 3.–4. yy.) gelir; yaklaşık 800 yıl sonrasının biyografisidir.
 - Adaya **sınama** uygulanır: yürüyüşü, gülüşü, oturup kalkışı, yüz hatları incelenir; geveze ve sabırsızlar elenir. **[?]** (Iamblichus; "fizyognomi" ayrıntısı geç bir anlatıdır.)
 - **Akousmatikoi** ("dinleyenler"): ilk aşama. Notlar 3–5 yıl mutlak sessizlik (*echemythia*) ve perde arkasından ders anlatır. **[?]** Diogenes Laertios beş yıl sessizlikten söz eder; "perde" ve "Pisagor'un görünmemesi" geç ve efsanevi bir ayrıntıdır.
-- **Mathematikoi** ("öğrenenler"): iç çember; geometri, sayı kuramı, müzik oranları (monokord), ruh göçü. **[?]** İki grup ayrımının Pisagor'un kendi döneminden mi sonradan mı çıktığı tartışmalıdır (Belirsiz).
+- **Mathematikoi** ("öğrenenler"): iç çember; geometri, sayı kuramı, müzik oranları (monokord), ruh göçü. **[?]** İki grup ayrımının Pisagor'un kendi döneminden mi sonradan mı çıktığı tartışmalıdır.
 
 **2. Felsefi temeller**
 - *"Sayılar evrenin özüdür."* **[K]** Aristoteles (Metafizik I.5) Pisagorcuların "şeylerin sayılar olduğunu veya sayılara öykündüğünü" söylediğini aktarır. Notlardaki "yaşayan arketipsel enerjiler" ifadesi ise **[Y]**'dir.
 - 1 Monad (köken), 2 Dyad (karşıtlık/kutupluluk), 3 Triad (başlangıç-orta-son), 4 Tetrad (kare, dört element). **[K/?]** Bu anlamlar sonraki Pisagorcu/Yeni-Platoncu aktarımlarda görülür; "adalet" gibi eşleştirmeler kaynağa göre değişir.
 - **Tetraktys** 1+2+3+4=10; üzerine ant içildiği anlatılır. **[?]** (Sonraki kaynaklar bir "Tetraktys yemini" aktarır; tarihselliği belirsizdir.)
 - **Kürelerin müziği** (*musica universalis*): gezegen mesafelerinin müzikal oranlara karşılık geldiği fikri. **[K]** Platon (Devlet X, Timaios) ve Aristoteles (*Gök Üzerine* II.9, eleştirel) tarafından anılır; fiziksel bir ses değil, **felsefi** bir fikirdir. "Astral dalgalanmaları tedavi eden simya aracı" **[Y]**.
-- **Metempsikoz** (ruh göçü), vejetaryenlik, bakla yasağı. **[K/?]** Ruh göçü ve bakla yasağı kaynaklarda anılır; hangi ilkenin ilk Pisagorculara ait olduğu ve bakla yasağının nedeni (Belirsiz). "Kan akıtılmaz" gibi genellemeler Porphyrios'tan gelen geç yorumdur.
+- **Metempsikoz** (ruh göçü), vejetaryenlik, bakla yasağı. **[K/?]** Ruh göçü ve bakla yasağı kaynaklarda anılır; hangi ilkenin ilk Pisagorculara ait olduğu ve bakla yasağının nedeni. "Kan akıtılmaz" gibi genellemeler Porphyrios'tan gelen geç yorumdur.
 
 **3. Yürüyüş çalışmaları**
 - **Sabah yalnızlık yürüyüşü**: gün doğmadan kalkış, kimseyle konuşmadan tapınak bahçesi/koru/akarsu kenarına çıkış, günün problemi üzerine sakin düşünme. **[?]** Iamblichus (*Pisagor Yaşamı*, bölüm 96–100 civarı) böyle bir günlük düzen anlatır.
@@ -32,7 +32,7 @@ Aşağıdaki özet, notlardaki bölümün sırasını izler; her ifade bu modül
 ## Okuma metni 2: antik kaynaklarda Pisagor (birincil kaynak karşılaştırması)
 
 - **Kimden geliyor?** Pisagor yazmadı. En eski tanıklıklar **Aristoteles** (MÖ 4. yy., Pisagorcular hakkındaki parçalar) ve Platon'un çevresidir; biyografik bütün anlatılar çok geç: **Diogenes Laertios** (MS 3. yy., Kitap VIII), **Porphyrios** (3. yy.), **Iamblichus** (3.–4. yy.). Üçü de Yeni-Platoncu bir süzgeçten geçer; Pisagor'u yer yer ilahi bir bilge olarak resmeder.
-- **Akousmata (sözlü kurallar)** — Iamblichus'un aktardığı kısa yasaklardan örnekler; anlamları **tartışmalıdır** (Belirsiz): *"Ateşi demirle karıştırma"*, *"Bir ölçek (choinix) üstüne oturma"*, *"Baklagillerden uzak dur"*. Eski yorumcular bunları simgesel (öfkeyi tahrik etme, tembelliğe karşı uyanık ol vb.) okur.
+- **Akousmata (sözlü kurallar)** — Iamblichus'un aktardığı kısa yasaklardan örnekler; anlamları **tartışmalıdır**: *"Ateşi demirle karıştırma"*, *"Bir ölçek (choinix) üstüne oturma"*, *"Baklagillerden uzak dur"*. Eski yorumcular bunları simgesel (öfkeyi tahrik etme, tembelliğe karşı uyanık ol vb.) okur.
 - **Aristoteles'in aktardığı "on karşıt":** Pisagorcular (veya Aristoteles'in "aynı okuldan bazıları" dediği grup) ilkeleri iki sütunda on çift olarak sıralar: **sınır–sınırsız, tek–çift, bir–çok, sağ–sol, erkek–dişi, durgun–hareketli, doğru–eğri, ışık–karanlık, iyi–kötü, kare–dikdörtgen.** Bu liste Pisagorcu düşüncenin en sağlam kaynaklı örneklerinden biridir.
 - **Müzik oranları:** oktav **2:1**, beşli **3:2**, dörtlü **4:3**, tam ses **9:8**. Bunlar gerçek akustik oranlardır (aynı gerilimdeki telin uzunluğu oranı). *Demirci çekiçleri hikâyesi* (çekiç ağırlıklarının oktav-beşli-dörtlü verdiği anlatısı) ise **fiziksel olarak yanlıştır**; ağırlık değil tel uzunluğu/gerilim işe yarar.
 - **Tetraktys yemini** (sonraki kaynaklarda): *"Ruhumuza tetraktysi veren, doğanın sürekli akan köklerini taşıyan hakkı için…"* — yaklaşık aktarımdır; tarihselliği belirsizdir.`,
@@ -180,7 +180,7 @@ Aynı yazar 1530'da *De incertitudine et vanitate scientiarum* ("Bilimlerin beli
 
 | Grimuar | Tahmini dönem / dil | Kısa tarihçe | Modern baskı |
 |---|---|---|---|
-| **Süleyman'ın Anahtarı** (*Clavicula Salomonis*) | 14.–15. yy. (İtalyanca/Latince el yazmaları; İbranice/Yunanca sürümler daha geç) | Süleyman'a atfedilir; tılsım, çember ve araç hazırlama bölümleri içerir. | **S. L. M. Mathers, 1889** — British Museum (bugünkü British Library) el yazmalarına dayanır; kullanılan tam nüsha listesi bu derste doğrulanmadı (Belirsiz) |
+| **Süleyman'ın Anahtarı** (*Clavicula Salomonis*) | 14.–15. yy. (İtalyanca/Latince el yazmaları; İbranice/Yunanca sürümler daha geç) | Süleyman'a atfedilir; tılsım, çember ve araç hazırlama bölümleri içerir. | **S. L. M. Mathers, 1889** — British Museum (bugünkü British Library) el yazmalarına dayanır; kullanılan tam nüsha listesi bu derste doğrulanmadı |
 | **Ars Goetia** (*Lemegeton*'un birinci kitabı) | 17. yy. el yazmaları (ör. Sloane 2731, 3825) | 72 ruh listesi; Johann Weyer'in *Pseudomonarchia Daemonum* (1577) listesinden türer (69 ruh). | **Mathers/Crowley, 1904** (*The Book of the Goetia of Solomon the King*) |
 | **Picatrix** (*Ghayat al-Hakim*) | 10.–11. yy. Arapça; Kral Alfonso X için 1256 civarı İspanyolca/Latince çeviri | Yıldız ve tılsım büyüsü; gezegen ruhları, imgeler ve tütsüler. Yazarın kimliği (Maslama el-Mecriti atfı) **tartışmalıdır**. | Pingree, 1986 (Latince eleştirel basım) |
 | **Enochian sistem** | 1581–1584, John Dee & Edward Kelley | "Melek dili" ve 19 çağrı; Dee'nin günlükleri **A True & Faithful Relation** adıyla 1659'da (Meric Casaubon) yayımlandı. | Çeşitli; Golden Dawn ve Crowley sonrası popülerleşti |
@@ -263,7 +263,7 @@ Küçük Pentagram Arınma Ritüeli (*Lesser Banishing Ritual of the Pentagram*)
 | 1938 | *The Sea Priestess* | Okült roman (kurgu) | Genel okur, kurgu |
 | 1949 | *The Cosmic Doctrine* | Kozmik sistem (ölümünden sonra yayımlandı) | İleri düzey okült öğrenciler |
 
-> Not: Yayın yıllarının bir kısmı (1926–1929, 1932, 1938, 1949) yaygın bibliyografyalardan aktarıldı; bu derste tek tek yayıncı sayfalarında doğrulanmadı (Belirsiz). Bu dersin başında doğrulanan tarihler: 1922, 1930 (*Psychic Self-Defence*) ve 1935 (*Mystical Qabalah*).
+> Not: Yayın yıllarının bir kısmı (1926–1929, 1932, 1938, 1949) yaygın bibliyografyalardan aktarıldı; bu derste tek tek yayıncı sayfalarında doğrulanmadı. Bu dersin başında doğrulanan tarihler: 1922, 1930 (*Psychic Self-Defence*) ve 1935 (*Mystical Qabalah*).
 
 **Okuma sırası önerisi:** Önce kısa ve eleştirel okumaya uygun bir metin (*Sane Occultism*), sonra sistematik uzun metin (*The Mystical Qabalah*).`,
     work: `## Çalışma (sayfa içi)

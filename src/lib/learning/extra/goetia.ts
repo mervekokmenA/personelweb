@@ -65,17 +65,17 @@ Yukarıdaki 5 kısmı kendi cümlelerinle bir tabloya yaz; her kısım için "ka
           minutes: 20,
           body: `## Kaynak sorunu
 
-Goetia'nın en belirgin kaynağı olarak **Johann Weyer**'in şeytan kataloğu *Pseudomonarchia Daemonum* (*De praestigiis daemonum* kitabına ek, 1577) (Belirsiz) gösterilir. Weyer katalogu, o dönemin büyü el yazmalarındaki isim listelerini derlemişti; amacı bunların **savunusu değil, eleştirisiydi**.
+Goetia'nın en belirgin kaynağı olarak **Johann Weyer**'in şeytan kataloğu *Pseudomonarchia Daemonum* (*De praestigiis daemonum* kitabına ek, 1577) gösterilir. Weyer katalogu, o dönemin büyü el yazmalarındaki isim listelerini derlemişti; amacı bunların **savunusu değil, eleştirisiydi**.
 
 ## Karşılaştırma (kaynaklarda geçen noktalar)
 
-- Goetia **72** ruh sayar; Weyer'in kataloğunda 69 ruh (bazı kaynaklara göre metinde 72 sayısı geçmesine rağmen) listelenir (Belirsiz).
+- Goetia **72** ruh sayar; Weyer'in kataloğunda 69 ruh (bazı kaynaklara göre metinde 72 sayısı geçmesine rağmen) listelenir.
 - **Vassago, Seere, Dantalion ve Andromalius** Goetia'ya sonradan eklenmiş kabul edilir.
 - Weyer'deki **Pruflas** Goetia'da yer almaz.
 - Sıralama farklıdır.
 
 ## Tarih belirsizliği
-Weyer katalogunun ilk basım yılı (1577 mi, 1583 mü) (Belirsiz) ve Weyer'in kaç ruh saydığı (Belirsiz) kaynaklar arasında **tutarsızdır**; bu derste kesin bir sayı iddia edilmez.
+Weyer katalogunun ilk basım yılı (1577 mi, 1583 mü) ve Weyer'in kaç ruh saydığı kaynaklar arasında **tutarsızdır**; bu derste kesin bir sayı iddia edilmez.
 
 ## Çalışma
 Dersteki Weyer–Goetia karşılaştırmasına (ruh sayısı, sıra, farklar) dayanarak iki katalog arasındaki farkı tabloya yaz.`,

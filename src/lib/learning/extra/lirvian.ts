@@ -76,7 +76,7 @@ Başlıkların her birine yukarıdaki üç etiketten birini yaz ve etiketini ver
 
 ## Kaynak eleştirisi
 - Pisagor'un kendisi **yazılı eser bırakmamıştır**; bilgiler **Platon, Aristoteles** ve çok daha geç **Iamblichus (3.–4. yy.), Porphyrios, Diogenes Laertios** üzerinden gelir. Bu biyografiler **efsane içerir** (Okültizm modülü 1. ünite).
-- **Akousmatikoi/mathematikoi** ayrımı Iamblichus'tan gelen bir geleneğe dayanır; **tarihçiler arasında tartışmalıdır** (Belirsiz).
+- **Akousmatikoi/mathematikoi** ayrımı Iamblichus'tan gelen bir geleneğe dayanır; **tarihçiler arasında tartışmalıdır**.
 - "**Biyoelektrik dengeleme**", "doğal **prana**" gibi ifadeler **antik kaynaklarda geçmez**; sonradan eklenmiş modern yorumlardır.
 - "Kürelerin müziği" Platon/Aristoteles geleneğinde bir **felsefi fikirdir**, fiziksel ses değildir.
 

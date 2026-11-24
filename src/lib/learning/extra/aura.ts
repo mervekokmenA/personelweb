@@ -102,7 +102,7 @@ Kendi hayatında "yorulduğun" üç durumu yaz; her biri için önce sıradan a�
 ## Tarihsel kayıt (internet kaynaklarına göre)
 - **Walter J. Kilner**, *The Human Atmosphere, or the Aura Made Visible by the Aid of Chemical Screens* (**1911**); revize baskı *The Human Aura* (**1920**).
 - Ekranlar **dicyanin** boyasını (alkolde çözülmüş) kullanan cam hücrelerdir; kitap bir "koyu ve bir açık ekran"dan söz eder; dicyaninin **gözler üzerinde zararlı etkisi** olabileceği not edilir.
-- Bir **ikincil özete** göre 1912 British Medical Journal incelemesi ve replikasyon girişimleri aurayı fiziksel bir olgu olarak desteklemedi; ekranlar buna rağmen 1970'lere kadar esoterik dergilerde satıldı. *(Bu ayrıntılar ikincil bir özetten; orijinal BMJ metni okunmadı (Belirsiz).)*
+- Bir **ikincil özete** göre 1912 British Medical Journal incelemesi ve replikasyon girişimleri aurayı fiziksel bir olgu olarak desteklemedi; ekranlar buna rağmen 1970'lere kadar esoterik dergilerde satıldı. *(Bu ayrıntılar ikincil bir özetten; orijinal BMJ metni okunmadı.)*
 
 ## Sonuç
 Kilner ekranlarının gösterdiği iddia edilen "aura", **bilimsel olarak doğrulanmış bir olgu değildir**; görsel/optik etkilerle (ardıl görüntü, kontrast, beklenti) açıklanması yaygın bir bilimsel yorumdur. Deney yapmayı düşünüyorsan: **boyalı ekranlar göze zararlı olabilir**, yapma.

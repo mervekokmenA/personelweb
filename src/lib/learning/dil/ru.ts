@@ -127,7 +127,7 @@ El yazısında bazı harfler farklı görünür; en çok karıştırılanlar: el
 
 ## Alıştırma
 Oku ve yaz: **день, мать, семья́, объект, вы, мы**.`,
-              verification: VERIF_GENEL + " El yazısı notu genel gözleme dayanır (Belirsiz).",
+              verification: VERIF_GENEL + " El yazısı notu genel gözleme dayanır.",
               tasks: ["Her gün 5 kelimeyi el yazısıyla ve basılı olarak yaz."],
             },
           ],
@@ -530,5 +530,5 @@ Bir bilgiyi unutmadan hemen önce tekrar edersen kalıcı belleğe daha kolay ye
 - **Rusça yazım kuralları (ы/и, ё noktaları) ve noktalama:** Kısaca değinildi; tam liste verilmedi.
 - **Okunuşların ses kaydı:** Tarayıcının sesli okuma özelliği kullanılır; bazı tarayıcılarda Rusça ses bulunmayabilir.
 - **Kartların anadili konuşan biri tarafından doğrulanması:** Yapılmadı; kartlar yapay zekâ ile hazırlandı ve frekans listeleriyle seçildi.
-- **El yazısı (cursive) örnekleri:** Genel gözleme dayalı kısa bilgi verildi (Belirsiz).`,
+- **El yazısı (cursive) örnekleri:** Genel gözleme dayalı kısa bilgi verildi.`,
 });

@@ -75,7 +75,7 @@ Kitap "mevcut bilimsel düşünceye göre" Ay'ın: iklimi ılıman tutması, Dü
 |---|---|
 | **Gelgitler** Ay (ve Güneş) çekimiyle oluşur | **Doğru**, iyi kanıtlanmış |
 | Bazı deniz canlılarının üremesinin Ay evresiyle senkronize olması | Bazı türler için **belgelenmiş** (ör. bazı mercanlar); genelleme yapılamaz |
-| Ay'ın "eksen eğikliğini dengelemesi" | Sıkça tekrarlanır; **ayrıntıları tartışmalı** (Belirsiz) (bu derste ayrıca doğrulanmadı) |
+| Ay'ın "eksen eğikliğini dengelemesi" | Sıkça tekrarlanır; **ayrıntıları tartışmalı** (bu derste ayrıca doğrulanmadı) |
 | "**Dolunayda insanlar daha dengesiz/kazaya eğilimli**" | **Bilimsel kanıt yok**: Rotton & Kelly (1985) meta-analizi (37 çalışma), Ay evrelerinin "delilik" göstergelerindeki değişimin **en fazla %1'ini** açıkladığını buldu; 2015 *Nursing Research* incelemesi de dolunayın hastane başvurularını etkilediğine kanıt bulmadı |
 | "**Tıbbi prosedürleri Ay evresine göre planlayın**" (6. bölüm: ameliyat için dolunaydan 3–5 gün önce/sonra gibi öneriler) | **Kanıta dayalı değil**; tıbbi karar için **hekime başvurun**, takvimi hekimin önerisine göre belirleyin |
 | **Ay evresi–ruh hali** anekdotları | **Doğrulama yanlılığı** (dolunayda yaşananları daha çok hatırlama) açıklayabilir |

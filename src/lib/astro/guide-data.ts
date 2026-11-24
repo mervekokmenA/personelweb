@@ -1,7 +1,7 @@
 /**
  * Astroloji hızlı rehberi: kullanıcının eklediği "anahtar kelimeler" özet görselinden aktarıldı.
  * Burç/gezegen/ev anahtar sözcükleri ve yönetim tablosu klasik (Batı) astroloji kaynaklarıyla uyumludur.
- * Stojanovic derece teorisi ve kritik dereceler görseldeki iddialardır, bağımsız olarak doğrulanamadı (Belirsiz).
+ * Stojanovic derece teorisi ve kritik dereceler görseldeki iddialardır, bağımsız olarak doğrulanamadı.
  */
 const T = "︎"; // metin biçimi (emoji değil)
 

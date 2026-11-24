@@ -106,7 +106,7 @@ Kendi "genel uygulama kuralların" için bir sayfalık taslak yaz; hangilerinin 
 Ritüel metinleri ve adımları verilmez. Orta Sütun ve Pentagram/Hexagram arınmasının tarihî kökenleri için Okültizm modülü 6. ünite (Altın Şafak) dersine bak.
 
 ## Çalışma
-Dersteki ritüel listesinde her ritüelin hangi **kaynak geleneğe** (Altın Şafak, Hermetik, Enochian vb.) ait olduğunu tabloda işaretle; belirsizleri "(Belirsiz)" yaz.`,
+Dersteki ritüel listesinde her ritüelin hangi **kaynak geleneğe** (Altın Şafak, Hermetik, Enochian vb.) ait olduğunu tabloda işaretle; belirsizleri "" yaz.`,
           verification: `Başlıklar PDF içindekilerinden. "Kökeni" sütunu genel bilgiyle yapılmış tahmini sınıflandırmadır; kitabın kendisinden doğrulanmadı.`,
         },
         {

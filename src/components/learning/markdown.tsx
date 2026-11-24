@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CodeBlock } from "./code-block";
 
 /** Güvenli, bağımlılıksız mini Markdown: başlık, liste, tablo, alıntı, kod bloğu, **kalın**, *italik*, `kod`, [bağlantı](url). */
 
@@ -53,7 +54,7 @@ export function Markdown({ source }: { source: string }) {
       i++;
       while (i < lines.length && !lines[i].startsWith("```")) code.push(lines[i++]);
       i++;
-      out.push(<pre key={k()} className="ag-pre"><code>{code.join("\n")}</code></pre>);
+      out.push(<CodeBlock key={k()} code={code.join("\n")} />);
       continue;
     }
     const h = /^(#{1,4})\s+(.*)$/.exec(line);

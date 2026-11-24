@@ -281,3 +281,13 @@ a:active {
 .moon-theme .card { background: rgba(31, 27, 59, 0.88); border-color: var(--card-border); backdrop-filter: blur(2px); }
 .moon-theme .ag-icon-btn { background: #2a2550; border-color: var(--card-border); color: var(--foreground); }
 .moon-theme .moon-silver { color: #d3d6d2; }
+
+/* Kod bloğu + kopyala düğmesi */
+.ag-codewrap { position: relative; }
+.ag-codewrap .ag-pre { padding-top: 2.4rem; }
+.ag-copy {
+  position: absolute; top: 0.5rem; right: 0.6rem; display: inline-flex; align-items: center; gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.12); color: #e8efe8; border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9999px; padding: 0.2rem 0.65rem; font-size: 0.72rem; cursor: pointer;
+}
+.ag-copy:hover { background: rgba(255, 255, 255, 0.22); }

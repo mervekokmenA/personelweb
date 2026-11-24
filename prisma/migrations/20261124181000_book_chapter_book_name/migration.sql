@@ -1,0 +1,1 @@
+ALTER TABLE "BookChapter" ADD COLUMN "book" TEXT NOT NULL DEFAULT '';

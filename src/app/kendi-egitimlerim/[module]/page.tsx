@@ -7,6 +7,7 @@ import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { Markdown } from "@/components/learning/markdown";
 import { getResolvedModule } from "@/lib/learning/resolve";
 import { getProgressMap, getQuizStats, moduleProgress, unitProgress } from "@/lib/learning/progress";
+import { bookAccessAllowed, countChapters } from "@/lib/learning/books";
 import { progressKey, getModule } from "@/lib/learning";
 import { topicOfModule, extraIdsForMain } from "@/lib/learning/extra/topics";
 import type { Resource } from "@/lib/learning/types";
@@ -51,6 +52,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
   const [m, progress, quizStats] = await Promise.all([getResolvedModule(moduleId), getProgressMap(), getQuizStats()]);
   if (!m) notFound();
   const p = moduleProgress(m, progress);
+  const bookChapters = bookAccessAllowed() ? await countChapters(m.id) : 0;
   let programNo = 0;
 
   return (
@@ -65,6 +67,12 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
           <div className="flex flex-wrap items-center gap-3">
             <Link href={`/dil/${m.id.replace("dil-", "")}`} className="ag-btn ag-btn-dark">Kartlara git (aralıklı tekrar)</Link>
             <span className="text-xs ag-muted">Kelimeler ve 100 temel ifade kartlarla çalışılır; dersler alfabe, okunuş ve gramer içindir.</span>
+          </div>
+        )}
+        {bookChapters > 0 && (
+          <div className="flex flex-wrap items-center gap-3">
+            <Link href={`/kendi-egitimlerim/${m.id}/kitap`} className="ag-btn ag-btn-dark"><BookOpen size={14} /> Kitabın tam metni ({bookChapters} bölüm)</Link>
+            <span className="text-xs ag-muted">Yüklediğin kitap(lar) burada bölüm bölüm okunur.</span>
           </div>
         )}
         {m.source && (

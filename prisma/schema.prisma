@@ -455,7 +455,8 @@ model StudyCardState {
 model BookChapter {
   id        String   @id @default(cuid())
   bookId    String
-  idx       Int // kitap içindeki sıra (0'dan)
+  book      String   @default("") // kitabın görünen adı (bir modülde birden çok kitap olabilir)
+  idx       Int // modül içindeki sıra (0'dan)
   title     String
   content   String
   chars     Int      @default(0)

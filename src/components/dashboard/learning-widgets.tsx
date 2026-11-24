@@ -98,6 +98,15 @@ export function LearningWidgets({ data }: { data: LearningWidgetData }) {
               <dt className="text-[11px] text-muted">ort. başarı</dt>
             </div>
           </dl>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-baseline justify-between text-xs">
+              <span className="font-medium">Haftalık hedef</span>
+              <span className="text-muted">{data.weekDone}/{data.weeklyGoal} parça · seri {data.streak} gün</span>
+            </div>
+            <div className="h-1.5 overflow-hidden rounded-full bg-black/10" role="progressbar" aria-valuenow={Math.min(100, Math.round((data.weekDone / data.weeklyGoal) * 100))} aria-valuemin={0} aria-valuemax={100} aria-label="Haftalık hedef">
+              <div className="h-full rounded-full" style={{ width: `${Math.min(100, Math.round((data.weekDone / data.weeklyGoal) * 100))}%`, background: "var(--accent-mint)" }} />
+            </div>
+          </div>
           <p className="mt-auto text-xs text-muted">
             Toplam: {data.totalDone}/{data.totalLessons} parça tamamlandı.
           </p>

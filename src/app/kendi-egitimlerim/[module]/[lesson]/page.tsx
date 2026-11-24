@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Pencil, ExternalLink, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Pencil, ExternalLink, ShieldCheck, Bookmark, BookmarkCheck } from "lucide-react";
 import { hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
@@ -10,7 +10,8 @@ import { getResolvedModule } from "@/lib/learning/resolve";
 import { getProgressMap } from "@/lib/learning/progress";
 import { findLesson, progressKey } from "@/lib/learning";
 import astrologyData from "@/data/learning/astrology-lessons.json";
-import { toggleProgress, saveLessonNote, completeAndNext } from "../../actions";
+import { toggleProgress, saveLessonNote, completeAndNext, toggleBookmark } from "../../actions";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,11 @@ export default async function LessonPage({ params }: { params: Promise<{ module:
   if (!hasDatabaseUrl) {
     return <div className="agro"><DbSetupNotice /></div>;
   }
-  const [m, progress] = await Promise.all([getResolvedModule(moduleId), getProgressMap()]);
+  const [m, progress, bookmark] = await Promise.all([
+    getResolvedModule(moduleId),
+    getProgressMap(),
+    prisma.learningEdit.findUnique({ where: { key: `bookmark:${moduleId}/${lessonId}` } }),
+  ]);
   if (!m) notFound();
   const found = findLesson(m, lessonId);
   if (!found) notFound();
@@ -35,7 +40,14 @@ export default async function LessonPage({ params }: { params: Promise<{ module:
     <div className="agro flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-2">
         <Link href={base} className="ag-btn ag-btn-outline"><ArrowLeft size={14} /> {m.title}</Link>
-        <Link href={`${base}/${l.id}/duzenle`} className="ag-btn ag-btn-soft ml-auto"><Pencil size={14} /> Düzenle</Link>
+        <form action={toggleBookmark} className="ml-auto">
+          <input type="hidden" name="moduleId" value={m.id} />
+          <input type="hidden" name="lessonId" value={l.id} />
+          <button className="ag-btn ag-btn-soft" aria-pressed={!!bookmark}>
+            {bookmark ? <BookmarkCheck size={14} /> : <Bookmark size={14} />} {bookmark ? "Yer imi kaldır" : "Yer imi"}
+          </button>
+        </form>
+        <Link href={`${base}/${l.id}/duzenle`} className="ag-btn ag-btn-soft"><Pencil size={14} /> Düzenle</Link>
       </div>
 
       <header className="flex flex-col gap-3">

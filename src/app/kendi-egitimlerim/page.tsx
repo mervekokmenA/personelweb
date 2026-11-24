@@ -1,10 +1,13 @@
 import Link from "next/link";
-import { Code2, Eye, Moon, Hammer, BookOpen, ArrowUpRight, Library } from "lucide-react";
+import { Code2, Eye, Moon, Hammer, BookOpen, ArrowUpRight, Library, Search, StickyNote } from "lucide-react";
 import { hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { getAllResolvedModules } from "@/lib/learning/resolve";
 import { getProgressMap, getQuizStats, moduleProgress } from "@/lib/learning/progress";
 import { EXTRA_TOPICS } from "@/lib/learning/extra/topics";
+import { getLearningStats } from "@/lib/learning/stats";
+import { findLesson } from "@/lib/learning";
+import { TempoPanel, type BookmarkItem, type WeakQuiz } from "@/components/learning/tempo-panel";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +24,20 @@ export default async function KendiEgitimlerimPage() {
   }
   const [modules, progress, quizStats] = await Promise.all([getAllResolvedModules(), getProgressMap(), getQuizStats()]);
 
+  const stats = await getLearningStats(modules, progress);
+  const byModule = new Map(modules.map((m) => [m.id, m]));
+  const bookmarks: BookmarkItem[] = stats.bookmarks.flatMap((b) => {
+    const m = byModule.get(b.moduleId);
+    const l = m && findLesson(m, b.lessonId);
+    return m && l ? [{ moduleId: m.id, lessonId: b.lessonId, lessonTitle: l.lesson.title, moduleTitle: m.title }] : [];
+  });
+  const weak: WeakQuiz[] = modules.flatMap((m) =>
+    m.tracks.flatMap((t) => t.units.flatMap((u) => {
+      const st = quizStats.get(`${m.id}/${u.id}`);
+      return st && st.best < 70 && u.quiz?.length ? [{ moduleId: m.id, unitId: u.id, unitTitle: u.title.replace(/^\d+\.\s*/, ""), moduleTitle: m.title, best: st.best }] : [];
+    }))
+  ).sort((a, b) => a.best - b.best);
+
   const extraModules = modules.filter((m) => m.group === "ek");
   const dilModules = modules.filter((m) => m.group === "dil");
   const extraStats = extraModules.map((m) => moduleProgress(m, progress));
@@ -36,7 +53,17 @@ export default async function KendiEgitimlerimPage() {
           Her modül programlara (üniteler), parçalara (dersler) ve konu denemelerine ayrılır. Dersleri tamamladıkça ilerlemen burada görünür;
           içeriklerde eksik gördüğün yeri düzenleyebilir, kendi parçanı ekleyebilirsin.
         </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <form action="/kendi-egitimlerim/ara" className="flex min-w-[16rem] flex-1 items-center gap-2 sm:max-w-md">
+            <Search size={15} className="ag-muted" aria-hidden />
+            <input name="q" type="search" placeholder="Derslerde ve notlarda ara…" aria-label="Eğitimlerde ara" className="ag-input flex-1" />
+            <button className="ag-btn ag-btn-dark">Ara</button>
+          </form>
+          <Link href="/kendi-egitimlerim/notlar" className="ag-btn ag-btn-outline"><StickyNote size={14} /> Notlarım</Link>
+        </div>
       </header>
+
+      <TempoPanel stats={stats} bookmarks={bookmarks} weak={weak} />
 
       <div className="grid gap-4 md:grid-cols-2">
         {modules.filter((m) => (m.group ?? "ana") === "ana").map((m) => {

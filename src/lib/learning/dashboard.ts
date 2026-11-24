@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { getAllResolvedModules } from "./resolve";
 import { getProgressMap, moduleProgress } from "./progress";
 import { moduleLessons, progressKey } from "./index";
+import { getLearningStats } from "./stats";
 
 export interface LearningWidgetData {
   /** Yalnızca başlanmış (en az bir parçası tamamlanmış) eğitimler; en son çalışılan başta. */
@@ -14,6 +15,9 @@ export interface LearningWidgetData {
   avgQuizPct: number | null;
   totalDone: number;
   totalLessons: number;
+  streak: number;
+  weekDone: number;
+  weeklyGoal: number;
 }
 
 export async function getLearningWidgetData(): Promise<LearningWidgetData> {
@@ -74,7 +78,12 @@ export async function getLearningWidgetData(): Promise<LearningWidgetData> {
     ? Math.round((recentQuizzes.reduce((s, q) => s + q.score / q.total, 0) / recentQuizzes.length) * 100)
     : null;
 
+  const stats = await getLearningStats(allModules, progress);
+
   return {
+    streak: stats.streak,
+    weekDone: stats.weekDone,
+    weeklyGoal: stats.weeklyGoal,
     modules: summaries,
     notStarted,
     next,

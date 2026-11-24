@@ -212,3 +212,29 @@ export async function recordQuizAttempt(unitKey: string, score: number, total: n
   await prisma.quizAttempt.create({ data: { unitKey, score, total } });
   revalidatePath(BASE, "layout");
 }
+
+/** Haftalık hedef (hafta başına tamamlanacak parça sayısı). */
+export async function saveWeeklyGoal(formData: FormData) {
+  const goal = parseInt(str(formData, "goal"), 10);
+  if (!Number.isInteger(goal) || goal < 1 || goal > 100) return;
+  await prisma.learningEdit.upsert({
+    where: { key: "settings:weeklyGoal" },
+    update: { data: { goal } },
+    create: { key: "settings:weeklyGoal", data: { goal } },
+  });
+  revalidatePath("/");
+  revalidatePath(BASE);
+}
+
+/** Dersi yer imlerine ekler / çıkarır. */
+export async function toggleBookmark(formData: FormData) {
+  const moduleId = str(formData, "moduleId");
+  const lessonId = str(formData, "lessonId");
+  assertModule(moduleId);
+  if (!/^[A-Za-z0-9-]+$/.test(lessonId)) return;
+  const key = `bookmark:${moduleId}/${lessonId}`;
+  const existing = await prisma.learningEdit.findUnique({ where: { key } });
+  if (existing) await prisma.learningEdit.delete({ where: { key } });
+  else await prisma.learningEdit.create({ data: { key, data: {} } });
+  revalidatePath(BASE, "layout");
+}

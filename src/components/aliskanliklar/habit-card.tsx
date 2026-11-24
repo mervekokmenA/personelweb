@@ -2,7 +2,8 @@ import { toggleHabitDay, deleteHabit, toggleHabitActive } from "@/app/aliskanlik
 import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { dateKey, formatHabitFrequency, type HabitFrequency, type HabitPeriod, type HabitStreaks } from "@/lib/habit-grid";
-import { Flame } from "lucide-react";
+import Link from "next/link";
+import { Flame, History } from "lucide-react";
 
 const PERIOD_UNIT: Record<HabitFrequency, string> = {
   DAILY: "gün",
@@ -22,6 +23,7 @@ interface HabitCardProps {
   periods: HabitPeriod[];
   completions: Map<string, boolean>;
   streaks: HabitStreaks;
+  hiddenBefore?: number;
 }
 
 export function HabitCard({
@@ -35,8 +37,10 @@ export function HabitCard({
   periods,
   completions,
   streaks,
+  hiddenBefore = 0,
 }: HabitCardProps) {
-  const doneCount = periods.filter((p) => completions.get(dateKey(p.start))).length;
+  const past = periods.filter((p) => !p.future);
+  const doneCount = past.filter((p) => completions.get(dateKey(p.start))).length;
 
   return (
     <div className="card p-4">
@@ -60,8 +64,11 @@ export function HabitCard({
             </span>
           )}
           <span className="text-xs text-muted">
-            {doneCount}/{periods.length}
+            {doneCount}/{past.length}
           </span>
+          <Link href={`/aliskanliklar/${id}`} className="flex items-center gap-1 rounded-lg border border-card-border px-2 py-1 text-xs text-muted hover:text-foreground">
+            <History size={12} /> Tüm geçmiş
+          </Link>
           <form action={toggleHabitActive}>
             <input type="hidden" name="id" value={id} />
             <button className="rounded-lg border border-card-border px-2 py-1 text-xs text-muted">
@@ -72,12 +79,17 @@ export function HabitCard({
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap items-end gap-1.5">
+        {hiddenBefore > 0 && (
+          <Link href={`/aliskanliklar/${id}`} className="mb-0.5 self-end rounded-md border border-dashed border-card-border px-2 py-1 text-[11px] text-muted hover:text-foreground" title="Daha eski tekrarları gör">
+            +{hiddenBefore} önceki
+          </Link>
+        )}
         {periods.map((p) => {
           const key = dateKey(p.start);
           return (
-            <div key={key} className="flex flex-col items-center gap-1" title={p.title}>
-              <span className="text-[10px] text-muted">{p.label}</span>
+            <div key={key} className={`flex flex-col items-center gap-1 ${p.future ? "opacity-50" : ""}`} title={`${p.title}${p.future ? " (yaklaşan)" : p.current ? " (şu an)" : ""}`}>
+              <span className={`text-[10px] ${p.current ? "font-semibold text-foreground underline" : "text-muted"}`}>{p.label}</span>
               <AutoSubmitCheckbox
                 action={toggleHabitDay}
                 hidden={{ habitId: id, date: key }}

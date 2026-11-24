@@ -9,6 +9,10 @@ export interface HabitPeriod {
   label: string;
   /** Hover/başlık için tam açıklama (örn. "20 - 26 Temmuz") */
   title: string;
+  /** Dönem henüz başlamadı (bugünden sonra) */
+  future?: boolean;
+  /** Bugün bu dönemin içinde */
+  current?: boolean;
 }
 
 /** CUSTOM sıklık için kaç günde bir tekrar edileceği (geçersizse 1 güne düşer). */
@@ -103,6 +107,59 @@ export function getHabitPeriods(habit: {
   return Array.from({ length: current - from + 1 }, (_, i) => build(from + i));
 }
 
+/** Süresiz alışkanlıklarda, bugünün ötesinde kaç tekrar önceden gösterilsin. */
+const UPCOMING: Record<HabitFrequency, number> = { DAILY: 3, WEEKLY: 2, MONTHLY: 2, CUSTOM: 3 };
+
+export interface HabitView {
+  periods: HabitPeriod[];
+  /** Pencerenin dışında kalan (gösterilmeyen) eski tekrar sayısı */
+  hiddenBefore: number;
+  /** Başlangıçtan bugüne (bugün dahil) geçen toplam tekrar sayısı */
+  elapsed: number;
+}
+
+/**
+ * Ekranda gösterilecek tekrarlar: süreli programda hepsi; süresizde son pencere + önümüzdeki birkaç tekrar.
+ * `all: true` ise süresizde de başlangıçtan itibaren tüm geçmiş (+ önümüzdeki tekrarlar) döner.
+ * Gelecek tekrarlar `future`, bugünü kapsayan tekrar `current` olarak işaretlenir.
+ */
+export function getHabitView(
+  habit: {
+    frequency: HabitFrequency;
+    indefinite: boolean;
+    totalPeriods: number | null;
+    startDate: Date;
+    customIntervalDays?: number | null;
+  },
+  opts: { all?: boolean } = {}
+): HabitView {
+  const start = dayKey(habit.startDate);
+  const today = todayKey();
+  const next = (i: number) => addPeriod(start, habit.frequency, i, habit.customIntervalDays);
+  const build = (index: number): HabitPeriod => {
+    const periodStart = next(index);
+    const nextStart = next(index + 1);
+    return {
+      start: periodStart,
+      label: periodLabel(periodStart, habit.frequency, index),
+      title: periodRangeTitle(periodStart, habit.frequency, habit.customIntervalDays),
+      future: periodStart > today,
+      current: periodStart <= today && nextStart > today,
+    };
+  };
+
+  let current = 0;
+  while (next(current + 1) <= today) current++;
+
+  if (!habit.indefinite && habit.totalPeriods && habit.totalPeriods > 0) {
+    const n = habit.totalPeriods;
+    return { periods: Array.from({ length: n }, (_, i) => build(i)), hiddenBefore: 0, elapsed: Math.min(n, current + 1) };
+  }
+  const from = opts.all ? 0 : Math.max(0, current - WINDOW_SIZE[habit.frequency] + 1);
+  const to = current + UPCOMING[habit.frequency];
+  return { periods: Array.from({ length: to - from + 1 }, (_, i) => build(from + i)), hiddenBefore: from, elapsed: current + 1 };
+}
+
 export function dateKey(d: Date): string {
   return toDateInputValue(d);
 }
@@ -119,7 +176,9 @@ export interface HabitStreaks {
  * (örn. son 30 gün) olduğundan, "en uzun seri" alışkanlığın tüm geçmişini
  * değil sadece bu pencereyi kapsar.
  */
-export function computeStreaks(periods: HabitPeriod[], completions: Map<string, boolean>): HabitStreaks {
+export function computeStreaks(allPeriods: HabitPeriod[], completions: Map<string, boolean>): HabitStreaks {
+  // Henüz başlamamış tekrarlar seriyi bozmaz / sayılmaz
+  const periods = allPeriods.filter((p) => !p.future);
   let longest = 0;
   let running = 0;
   for (const p of periods) {

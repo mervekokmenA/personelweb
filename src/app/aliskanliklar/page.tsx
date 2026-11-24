@@ -2,7 +2,7 @@ import { prisma, hasDatabaseUrl } from "@/lib/prisma";
 import { DbSetupNotice } from "@/components/ui/db-setup-notice";
 import { addHabit } from "./actions";
 import { HabitCard } from "@/components/aliskanliklar/habit-card";
-import { getHabitPeriods, dateKey, computeStreaks } from "@/lib/habit-grid";
+import { getHabitView, dateKey, computeStreaks } from "@/lib/habit-grid";
 
 export const dynamic = "force-dynamic";
 
@@ -20,14 +20,14 @@ export default async function AliskanliklarPage() {
 
   const habitCards = await Promise.all(
     habits.map(async (h) => {
-      const periods = getHabitPeriods(h);
+      const { periods, hiddenBefore } = getHabitView(h);
       const completions = periods.length
         ? await prisma.habitCompletion.findMany({
             where: { habitId: h.id, date: { in: periods.map((p) => p.start) } },
           })
         : [];
       const map = new Map(completions.map((c) => [dateKey(c.date), c.done]));
-      return { habit: h, periods, map };
+      return { habit: h, periods, map, hiddenBefore };
     })
   );
 
@@ -94,7 +94,7 @@ export default async function AliskanliklarPage() {
       </section>
 
       <div className="flex flex-col gap-4">
-        {habitCards.map(({ habit, periods, map }) => (
+        {habitCards.map(({ habit, periods, map, hiddenBefore }) => (
           <HabitCard
             key={habit.id}
             id={habit.id}
@@ -107,6 +107,7 @@ export default async function AliskanliklarPage() {
             periods={periods}
             completions={map}
             streaks={computeStreaks(periods, map)}
+            hiddenBefore={hiddenBefore}
           />
         ))}
         {habitCards.length === 0 && (

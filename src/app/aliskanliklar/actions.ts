@@ -47,7 +47,8 @@ export async function toggleHabitDay(formData: FormData) {
     update: { done: !(existing?.done ?? false) },
     create: { habitId, date: dKey, done: true },
   });
-  revalidatePath("/aliskanliklar");
+  revalidatePath("/aliskanliklar", "layout");
+  revalidatePath("/");
 }
 
 export async function deleteHabit(formData: FormData) {

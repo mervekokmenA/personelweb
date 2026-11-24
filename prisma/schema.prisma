@@ -437,3 +437,38 @@ model QuizAttempt {
 
   @@index([unitKey])
 }
+
+// ---------------------------------------------------------------------------
+// YABANCI DİL: aralıklı tekrar (SRS) durumu
+// Kartların içeriği kodda (src/lib/lang/cards); burada yalnızca senin
+// ilerlemen tutulur. Bir kartın satırı, ilk kez gösterildiğinde oluşur.
+// ---------------------------------------------------------------------------
+model LangCardState {
+  id           String    @id @default(cuid())
+  cardId       String    @unique // örn. "ru-3f9a1c"
+  lang         String // "en" | "ru" | "he"
+  ease         Float     @default(2.5)
+  intervalDays Int       @default(0)
+  reps         Int       @default(0)
+  lapses       Int       @default(0)
+  dueAt        DateTime
+  lastReviewAt DateTime?
+  suspended    Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([lang, dueAt])
+}
+
+// Her tekrarın kaydı (istatistik ve "bugün kaç kart" için)
+model LangReviewLog {
+  id           String   @id @default(cuid())
+  cardId       String
+  lang         String
+  grade        Int // 0 Tekrar, 1 Zor, 2 İyi, 3 Kolay
+  prevInterval Int
+  newInterval  Int
+  at           DateTime @default(now())
+
+  @@index([lang, at])
+}

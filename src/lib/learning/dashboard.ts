@@ -15,13 +15,15 @@ export interface LearningWidgetData {
 
 export async function getLearningWidgetData(): Promise<LearningWidgetData> {
   const weekAgo = new Date(Date.now() - 7 * 86400000);
-  const [modules, progress, recentDone, recentQuizzes] = await Promise.all([
+  const [allModules, progress, recentDone, recentQuizzes] = await Promise.all([
     getAllResolvedModules(),
     getProgressMap(),
     prisma.learningProgress.findMany({ where: { done: true, doneAt: { gte: weekAgo } }, select: { key: true, doneAt: true } }),
     prisma.quizAttempt.findMany({ where: { createdAt: { gte: weekAgo } } }),
   ]);
 
+  // Yabancı dil modülleri kendi widget'ında (kartlar) gösterilir
+  const modules = allModules.filter((m) => m.group !== "dil");
   const summaries = modules.map((m) => {
     const p = moduleProgress(m, progress);
     return { id: m.id, title: m.title, pct: p.pct, done: p.done, total: p.total, group: (m.group ?? "ana") as "ana" | "ek" };

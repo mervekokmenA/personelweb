@@ -74,7 +74,7 @@ export interface LearningModule {
   description: string;
   icon: "code" | "eye" | "moon" | "hammer" | "book";
   /** "ana": dört ana modül, "ek": yüklenen bir kitap/kaynak için ek iç modül. */
-  group?: "ana" | "ek";
+  group?: "ana" | "ek" | "dil";
   /** Ek modüllerde: kaynak kitabın bilgisi (dosya adı, dil, sayfa, ne kadarının okunduğu). */
   source?: { file: string; author: string; language: string; pages?: number; readNote: string };
   tracks: Track[];

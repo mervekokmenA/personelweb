@@ -22,6 +22,7 @@ export default async function KendiEgitimlerimPage() {
   const [modules, progress, quizStats] = await Promise.all([getAllResolvedModules(), getProgressMap(), getQuizStats()]);
 
   const extraModules = modules.filter((m) => m.group === "ek");
+  const dilModules = modules.filter((m) => m.group === "dil");
   const extraStats = extraModules.map((m) => moduleProgress(m, progress));
   const extraDone = extraStats.reduce((s, p) => s + p.done, 0);
   const extraTotal = extraStats.reduce((s, p) => s + p.total, 0);
@@ -38,7 +39,7 @@ export default async function KendiEgitimlerimPage() {
       </header>
 
       <div className="grid gap-4 md:grid-cols-2">
-        {modules.filter((m) => m.group !== "ek").map((m) => {
+        {modules.filter((m) => (m.group ?? "ana") === "ana").map((m) => {
           const Icon = ICONS[m.icon];
           const p = moduleProgress(m, progress);
           const units = m.tracks.flatMap((t) => t.units);
@@ -66,6 +67,32 @@ export default async function KendiEgitimlerimPage() {
           );
         })}
       </div>
+
+      {dilModules.length > 0 && (
+        <section id="yabanci-dil" className="flex flex-col gap-3">
+          <h2 className="text-lg font-medium">Yabancı Dil — alfabe, okunuş ve gramer dersleri</h2>
+          <p className="max-w-2xl text-sm ag-muted">
+            Kelime ve ifade kartları <Link href="/dil" className="underline">Yabancı Dil</Link> sayfasındadır; burada dillerin alfabe, okunuş ve gramer dersleri bulunur.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {dilModules.map((m) => {
+              const p = moduleProgress(m, progress);
+              return (
+                <Link key={m.id} href={`/kendi-egitimlerim/${m.id}`} className="ag-stat group min-h-[8rem] hover:bg-white">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="text-base font-medium leading-snug">{m.title}</h3>
+                    <span className="ag-icon-btn shrink-0 opacity-70 group-hover:opacity-100"><ArrowUpRight size={14} /></span>
+                  </div>
+                  <div className="mt-auto flex flex-col gap-1.5">
+                    <div className="ag-progress"><span style={{ width: `${p.pct}%` }} /></div>
+                    <span className="text-xs ag-muted">%{p.pct} · {p.done}/{p.total} parça</span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {extraModules.length > 0 && (
         <section id="ek-moduller" className="flex flex-col gap-4">

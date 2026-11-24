@@ -10,6 +10,8 @@ import { ReadingDebtCard } from "@/components/dashboard/reading-debt-card";
 import { MoonWeekCard } from "@/components/dashboard/moon-week-card";
 import { LearningWidgets } from "@/components/dashboard/learning-widgets";
 import { getLearningWidgetData } from "@/lib/learning/dashboard";
+import { LangWidget } from "@/components/dashboard/lang-widget";
+import { getLangWidgetData } from "@/lib/lang/db";
 import { DashboardCard } from "@/components/dashboard/dashboard-card";
 import { DailyTrendChart } from "@/components/dashboard/daily-trend-chart";
 import { HabitGoalChart, type HabitGoalDatum } from "@/components/dashboard/habit-goal-chart";
@@ -68,6 +70,7 @@ export default async function DashboardPage() {
 
   // Eğitim tabloları yoksa/okunamazsa ana sayfa yine de açılsın.
   const learningData = await getLearningWidgetData().catch(() => null);
+  const langData = await getLangWidgetData().catch(() => null);
 
   const countMap = Object.fromEntries(statusCounts.map((s) => [s.status, s._count]));
   const contentTotal = statusCounts.reduce((sum, s) => sum + s._count, 0);
@@ -165,6 +168,7 @@ export default async function DashboardPage() {
       <MoonWeekCard today={today} />
 
       {learningData && <LearningWidgets data={learningData} />}
+      {langData && <LangWidget stats={langData.stats} reviewedToday={langData.reviewedToday} />}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <DashboardCard href="/gunluk" icon={CalendarDays} title="Günlük Program" accent="var(--accent-mint)">

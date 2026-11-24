@@ -61,6 +61,12 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
         <h1 className="ag-title">{m.title}</h1>
         <p className="max-w-3xl text-sm ag-muted">{m.description}</p>
         {m.disclaimer && <p className="ag-quote-box max-w-3xl text-xs ag-muted">{m.disclaimer}</p>}
+        {m.group === "dil" && (
+          <div className="flex flex-wrap items-center gap-3">
+            <Link href={`/dil/${m.id.replace("dil-", "")}`} className="ag-btn ag-btn-dark">Kartlara git (aralıklı tekrar)</Link>
+            <span className="text-xs ag-muted">Kelimeler ve 100 temel ifade kartlarla çalışılır; dersler alfabe, okunuş ve gramer içindir.</span>
+          </div>
+        )}
         {m.source && (
           <div className="ag-quote-box max-w-3xl text-sm">
             <p><strong>Ek modül · kaynak kitap:</strong> {m.source.author} — <em>{m.source.file}</em> ({m.source.language}{m.source.pages ? `, ${m.source.pages} sayfa` : ""})</p>

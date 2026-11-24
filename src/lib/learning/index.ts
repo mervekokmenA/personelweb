@@ -9,6 +9,7 @@ import { occultContent } from "./content/occult";
 import { astrologyContent } from "./content/astrology";
 import { craftsContent } from "./content/crafts";
 import { EXTRA_MODULES } from "./extra";
+import { DIL_MODULES } from "./dil";
 
 export * from "./types";
 
@@ -33,6 +34,7 @@ export const MODULES: LearningModule[] = [
   withContent(astrologyModule, astrologyContent),
   withContent(craftsModule, craftsContent),
   ...EXTRA_MODULES,
+  ...DIL_MODULES,
 ];
 
 export function getModule(id: string): LearningModule | undefined {

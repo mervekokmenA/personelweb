@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { ListChecks, ArrowRight } from "lucide-react";
-import { AutoSubmitCheckbox } from "@/components/ui/auto-submit-checkbox";
-import { toggleRoutineCheck } from "@/app/rutinim/actions";
 
 /** Ana sayfa: günlük rutin kartı (kitap okuma borcunun yanında). */
-export function RoutineCard({ items }: { items: { id: string; text: string; done: boolean }[] }) {
-  const done = items.filter((i) => i.done).length;
+export function RoutineCard({ items }: { items: { id: string; text: string }[] }) {
   return (
     <section className="card flex h-full flex-col gap-3 p-5" aria-label="Rutinim">
       <div className="flex items-center justify-between">
@@ -19,21 +16,14 @@ export function RoutineCard({ items }: { items: { id: string; text: string; done
       {items.length === 0 ? (
         <p className="text-sm text-muted">Henüz rutin maddesi yok. &quot;Düzenle&quot; ile ekleyebilirsin.</p>
       ) : (
-        <>
-          <ul className="flex flex-col gap-2.5">
-            {items.map((i) => (
-              <li key={i.id} className="text-sm">
-                <AutoSubmitCheckbox
-                  action={toggleRoutineCheck}
-                  hidden={{ id: i.id }}
-                  checked={i.done}
-                  label={<span className={i.done ? "line-through opacity-60" : ""}>{i.text}</span>}
-                />
-              </li>
-            ))}
-          </ul>
-          <p className="mt-auto text-xs text-muted">Bugün {done}/{items.length} tamamlandı.</p>
-        </>
+        <ul className="flex flex-col gap-2.5">
+          {items.map((i) => (
+            <li key={i.id} className="flex gap-2 text-sm">
+              <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-accent-lilac" />
+              <span>{i.text}</span>
+            </li>
+          ))}
+        </ul>
       )}
       <Link href="/rutinim" className="text-xs text-muted underline">Hedeflerim ve hayallerim</Link>
     </section>

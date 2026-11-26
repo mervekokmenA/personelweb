@@ -3,11 +3,16 @@ import { qz } from "../helpers";
 import { reactBodiesA } from "./react-a";
 import { reactBodiesB } from "./react-b";
 import { reactAtolyeBodies, reactAtolyeQuizzes } from "./react-atolye";
+import { reactFeBodiesA } from "./react-fe-a";
+import { reactFeBodiesB } from "./react-fe-b";
+import { reactNextBodies } from "./react-next";
+import { reactFeQuizzes } from "./react-fe-quiz";
 
 export const reactContent: ModuleContent = {
-  bodies: { ...reactBodiesA, ...reactBodiesB, ...reactAtolyeBodies },
+  bodies: { ...reactBodiesA, ...reactBodiesB, ...reactAtolyeBodies, ...reactFeBodiesA, ...reactFeBodiesB, ...reactNextBodies },
   quizzes: {
     ...reactAtolyeQuizzes,
+    ...reactFeQuizzes,
     u1: [
       qz("Bir form alanını ekran okuyucu ve tıklama için doğru bağlamanın yolu hangisidir?", ["<label for=\"id\"> ile input id'sini eşleştirmek", "Yanına bir <div> koymak", "placeholder yazmak yeterlidir", "title özniteliği tek başına yeterlidir"], 0, "label–input bağlantısı hem erişilebilirlik hem tıklama alanı sağlar; placeholder label'ın yerini tutmaz."),
       qz("Hangisi semantik bir sayfa iskeletidir?", ["header, nav, main, footer", "div, div, div, div", "span, span, b, i", "table, tr, td"], 0),

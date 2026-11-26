@@ -1,10 +1,12 @@
 import type { LearningModule, Lesson, Track, Unit } from "./types";
 import type { ModuleContent } from "./content/types";
 import { reactModule } from "./react";
+import { muhendisModule } from "./muhendis";
 import { occultModule } from "./occult";
 import { astrologyModule } from "./astrology";
 import { craftsModule } from "./crafts";
 import { reactContent } from "./content/react";
+import { muhendisContent } from "./content/muhendis";
 import { occultContent } from "./content/occult";
 import { astrologyContent } from "./content/astrology";
 import { craftsContent } from "./content/crafts";
@@ -30,6 +32,7 @@ function withContent(m: LearningModule, c: ModuleContent): LearningModule {
 
 export const MODULES: LearningModule[] = [
   withContent(reactModule, reactContent),
+  withContent(muhendisModule, muhendisContent),
   withContent(occultModule, occultContent),
   withContent(astrologyModule, astrologyContent),
   withContent(craftsModule, craftsContent),

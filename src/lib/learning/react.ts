@@ -1,5 +1,7 @@
 import type { LearningModule } from "./types";
 import { lesson, web, book, video, tool, own } from "./helpers";
+import { reactFrontendTracks } from "./react-fe";
+import { BOEN } from "./boen";
 
 const reactDocs = web("React Resmi Dokümantasyon (Learn)", "https://react.dev/learn", "Hook'lar, durum yönetimi, efektler; resmi ve güncel.");
 const reactRef = web("React API Referansı", "https://react.dev/reference/react");
@@ -37,7 +39,7 @@ export const reactModule: LearningModule = {
   title: "React ve Arka Plan",
   tagline: "Web temellerinden full-stack üretime — 2026 ekosistemi",
   description:
-    "HTML/CSS/JavaScript temelinden başlayıp React 19, TypeScript, Node.js/SQL arka plan, güvenlik, test ve yayınlamaya uzanan; her aşamada gerçek proje üreten kapsamlı müfredat. Yüklediğin 'Enterprise React 19 + Vite' rehberindeki 84 saatlik ACME MVP planı bu müfredatın kurumsal projesi olarak yer alıyor.",
+    "HTML/CSS/JavaScript temelinden başlayıp React 19, TypeScript, Node.js/SQL arka plan, güvenlik, test ve yayınlamaya uzanan; her aşamada gerçek proje üreten kapsamlı müfredat. Yüklediğin 'Enterprise React 19 + Vite' rehberindeki 84 saatlik ACME MVP planı bu müfredatın kurumsal projesi olarak yer alıyor. BT Akademi'nin Front-End (Web Arayüz) Mühendisi programının konuları \"Front-End Mühendisliği\" izinde, nihai hedef yazılım mühendisliği olduğu için Next.js 16 ayrıntıları \"Next.js Uzmanlığı\" izinde işlendi.",
   icon: "code",
   competencies: [
     "Sıfırdan bir React 19 + TypeScript uygulamasını mimarisini kurarak (feature-driven yapı) ayağa kaldırabilirim.",
@@ -50,6 +52,8 @@ export const reactModule: LearningModule = {
     "Git akışı, kod incelemesi (PR) ve sürümleme konusunda ekip içinde çalışabilirim.",
     "Uygulamayı Vercel/Docker üzerinde yayınlar, hata izleme ve günlükleme kurarım.",
     "Başkasının kodunu okuyup mimari kararlarını gerekçeleriyle değerlendirebilir (ADR yazabilir) ve teknik borcu yönetebilirim.",
+    "React, Vue ve Angular'ın kavramlarını eşleştirebilir; derleme araçları (npm, Vite/Webpack, Babel/SWC), CSS mimarisi, GraphQL/Firebase, Jest/Cypress ve PWA/SSR konularında karar verebilirim.",
+    "Next.js 16 App Router'ı (Server/Client Components, önbellek, Server Actions, proxy, kimlik doğrulama, hata yönetimi, yayın) üretim kalitesinde kullanabilirim.",
   ],
   tracks: [
     {
@@ -64,15 +68,15 @@ export const reactModule: LearningModule = {
             lesson("html-semantik", "Semantik HTML ve formlar", "header/nav/main/section/form/table; label–input bağlama; klavye ile gezinme. Ürün tablosunu React'siz saf HTML ile kur.", {
               objectives: ["Doğru semantik elementi seçmek", "Erişilebilir form etiketi yazmak", "Tablo ve liste yapılarını anlamlı kurmak"],
               tasks: ["Ürün listesi + arama formu sayfasını yalnızca HTML ile yaz.", "Ekran okuyucu/klavye ile (Tab, Enter, Space) tüm sayfayı gezin."],
-              resources: [mdn, a11y],
+              resources: [mdn, a11y, BOEN.html],
             }),
             lesson("css-layout", "CSS3: Flexbox, Grid, responsive tasarım", "Mobile-first yaklaşım; 360 / 768 / 1280 / 1440 px kırılımları; custom properties; erişilebilir odak stilleri.", {
               tasks: ["Aynı ürün sayfasını 3 kırılımda düzenle: masaüstünde kenar çubuğu+tablo, mobilde çekmece+kart.", "CSS değişkenleriyle açık/koyu tema yaz."],
-              resources: [webdev, mdn],
+              resources: [webdev, mdn, BOEN.css, BOEN.bootstrap],
             }),
             lesson("js-core", "JavaScript çekirdeği: kapsam, kapanış, this, prototip", "Değer/referans, hoisting, closure, event loop. Çoğu React hatası aslında JS hatasıdır.", {
               tasks: ["Closure ve event loop için 10 'çıktı tahmin et' sorusu yaz ve çöz.", "Basit bir debounce ve memoize fonksiyonu yaz."],
-              resources: [jsinfo, ydkjs, eloquent],
+              resources: [jsinfo, ydkjs, eloquent, BOEN.js],
             }),
             lesson("js-es6", "ES6+: modüller, destructuring, spread, optional chaining", "map/filter/reduce, immutability, async/await, fetch, hata yönetimi. Sipariş hesap fonksiyonlarını (subtotal, vergi, indirim, durum gruplama) yaz.", {
               tasks: ["order-utils.ts: calculateSubtotal/Tax/GrandTotal/Discount/groupOrdersByStatus yaz.", "Her fonksiyon için Vitest testi ekle (sonraki dersle birlikte)."],
@@ -338,6 +342,7 @@ export const reactModule: LearningModule = {
         },
       ],
     },
+    ...reactFrontendTracks,
   ],
   projects: [
     {

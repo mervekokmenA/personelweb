@@ -44,6 +44,10 @@ function enBuyuk(liste: number[]): number {
 | O(n log n) | İyi sıralama algoritmaları |
 | O(n²) | İç içe iki döngü |
 
+~~~svg Büyüme hızı karşılaştırması: girdi büyüdükçe işlem sayısı
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 260' font-family='system-ui,sans-serif' font-size='11'><rect width='460' height='260' fill='white'/><line x1='46' y1='16' x2='46' y2='230' stroke='#555'/><line x1='46' y1='230' x2='444' y2='230' stroke='#555'/><text x='245.0' y='252' text-anchor='middle' fill='#444'>girdi boyutu (n)</text><text x='12' y='123.0' fill='#444' transform='rotate(-90 12 123.0)' text-anchor='middle'>işlem sayısı</text><polyline points='46.0,208.6 56.0,208.6 65.9,208.6 75.8,208.6 85.8,208.6 95.8,208.6 105.7,208.6 115.6,208.6 125.6,208.6 135.6,208.6 145.5,208.6 155.4,208.6 165.4,208.6 175.3,208.6 185.3,208.6 195.2,208.6 205.2,208.6 215.2,208.6 225.1,208.6 235.0,208.6 245.0,208.6 255.0,208.6 264.9,208.6 274.9,208.6 284.8,208.6 294.8,208.6 304.7,208.6 314.7,208.6 324.6,208.6 334.6,208.6 344.5,208.6 354.4,208.6 364.4,208.6 374.3,208.6 384.3,208.6 394.2,208.6 404.2,208.6 414.2,208.6 424.1,208.6 434.1,208.6 444.0,208.6' fill='none' stroke='#16a34a' stroke-width='2.2'/><polyline points='46.0,230.0 56.0,230.0 65.9,230.0 75.8,230.0 85.8,230.0 95.8,223.1 105.7,217.5 115.6,212.7 125.6,208.6 135.6,205.0 145.5,201.7 155.4,198.8 165.4,196.1 175.3,193.6 185.3,191.3 195.2,189.2 205.2,187.2 215.2,185.3 225.1,183.6 235.0,181.9 245.0,180.3 255.0,178.8 264.9,177.4 274.9,176.0 284.8,174.7 294.8,173.4 304.7,172.2 314.7,171.0 324.6,169.9 334.6,168.8 344.5,167.8 354.4,166.8 364.4,165.8 374.3,164.8 384.3,163.9 394.2,163.0 404.2,162.2 414.2,161.3 424.1,160.5 434.1,159.7 444.0,158.9' fill='none' stroke='#0ea5e9' stroke-width='2.2'/><polyline points='46.0,230.0 56.0,224.7 65.9,219.3 75.8,213.9 85.8,208.6 95.8,203.2 105.7,197.9 115.6,192.6 125.6,187.2 135.6,181.8 145.5,176.5 155.4,171.2 165.4,165.8 175.3,160.4 185.3,155.1 195.2,149.8 205.2,144.4 215.2,139.1 225.1,133.7 235.0,128.4 245.0,123.0 255.0,117.6 264.9,112.3 274.9,107.0 284.8,101.6 294.8,96.2 304.7,90.9 314.7,85.5 324.6,80.2 334.6,74.8 344.5,69.5 354.4,64.2 364.4,58.8 374.3,53.5 384.3,48.1 394.2,42.8 404.2,37.4 414.2,32.0 424.1,26.7 434.1,21.3 444.0,16.0' fill='none' stroke='#eab308' stroke-width='2.2'/><polyline points='46.0,230.0 56.0,230.0 65.9,230.0 75.8,230.0 85.8,230.0 95.8,227.4 105.7,224.3 115.6,220.8 125.6,217.0 135.6,212.9 145.5,208.6 155.4,204.0 165.4,199.2 175.3,194.2 185.3,189.0 195.2,183.6 205.2,178.1 215.2,172.5 225.1,166.7 235.0,160.8 245.0,154.7 255.0,148.6 264.9,142.3 274.9,135.9 284.8,129.4 294.8,122.8 304.7,116.2 314.7,109.4 324.6,102.6 334.6,95.6 344.5,88.6 354.4,81.5 364.4,74.4 374.3,67.1 384.3,59.8 394.2,52.4 404.2,45.0 414.2,37.5 424.1,29.9 434.1,22.3 444.0,16.0' fill='none' stroke='#f97316' stroke-width='2.2'/><polyline points='46.0,230.0 56.0,229.9 65.9,229.5 75.8,228.8 85.8,227.9 95.8,226.7 105.7,225.2 115.6,223.4 125.6,221.4 135.6,219.2 145.5,216.6 155.4,213.8 165.4,210.7 175.3,207.4 185.3,203.8 195.2,199.9 205.2,195.8 215.2,191.3 225.1,186.7 235.0,181.7 245.0,176.5 255.0,171.0 264.9,165.3 274.9,159.2 284.8,153.0 294.8,146.4 304.7,139.6 314.7,132.5 324.6,125.1 334.6,117.5 344.5,109.6 354.4,101.5 364.4,93.0 374.3,84.3 384.3,75.4 394.2,66.2 404.2,56.7 414.2,46.9 424.1,36.9 434.1,26.6 444.0,16.0' fill='none' stroke='#dc2626' stroke-width='2.2'/><rect x='56' y='14' width='12' height='4' fill='#16a34a'/><text x='74' y='20' fill='#333'>O(1)</text><rect x='56' y='29' width='12' height='4' fill='#0ea5e9'/><text x='74' y='35' fill='#333'>O(log n)</text><rect x='56' y='44' width='12' height='4' fill='#eab308'/><text x='74' y='50' fill='#333'>O(n)</text><rect x='56' y='59' width='12' height='4' fill='#f97316'/><text x='74' y='65' fill='#333'>O(n log n)</text><rect x='56' y='74' width='12' height='4' fill='#dc2626'/><text x='74' y='80' fill='#333'>O(n²)</text></svg>
+~~~
+
 ## Temel veri yapıları ve algoritmalar (yol haritası)
 Dizi, bağlı liste, yığın/kuyruk, hash tablosu (Map), ağaç, graf; sıralama, arama, özyineleme. Görselleştirmek için VisuAlgo harika.
 
@@ -297,6 +301,22 @@ class Kedi extends Hayvan {
 - **Çok biçimlilik**: ¦Hayvan[]¦ listesinde her nesnenin kendi ¦sesCikar¦'ı çalışır.
 - **Kalıtım sığ tutulmalı**: Derin hiyerarşi kırılgandır. Genel ilke: **kompozisyonu kalıtıma tercih et** ("is-a" yerine "has-a").
 
+~~~mermaid Kalıtım: Kedi bir Hayvan'dır
+classDiagram
+  class Hayvan {
+    #ad: string
+    +sesCikar() string
+  }
+  class Kedi {
+    +sesCikar() string
+  }
+  class Kopek {
+    +sesCikar() string
+  }
+  Hayvan <|-- Kedi
+  Hayvan <|-- Kopek
+~~~
+
 ## Arayüz (interface)
 Sözleşme: ne yapılacağını söyler, nasıl yapılacağını söylemez.
 ~~~ts
@@ -378,6 +398,28 @@ Sipariş toplamında "indirim" kuralını (yüzde, sabit tutar, kupon) ¦if-else
 
 ## Kurulum notu
 Bu modül **PostgreSQL** kullanır (SQL Server ile sözdizimi büyük ölçüde ortaktır). Yerelde Docker veya doğrudan kurulumla, bulutta Neon gibi bir servisle çalışabilirsin.
+
+~~~mermaid ER diyagramı: bir müşterinin birden çok siparişi olabilir (1–N)
+erDiagram
+  MUSTERI ||--o{ SIPARIS : verir
+  SIPARIS ||--|{ SIPARIS_KALEMI : icerir
+  URUN ||--o{ SIPARIS_KALEMI : "satilir"
+  MUSTERI {
+    int id PK
+    string ad
+    string eposta
+  }
+  SIPARIS {
+    int id PK
+    int musteri_id FK
+    numeric tutar
+  }
+  URUN {
+    int id PK
+    string ad
+    numeric fiyat
+  }
+~~~
 
 ## Kısıtlar
 ¦PRIMARY KEY¦, ¦FOREIGN KEY¦, ¦UNIQUE¦, ¦NOT NULL¦, ¦CHECK¦, ¦DEFAULT¦: kuralları **veritabanında** zorla; yalnızca uygulamaya güvenme.
@@ -477,6 +519,22 @@ LEFT JOIN siparis s ON s.musteri_id = m.id;
 | ¦CROSS¦ | Kartezyen çarpım (dikkat!) |
 
 "Hiç siparişi olmayan müşteriler": ¦LEFT JOIN ... WHERE s.id IS NULL¦.
+
+~~~svg INNER JOIN — yalnızca iki tabloda da eşleşenler (A ∩ B)
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 150' font-family='system-ui,sans-serif' font-size='12'><rect width='260' height='150' fill='white'/><defs><clipPath id='a'><circle cx='95' cy='70' r='55'/></clipPath><clipPath id='b'><circle cx='165' cy='70' r='55'/></clipPath></defs><circle cx='165' cy='70' r='55' fill='#4f7be8' opacity='.75' clip-path='url(#a)'/><circle cx='95' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><circle cx='165' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><text x='67' y='74' text-anchor='middle' fill='#111'>A</text><text x='193' y='74' text-anchor='middle' fill='#111'>B</text></svg>
+~~~
+
+~~~svg LEFT JOIN — soldaki hepsi + eşleşen sağdakiler
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 150' font-family='system-ui,sans-serif' font-size='12'><rect width='260' height='150' fill='white'/><defs><clipPath id='a'><circle cx='95' cy='70' r='55'/></clipPath><clipPath id='b'><circle cx='165' cy='70' r='55'/></clipPath></defs><circle cx='95' cy='70' r='55' fill='#4f7be8' opacity='.55'/><circle cx='95' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><circle cx='165' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><text x='67' y='74' text-anchor='middle' fill='#111'>A</text><text x='193' y='74' text-anchor='middle' fill='#111'>B</text></svg>
+~~~
+
+~~~svg RIGHT JOIN — sağdaki hepsi + eşleşen soldakiler
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 150' font-family='system-ui,sans-serif' font-size='12'><rect width='260' height='150' fill='white'/><defs><clipPath id='a'><circle cx='95' cy='70' r='55'/></clipPath><clipPath id='b'><circle cx='165' cy='70' r='55'/></clipPath></defs><circle cx='165' cy='70' r='55' fill='#4f7be8' opacity='.55'/><circle cx='95' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><circle cx='165' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><text x='67' y='74' text-anchor='middle' fill='#111'>A</text><text x='193' y='74' text-anchor='middle' fill='#111'>B</text></svg>
+~~~
+
+~~~svg FULL JOIN — ikisinin birleşimi
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 150' font-family='system-ui,sans-serif' font-size='12'><rect width='260' height='150' fill='white'/><defs><clipPath id='a'><circle cx='95' cy='70' r='55'/></clipPath><clipPath id='b'><circle cx='165' cy='70' r='55'/></clipPath></defs><circle cx='95' cy='70' r='55' fill='#4f7be8' opacity='.55'/><circle cx='165' cy='70' r='55' fill='#4f7be8' opacity='.55'/><circle cx='95' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><circle cx='165' cy='70' r='55' fill='none' stroke='#333' stroke-width='1.5'/><text x='67' y='74' text-anchor='middle' fill='#111'>A</text><text x='193' y='74' text-anchor='middle' fill='#111'>B</text></svg>
+~~~
 
 ## Alt sorgular (subquery)
 ~~~sql

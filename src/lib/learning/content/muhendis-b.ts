@@ -39,6 +39,25 @@ ctx.fillRect(10, 10, 100, 60);
 ~~~
 SVG = az nesne, sorgulanabilir; Canvas = çok nesne/animasyon, piksel.
 
+~~~demo h=200 SVG: vektör çizim, büyütünce bozulmaz
+<svg viewBox="0 0 300 120" width="100%" height="120" role="img" aria-label="SVG şekiller">
+  <rect x="10" y="10" width="80" height="60" rx="8" fill="#4f7be8"/>
+  <circle cx="150" cy="40" r="30" fill="#e0483e"/>
+  <polygon points="220,70 250,10 280,70" fill="#16a34a"/>
+  <text x="10" y="105" font-size="13" fill="#444">rect · circle · polygon</text>
+</svg>
+~~~
+
+~~~demo h=220 Canvas: JavaScript ile piksel çizimi ve animasyon
+<canvas id="c" width="320" height="150" style="border:1px solid #ddd;border-radius:8px;max-width:100%"></canvas>
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d');let px=20,vx=3;
+function ciz(){x.clearRect(0,0,320,150);x.fillStyle='#4f7be8';x.beginPath();x.arc(px,75,18,0,Math.PI*2);x.fill();
+px+=vx;if(px>300||px<20)vx=-vx;requestAnimationFrame(ciz)}
+ciz();
+</script>
+~~~
+
 ## Geolocation API
 ~~~js
 navigator.geolocation.getCurrentPosition(
@@ -64,6 +83,8 @@ Canvas'ta hareket eden bir top animasyonu (¦requestAnimationFrame¦), aynı top
 }
 ~~~
 
+![Standart kutu modeli: içerik, padding, border, margin — Görsel: MDN Web Docs (CC BY-SA)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model/standard-box-model.png)
+
 ## Geçiş ve animasyon
 ~~~css
 .btn { transition: transform .2s ease, background-color .2s; }
@@ -79,12 +100,61 @@ Canvas'ta hareket eden bir top animasyonu (¦requestAnimationFrame¦), aynı top
 ## Dönüşümler
 ¦translate, rotate, scale, skew¦; ¦transform-origin¦; 3B için ¦perspective¦.
 
+~~~demo h=250 Dönüşüm, geçiş ve animasyon: kutuların üstüne gel
+<style>
+.row{display:flex;gap:16px;align-items:center}
+.b{width:64px;height:64px;border-radius:10px;background:#4f7be8;color:#fff;display:grid;place-items:center;font-size:12px;text-align:center}
+.t1{transition:transform .3s}.t1:hover{transform:rotate(15deg) scale(1.2)}
+.t2{transition:background-color .3s,transform .3s}.t2:hover{background:#e0483e;transform:translateY(-8px)}
+@keyframes nabiz{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.t3{animation:nabiz 1.2s infinite;background:#16a34a}
+p{margin:0 0 10px;color:#555;font-size:12px}
+</style>
+<p>1) rotate + scale (geçiş) · 2) renk + yukarı kayma (geçiş) · 3) sürekli nabız (animasyon)</p>
+<div class="row"><div class="b t1">rotate scale</div><div class="b t2">renk + kayma</div><div class="b t3">@keyframes</div></div>
+~~~
+
 ## Flexbox (tek eksen) ve Grid (iki boyut)
 ~~~css
 .menu { display: flex; gap: 1rem; justify-content: space-between; align-items: center; }
 .galeri { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
 ~~~
 Kural: **içerik akışı → flex**, **sayfa/ızgara yerleşimi → grid**.
+
+![Flexbox terimleri: ana eksen, çapraz eksen, flex kapsayıcı ve öğeler — Görsel: MDN Web Docs (CC BY-SA)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox/flex_terms.png)
+
+~~~demo h=400 flex-direction: ana eksenin yönünü belirler
+<style>
+.k{display:flex;gap:8px;border:2px dashed #999;padding:8px;margin-bottom:6px}
+.k div{width:56px;height:56px;background:#4f7be8;color:#fff;display:grid;place-items:center;font-size:22px;border-radius:4px}
+.l{font:12px system-ui;color:#555;margin:8px 0 4px}
+</style>
+<p class="l">← ana eksen — flex-direction: row →</p>
+<div class="k"><div>a</div><div>b</div><div>c</div></div>
+<p class="l">flex-direction: column (ana eksen yukarıdan aşağı)</p>
+<div class="k" style="flex-direction:column;width:96px"><div>a</div><div>b</div><div>c</div></div>
+~~~
+
+~~~demo h=330 justify-content: öğelerin ana eksendeki dağılımı
+<style>
+.k{display:flex;gap:6px;border:2px dashed #999;padding:6px;margin-bottom:4px}
+.k div{width:34px;height:34px;background:#4f7be8;border-radius:4px}
+.l{font:12px ui-monospace,monospace;color:#555;margin:6px 0 2px}
+</style>
+<p class="l">flex-start</p><div class="k" style="justify-content:flex-start"><div></div><div></div><div></div></div>
+<p class="l">center</p><div class="k" style="justify-content:center"><div></div><div></div><div></div></div>
+<p class="l">space-between</p><div class="k" style="justify-content:space-between"><div></div><div></div><div></div></div>
+<p class="l">space-around</p><div class="k" style="justify-content:space-around"><div></div><div></div><div></div></div>
+~~~
+
+~~~demo h=240 Grid: üç sütunlu ızgara, otomatik satırlar
+<style>
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border:2px dashed #999;padding:8px}
+.g div{background:#16a34a;color:#fff;border-radius:6px;padding:14px;text-align:center}
+.g .w{grid-column:span 2;background:#4f7be8}
+</style>
+<div class="g"><div class="w">1 (2 sütun)</div><div>2</div><div>3</div><div>4</div><div>5</div><div class="w">6 (2 sütun)</div></div>
+~~~
 
 ## Responsive tasarım
 ~~~css
@@ -148,6 +218,14 @@ Closure: Fonksiyonun, tanımlandığı kapsamdaki değişkenlere erişimini sür
 - Yalın fonksiyon çağrısında ¦this¦ ¦undefined¦ (strict) / global.
 - **Ok fonksiyonu** kendi ¦this¦'ini taşımaz, tanımlandığı yerden alır.
 - ¦call/apply/bind¦ ile açıkça belirlenir.
+
+~~~demo h=150 Closure: her sayaç kendi n değerini saklar (butonlara tıkla)
+<button id="a">Sayaç A: 0</button> <button id="b">Sayaç B: 0</button>
+<script>
+function sayacYap(btn,ad){let n=0;btn.onclick=()=>{n++;btn.textContent=ad+': '+n}}
+sayacYap(document.getElementById('a'),'Sayaç A');sayacYap(document.getElementById('b'),'Sayaç B');
+</script>
+~~~
 
 ## Promise ve async/await
 ~~~js
@@ -344,6 +422,15 @@ app.listen(3000);
 
 Bağımlılıklar **içeri** doğru akar; her katman test edilebilir. Aşırı katmanlama küçük projeyi şişirir: ihtiyaçla büyüt.
 
+~~~mermaid Katmanlı mimaride istek akışı
+flowchart LR
+  I["İstek"] --> C["Controller<br/>HTTP, doğrulama"]
+  C --> S["Service<br/>iş kuralları"]
+  S --> R["Repository<br/>veri erişimi"]
+  R --> D[("Veritabanı")]
+  D --> R --> S --> C --> Y["Yanıt"]
+~~~
+
 ## Veritabanı bağlantısı
 - Bağlantı **havuzu** (pool) kullan; her istekte yeni bağlantı açma.
 - Bağlantı dizesini **ortam değişkeninden** oku.
@@ -427,6 +514,18 @@ import { io } from "socket.io-client";
 const soket = io("https://sunucu.com");
 soket.emit("odaya-katil", "genel");
 soket.on("mesaj", (m) => ekle(m));
+~~~
+
+~~~mermaid Socket.IO: odaya katıl ve mesaj yayınla
+sequenceDiagram
+  participant A as İstemci A
+  participant S as Sunucu
+  participant B as İstemci B
+  A->>S: odaya-katil("genel")
+  B->>S: odaya-katil("genel")
+  A->>S: mesaj("Merhaba")
+  S-->>A: mesaj("Merhaba")
+  S-->>B: mesaj("Merhaba")
 ~~~
 
 ## Üretim konuları

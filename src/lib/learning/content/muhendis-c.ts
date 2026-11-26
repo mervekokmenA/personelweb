@@ -154,6 +154,17 @@ Dört değer: **Süreç ve araçlardan çok bireyler ve etkileşim; kapsamlı do
 
 Manifestonun **12 ilkesi** arasında: değerli yazılımı erken ve sürekli teslim, değişen gereksinimi kabul, sık teslim, günlük iş birliği, motive bireyler, yüz yüze iletişim, çalışan yazılım ilerleme ölçüsü, sürdürülebilir tempo, teknik mükemmellik, sadelik, kendi kendini yöneten ekipler, düzenli iyileştirme.
 
+~~~mermaid Scrum döngüsü
+flowchart LR
+  PB["Product Backlog"] --> SP["Sprint Planlama"]
+  SP --> SB["Sprint Backlog"]
+  SB --> G["Sprint (1–4 hafta)<br/>Günlük Scrum"]
+  G --> A["Artım (Increment)"]
+  A --> SR["Sprint Gözden Geçirme"]
+  SR --> RT["Retrospektif"]
+  RT --> PB
+~~~
+
 ## Çeviklik hakkında yaygın yanlışlar
 "Plan yok", "dokümantasyon yok", "her şey sonradan değişir", "Scrum = hızlı çalışmak" doğru değildir. Çeviklik **disiplinli** bir adaptasyondur.
 
@@ -198,6 +209,10 @@ Küçük bir görev (ör. kâğıttan uçak) etrafında 2 sprint oyna: planla, �
 
 ## 6) Burndown grafiği
 Sprint boyunca kalan iş (puan) günlük çizilir; **ideal çizgi** ile gerçek karşılaştırılır. Düz kalan bir çizgi: iş büyük/engel var; sonda ani düşüş: işler geç "bitiyor".
+~~~svg Örnek burndown grafiği: gerçek çizgi ideal çizgiyi izler
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 240' font-family='system-ui,sans-serif' font-size='11'><rect width='460' height='240' fill='white'/><line x1='46' y1='16' x2='46' y2='206' stroke='#555'/><line x1='46' y1='206' x2='444' y2='206' stroke='#555'/><text x='40' y='210.0' text-anchor='end' fill='#555'>0</text><line x1='46' x2='444' y1='206.0' y2='206.0' stroke='#eee'/><text x='40' y='162.5' text-anchor='end' fill='#555'>5</text><line x1='46' x2='444' y1='158.5' y2='158.5' stroke='#eee'/><text x='40' y='115.0' text-anchor='end' fill='#555'>10</text><line x1='46' x2='444' y1='111.0' y2='111.0' stroke='#eee'/><text x='40' y='67.5' text-anchor='end' fill='#555'>15</text><line x1='46' x2='444' y1='63.5' y2='63.5' stroke='#eee'/><text x='40' y='20.0' text-anchor='end' fill='#555'>20</text><line x1='46' x2='444' y1='16.0' y2='16.0' stroke='#eee'/><text x='46.0' y='220' text-anchor='middle' fill='#555'>G1</text><text x='90.22222222222223' y='220' text-anchor='middle' fill='#555'>G2</text><text x='134.44444444444446' y='220' text-anchor='middle' fill='#555'>G3</text><text x='178.66666666666666' y='220' text-anchor='middle' fill='#555'>G4</text><text x='222.88888888888889' y='220' text-anchor='middle' fill='#555'>G5</text><text x='267.1111111111111' y='220' text-anchor='middle' fill='#555'>G6</text><text x='311.3333333333333' y='220' text-anchor='middle' fill='#555'>G7</text><text x='355.55555555555554' y='220' text-anchor='middle' fill='#555'>G8</text><text x='399.77777777777777' y='220' text-anchor='middle' fill='#555'>G9</text><text x='444.0' y='220' text-anchor='middle' fill='#555'>G10</text><line x1='46.0' y1='16.0' x2='444.0' y2='206.0' stroke='#999' stroke-dasharray='5 4' stroke-width='2'/><polyline fill='none' stroke='#dc2626' stroke-width='2.4' points='46.0,16.0 90.2,25.5 134.4,44.5 178.7,44.5 222.9,63.5 267.1,92.0 311.3,101.5 355.6,130.0 399.8,168.0 444.0,206.0'/><circle cx='46.0' cy='16.0' r='3' fill='#dc2626'/><circle cx='90.2' cy='25.5' r='3' fill='#dc2626'/><circle cx='134.4' cy='44.5' r='3' fill='#dc2626'/><circle cx='178.7' cy='44.5' r='3' fill='#dc2626'/><circle cx='222.9' cy='63.5' r='3' fill='#dc2626'/><circle cx='267.1' cy='92.0' r='3' fill='#dc2626'/><circle cx='311.3' cy='101.5' r='3' fill='#dc2626'/><circle cx='355.6' cy='130.0' r='3' fill='#dc2626'/><circle cx='399.8' cy='168.0' r='3' fill='#dc2626'/><circle cx='444.0' cy='206.0' r='3' fill='#dc2626'/><text x='440' y='30' text-anchor='end' fill='#999'>- - ideal</text><text x='440' y='44' text-anchor='end' fill='#dc2626'>— gerçek</text><text x='245.0' y='234' text-anchor='middle' fill='#444'>Sprint günleri · kalan puan</text></svg>
+~~~
+
 ~~~text
 Kalan puan
 20 |*

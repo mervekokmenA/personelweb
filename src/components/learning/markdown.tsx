@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { CodeBlock } from "./code-block";
+import { MermaidBlock } from "./mermaid-block";
+import { LiveDemo } from "./live-demo";
 
 /** Güvenli, bağımlılıksız mini Markdown: başlık, liste, tablo, alıntı, kod bloğu, **kalın**, *italik*, `kod`, [bağlantı](url). */
 
@@ -50,12 +52,48 @@ export function Markdown({ source }: { source: string }) {
     if (!line.trim()) { i++; continue; }
 
     if (line.startsWith("```")) {
+      // ```dil bilgi — özel diller: demo (canlı örnek), svg (çizim), mermaid (diyagram). "bilgi" başlık/yükseklik içindir.
+      const info = /^```\s*([\w-]*)\s*(.*)$/.exec(line);
+      const lang = (info?.[1] ?? "").toLowerCase();
+      const rest = (info?.[2] ?? "").trim();
       const code: string[] = [];
       i++;
       while (i < lines.length && !lines[i].startsWith("```")) code.push(lines[i++]);
       i++;
-      out.push(<CodeBlock key={k()} code={code.join("\n")} />);
+      const text = code.join("\n");
+      if (lang === "demo") {
+        const hm = /^h=(\d{2,4})\s*(.*)$/.exec(rest);
+        out.push(<LiveDemo key={k()} code={text} height={hm ? Math.min(Number(hm[1]), 900) : undefined} caption={(hm ? hm[2] : rest) || undefined} />);
+      } else if (lang === "svg" && /^\s*<svg[\s>]/.test(text)) {
+        // Veri adresli <img>: içindeki betikler çalışmaz.
+        out.push(
+          <figure key={k()} className="ag-figure">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={"data:image/svg+xml;charset=utf-8," + encodeURIComponent(text)} alt={rest || "Çizim"} className="mx-auto h-auto max-w-full" />
+            {rest && <figcaption>{rest}</figcaption>}
+          </figure>
+        );
+      } else if (lang === "mermaid") {
+        out.push(<MermaidBlock key={k()} code={text} caption={rest || undefined} />);
+      } else {
+        out.push(<CodeBlock key={k()} code={text} />);
+      }
       continue;
+    }
+    const img = /^!\[([^\]]*)\]\((\S+?)\)\s*$/.exec(line.trim());
+    if (img) {
+      const src = img[2];
+      if (/^https:\/\//.test(src) || src.startsWith("/")) {
+        out.push(
+          <figure key={k()} className="ag-figure">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt={img[1]} loading="lazy" referrerPolicy="no-referrer" className="mx-auto h-auto max-w-full rounded-lg bg-white" />
+            {img[1] && <figcaption>{img[1]}</figcaption>}
+          </figure>
+        );
+        i++;
+        continue;
+      }
     }
     const h = /^(#{1,4})\s+(.*)$/.exec(line);
     if (h) {
@@ -100,8 +138,8 @@ export function Markdown({ source }: { source: string }) {
       out.push(<ol key={k()} className="ag-ol">{items.map((t, j) => <li key={j}>{inline(t, `ol${j}`)}</li>)}</ol>);
       continue;
     }
-    const para: string[] = [];
-    while (i < lines.length && lines[i].trim() && !/^(#{1,4}\s|```|>|---+$|\s*[-*]\s+|\s*\d+[.)]\s+)/.test(lines[i])) para.push(lines[i++]);
+    const para: string[] = [lines[i++]];
+    while (i < lines.length && lines[i].trim() && !/^(#{1,4}\s|```|!\[|>|---+$|\s*[-*]\s+|\s*\d+[.)]\s+)/.test(lines[i])) para.push(lines[i++]);
     out.push(<p key={k()} className="ag-p">{inline(para.join(" "), `p${key}`)}</p>);
   }
   return <div className="ag-prose">{out}</div>;

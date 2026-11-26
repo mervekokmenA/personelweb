@@ -13,6 +13,19 @@ export const reactFeBodiesA: Bodies = {
 4. **HTTP isteği**: ¦GET /urunler HTTP/1.1¦ + başlıklar (¦Host¦, ¦Accept¦, ¦Cookie¦).
 5. **Yanıt**: durum kodu + başlıklar + gövde (HTML). Tarayıcı HTML'i okurken CSS/JS/görsel için yeni istekler başlatır.
 
+~~~mermaid Bir adres yazıldığında olanlar
+sequenceDiagram
+  participant T as Tarayıcı
+  participant D as DNS
+  participant S as Sunucu
+  T->>D: ornek.com nedir?
+  D-->>T: 203.0.113.10
+  T->>S: bağlantı + TLS el sıkışması
+  T->>S: GET /urunler
+  S-->>T: 200 OK + HTML
+  T->>S: CSS, JS, görseller için yeni istekler
+~~~
+
 ## HTTP'nin iskeleti
 
 | Parça | Örnek | Anlamı |
@@ -37,6 +50,17 @@ Statik dosyaları kullanıcıya yakın sunuculardan verir; gecikmeyi (latency) a
 HTML  → ayrıştır → DOM
 CSS   → ayrıştır → CSSOM
 DOM + CSSOM → Render Tree → Layout (yerleşim) → Paint (boyama) → Composite (katman birleştirme)
+~~~
+
+~~~mermaid Tarayıcı render hattı
+flowchart LR
+  H["HTML"] --> DOM["DOM"]
+  C["CSS"] --> CSSOM["CSSOM"]
+  DOM --> RT["Render Tree"]
+  CSSOM --> RT
+  RT --> L["Layout<br/>yerleşim"]
+  L --> P["Paint<br/>boyama"]
+  P --> CO["Composite<br/>katmanlar"]
 ~~~
 
 - **Render-engelleyici kaynaklar**: ¦<head>¦ içindeki CSS ve senkron ¦<script>¦ sayfanın ilk çizimini geciktirir. Çözüm: kritik CSS'i küçük tut, script'lere ¦defer¦ veya ¦type="module"¦ ekle.
@@ -87,6 +111,23 @@ Bir repoyu klonla, dal aç, tek satır değiştir, anlamlı bir commit mesajı y
 - **Palet kuralı**: 1 marka rengi + 1 vurgu + nötr gri ölçeği (9–10 ton) + durum renkleri (başarı, uyarı, hata). Fazla renk, tutarsız arayüz demektir.
 - **60-30-10**: %60 nötr zemin, %30 ikincil, %10 vurgu.
 
+~~~demo h=190 HSL ile tek bir tonun açıklık basamakları
+<style>
+.s{display:flex;border-radius:10px;overflow:hidden}
+.s div{flex:1;height:64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font:11px ui-monospace,monospace}
+.l{font-size:12px;color:#555;margin:0 0 6px}
+</style>
+<p class="l">hsl(220 80% L%) — L: 95 → 15</p>
+<div class="s">
+<div style="background:hsl(220 80% 95%);color:#222">95</div><div style="background:hsl(220 80% 85%);color:#222">85</div>
+<div style="background:hsl(220 80% 75%);color:#222">75</div><div style="background:hsl(220 80% 65%);color:#222">65</div>
+<div style="background:hsl(220 80% 55%);color:#fff">55</div><div style="background:hsl(220 80% 45%);color:#fff">45</div>
+<div style="background:hsl(220 80% 35%);color:#fff">35</div><div style="background:hsl(220 80% 25%);color:#fff">25</div>
+<div style="background:hsl(220 80% 15%);color:#fff">15</div></div>
+<p class="l" style="margin-top:12px">Tamamlayıcı (karşıt) renk: ton + 180°</p>
+<div class="s"><div style="background:hsl(220 80% 50%);color:#fff">220°</div><div style="background:hsl(40 80% 50%);color:#222">40°</div></div>
+~~~
+
 ## Erişilebilir kontrast (WCAG)
 | Metin | Asgari kontrast (AA) |
 |---|---|
@@ -115,6 +156,16 @@ Kendi projen için palet üret; tüm metin/zemin çiftlerini WebAIM kontrast den
 - **Satır yüksekliği**: Gövdede ¦1.5–1.7¦; başlıklarda ¦1.1–1.3¦.
 - **Satır uzunluğu**: Paragrafta yaklaşık **45–75 karakter** okunabilirlik için iyidir (¦max-width: 65ch¦).
 - **Ağırlık**: Hiyerarşiyi boyut kadar kalınlık ve renk de kurar; en fazla 2–3 ağırlık kullan.
+
+~~~demo h=250 Tip ölçeği: boyut ve satır yüksekliği ile hiyerarşi
+<div style="font-family:system-ui,sans-serif">
+<div style="font-size:32px;line-height:1.15;font-weight:700">Başlık 32px</div>
+<div style="font-size:24px;line-height:1.25;font-weight:600;margin-top:6px">Alt başlık 24px</div>
+<div style="font-size:20px;line-height:1.3;margin-top:6px">Büyük metin 20px</div>
+<div style="font-size:16px;line-height:1.6;margin-top:6px;max-width:42ch">Gövde metni 16px, satır yüksekliği 1,6 ve en fazla ~65 karakterlik satır uzunluğu okumayı kolaylaştırır.</div>
+<div style="font-size:12px;line-height:1.5;margin-top:6px;color:#666">Küçük not 12px</div>
+</div>
+~~~
 
 ## Web fontları
 ~~~css
@@ -190,6 +241,19 @@ Büyük projede aynı sınıf adı, özgüllük (specificity) savaşları ve sil
 | **Utility-first (Tailwind)** | Küçük, tek amaçlı sınıflar | Tasarım belirteçleri ile tutarlılık |
 | **Cascade Layers** | ¦@layer¦ ile kaskad sırasını açıkça belirle | Üçüncü taraf CSS'i ezmek kolaylaşır |
 | **Özel özellikler** | ¦--renk¦ değişkenleri | Tema ve token için temel |
+
+~~~demo h=170 Özgüllük: hangi kural kazanır?
+<style>
+p{font-size:15px;margin:8px 0}
+p{color:gray}               /* etiket: en düşük */
+.x{color:royalblue}         /* sınıf */
+#y{color:crimson}           /* id */
+</style>
+<p>Etiket seçici → gri</p>
+<p class="x">Sınıf seçici → mavi (etiketi yener)</p>
+<p class="x" id="y">id seçici → kırmızı (sınıfı yener)</p>
+<p class="x" id="y" style="color:seagreen">inline stil → yeşil (hepsini yener)</p>
+~~~
 
 ## Özgüllük kuralları
 ¦inline > #id > .sınıf/[öznitelik]/:sözde-sınıf > etiket¦. ¦!important¦ son çaredir; kullandıysan neden gerektiğini yorumla.
@@ -388,6 +452,16 @@ Tarayıcıya yüzlerce modül dosyası yerine **optimize edilmiş birkaç paket*
 | **Vite** | Geliştirmede yerel ES modülleri + hızlı HMR; üretimde Rollup/Rolldown tabanlı paketleme |
 | **SWC** | Rust ile yazılmış hızlı derleyici (Babel alternatifi) |
 | **Turbopack** | Next.js'in Rust tabanlı paketleyicisi; Next.js 16'da varsayılan |
+
+~~~mermaid Paketleyici bağımlılık grafiğini tek pakete dönüştürür
+flowchart LR
+  E["index.tsx<br/>giriş noktası"] --> A["App.tsx"]
+  A --> B["Sayfa.tsx"]
+  A --> C["util.ts"]
+  B --> D["react"]
+  B --> F["stil.css"]
+  E & A & B & C & D & F --> P["main.[hash].js<br/>main.[hash].css"]
+~~~
 
 ## Kavramlar
 - **Giriş noktası (entry)** ve **bağımlılık grafiği**.

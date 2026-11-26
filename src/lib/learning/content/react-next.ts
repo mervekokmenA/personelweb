@@ -20,6 +20,15 @@ src/app/
 ~~~
 Özel dosyalar: ¦layout¦, ¦page¦, ¦loading¦, ¦error¦, ¦not-found¦, ¦template¦, ¦route¦. Klasör, içinde ¦page¦ veya ¦route¦ olmadıkça **herkese açık rota olmaz**; bileşenleri rota klasörüne yan yana koyabilirsin (colocation).
 
+~~~mermaid Klasörlerden rotalara
+flowchart TB
+  A["app/layout.tsx<br/>kök layout"] --> P["app/page.tsx → /"]
+  A --> U["app/urunler/page.tsx → /urunler"]
+  U --> I["app/urunler/[id]/page.tsx → /urunler/123"]
+  A --> G["(pazarlama)/hakkimizda/page.tsx → /hakkimizda"]
+  A --> API["app/api/saglik/route.ts → GET /api/saglik"]
+~~~
+
 ## Layout ve sayfa
 - **Layout** gezinmede yeniden render edilmez, durumunu korur; ¦children¦ alır. İç içe geçebilir.
 - **Sayfa** bir rotanın benzersiz arayüzüdür.
@@ -68,6 +77,18 @@ export default async function Sayfa() {
   const urun = await urunGetir();
   return (<article><h1>{urun.ad}</h1><BegenButonu id={urun.id} /></article>);
 }
+~~~
+
+~~~mermaid Bileşen ağacı: sunucu varsayılan, 'use client' yaprağa iner
+flowchart TB
+  L["Layout (Server)"] --> P["Sayfa (Server)<br/>veritabanından veri çeker"]
+  P --> H["Başlık (Server)"]
+  P --> BG["BegenButonu (Client)<br/>useState, onClick"]
+  P --> L2["Liste (Server)"]
+  classDef srv fill:#dbeafe,stroke:#1d4ed8,color:#111
+  classDef cli fill:#ffedd5,stroke:#c2410c,color:#111
+  class L,P,H,L2 srv
+  class BG cli
 ~~~
 
 ## Server → Client veri aktarma
@@ -137,6 +158,10 @@ const [kullanici, siparisler] = await Promise.all([kullaniciGetir(id), siparisGe
 ~~~
 Gerçekten bağımlıysa (birinin sonucu diğerine lazım) ardışık yazılır; mümkünse parçaları ayrı Suspense sınırlarına böl.
 
+~~~svg Ardışık ve paralel veri çekme süresi (örnek değerler)
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 210' font-family='system-ui,sans-serif' font-size='12'><rect width='480' height='210' fill='white'/><text x='8' y='18' font-weight='600' fill='#222'>Ardışık (waterfall) ≈ 600 ms</text><rect x='8' y='28' width='120' height='22' rx='4' fill='#4f7be8'/><text x='68' y='44' text-anchor='middle' fill='white'>kullanıcı 200</text><rect x='128' y='54' width='180' height='22' rx='4' fill='#e0483e'/><text x='218' y='70' text-anchor='middle' fill='white'>siparişler 300</text><rect x='308' y='80' width='60' height='22' rx='4' fill='#f2b01e'/><text x='338' y='96' text-anchor='middle' fill='#222'>100</text><text x='8' y='130' font-weight='600' fill='#222'>Paralel (Promise.all) ≈ 300 ms</text><rect x='8' y='140' width='120' height='22' rx='4' fill='#4f7be8'/><text x='68' y='156' text-anchor='middle' fill='white'>kullanıcı 200</text><rect x='8' y='166' width='180' height='22' rx='4' fill='#e0483e'/><text x='98' y='182' text-anchor='middle' fill='white'>siparişler 300</text><rect x='8' y='192' width='60' height='14' rx='4' fill='#f2b01e'/><line x1='188' y1='134' x2='188' y2='208' stroke='#777' stroke-dasharray='4 3'/><text x='194' y='204' fill='#555'>toplam = en yavaşı</text></svg>
+~~~
+
 ## Aynı veriyi birden çok bileşende kullanmak
 ¦React.cache¦ ile **aynı istek içinde** tekrarlı çağrıları tekilleştir:
 
@@ -194,6 +219,10 @@ export async function urunleriGetir() {
 
 - **stale**: istemci, sunucuya sormadan kullanabilir; **revalidate**: sonrasında ilk istek arka planda tazelemeyi tetikler; **expire**: istek gelmeden bu süre geçerse bir sonraki istek taze içeriği **bekler**.
 - ¦expire¦, ¦revalidate¦'den büyük olmalıdır.
+
+~~~svg cacheLife: taze → bayat → süresi doldu
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 150' font-family='system-ui,sans-serif' font-size='12'><rect width='480' height='150' fill='white'/><rect x='10' y='40' width='150' height='34' fill='#22a559'/><text x='85' y='62' text-anchor='middle' fill='white'>taze: önbellekten</text><rect x='160' y='40' width='170' height='34' fill='#f2b01e'/><text x='245' y='62' text-anchor='middle' fill='#222'>bayat: ver + arkada yenile</text><rect x='330' y='40' width='140' height='34' fill='#e0483e'/><text x='400' y='62' text-anchor='middle' fill='white'>süresi doldu: bekle</text><line x1='10' y1='96' x2='470' y2='96' stroke='#555'/><text x='10' y='114' fill='#444'>0</text><line x1='160' y1='80' x2='160' y2='100' stroke='#555'/><text x='160' y='116' text-anchor='middle' fill='#444'>revalidate</text><line x1='330' y1='80' x2='330' y2='100' stroke='#555'/><text x='330' y='116' text-anchor='middle' fill='#444'>expire</text><text x='240' y='20' text-anchor='middle' fill='#222' font-weight='600'>cacheLife zaman çizgisi</text><text x='240' y='140' text-anchor='middle' fill='#666'>stale: istemci yönlendiricisinin sunucuya sormadan kullanabildiği süre (ayrı ayar)</text></svg>
+~~~
 
 ## Dinamik içerik: Suspense
 Her istekte taze olması gereken parçaya ¦"use cache"¦ koyma; **Suspense** ile sar, statik kabuk anında gelsin.
@@ -293,6 +322,19 @@ export function Form() {
 - ¦useFormStatus¦ alt bileşende bekleme durumunu verir.
 - Olay işleyicide de çağırabilirsin; ancak istemci çağrıları sırayla işlenir.
 
+~~~mermaid Form → Server Action → veri → ekran
+sequenceDiagram
+  participant F as Form (tarayıcı)
+  participant A as Server Action
+  participant DB as Veritabanı
+  F->>A: POST (FormData)
+  A->>A: 1) yetki kontrolü
+  A->>A: 2) Zod ile doğrulama
+  A->>DB: kayıt oluştur
+  A->>A: 3) revalidatePath / updateTag
+  A-->>F: yeni durum + güncel arayüz
+~~~
+
 ## Güvenlik (en kritik kısım)
 > Server Function'lar doğrudan **POST isteğiyle** de çağrılabilir; yalnızca arayüzdeki butona güvenme.
 
@@ -366,6 +408,15 @@ export const config = { matcher: ["/panel/:path*"] };
 - Basit yönlendirmeler için önce ¦next.config¦ ¦redirects¦'i düşün.
 - ¦matcher¦ ile statik dosyaları dışarıda bırak (bu sitenin kimlik kapısı bunu yapıyor).
 
+~~~mermaid İstek yolu: proxy → rota
+flowchart LR
+  R["İstek"] --> PX{"proxy.ts<br/>matcher eşleşiyor mu?"}
+  PX -- "evet: yönlendir / başlık ekle" --> OUT["Yanıt ya da devam"]
+  PX -- "hayır" --> RT["page.tsx / route.ts"]
+  OUT --> RT
+  RT --> DAL["DAL: asıl yetki kontrolü"]
+~~~
+
 ## Backend-for-Frontend (BFF)
 Next.js'i, tarayıcı ile asıl API'ler arasında ince bir katman olarak kullanmak: gizli anahtarlar sunucuda kalır, yanıtlar arayüze göre biçimlenir.
 
@@ -415,6 +466,25 @@ export async function kendiSiparislerim() {
   if (!o) return [];
   return prisma.order.findMany({ where: { userId: o.userId } });
 }
+~~~
+
+~~~mermaid Her istekte yetki kontrolü: DAL
+sequenceDiagram
+  participant K as Tarayıcı
+  participant S as Sayfa (Server Component)
+  participant D as DAL
+  participant V as Veritabanı
+  K->>S: GET /siparislerim
+  S->>D: kendiSiparislerim()
+  D->>D: oturumu doğrula (çerez)
+  alt oturum yok
+    D-->>S: boş / yönlendir
+  else oturum var
+    D->>V: WHERE userId = oturum.userId
+    V-->>D: kayıtlar
+    D-->>S: DTO (yalnızca gereken alanlar)
+  end
+  S-->>K: HTML
 ~~~
 
 ## DTO (Data Transfer Object)

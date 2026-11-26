@@ -16,6 +16,10 @@ export const reactFeBodiesB: Bodies = {
 
 Araçlar: Lighthouse (laboratuvar verisi), PageSpeed Insights / CrUX (gerçek kullanıcı verisi), DevTools Performance.
 
+~~~svg Core Web Vitals eşikleri
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 170' font-family='system-ui,sans-serif' font-size='12'><rect width='480' height='170' fill='white'/><text x='200' y='20' text-anchor='middle' fill='#444' font-weight='600'>İyi</text><text x='310' y='20' text-anchor='middle' fill='#444' font-weight='600'>Geliştirilmeli</text><text x='420' y='20' text-anchor='middle' fill='#444' font-weight='600'>Kötü</text><text x='8' y='60' fill='#222'>LCP (en büyük içerik)</text><rect x='150' y='36' width='100' height='34' rx='6' fill='#22a559'/><text x='200' y='58' text-anchor='middle' fill='white' font-weight='600'>≤ 2,5 sn</text><rect x='260' y='36' width='100' height='34' rx='6' fill='#f2b01e'/><text x='310' y='58' text-anchor='middle' fill='white' font-weight='600'>2,5–4 sn</text><rect x='370' y='36' width='100' height='34' rx='6' fill='#e0483e'/><text x='420' y='58' text-anchor='middle' fill='white' font-weight='600'>> 4 sn</text><text x='8' y='104' fill='#222'>INP (etkileşim)</text><rect x='150' y='80' width='100' height='34' rx='6' fill='#22a559'/><text x='200' y='102' text-anchor='middle' fill='white' font-weight='600'>≤ 200 ms</text><rect x='260' y='80' width='100' height='34' rx='6' fill='#f2b01e'/><text x='310' y='102' text-anchor='middle' fill='white' font-weight='600'>200–500 ms</text><rect x='370' y='80' width='100' height='34' rx='6' fill='#e0483e'/><text x='420' y='102' text-anchor='middle' fill='white' font-weight='600'>> 500 ms</text><text x='8' y='148' fill='#222'>CLS (kayma)</text><rect x='150' y='124' width='100' height='34' rx='6' fill='#22a559'/><text x='200' y='146' text-anchor='middle' fill='white' font-weight='600'>≤ 0,1</text><rect x='260' y='124' width='100' height='34' rx='6' fill='#f2b01e'/><text x='310' y='146' text-anchor='middle' fill='white' font-weight='600'>0,1–0,25</text><rect x='370' y='124' width='100' height='34' rx='6' fill='#e0483e'/><text x='420' y='146' text-anchor='middle' fill='white' font-weight='600'>> 0,25</text></svg>
+~~~
+
 ## Sık nedenler ve çözümler
 - **Yavaş LCP**: Büyük hero görsel → modern format (WebP/AVIF), doğru boyut, ¦fetchpriority="high"¦; yavaş sunucu (TTFB) → önbellek/CDN; render-engelleyici CSS/JS.
 - **Kötü INP**: Uzun JS görevleri (>50 ms) ana iş parçacığını kilitler → işi böl, ağır hesabı ertele/worker'a taşı, gereksiz render'ı azalt.
@@ -279,6 +283,12 @@ Access-Control-Max-Age: 600
 ### Çerezli (credentials) istekler
 ¦fetch(url, { credentials: "include" })¦ → sunucu ¦Access-Control-Allow-Credentials: true¦ vermeli ve ¦Allow-Origin¦ **joker (*) olmamalı**.
 
+![Basit CORS isteği — Görsel: MDN Web Docs (CC BY-SA)](https://mdn.github.io/shared-assets/images/diagrams/http/cors/simple-request.svg)
+
+![Preflight (ön kontrol) isteği — Görsel: MDN Web Docs (CC BY-SA)](https://mdn.github.io/shared-assets/images/diagrams/http/cors/preflight-correct.svg)
+
+![Kimlik bilgili (credentials) CORS isteği — Görsel: MDN Web Docs (CC BY-SA)](https://mdn.github.io/shared-assets/images/diagrams/http/cors/include-credentials.svg)
+
 ## Sık yanılgılar
 - **CORS bir kimlik doğrulama/koruma mekanizması değildir**; tarayıcıyı kısıtlar, ¦curl¦ veya sunucu isteğini engellemez.
 - ¦Access-Control-Allow-Origin: *¦ ile çerezli istek çalışmaz.
@@ -315,6 +325,18 @@ Kullanıcı oturumluyken, kötü bir site tarayıcının **çerezi otomatik gön
 - **CSRF token** veya özel başlık doğrulaması; durum değiştiren işlemler için ¦GET¦ kullanma.
 - Origin/Referer kontrolü.
 - Next.js Server Actions yalnızca ¦POST¦ ile çağrılır ve ¦Origin¦ ile ¦Host¦ başlıklarını karşılaştırarak CSRF riskini azaltır; yine de her action'da yetki kontrolü gerekir.
+
+~~~mermaid CSRF: tarayıcı çerezi otomatik gönderir
+sequenceDiagram
+  participant K as Kullanıcı (giriş yapmış)
+  participant Z as Kötü site
+  participant B as Banka
+  K->>Z: kötü siteyi ziyaret eder
+  Z-->>K: gizli form / istek
+  K->>B: POST /havale (oturum çerezi otomatik eklenir)
+  B-->>K: işlem yapıldı!
+  Note over B: Savunma: SameSite çerez, CSRF token, Origin kontrolü
+~~~
 
 ## Çerez öznitelikleri özeti
 ¦HttpOnly¦ (JS okuyamaz), ¦Secure¦ (yalnızca HTTPS), ¦SameSite¦ (siteler arası gönderim), ¦Path/Domain/Max-Age¦.
@@ -379,6 +401,16 @@ Uygulamana manifest ekle, Lighthouse "Installable" kontrolünü geçir; çevrimd
 | **SSG** (statik) | Derleme zamanında | Blog, dokümantasyon |
 | **ISR / yeniden doğrulama** | Statik + arka planda belirli aralıkla/etikete göre yenilenir | Ürün sayfaları |
 | **Streaming SSR** | Sayfa parça parça (Suspense) gelir | Yavaş veri parçaları olan sayfa |
+
+~~~mermaid CSR ve SSR: kullanıcı ne zaman içeriği görür?
+flowchart TB
+  subgraph CSR["CSR"]
+    A1["boş HTML"] --> A2["JS iner"] --> A3["JS çalışır, veri çekilir"] --> A4["içerik görünür"]
+  end
+  subgraph SSR["SSR"]
+    B1["sunucu HTML üretir"] --> B2["içerik görünür"] --> B3["JS iner, hydrate"] --> B4["etkileşimli"]
+  end
+~~~
 
 ## Hydration
 Sunucudan gelen HTML görünür (hızlı ilk boyama), sonra React JS yüklenip olay işleyicilerini bağlar → **etkileşimli** olur. Server ve Client çıktısı farklıysa **hydration uyuşmazlığı** hatası alırsın (¦Date.now()¦, ¦Math.random()¦, ¦window¦ kullanımı tipik nedenler).

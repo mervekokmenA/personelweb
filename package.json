@@ -23,6 +23,7 @@
     "astronomy-engine": "^2.1.19",
     "d3-delaunay": "^6.0.4",
     "lucide-react": "^1.26.0",
+    "mermaid": "^11.17.2",
     "next": "16.2.11",
     "pg": "^8.22.0",
     "polygon-clipping": "^0.15.7",
